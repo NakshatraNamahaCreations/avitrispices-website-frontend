@@ -45,8 +45,8 @@ const wholespiceslist = [
       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
     image: whitepepper,
     title: "WHITE PEPPER ",
-    discountPrice: "135",
-    price: "125",
+    discountPrice: "125",
+    price: "115",
   },
   {
     id: 34,

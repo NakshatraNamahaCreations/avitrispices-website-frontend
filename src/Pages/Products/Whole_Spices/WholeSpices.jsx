@@ -8,6 +8,7 @@ import amchur from "/media/amchur.png";
 import star_anise from "/media/star_anise.png";
 import cinnamon_sticks from "/media/cinnamon_sticks.png";
 import cloves from "/media/cloves.png";
+import axios from "axios";
 import green_cardamom from "/media/green_cardamom.png";
 import black_cardamom from "/media/black_cardamom.png";
 import nutmeg from "/media/nutmeg.png";
@@ -93,6 +94,27 @@ const wholespices = [
 
 export default function WholeSpices() {
   const [isVisible, setIsVisible] = useState(false);
+
+  const [apiProducts, setApiProducts] = useState([]);
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("https://api.nncwebsitedevelopment.com/api/products");
+      const productsData = response.data.data || [];
+
+     
+      const wholeSpicesFromAPI = productsData.filter(
+        (product) => product.category === "WHOLE SPICES"
+      );
+
+      setApiProducts(wholeSpicesFromAPI);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
