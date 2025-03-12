@@ -1,0 +1,584 @@
+@font-face {
+  font-family: "kapraneue";
+  src: url("/fonts/Kapraneue.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "KapraNeueMedium";
+  src: url("/fonts/KapraNeueProMedium.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "KapraNeueRegular";
+  src: url("/fonts/KapraNeueProRegularExpandedRounded.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+h2 {
+  font-family: kapraneue, sans-serif;
+}
+
+p {
+  font-family: KapraNeueMedium, sans-serif;
+  font-weight: 700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: kapraneue, sans-serif;
+  background-color: #faf7f1 !important;
+}
+
+.Footer-ul li a {
+  margin-bottom: 20px;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  color: white;
+  font-family: KapraNeueMedium, sans-serif;
+  
+}
+
+.Footer-ul li:hover a {
+  text-decoration: underline #AF261D;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 2px;
+  color: #F4B65B;
+}
+
+.Footer-ul li {
+  margin-bottom: 15px;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.Footer-ul-title {
+  margin-bottom: 22px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: kapraneue, sans-serif;
+}
+
+.Footer-ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navbar-container {
+  background-color: white;
+  padding: 10px;
+  width: 90%;
+  margin: 0% 5%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.left-links ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+}
+
+.right-icons ul {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+}
+
+.left-links ul li a,
+.right-icons ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-family: kapraneue, sans-serif;
+}
+
+.right-icons ul li img {
+  width: 35px;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-links ul,
+  .right-icons ul {
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+/* Navbar Dropdown */
+/* .dropdown-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+  padding: 10px;
+  width: 100vw;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  height: 300px;
+} */
+
+.dropdown-box1 {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+  padding: 10px;
+  z-index: 9999;
+  width: 25vw;
+  color: white;
+  height: 120px;
+}
+
+.dropdown-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+  padding: 10px;
+  width: 100vw;
+  z-index: 9999;
+  color: white;
+  height: 250px;
+}
+
+.product-shop{
+  display: block;
+  justify-content: center;
+  width: 15%;
+  border-right: 2px solid #F4B65B;
+}
+
+.product-shop1{
+  display: block;
+  justify-content: center;
+  width: 50%;
+}
+
+.dropdown-box1 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.dropdown-box1 ul li {
+  display: block;
+  padding: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.dropdown-box ul li {
+  display: block;
+  padding: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-box ul li:hover a{
+  text-decoration: underline #AF261D;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 2px;
+  color: #F4B65B;
+}
+
+.dropdown-box ul li a {
+  text-decoration: none;
+  color: white;
+  font-family: "kapraneue";
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: block; /* Makes the link take full width */
+}
+
+
+.dropdown-box1 ul li:hover a{
+  /* background-color: #af271daa; */
+  text-decoration: underline #AF261D;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 2px;
+  color: #F4B65B;
+}
+
+.dropUp {
+  transition: transform 0.01s ease-in-out;
+}
+
+.parent-container:hover .dropUp {
+  transform: rotate(180deg);
+}
+
+.dropdown-box1 ul li a {
+  text-decoration: none;
+  color: white;
+  font-family: "kapraneue";
+  display: block;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Hover Effect */
+.left-links ul li {
+  position: relative;
+  display: inline-block;
+  padding: 10px 15px;
+  transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.left-links ul li.hovered {
+  background-color: #AF261D;
+  transform: scale(1);
+}
+
+.left-links ul li a.hovered {
+  text-decoration: none;
+  color: white;
+  font-size: 42px;
+  letter-spacing: 1px;
+  font-family: "kapraneue";
+}
+
+.advertising-container {
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/media/Spice_TB_9-01.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.advertising-container1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/media/Spice_TB_9-01.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.slider-wrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.advertising-list {
+  display: flex;
+  gap: 45px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: white;
+  font-size: 28px;
+  font-weight: 400;
+  align-items: center;
+  letter-spacing: 1px;
+  animation: slide-left 30s linear infinite;
+  white-space: nowrap;
+  font-family: kapraneue, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.advertising-item {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon-container {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CSS for the zoom-in effect on hover */
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.1); /* Zoom in by 10% */
+    opacity: 1;
+  }
+}
+
+.zoom-in-image {
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.zoom-in-image:hover {
+  transform: scale(1.1); /* Scale up to 110% */
+  opacity: 1; /* Keep opacity at 1 during hover */
+}
+
+/* ABOUT */
+
+/* Parent Container */
+.background-container {
+  position: relative;
+  width: 85%;
+  height: 40vh;
+  overflow: hidden;
+
+}
+
+/* Background Image */
+.background-image {
+  width: 100%;
+  height: "auto";
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.advertising-container-product {
+  position: absolute;
+  bottom: -85px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/media/Spice_TB_9-01.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* History Section Container */
+.history-container {
+  padding: 30px;
+  margin-top: 2%;
+  text-align: center;
+}
+
+.history-title {
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 3%;
+}
+
+/* Content Overlay */
+.content-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 90%;
+}
+
+/* History Heading */
+.history-heading {
+  font-family: kapraneue, sans-serif;
+  font-size: 30px;
+  color: #b0261e;
+  letter-spacing: 2px;
+}
+
+/* History Text */
+.history-text {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+/* Logo Container */
+.logo-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 20px auto;
+}
+
+/* Logo Image */
+.logo-image {
+  width: 70%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+/* SHIPPING POLICY */
+
+.div-p-ul{
+  letter-spacing: 1.5px;
+  font-size: 18px;
+}
+
+.div-p-ul ul li{
+  line-height: 1.7;
+  letter-spacing: 1.5px;
+  font-size: 18px;
+  font-family: KapraNeueMedium, sans-serif;
+  margin-bottom: 8px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -40px; /* Hidden initially */
+  width: 400px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  transition: right 0.4s ease-in-out; /* Smooth slide effect */
+  padding: 20px;
+}
+
+.sidebar.open {
+  right: 0; /* Show sidebar */
+}
+
+.sidebar.closed {
+  right: -500px; /* Hide sidebar */
+}
+
+.close-btn {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+
+.blink-effect {
+  animation: slow-blink 1.5s ease-in-out;
+}
+
+@keyframes slow-blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Cart Table */
+
+/* Remove all borders except bottom */
+.custom-table {
+  border-collapse: separate; /* Allows border-spacing */
+  border-spacing: 0 10px; /* Adds space (gaps) between rows */
+  background-color: transparent !important;
+}
+
+/* Table rows should have space between them */
+.custom-table tbody tr {
+  border-bottom: 2px solid black !important; /* Only bottom border */
+  font-family: KapraNeueMedium, sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+/* Header should have a strong bottom border */
+.custom-table thead tr {
+  border-bottom: 3px solid black !important;
+  font-family: kapraneue, sans-serif;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+
+.red-circle-container {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8vw;
+  max-width: 35px;
+}
+
+.red-line-container {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.5vw;
+  max-width: 4px;
+  height: auto;
+}
+
+.responsive-image {
+  width: 100%;
+  height: auto;
+}
