@@ -16,7 +16,10 @@ import Vector from "/media/Vector.png";
 import spices from "/media/masala-collection.png";
 import masalaBox from "/media/1.png";
 import currypowder from "/media/currypowder.png";
-import AdvertisingProducts from "../../../Pages/products/AdvertisingProducts";
+// import AdvertisingProducts from "../../../Pages/products/AdvertisingProducts";
+
+import AdvertisingProducts from "../../../Pages/Products/AdvertisingProducts";
+
 import WholeProductsAll from "./WholeProductsAll";
 import { useParams } from "react-router-dom";
 // import { useState } from "react";

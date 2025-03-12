@@ -11,7 +11,7 @@ import pav_bhaji from "/media/pav_bhaji.png";
 import Vector from "/media/Vector.png";
 import spices from "/media/masala-collection.png";
 import masalaBox from "/media/1.png";
-import AdvertisingProducts from "../../../Pages/products/AdvertisingProducts";
+import AdvertisingProducts from "../../../Pages/Products/AdvertisingProducts";
 import { useParams } from "react-router-dom";
 import RetailProductsAll from "./RetailProductsAll";
 import { useNavigate } from "react-router-dom";
