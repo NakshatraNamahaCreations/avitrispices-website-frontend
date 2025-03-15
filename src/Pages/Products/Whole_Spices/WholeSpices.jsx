@@ -8,14 +8,13 @@ import amchur from "/media/amchur.png";
 import star_anise from "/media/star_anise.png";
 import cinnamon_sticks from "/media/cinnamon_sticks.png";
 import cloves from "/media/cloves.png";
-import axios from "axios";
 import green_cardamom from "/media/green_cardamom.png";
 import black_cardamom from "/media/black_cardamom.png";
 import nutmeg from "/media/nutmeg.png";
 import Navbar_Menu from "../../../Components/Navbar_Menu";
 import Footer from "../../../Components/Footer";
 // import LearnMore from "../../Home/LearnMore";
-import LearnMoreWhole from "./LearnMoreWhole";
+// import LearnMoreProducts from "./LearnMoreProducts";
 import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
 
@@ -95,27 +94,6 @@ const wholespices = [
 export default function WholeSpices() {
   const [isVisible, setIsVisible] = useState(false);
 
-  const [apiProducts, setApiProducts] = useState([]);
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get("https://api.nncwebsitedevelopment.com/api/products");
-      const productsData = response.data.data || [];
-
-     
-      const wholeSpicesFromAPI = productsData.filter(
-        (product) => product.category === "WHOLE SPICES"
-      );
-
-      setApiProducts(wholeSpicesFromAPI);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsVisible(true);
@@ -183,7 +161,7 @@ export default function WholeSpices() {
             }}
           >
             <Container>
-              <div style={{ margin: "10% 20% 15%" }}>
+              <div style={{ margin: "10% 20% 15%" }} className="div-all-products-top">
                 <h1
                   style={{
                     lineHeight: "1.5",
@@ -195,6 +173,7 @@ export default function WholeSpices() {
                     textAlign: "center",
                     color: "white",
                   }}
+                  className="h1-wholespices"
                 >
                   SHOP BY WHOLE SPICES
                 </h1>
@@ -293,6 +272,7 @@ export default function WholeSpices() {
                               fontFamily: "kapraneue, sans-serif",
                               letterSpacing: "1px",
                             }}
+                            className="view-allproducts"
                           >
                             VIEW PRODUCT
                           </h4>
@@ -303,6 +283,7 @@ export default function WholeSpices() {
                               left: "50%",
                               transform: "translateX(-50%)",
                             }}
+                            className="allproducts-price"
                           >
                             <div
                               style={{
@@ -310,6 +291,7 @@ export default function WholeSpices() {
                                 gap: "10px",
                                 alignItems: "center",
                               }}
+                              className="allproducts-price-display"
                             >
                               <p
                                 style={{
@@ -322,10 +304,12 @@ export default function WholeSpices() {
                               </p>
                               <p
                                 style={{
-                                  fontWeight: "bold",
+                                  fontFamily: "kapraneue, sans-serif",
+                                  letterSpacing:'1px',
                                   margin: 0,
                                   fontSize: "25px",
                                 }}
+                                className="original-price"
                               >
                                 Rs {kit.discountedPrice}
                               </p>
@@ -342,7 +326,7 @@ export default function WholeSpices() {
         </Container>
         <Reviews />
         {/* <LearnMore /> */}
-        <LearnMoreWhole />
+        {/* <LearnMoreProducts /> */}
         <Footer />
       </div>
     </div>

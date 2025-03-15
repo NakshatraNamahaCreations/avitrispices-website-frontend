@@ -33,7 +33,7 @@ export default function ThankYou() {
       >
         <Navbar_Menu />
         
-        <Container>
+        <Container className="div-thankyou">
           <div
             style={{
               position: "relative",
@@ -46,6 +46,7 @@ export default function ThankYou() {
               src={thankyou}
               alt="Decoration"
               style={{ width: "100%", height: "auto", display: "block" }}
+              className="thankyou-img"
             />
             {/* Centered Check Icon */}
             <FontAwesomeIcon
@@ -55,9 +56,10 @@ export default function ThankYou() {
                 top: "64%",
                 left: "48%",
                 //   transform: "translate(-50%, -50%)",
-                fontSize: "100px", // Adjust size if needed
+                fontSize: "100px", 
                 color: "white",
               }}
+              className="correct-icon"
             />
           </div>
 
@@ -68,10 +70,10 @@ export default function ThankYou() {
               fontFamily: "kapraneue, sans-serif",
             }}
           >
-            <h1 style={{ fontSize: "100px", letterSpacing: "2px" }}>
+            <h1 style={{ fontSize: "100px", letterSpacing: "2px" }} className="thankyou-h1">
               THANK YOU!
             </h1>
-            <p style={{ letterSpacing: "1px", fontSize: "28px", textTransform:"uppercase" }}>
+            <p style={{ letterSpacing: "1px", fontSize: "28px", textTransform:"uppercase" }} className="p-orderconfirmed">
               Your order has been confirmed.
             </p>
           </div>

@@ -5,14 +5,10 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Navbar_Menu from "../../Components/Navbar_Menu";
 import Footer from "../../Components/Footer";
 import Vector from "/media/Vector.png";
-import axios from "axios";
-
 
 export default function Register() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
-
 
   // State to manage form input
   const [formData, setFormData] = useState({
@@ -20,7 +16,6 @@ export default function Register() {
     lastName: "",
     email: "",
     password: "",
-    mobilenumber:"",
   });
 
   useEffect(() => {
@@ -48,48 +43,8 @@ export default function Register() {
       lastName: "",
       email: "",
       password: "",
-      mobilenumber:"",
     });
-     setErrorMessage("");
   };
-
-
-  const handleRegister = async () => {
-    setErrorMessage(""); // Reset error message before request
-  
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.mobilenumber) {
-      setErrorMessage("⚠️ All fields are required.");
-      return;
-    }
-  
-    try {
-      const response = await axios.post("https://api.nncwebsitedevelopment.com/api/customers/register", {
-        firstname: formData.firstName,
-        lastname: formData.lastName,
-        email: formData.email,
-        mobilenumber: formData.mobilenumber,
-        password: formData.password,
-      });
-  
-      if (response.status === 201) {
-        alert("✅ Registration successful! Redirecting to login.");
-        navigate("/login"); // Redirect to login page after success
-      }
-    } catch (error) {
-      console.error("❌ Registration Error:", error.response?.data); // Log error for debugging
-      if (error.response?.status === 400) {
-        setErrorMessage("⚠️ Please check your inputs and try again.");
-      } else if (error.response?.status === 409) {
-        setErrorMessage("⚠️ Email already exists. Please log in instead.");
-      } else {
-        setErrorMessage(error.response?.data?.message || "❌ Registration failed. Try again.");
-      }
-    }
-  };
-  
-  
-  
-
 
   return (
     <>
@@ -103,7 +58,7 @@ export default function Register() {
         <Navbar_Menu />
 
         <Container>
-          <div style={{ margin: "12% 20% 10% 20%" }}>
+          <div style={{ margin: "12% 20% 10% 20%" }} className="div-register">
             <h1
               style={{
                 lineHeight: "1.5",
@@ -115,6 +70,7 @@ export default function Register() {
                 textAlign: "center",
                 marginBottom: "5%",
               }}
+              className="h1-createaccount"
             >
               CREATE ACCOUNT
             </h1>
@@ -191,27 +147,6 @@ export default function Register() {
                   />
                 </FloatingLabel>
 
-{/* Mobile number */}
-      
-                      <FloatingLabel
-                  controlId="floatingMobilenumber"
-                  label="Mobile Number"
-                  className="mb-3"
-                >
-                  <Form.Control
-                    type="number"
-                    name="mobilenumber"
-                    value={formData.mobilenumber}
-                    onChange={handleChange}
-                    placeholder="enter mobile number"
-                    style={{
-                      fontFamily: "kapraneue, sans-serif",
-                      letterSpacing: "1px",
-                      fontSize: "22px",
-                      borderRadius: "10px",
-                    }}
-                  />
-                </FloatingLabel>
                 {/* Password */}
                 <FloatingLabel controlId="floatingPassword" label="Password">
                   <Form.Control
@@ -244,7 +179,7 @@ export default function Register() {
                 alignItems: "center",
                 cursor: "pointer",
               }}
-              onClick={handleRegister}
+              onClick={handleSignIn}
             >
               <img
                 src={Vector}
@@ -254,6 +189,7 @@ export default function Register() {
                   height: "100%",
                   display: "block",
                 }}
+                 className="vector-signin"
               />
               <h3
                 style={{
@@ -270,6 +206,7 @@ export default function Register() {
                   fontFamily: "kapraneue, sans-serif",
                   whiteSpace: "nowrap",
                 }}
+                className="submit-btn-createaccount"
               >
                 SUBMIT
               </h3>
@@ -286,23 +223,25 @@ export default function Register() {
                   padding: "5px 20px",
                   fontFamily: "kapraneue, sans-serif",
                   marginRight: "15px",
-                  letterSpacing:'1px'
+                  letterSpacing: "1px",
                 }}
+                className="reset-cancel-create"
               >
                 Reset
               </Button>
 
               {/* Cancel Button - Navigates to another page */}
               <Button
-                onClick={() => navigate("/")} 
+                onClick={() => navigate("/")}
                 variant="outline-dark"
                 style={{
                   fontSize: "20px",
                   padding: "5px 20px",
                   fontFamily: "kapraneue, sans-serif",
-                  marginLeft: "15px", 
-                  letterSpacing:'1px'
+                  marginLeft: "15px",
+                  letterSpacing: "1px",
                 }}
+                className="reset-cancel-create"
               >
                 Cancel
               </Button>
@@ -343,6 +282,7 @@ export default function Register() {
                     height: "100%",
                     display: "block",
                   }}
+                  className="vector-create-btn"
                 />
                 <h3
                   style={{
@@ -359,6 +299,7 @@ export default function Register() {
                     fontFamily: "kapraneue, sans-serif",
                     whiteSpace: "nowrap",
                   }}
+                  className="create-account-btn"
                 >
                   SIGN IN
                 </h3>

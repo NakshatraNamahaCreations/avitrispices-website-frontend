@@ -18,13 +18,13 @@ const products = [
 export default function DiyProductsAll() {
   return (
     <div style={{ padding: "5% 0" }}>
-      <h2 style={{ margin: "3% 5%", fontSize: "45px", letterSpacing: "1px" }}>
+      <h2 style={{ margin: "3% 5%", fontSize: "45px", letterSpacing: "1px" }} className="h2-youmaylike">
         YOU MAY ALSO LIKE...
       </h2>
       <Container>
         <Row>
           {products.map(({ id, title, image }) => (
-            <Col sm={3} key={id}>
+            <Col xs={6} sm={4} md={3} key={id} className="cards-youmayalsolike">
               <Card
                 style={{
                   width: "15rem",
@@ -32,9 +32,10 @@ export default function DiyProductsAll() {
                   border: "none",
                   boxShadow: "1px 1px 5px lightgrey",
                   textAlign: "center",
-                  height: "auto",
+                  margin: "10px auto",
                 }}
-                className="zoom-in-image"
+                
+                className="zoom-in-image cards-youmaylike"
               >
                 <Card.Title
                   style={{
@@ -45,6 +46,7 @@ export default function DiyProductsAll() {
                     fontSize: "18px",
                     letterSpacing: "1px",
                   }}
+                   className="cards-title-products"
                 >
                   {title}
                 </Card.Title>
@@ -84,6 +86,7 @@ export default function DiyProductsAll() {
                           height: "auto",
                           display: "block",
                         }}
+                        className="selectioncard-img"
                       />
 
                       {/* View Product Text */}
@@ -98,6 +101,7 @@ export default function DiyProductsAll() {
                           fontFamily: "kapraneue, sans-serif",
                           letterSpacing: "1px",
                         }}
+                        className="h4-view-products"
                       >
                         VIEW PRODUCT
                       </h4>
@@ -106,14 +110,16 @@ export default function DiyProductsAll() {
                       <div
                         style={{
                           position: "absolute",
-                          bottom: "10px",
-                          left: "80%",
-                          transform: "translateX(-50%)",
-                          display: "inline-flex",
-                          gap: "10px",
-                          alignItems: "center",
-                          width: "100%",
+                        bottom: "5px",
+                        // left: "50%",
+                        // transform: "translateX(-50%)",
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "10px",
+                        alignItems: "center",
+                        width: "100%",
                         }}
+                         className="price-cardbox"
                       >
                         <p
                           style={{
@@ -121,6 +127,7 @@ export default function DiyProductsAll() {
                             margin: 0,
                             fontSize: "20px",
                           }}
+                          className="cut-price"
                         >
                           Rs 135
                         </p>
@@ -130,6 +137,7 @@ export default function DiyProductsAll() {
                             margin: 0,
                             fontSize: "26px",
                           }}
+                          className="price-original"
                         >
                           Rs 125
                         </p>

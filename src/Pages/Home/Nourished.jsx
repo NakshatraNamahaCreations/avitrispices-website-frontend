@@ -32,6 +32,7 @@ export default function Nourished() {
           width: "80%",
           lineHeight: "1.5",
         }}
+        className="h2-symphony"
       >
        A SYMPHONY OF TASTE, <br /> PERFECTED BY AVITRI
       </h2>

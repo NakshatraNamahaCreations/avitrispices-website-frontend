@@ -129,14 +129,13 @@ export default function DiySpices() {
             backgroundColor: "#AF261D",
             position: "relative",
             width: "100vw",
-            height: "30vh",
+            height: "25vh",
           }}
         >
           <div
             style={{
               position: "absolute",
               top: "1%",
-
               backgroundImage: 'url("/media/strip-reverse.png")',
               backgroundSize: "100%",
               backgroundPosition: "center",
@@ -146,7 +145,7 @@ export default function DiySpices() {
             }}
           >
             <Container>
-              <div style={{ margin: "10% 20% 15%" }}>
+              <div style={{ margin: "10% 20% 15%" }}  className="div-diy-top">
                 <h1
                   style={{
                     lineHeight: "1.5",
@@ -158,6 +157,7 @@ export default function DiySpices() {
                     textAlign: "center",
                     color: "white",
                   }}
+                  className="h1-wholespices"
                 >
                   SHOP BY DIY SPICES KIT
                 </h1>
@@ -166,7 +166,7 @@ export default function DiySpices() {
           </div>
         </div>
 
-        <Container style={{ marginBottom: "10%", marginTop: "10%" }}>
+        <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
             {dispices.map((kit) => {
               return (
@@ -251,6 +251,7 @@ export default function DiySpices() {
                               fontFamily: "kapraneue, sans-serif",
                               letterSpacing: "1px",
                             }}
+                             className="view-allproducts"
                           >
                             VIEW PRODUCT
                           </h4>
@@ -261,6 +262,7 @@ export default function DiySpices() {
                               left: "50%",
                               transform: "translateX(-50%)",
                             }}
+                            className="allproducts-price"
                           >
                             <div
                               style={{
@@ -268,6 +270,7 @@ export default function DiySpices() {
                                 gap: "10px",
                                 alignItems: "center",
                               }}
+                              className="allproducts-price-display"
                             >
                               <p
                                 style={{
@@ -284,6 +287,7 @@ export default function DiySpices() {
                                   margin: 0,
                                   fontSize: "25px",
                                 }}
+                                 className="original-price"
                               >
                                 Rs {kit.discountedPrice}
                               </p>

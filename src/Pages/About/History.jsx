@@ -3,7 +3,7 @@ import card from "/media/timeline.png";
 import card1 from "/media/timeline.png";
 import logo from "/media/logo.png";
 import img_1956 from "/media/1956_1.png";
-import img_1990 from "/media/1990_2.png";
+import img_1990 from "/media/esspieces.jpeg";
 import img_1997 from "/media/1997_3.png";
 import img_2005 from "/media/2005_4.png";
 import img_2010 from "/media/2010_5.png";
@@ -16,7 +16,7 @@ import redline from "/media/redline.png";
 export default function History() {
   return (
     <>
-      <div style={{ padding: "30px", marginTop: "20%", position: "relative" }}>
+      <div style={{ padding: "30px", marginTop: "28%", position: "relative" }} className="div-history">
         <h2
           style={{
             fontSize: "50px",
@@ -25,6 +25,7 @@ export default function History() {
             marginBottom: "3%",
             textAlign: "center",
           }}
+          className="h2-whereitallbegan"
         >
           WHERE IT ALL BEGAN
         </h2>
@@ -49,7 +50,7 @@ export default function History() {
             {
               year: "2005: A NATIONWIDE PRESENCE",
               img: img_2005,
-              text: "By 2005, these family-run firms-E.S Trading Co and Raja & Co-had grown into trusted suppliers of spices, catering to major cities across India. Their reputation for consistency and quality made them indispensable partners for the food industry.",
+              text: "By 2005, these family-run firms-E.S Trading Co and Raja & Co; had grown into trusted suppliers of spices, catering to major cities across India. Their reputation for consistency and quality made them indispensable partners for the food industry.",
             },
             {
               year: "2010: Stepping into Global Markets",
@@ -69,7 +70,7 @@ export default function History() {
             {
               year: "2024: Conquering Western Markets",
               img: img_2024,
-              text: "In 2024, Avitri Spices entered the Western markets, bringing Indian flavors to new audiences. With a strong export presence in Europe, North America, and Australia, Avitri continues to make strides in becoming a global leader in the spice industry. Starting new and unique products such as the DIY Spice kits Avitri looks to its future with a head on spirit.",
+              text: "In 2024, Avitri Spices entered the Western markets, bringing Indian flavors to new audiences. With a strong export presence in Europe, North America and Australia, Avitri continues to make strides in becoming a global leader in the spice industry. Starting new and unique products such as the DIY Spice kits Avitri looks to its future with a head on spirit.",
             },
           ].map((item, index) => (
             <Row key={index} className="align-items-center mb-5 mt-5">
@@ -85,7 +86,8 @@ export default function History() {
                         borderRadius: "50%",
                         boxShadow: "2px 2px 5px lightgrey",
                       }}
-                      className="zoom-in-image"
+                       
+                      className="zoom-in-image img-history"
                     />
                   </Col>
                   <Col md={6}>
@@ -109,15 +111,16 @@ export default function History() {
                       <div className="content-overlay p-3">
                         <h3
                           style={{
-                            fontSize: "35px",
+                            fontSize: "32px",
                             color: "#B0261E",
                             letterSpacing: "2px",
                             fontFamily: "kapraneue, sans-serif",
                           }}
+                          className="h3-history-title"
                         >
                           {item.year}
                         </h3>
-                        <p style={{ fontSize: "20px", letterSpacing: "1px" }}>
+                        <p style={{ fontSize: "18px", letterSpacing: "1px" }} className="p-history-description">
                           {item.text}
                         </p>
                       </div>
@@ -137,6 +140,7 @@ export default function History() {
                         textAlign: "right",
                   
                       }}
+                      
                     >
                       <img
                         src={index % 4 === 0 ? card : card1}
@@ -147,15 +151,16 @@ export default function History() {
                       <div className="content-overlay p-3">
                         <h3
                           style={{
-                            fontSize: "35px",
+                            fontSize: "32px",
                             color: "#B0261E",
                             letterSpacing: "2px",
                             fontFamily: "kapraneue, sans-serif",
                           }}
+                          className="h3-history-title"
                         >
                           {item.year}
                         </h3>
-                        <p style={{ fontSize: "20px", letterSpacing: "1px" }}>
+                        <p style={{ fontSize: "18px", letterSpacing: "1px" }} className="p-history-description">
                           {item.text}
                         </p>
                       </div>
@@ -171,7 +176,7 @@ export default function History() {
                         borderRadius: "50%",
                         boxShadow: "2px 2px 5px lightgrey",
                       }}
-                      className="zoom-in-image"
+                      className="zoom-in-image img-history"
                     />
                   </Col>
                 </>

@@ -17,7 +17,7 @@ import Vector from "/media/Vector.png";
 import spices from "/media/masala-collection.png";
 import masalaBox from "/media/1.png";
 import currypowder from "/media/currypowder.png";
-import AdvertisingProducts from "../../../Pages/Products/AdvertisingProducts";
+import AdvertisingProducts from "../../../Pages/products/AdvertisingProducts";
 // import WholeProductsAll from "./WholeProductsAll";
 import { useParams } from "react-router-dom";
 import blackpepper1 from "/media/blackpepper1.png";
@@ -408,6 +408,7 @@ export default function AllProductsPage() {
           textAlign: "center",
           padding: "26% 0",
         }}
+        className="div-background-carts"
       >
         <Container>
           <h1
@@ -431,6 +432,7 @@ export default function AllProductsPage() {
                   lineHeight: "1.7",
                   letterSpacing: "1px",
                 }}
+                className="p-contents-products"
               >
                 {allproduct.content}
               </p>
@@ -445,6 +447,7 @@ export default function AllProductsPage() {
                   objectFit: "cover",
                   alignSelf: "center",
                 }}
+                className="addtoproduct-img"
               />
             </Col>
             <Col
@@ -459,6 +462,7 @@ export default function AllProductsPage() {
                   color: "black",
                   width: "80%",
                 }}
+                className="background-cartbox"
               >
                 <h2
                   style={{
@@ -466,6 +470,7 @@ export default function AllProductsPage() {
                     margin: "5% 0",
                     letterSpacing: "1px",
                   }}
+                  className="h2-products-title"
                 >
                   {allproduct.title}
                 </h2>
@@ -484,6 +489,7 @@ export default function AllProductsPage() {
                     fontSize: "24px",
                     textAlign: "center",
                   }}
+                  className="sale-box"
                 >
                   Sale
                 </p>
@@ -496,6 +502,7 @@ export default function AllProductsPage() {
                     justifyContent: "center",
                     fontSize: "45px",
                   }}
+                  className="price"
                 >
                   <p
                     style={{
@@ -504,12 +511,14 @@ export default function AllProductsPage() {
                       fontSize: "25px",
                       opacity: "0.5",
                     }}
+                    className="cutprice"
                   >
                     Rs {allproduct.discountPrice}
                   </p>
                   <p
                     style={{
-                      fontWeight: "bold",
+                      fontFamily: "kapraneue, sans-serif",
+                      letterSpacing: "1px",
                       margin: 0,
                     }}
                   >
@@ -558,6 +567,7 @@ export default function AllProductsPage() {
                       width: "100%",
                       fontFamily: "kapraneue, sans-serif",
                     }}
+                    className="addtocart-btn"
                   >
                     ADD TO CART
                   </h3>
@@ -571,9 +581,7 @@ export default function AllProductsPage() {
       <AdvertisingProducts />
 
       {/* HEALTH BENEFITS */}
-      <div
-        style={{ marginTop: "5%", marginBottom: "5%", textAlign: "center" }}
-      >
+      <div style={{ marginTop: "5%", marginBottom: "5%", textAlign: "center" }}>
         <h1
           style={{
             fontFamily: "kapraneue, sans-serif",
@@ -581,6 +589,7 @@ export default function AllProductsPage() {
             letterSpacing: "2px",
             marginBottom: "5%",
           }}
+          className="h1-healthbenefits"
         >
           SO WHAT ARE THE HEALTH BENEFITS OF OUR WHOLE SPICES
         </h1>
@@ -606,6 +615,7 @@ export default function AllProductsPage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={spices}
@@ -628,6 +638,7 @@ export default function AllProductsPage() {
                     fontSize: "35px",
                     letterSpacing: "1px",
                   }}
+                  className="h2-spices-title"
                 >
                   WHOLE SPICES
                 </h2>
@@ -637,6 +648,7 @@ export default function AllProductsPage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices are natural seasonings used to enhance the flavor
                   and aroma of food. They include ingredients like cinnamon
@@ -665,6 +677,7 @@ export default function AllProductsPage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={masalaBox}
@@ -681,13 +694,14 @@ export default function AllProductsPage() {
                   alt="spices-masala"
                   style={{ width: "100%", height: "auto", objectFit: "cover" }}
                 /> */}
-                <h2>DIY KIT</h2>
+                <h2 className="h2-spices-title">DIY KIT</h2>
                 <p
                   style={{
                     fontSize: "24px",
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices are dried, unprocessed plant parts used in
                   cooking to add depth to dishes. Popular options like bay
@@ -716,6 +730,7 @@ export default function AllProductsPage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={currypowder}
@@ -732,13 +747,14 @@ export default function AllProductsPage() {
                   alt="spices-masala"
                   style={{ width: "100%", height: "auto", objectFit: "cover" }}
                 /> */}
-                <h2>GROUND SPICES</h2>
+                <h2 className="h2-spices-title">GROUND SPICES</h2>
                 <p
                   style={{
                     fontSize: "24px",
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices retain their full flavor as they are not ground
                   into powder. Their fresh and aromatic qualities make them

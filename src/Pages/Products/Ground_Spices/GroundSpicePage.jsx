@@ -110,6 +110,7 @@ export default function GroundSpicePage() {
           textAlign: "center",
           padding: "27% 0",
         }}
+        className="div-background-carts"
       >
         <Container>
           <h1
@@ -133,6 +134,7 @@ export default function GroundSpicePage() {
                   lineHeight: "1.7",
                   letterSpacing: "1px",
                 }}
+                className="p-contents-products"
               >
                 {ground.content}
               </p>
@@ -147,6 +149,7 @@ export default function GroundSpicePage() {
                   objectFit: "cover",
                   alignSelf: "center",
                 }}
+                className="addtoproduct-img"
               />
             </Col>
             <Col
@@ -154,14 +157,14 @@ export default function GroundSpicePage() {
               className="d-flex flex-column justify-content-center align-items-center"
             >
               <div
-                style={{
-                  backgroundColor: "white",
-                  padding: "15px",
-                  textAlign: "center",
-                  color: "black",
-                  width:'300px',
-                  height:'300px'
-                }}
+               style={{
+                backgroundColor: "white",
+                padding: "50px",
+                textAlign: "center",
+                color: "black",
+                width: "80%",
+              }}
+              className="background-cartbox"
               >
                 <h2
                   style={{
@@ -169,6 +172,7 @@ export default function GroundSpicePage() {
                     margin: "5% 0",
                     letterSpacing: "1px",
                   }}
+                  className="h2-products-title"
                 >
                   {ground.title}
                 </h2>
@@ -187,6 +191,7 @@ export default function GroundSpicePage() {
                     fontSize: "24px",
                     textAlign: "center",
                   }}
+                  className="sale-box"
                 >
                   Sale
                 </p>
@@ -199,6 +204,7 @@ export default function GroundSpicePage() {
                     justifyContent: "center",
                     fontSize: "45px",
                   }}
+                  className="price"
                 >
                   <p
                     style={{
@@ -207,6 +213,7 @@ export default function GroundSpicePage() {
                       fontSize: "25px",
                       opacity: "0.5",
                     }}
+                    className="cutprice"
                   >
                     Rs {ground.discountPrice}
                   </p>
@@ -262,6 +269,7 @@ export default function GroundSpicePage() {
                       width: "100%",
                       fontFamily: "kapraneue, sans-serif",
                     }}
+                    className="addtocart-btn"
                   >
                     ADD TO CART
                   </h3>
@@ -283,6 +291,7 @@ export default function GroundSpicePage() {
             letterSpacing: "2px",
             marginBottom: "5%",
           }}
+          className="h1-healthbenefits"
         >
           SO WHAT ARE THE HEALTH BENEFITS OF OUR WHOLE SPICES
         </h1>
@@ -308,6 +317,7 @@ export default function GroundSpicePage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={spices}
@@ -330,6 +340,7 @@ export default function GroundSpicePage() {
                     fontSize: "35px",
                     letterSpacing: "1px",
                   }}
+                  className="h2-spices-title"
                 >
                   WHOLE SPICES
                 </h2>
@@ -339,6 +350,7 @@ export default function GroundSpicePage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                      className="p-spices-contents"
                 >
                   Whole spices are natural seasonings used to enhance the flavor
                   and aroma of food. They include ingredients like cinnamon
@@ -367,6 +379,7 @@ export default function GroundSpicePage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={masalaBox}
@@ -390,6 +403,7 @@ export default function GroundSpicePage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices are dried, unprocessed plant parts used in
                   cooking to add depth to dishes. Popular options like bay
@@ -418,6 +432,7 @@ export default function GroundSpicePage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                    className="img-healthbenefits"
                 >
                   <img
                     src={currypowder}
@@ -441,6 +456,7 @@ export default function GroundSpicePage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices retain their full flavor as they are not ground
                   into powder. Their fresh and aromatic qualities make them

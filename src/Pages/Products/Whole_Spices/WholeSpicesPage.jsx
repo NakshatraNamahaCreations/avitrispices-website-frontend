@@ -167,6 +167,7 @@ export default function WholeSpicePage() {
           textAlign: "center",
           padding: "26% 0",
         }}
+        className="div-background-carts"
       >
         <Container>
           <h1
@@ -190,6 +191,7 @@ export default function WholeSpicePage() {
                   lineHeight: "1.7",
                   letterSpacing: "1px",
                 }}
+                className="p-contents-products"
               >
                 {whole.content}
               </p>
@@ -204,6 +206,7 @@ export default function WholeSpicePage() {
                   objectFit: "cover",
                   alignSelf: "center",
                 }}
+                className="addtoproduct-img"
               />
             </Col>
             <Col
@@ -213,12 +216,12 @@ export default function WholeSpicePage() {
               <div
                 style={{
                   backgroundColor: "white",
-                  padding: "15px",
+                  padding: "50px",
                   textAlign: "center",
                   color: "black",
-                  width: "300px",
-                  height: "300px",
+                  width: "80%",
                 }}
+                className="background-cartbox"
               >
                 <h2
                   style={{
@@ -226,6 +229,7 @@ export default function WholeSpicePage() {
                     margin: "5% 0",
                     letterSpacing: "1px",
                   }}
+                  className="h2-products-title"
                 >
                   {whole.title}
                 </h2>
@@ -244,6 +248,7 @@ export default function WholeSpicePage() {
                     fontSize: "24px",
                     textAlign: "center",
                   }}
+                  className="sale-box"
                 >
                   Sale
                 </p>
@@ -256,6 +261,7 @@ export default function WholeSpicePage() {
                     justifyContent: "center",
                     fontSize: "45px",
                   }}
+                  className="price"
                 >
                   <p
                     style={{
@@ -264,6 +270,7 @@ export default function WholeSpicePage() {
                       fontSize: "25px",
                       opacity: "0.5",
                     }}
+                    className="cutprice"
                   >
                     Rs {whole.discountPrice}
                   </p>
@@ -318,6 +325,7 @@ export default function WholeSpicePage() {
                       width: "100%",
                       fontFamily: "kapraneue, sans-serif",
                     }}
+                    className="addtocart-btn"
                   >
                     ADD TO CART
                   </h3>
@@ -339,6 +347,7 @@ export default function WholeSpicePage() {
             letterSpacing: "2px",
             marginBottom: "5%",
           }}
+          className="h1-healthbenefits"
         >
           SO WHAT ARE THE HEALTH BENEFITS OF OUR WHOLE SPICES
         </h1>
@@ -364,6 +373,7 @@ export default function WholeSpicePage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={spices}
@@ -386,6 +396,7 @@ export default function WholeSpicePage() {
                     fontSize: "35px",
                     letterSpacing: "1px",
                   }}
+                  className="h2-spices-title"
                 >
                   WHOLE SPICES
                 </h2>
@@ -395,6 +406,7 @@ export default function WholeSpicePage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices are natural seasonings used to enhance the flavor
                   and aroma of food. They include ingredients like cinnamon
@@ -423,6 +435,7 @@ export default function WholeSpicePage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={masalaBox}
@@ -446,6 +459,7 @@ export default function WholeSpicePage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices are dried, unprocessed plant parts used in
                   cooking to add depth to dishes. Popular options like bay
@@ -474,6 +488,7 @@ export default function WholeSpicePage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={currypowder}
@@ -497,6 +512,7 @@ export default function WholeSpicePage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices retain their full flavor as they are not ground
                   into powder. Their fresh and aromatic qualities make them

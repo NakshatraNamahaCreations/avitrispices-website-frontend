@@ -33,13 +33,15 @@ export default function OrderInvoice() {
 
   return (
     <>
-      <div style={{ margin: "10% 0 2% 0", fontFamily: "kapraneue, sans-serif" }}>
+      <div
+        style={{ margin: "10% 0 2% 0", fontFamily: "kapraneue, sans-serif" }}
+      >
         {orders.map((order) => (
           <div key={order.id} className="mb-3">
             {/* Order Header Button */}
             <Button
               variant="light"
-              className="w-100 text-start d-flex justify-content-between align-items-center p-3"
+              className="w-100 text-start d-flex justify-content-between align-items-center p-3 btn-invoice"
               onClick={() => toggleRow(order.id)}
               style={{
                 border: "1px solid black",
@@ -56,15 +58,16 @@ export default function OrderInvoice() {
             {/* Expandable Order Details */}
             {expandedRow === order.id && (
               <div
-                className="p-3 mt-2"
+                className="p-3 mt-2 order-background-card"
                 style={{
                   border: "1px solid #ccc",
                   borderRadius: "8px",
                   background: "#fff",
                 }}
+                
               >
                 <div className="d-flex justify-content-between">
-                  <h5 style={{ letterSpacing: "1px", fontSize: "26px" }}>
+                  <h5 style={{ letterSpacing: "1px", fontSize: "26px" }} className="h5-orderinvoice">
                     {order.title}
                   </h5>
                   <Button
@@ -74,6 +77,7 @@ export default function OrderInvoice() {
                       letterSpacing: "1px",
                       fontSize: "22px",
                     }}
+                    className="download"
                   >
                     DOWNLOAD
                   </Button>
@@ -82,7 +86,7 @@ export default function OrderInvoice() {
                 {/* Product Table */}
                 <Table bordered>
                   <thead>
-                    <tr style={{ letterSpacing: "1px", fontSize: "24px" }}>
+                    <tr style={{ letterSpacing: "1px", fontSize: "24px" }} className="tr-thead">
                       <th>Product</th>
                       <th>Quantity</th>
                       <th>Price</th>
@@ -91,7 +95,7 @@ export default function OrderInvoice() {
                   <tbody>
                     {order.products.map((product, index) => (
                       <tr key={index}>
-                        <td style={{ letterSpacing: "1px", fontSize: "18px" }}>
+                        <td style={{ letterSpacing: "1px", fontSize: "18px" }} className="td-tbody">
                           <div>
                             <strong>{product.name}</strong> <br />
                             <span
@@ -115,13 +119,13 @@ export default function OrderInvoice() {
 
                 {/* Shipping & Total Summary */}
                 <div className="mt-3">
-                  <h6 style={{ fontSize: "26px", letterSpacing: "1px" }}>
+                  <h6 style={{ fontSize: "26px", letterSpacing: "1px" }} className="h6-shipping">
                     <strong>SHIPPING ADDRESS</strong>
                   </h6>
-                  <p style={{ fontSize: "18px" }}>{order.address}</p>
+                  <p style={{ fontSize: "18px" }} className="p-address">{order.address}</p>
                   <hr />
                   <div
-                    className="d-flex justify-content-between"
+                    className="d-flex justify-content-between total-orderinvoice"
                     style={{ fontSize: "24px", letterSpacing: "1px" }}
                   >
                     <span>SUB TOTAL</span> <strong>Rs {order.subtotal}</strong>

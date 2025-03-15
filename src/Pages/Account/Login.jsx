@@ -1,86 +1,29 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Import for navigation
 import { Container, Form } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Navbar_Menu from "../../Components/Navbar_Menu";
 import Footer from "../../Components/Footer";
 import Vector from "/media/Vector.png";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../redux/authSlice";
 
 export default function Login() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [formData, setFormData] = useState({ email: "", password: "" });
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    // Check if user is already logged in
-    const user = localStorage.getItem("user");
-    if (user) {
-      navigate("/account"); // Redirect if user is already logged in
-    }
-
     const timeout = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timeout);
-  }, [navigate]);
+  }, []);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleSignIn = () => {
+    navigate("/account");
   };
-
-  const handleLogin = async () => {
-    setErrorMessage("");
-
-    if (!formData.email || !formData.password) {
-        setErrorMessage("Email and Password are required.");
-        return;
-    }
-
-    try {
-        const response = await axios.post("https://api.nncwebsitedevelopment.com/api/customers/login", {
-            email: formData.email,
-            password: formData.password,
-        });
-
-        if (response.status === 200) {
-            alert("✅ Login successful!");
-
-            const { id, firstname, lastname, email, phone, countryCode } = response.data.user;
-
-            const userData = {
-                id,  // ✅ Store user ID properly
-                firstName: firstname || "",
-                lastName: lastname || "",
-                email: email || "",
-                phone: phone || "",
-                countryCode: countryCode || "+91",
-            };
-
-            // ✅ Save user to Redux
-            dispatch(loginSuccess(userData));
-
-            // ✅ Save user to Local Storage
-            localStorage.setItem("user", JSON.stringify(userData));
-
-            navigate("/account");
-        }
-    } catch (error) {
-        setErrorMessage(error.response?.data?.message || "❌ Login failed. Try again.");
-    }
-};
-
-  
 
   return (
     <>
@@ -94,7 +37,7 @@ export default function Login() {
         <Navbar_Menu />
 
         <Container>
-          <div style={{ margin: "12% 20% 10% 20%" }}>
+          <div style={{ margin: "12% 20% 10% 20%" }} className="div-login">
             <h1
               style={{
                 lineHeight: "1.5",
@@ -106,15 +49,10 @@ export default function Login() {
                 textAlign: "center",
                 marginBottom: "5%",
               }}
+              className="login-h1"
             >
               LOGIN
             </h1>
-
-            {errorMessage && (
-              <p style={{ color: "red", textAlign: "center", fontSize: "18px" }}>
-                {errorMessage}
-              </p>
-            )}
 
             {/* FORM LOGIN */}
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -132,53 +70,28 @@ export default function Login() {
                 >
                   <Form.Control
                     type="email"
-                    name="email"
                     placeholder="name@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
                     style={{
                       fontFamily: "KapraNeueMedium, sans-serif",
                       letterSpacing: "1px",
                       fontSize: "22px",
                       borderRadius: "10px",
                     }}
+                    className="input-login"
                   />
                 </FloatingLabel>
-                {/* <FloatingLabel controlId="floatingPassword" label="Password">
+                <FloatingLabel controlId="floatingPassword" label="Password">
                   <Form.Control
                     type="password"
-                    name="password"
                     placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
                     style={{
                       fontFamily: "KapraNeueMedium, sans-serif",
                       letterSpacing: "1px",
                       fontSize: "22px",
                       borderRadius: "10px",
                     }}
+                    className="input-login"
                   />
-                </FloatingLabel> */}
-                 <FloatingLabel controlId="floatingPassword" label="Password" className="position-relative">
-                  <Form.Control
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
-                  <span
-                    onClick={() => setShowPassword(!showPassword)}
-                    style={{
-                      position: "absolute",
-                      right: "15px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      cursor: "pointer",
-                    }}
-                  >
-                    {showPassword ? <FaEye /> :   <FaEyeSlash />}
-                  </span>
                 </FloatingLabel>
                 <div style={{ marginTop: "20px", textDecoration: "underline" }}>
                   <p
@@ -206,7 +119,7 @@ export default function Login() {
                 alignItems: "center",
                 cursor: "pointer",
               }}
-              onClick={handleLogin}
+              onClick={handleSignIn}
             >
               <img
                 src={Vector}
@@ -216,6 +129,7 @@ export default function Login() {
                   height: "100%",
                   display: "block",
                 }}
+                className="vector-signin"
               />
               <h3
                 style={{
@@ -232,6 +146,7 @@ export default function Login() {
                   fontFamily: "kapraneue, sans-serif",
                   whiteSpace: "nowrap",
                 }}
+                className="signin-btn"
               >
                 SIGN IN
               </h3>
@@ -272,6 +187,7 @@ export default function Login() {
                     height: "100%",
                     display: "block",
                   }}
+                  className="vector-create-btn"
                 />
                 <h3
                   style={{
@@ -288,6 +204,7 @@ export default function Login() {
                     fontFamily: "kapraneue, sans-serif",
                     whiteSpace: "nowrap",
                   }}
+                  className="create-account-btn"
                 >
                   CREATE ACCOUNT
                 </h3>

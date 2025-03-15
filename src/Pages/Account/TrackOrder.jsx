@@ -24,7 +24,7 @@ const OrderTracking = () => {
         {/* Expandable Button Section */}
         <Button
           variant="light"
-          className="w-100 text-start d-flex justify-content-between align-items-center p-3"
+          className="w-100 text-start d-flex justify-content-between align-items-center p-3 btn-track"
           onClick={() => toggleRow("orderTracking")}
           style={{
             border: "1px solid black",
@@ -44,7 +44,7 @@ const OrderTracking = () => {
 
         {/* Expandable Content - Order Tracking Details */}
         {expandedRow === "orderTracking" && (
-          <div className="mt-3 p-3 border rounded">
+          <div className="mt-3 p-3 border rounded order-background-card" style={{backgroundColor:'white'}}>
             <p className="fw-bold">Order #66541324</p>
 
             {/* Order Timeline */}
@@ -52,46 +52,46 @@ const OrderTracking = () => {
               {/* Order Placed */}
               <Col className="d-flex flex-column align-items-center">
                 <div
-                  className="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center"
+                  className="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center circle-track"
                   style={{ width: "80px", height: "80px" }}
                 >
-                  <FaShoppingCart size={40} />
+                  <FaShoppingCart size={40} className="icon-track" />
                 </div>
-                <h5 className="fw-bold mt-2" style={{letterSpacing: "1px", fontSize: "24px" }}>Order Placed</h5>
-                <p>10th March 2025</p>
-                <p>2:25 PM</p>
+                <h5 className="fw-bold mt-2 h5-tracktitle" style={{letterSpacing: "1px", fontSize: "24px" }}>Order Placed</h5>
+                <p style={{ letterSpacing: "1px", fontSize: "18px" }} className="p-tracktitle">10th March 2025</p>
+                <p style={{ letterSpacing: "1px", fontSize: "18px" }} className="p-tracktitle">2:25 PM</p>
               </Col>
 
               {/* Order Dispatched */}
               <Col className="d-flex flex-column align-items-center">
                 <div
-                  className="bg-light border rounded-circle d-flex align-items-center justify-content-center"
+                  className="bg-light border rounded-circle d-flex align-items-center justify-content-center circle-track"
                   style={{ width: "80px", height: "80px" }}
                 >
-                  <FaBox size={40} />
+                  <FaBox size={40} className="icon-track" />
                 </div>
-                <h5 className="fw-bold mt-2" style={{letterSpacing: "1px", fontSize: "24px" }}>Order Dispatched</h5>
-                <p style={{ letterSpacing: "1px", fontSize: "18px" }}>15th March 2025</p>
-                <p style={{ letterSpacing: "1px", fontSize: "18px" }}>10:00 AM</p>
+                <h5 className="fw-bold mt-2 h5-tracktitle" style={{letterSpacing: "1px", fontSize: "24px" }}>Order Dispatched</h5>
+                <p style={{ letterSpacing: "1px", fontSize: "18px" }} className="p-tracktitle">15th March 2025</p>
+                <p style={{ letterSpacing: "1px", fontSize: "18px" }} className="p-tracktitle">10:00 AM</p>
               </Col>
 
               {/* Delivered Successfully */}
               <Col className="d-flex flex-column align-items-center">
                 <div
-                  className="bg-light border rounded-circle d-flex align-items-center justify-content-center"
+                  className="bg-light border rounded-circle d-flex align-items-center justify-content-center circle-track"
                   style={{ width: "80px", height: "80px" }}
                 >
-                  <FaCheckCircle size={40} />
+                  <FaCheckCircle size={40} className="icon-track" />
                 </div>
-                <h5 className="fw-bold mt-2" style={{letterSpacing: "1px", fontSize: "24px" }}>Delivered Successfully</h5>
-                <p style={{ letterSpacing: "1px", fontSize: "18px" }}>25th March 2025</p>
-                <p style={{ letterSpacing: "1px", fontSize: "18px" }}>6:25 PM</p>
+                <h5 className="fw-bold mt-2 h5-tracktitle" style={{letterSpacing: "1px", fontSize: "24px" }}>Delivered Successfully</h5>
+                <p style={{ letterSpacing: "1px", fontSize: "18px" }} className="p-tracktitle">25th March 2025</p>
+                <p style={{ letterSpacing: "1px", fontSize: "18px" }} className="p-tracktitle">6:25 PM</p>
               </Col>
             </Row>
 
             {/* Expected Delivery Date */}
             <div className="text-center mt-3">
-              <h5 className="fw-bold">Expected Delivery by Tue, March 25th</h5>
+              <h5 className="fw-bold h5-delivery">Expected Delivery by Tue, March 25th</h5>
             </div>
           </div>
         )}

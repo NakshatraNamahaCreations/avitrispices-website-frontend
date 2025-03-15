@@ -105,14 +105,13 @@ export default function RetailSpices() {
             backgroundColor: "#AF261D",
             position: "relative",
             width: "100vw",
-            height: "30vh",
+            height: "25vh",
           }}
         >
           <div
             style={{
               position: "absolute",
               top: "1%",
-
               backgroundImage: 'url("/media/strip-reverse.png")',
               backgroundSize: "100%",
               backgroundPosition: "center",
@@ -122,7 +121,10 @@ export default function RetailSpices() {
             }}
           >
             <Container>
-              <div style={{ margin: "10% 20% 15%" }}>
+              <div
+                style={{ margin: "10% 20% 15%" }}
+                className="div-blend-top"
+              >
                 <h1
                   style={{
                     lineHeight: "1.5",
@@ -134,6 +136,7 @@ export default function RetailSpices() {
                     textAlign: "center",
                     color: "white",
                   }}
+                  className="h1-groundspices"
                 >
                   SHOP BY SPICES BLENDS
                 </h1>
@@ -142,7 +145,7 @@ export default function RetailSpices() {
           </div>
         </div>
 
-        <Container style={{ marginBottom: "10%", marginTop: "10%" }}>
+        <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
             {wholespices.map((kit) => {
               return (
@@ -227,6 +230,7 @@ export default function RetailSpices() {
                               fontFamily: "kapraneue, sans-serif",
                               letterSpacing: "1px",
                             }}
+                            className="view-allproducts"
                           >
                             VIEW PRODUCT
                           </h4>
@@ -237,6 +241,7 @@ export default function RetailSpices() {
                               left: "50%",
                               transform: "translateX(-50%)",
                             }}
+                            className="allproducts-price"
                           >
                             <div
                               style={{
@@ -244,6 +249,7 @@ export default function RetailSpices() {
                                 gap: "10px",
                                 alignItems: "center",
                               }}
+                              className="allproducts-price-display"
                             >
                               <p
                                 style={{
@@ -260,6 +266,7 @@ export default function RetailSpices() {
                                   margin: 0,
                                   fontSize: "25px",
                                 }}
+                                className="original-price"
                               >
                                 Rs {kit.discountedPrice}
                               </p>

@@ -105,7 +105,7 @@ export default function GroundSpices() {
             backgroundColor: "#AF261D",
             position: "relative",
             width: "100vw",
-            height: "35vh",
+            height: "25vh",
           }}
         >
           <div
@@ -121,7 +121,10 @@ export default function GroundSpices() {
             }}
           >
             <Container>
-              <div style={{ margin: "10% 20% 15%" }}>
+              <div
+                style={{ margin: "10% 20% 15%" }}
+                className="div-ground-top"
+              >
                 <h1
                   style={{
                     lineHeight: "1.5",
@@ -133,6 +136,7 @@ export default function GroundSpices() {
                     textAlign: "center",
                     color: "white",
                   }}
+                  className="h1-groundspices"
                 >
                   SHOP BY GROUND SPICES
                 </h1>
@@ -141,7 +145,7 @@ export default function GroundSpices() {
           </div>
         </div>
 
-        <Container style={{ marginBottom: "10%", marginTop: "10%" }}>
+        <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
             {groundspices.map((kit) => {
               return (
@@ -225,6 +229,7 @@ export default function GroundSpices() {
                               fontFamily: "kapraneue, sans-serif",
                               letterSpacing: "1px",
                             }}
+                            className="view-allproducts"
                           >
                             VIEW PRODUCT
                           </h4>
@@ -235,6 +240,7 @@ export default function GroundSpices() {
                               left: "50%",
                               transform: "translateX(-50%)",
                             }}
+                            className="allproducts-price"
                           >
                             <div
                               style={{
@@ -242,6 +248,7 @@ export default function GroundSpices() {
                                 gap: "10px",
                                 alignItems: "center",
                               }}
+                              className="allproducts-price-display"
                             >
                               <p
                                 style={{
@@ -258,6 +265,7 @@ export default function GroundSpices() {
                                   margin: 0,
                                   fontSize: "25px",
                                 }}
+                                className="original-price"
                               >
                                 Rs {kit.discountedPrice}
                               </p>

@@ -64,7 +64,7 @@ export default function RecipesGrid() {
               marginTop:'5%'
             }}
             onClick={() => handleCardClick(id)}
-            className="zoom-in-image"
+            className="zoom-in-image card-receipes-grid"
           >
             <Card.Title
               style={{
@@ -75,6 +75,7 @@ export default function RecipesGrid() {
                 letterSpacing: "1px",
                 textTransform: "uppercase",
               }}
+              className="recipes-title-grid"
             >
               {title}
             </Card.Title>
@@ -87,7 +88,7 @@ export default function RecipesGrid() {
                 paddingBottom: "15px",
               }}
             >
-              <Card.Img variant="top" src={image} alt={title} style={{ width: "100%", height: "auto" }} />
+              <Card.Img variant="top" src={image} alt={title} style={{ width: "100%", height: "auto" }} className="img-recipes-grid" />
             </div>
 
             <Card.Body style={{ padding: "0px", width: "100%" }}>

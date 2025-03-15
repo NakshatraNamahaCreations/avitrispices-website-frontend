@@ -8,32 +8,34 @@ import chole from "/media/cholemasalakit.jpeg";
 import curry from "/media/currypowderkit.jpeg";
 import rasam from "/media/rasampowderkit.jpeg";
 import butterpaneerkit from "/media/butterpaneerkit.jpeg";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Spice Kits Data
 const spiceKits = [
   {
-    id: 1,
+    id: 45,
     title: "DIY CHOLE MASALA KIT",
     image: chole,
     originalPrice: 135,
     discountedPrice: 125,
   },
   {
-    id: 2,
+    id: 53,
     title: "DIY CURRY POWDER KIT",
     image: curry,
     originalPrice: 125,
     discountedPrice: 115,
   },
   {
-    id: 3,
+    id: 47,
     title: "DIY RASAM POWDER KIT",
     image: rasam,
     originalPrice: 140,
     discountedPrice: 120,
   },
   {
-    id: 4,
+    id: 48,
     title: "DIY BUTTER PANEER MASALA",
     image: butterpaneerkit,
     originalPrice: 145,
@@ -50,6 +52,12 @@ export default function Spice_Kits() {
     opacity: hovered ? 1 : 1,
     config: { tension: 250, friction: 25 },
   });
+
+  const navigate = useNavigate();
+
+  const handleCardClick = (id) => {
+    navigate(`/diy-spices/${id}`);
+  };
 
   return (
     <div style={{ margin: "7% 10%" }}>
@@ -77,7 +85,7 @@ export default function Spice_Kits() {
             });
 
             return (
-              <Col sm={3} key={kit.id} className="card-item">
+              <Col xs={6} sm={6} md={3} key={kit.id} className="card-item">
                 <Card
                   style={{
                     width: "15rem",
@@ -86,6 +94,7 @@ export default function Spice_Kits() {
                     boxShadow: "1px 1px 5px lightgrey",
                     height: "auto",
                   }}
+                  onClick={() => handleCardClick(kit.id)}
                   onMouseEnter={() => setHoveredCard(kit.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
@@ -97,6 +106,7 @@ export default function Spice_Kits() {
                       textAlign: "center",
                       fontFamily: "kapraneue, sans-serif",
                     }}
+                    
                   >
                     {kit.title}
                   </Card.Title>
@@ -198,43 +208,47 @@ export default function Spice_Kits() {
       </Container>
 
       {/* Find More Like This Section */}
-      <div
-        style={{
-          position: "relative",
-          width: "30%",
-          height: "50px",
-          margin: "0px 33%",
-        }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        <animated.img
-          src={Vector}
-          alt="Vector-img"
+      <Link to="/all-products" style={{ textDecoration: "none" }}>
+        <div
           style={{
-            ...zoomIn,
-            width: "100%",
-            height: "100%",
-            display: "block",
+            position: "relative",
+            width: "30%",
+            height: "50px",
+            margin: "0px 33%",
           }}
-        />
-        <h3
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            fontSize: "18px",
-            fontWeight: "bold",
-            letterSpacing: "2px",
-            color: "white",
-            textAlign: "center",
-            fontFamily: "kapraneue, sans-serif",
-          }}
+          className="find-more-container"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
         >
-          FIND MORE LIKE THIS
-        </h3>
-      </div>
+          <animated.img
+            src={Vector}
+            alt="Vector-img"
+            style={{
+              ...zoomIn,
+              width: "100%",
+              height: "100%",
+              display: "block",
+            }}
+            
+          />
+          <h3
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              fontSize: "18px",
+              fontWeight: "bold",
+              letterSpacing: "2px",
+              color: "white",
+              textAlign: "center",
+              fontFamily: "kapraneue, sans-serif",
+            }}
+          >
+            FIND MORE LIKE THIS
+          </h3>
+        </div>
+      </Link>
     </div>
   );
 }

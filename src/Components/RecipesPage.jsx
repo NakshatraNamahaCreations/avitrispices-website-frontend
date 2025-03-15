@@ -611,7 +611,7 @@ export default function RecipesPage() {
       <Navbar_Menu />
 
       <Container style={{ padding: "50px", marginTop: "2%" }}>
-        <div style={{ margin: "5% 20% 10% 20%" }}>
+        <div style={{ margin: "5% 20% 10% 20%" }} className="div-recipespage">
           <h1
             style={{
               lineHeight: "1.5",
@@ -624,6 +624,7 @@ export default function RecipesPage() {
               // marginBottom: "5%",
               textTransform: "uppercase",
             }}
+            className="h1-recipes-title"
           >
             {product.title}
           </h1>
@@ -632,6 +633,7 @@ export default function RecipesPage() {
               src={product.image}
               alt={product.title}
               style={{ width: "300px", height: "auto" }}
+              className="recipes-img"
             />
           </div>
           <div
@@ -643,6 +645,7 @@ export default function RecipesPage() {
               marginBottom: "2%",
               fontSize: "22px",
             }}
+            className="services-prepartion-cooking"
           >
             <p>
               <span
@@ -708,6 +711,7 @@ export default function RecipesPage() {
                 src={delicious_icon}
                 alt="delicious"
                 style={{ width: "50%", height: "auto", objectFit: "cover" }}
+                
               />
               <p
                 style={{
@@ -716,6 +720,7 @@ export default function RecipesPage() {
                   letterSpacing: "1px",
                   fontFamily: "kapraneue, sans-serif",
                 }}
+                className="benefits-p"
               >
                 DELICIOUS
               </p>
@@ -733,6 +738,7 @@ export default function RecipesPage() {
                   letterSpacing: "1px",
                   fontFamily: "kapraneue, sans-serif",
                 }}
+                 className="benefits-p"
               >
                 AROMATIC
               </p>
@@ -750,6 +756,7 @@ export default function RecipesPage() {
                   letterSpacing: "1px",
                   fontFamily: "kapraneue, sans-serif",
                 }}
+                 className="benefits-p"
               >
                 FLAVOURY
               </p>

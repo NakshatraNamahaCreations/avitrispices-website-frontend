@@ -13,9 +13,9 @@ export default function Footer() {
           padding: "1px",
         }}
       >
-        <div style={{ margin: "4% 20%" }}>
+        <div style={{ margin: "4% 20%" }} className="div-subscribe">
           <InputGroup
-            className="mb-3"
+            className="mb-3 "
             style={{ padding: "0", borderRadius: "0px" }}
           >
             <Form.Control
@@ -28,6 +28,7 @@ export default function Footer() {
                 fontFamily: "kapraneue, sans-serif",
                 letterSpacing: "1px",
               }}
+              className="input-subscribe"
             />
             <Button
               variant="outline-secondary"
@@ -52,6 +53,7 @@ export default function Footer() {
             justifyContent: "space-evenly",
             color: "white",
           }}
+          className="div-footer-display"
         >
           <Link to="/">
             <img
@@ -63,6 +65,7 @@ export default function Footer() {
                 objectFit: "cover",
                 alignSelf: "flex-start",
               }}
+              className="logo-footer"
             />
           </Link>
 

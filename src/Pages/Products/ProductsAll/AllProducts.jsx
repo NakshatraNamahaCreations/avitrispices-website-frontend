@@ -13,7 +13,6 @@ import black_cardamom from "/media/black_cardamom.png";
 import nutmeg from "/media/nutmeg.png";
 import Navbar_Menu from "../../../Components/Navbar_Menu";
 import Footer from "../../../Components/Footer";
-
 import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
 import currypowder from "/media/currypowder.png";
@@ -36,7 +35,6 @@ import chole_masala from "/media/chole_masala.png";
 import rasam_powder from "/media/rasam_powder.png";
 import cuminseed from "/media/cuminseed.png";
 import bayleaf from "/media/bayleaf.png";
-
 import coriseed from "/media/coriseed.png";
 import LearnMoreProducts from "./LearnMoreProducts";
 
@@ -273,7 +271,7 @@ const allproducts = [
 
 export default function AllProducts() {
   const [isVisible, setIsVisible] = useState(false);
-  
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsVisible(true);
@@ -294,16 +292,16 @@ export default function AllProducts() {
 
   return (
     <div>
-       <div
+      <div
         className="page-content"
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
         }}
       >
-      {/* Navbar Top */}
-      <Navbar_Menu />
-      {/* <Container>
+        {/* Navbar Top */}
+        <Navbar_Menu />
+        {/* <Container>
         <div style={{ margin: "10% 20% 5% 20%" }}>
           <h1
             style={{
@@ -320,76 +318,77 @@ export default function AllProducts() {
           </h1>
         </div>
       </Container> */}
-      <div
-        style={{
-          backgroundColor: "#AF261D",
-          position: "relative",
-          width: "100vw",
-          height: "25vh",
-        }}
-      >
         <div
           style={{
-            position: "absolute",
-            top: "1%",
-            backgroundImage: 'url("/media/strip-reverse.png")',
-            backgroundSize: "100%",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
+            backgroundColor: "#AF261D",
+            position: "relative",
             width: "100vw",
-            height: "auto",
+            height: "25vh",
           }}
         >
-          <Container>
-            <div style={{ margin: "10% 20% 15%" }}>
-              <h1
-                style={{
-                  lineHeight: "1.5",
-                  letterSpacing: "3px",
-                  fontSize: "75px",
-                  maxWidth: "100%",
-                  fontWeight: "bold",
-                  fontFamily: "kapraneue, sans-serif",
-                  textAlign: "center",
-                  color: "white",
-                }}
-              >
-                ALL PRODUCTS
-              </h1>
-            </div>
-          </Container>
-        </div>
-      </div>
-
-      <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
-        <Row className="text-center" style={{ justifyContent: "left" }}>
-          {allproducts.map((kit) => {
-            return (
-              <Col sm={3} key={kit.id} className="card-item">
-                <Card
+          <div
+            style={{
+              position: "absolute",
+              top: "1%",
+              backgroundImage: 'url("/media/strip-reverse.png")',
+              backgroundSize: "100%",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              width: "100vw",
+              height: "auto",
+            }}
+          >
+            <Container>
+              <div style={{ margin: "10% 20% 15%" }} className="div-all-products-top">
+                <h1
                   style={{
-                    width: "15rem",
-                    borderRadius: "25px 25px 60px 60px",
-                    border: "none",
-                    boxShadow: "1px 1px 5px lightgrey",
-                    height: "auto",
-                    marginBottom: "40px",
+                    lineHeight: "1.5",
+                    letterSpacing: "3px",
+                    fontSize: "75px",
+                    maxWidth: "100%",
+                    fontWeight: "bold",
+                    fontFamily: "kapraneue, sans-serif",
+                    textAlign: "center",
+                    color: "white",
                   }}
-                  onClick={() => handleCardClick(kit.id)}
-                  className="zoom-in-image"
+                  className="h1-all-products"
                 >
-                  <Card.Title
+                  ALL PRODUCTS
+                </h1>
+              </div>
+            </Container>
+          </div>
+        </div>
+
+        <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
+          <Row className="text-center" style={{ justifyContent: "left" }}>
+            {allproducts.map((kit) => {
+              return (
+                <Col sm={3} key={kit.id} className="card-item">
+                  <Card
                     style={{
-                      paddingTop: "15px",
-                      fontWeight: "bold",
-                      fontSize: "22px",
-                      textAlign: "center",
-                      fontFamily: "kapraneue, sans-serif",
+                      width: "15rem",
+                      borderRadius: "25px 25px 60px 60px",
+                      border: "none",
+                      boxShadow: "1px 1px 5px lightgrey",
+                      height: "auto",
+                      marginBottom: "40px",
                     }}
+                    onClick={() => handleCardClick(kit.id)}
+                    className="zoom-in-image"
                   >
-                    {kit.title}
-                  </Card.Title>
-                  {/* <p
+                    <Card.Title
+                      style={{
+                        paddingTop: "15px",
+                        fontWeight: "bold",
+                        fontSize: "22px",
+                        textAlign: "center",
+                        fontFamily: "kapraneue, sans-serif",
+                      }}
+                    >
+                      {kit.title}
+                    </Card.Title>
+                    {/* <p
                     style={{
                       backgroundColor: "black",
                       color: "white",
@@ -411,98 +410,105 @@ export default function AllProducts() {
                     SALE
                   </p> */}
 
-                  <div
-                    style={{
-                      width: "50%",
-                      height: "auto",
-                      marginBottom: "15px",
-                      alignSelf: "center",
-                    }}
-                  >
-                    {" "}
-                    <Card.Img variant="top" src={kit.image} />
-                  </div>
-                  <div>
-                    <Card.Body style={{ padding: "0px" }}>
-                      <div
-                        style={{
-                          position: "relative",
-                          width: "100%",
-                          marginTop: "3%",
-                        }}
-                      >
-                        <img
-                          src={SelectionCard}
-                          alt="SelectionCard-img"
-                          style={{
-                            width: "100%",
-                            height: "auto",
-                            display: "block",
-                          }}
-                        />
-                        <h4
-                          style={{
-                            position: "absolute",
-                            top: "35%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
-                            fontSize: "22px",
-                            fontWeight: "bold",
-                            fontFamily: "kapraneue, sans-serif",
-                            letterSpacing: "1px",
-                          }}
-                        >
-                          VIEW PRODUCT
-                        </h4>
+                    <div
+                      style={{
+                        width: "50%",
+                        height: "auto",
+                        marginBottom: "15px",
+                        alignSelf: "center",
+                      }}
+                      className="allproducts-img"
+                    >
+                      {" "}
+                      <Card.Img variant="top" src={kit.image} />
+                    </div>
+                    <div>
+                      <Card.Body style={{ padding: "0px" }}>
                         <div
                           style={{
-                            position: "absolute",
-                            bottom: "10px",
-                            left: "50%",
-                            transform: "translateX(-50%)",
+                            position: "relative",
+                            width: "100%",
+                            marginTop: "3%",
                           }}
                         >
+                          <img
+                            src={SelectionCard}
+                            alt="SelectionCard-img"
+                            style={{
+                              width: "100%",
+                              height: "auto",
+                              display: "block",
+                            }}
+                          />
+                          <h4
+                            style={{
+                              position: "absolute",
+                              top: "35%",
+                              left: "50%",
+                              transform: "translate(-50%, -50%)",
+                              fontSize: "22px",
+                              fontWeight: "bold",
+                              fontFamily: "kapraneue, sans-serif",
+                              letterSpacing: "1px",
+                            }}
+                            className="view-allproducts"
+                          >
+                            VIEW PRODUCT
+                          </h4>
                           <div
                             style={{
-                              display: "flex",
-                              gap: "10px",
-                              alignItems: "center",
+                              position: "absolute",
+                              bottom: "10px",
+                              left: "50%",
+                              transform: "translateX(-50%)",
                             }}
+                            className="allproducts-price"
                           >
-                            <p
+                            <div
                               style={{
-                                textDecoration: "line-through",
-                                margin: 0,
-                                opacity: "0.7",
+                                display: "flex",
+                                gap: "10px",
+                                alignItems: "center",
                               }}
+                              className="allproducts-price-display"
                             >
-                              Rs {kit.originalPrice}
-                            </p>
-                            <p
-                              style={{
-                                fontWeight: "bold",
-                                margin: 0,
-                                fontSize: "25px",
-                              }}
-                            >
-                              Rs {kit.discountedPrice}
-                            </p>
+                              <p
+                                style={{
+                                  textDecoration: "line-through",
+                                  margin: 0,
+                                  opacity: "0.7",
+                                }}
+                                className="discount-price"
+                              >
+                                Rs {kit.originalPrice}
+                              </p>
+                              <p
+                                style={{
+                                  fontFamily: "kapraneue, sans-serif",
+                                  letterSpacing:'1px',
+                                  margin: 0,
+                                  fontSize: "25px",
+                                }}
+                                className="original-price"
+                              >
+                                Rs {kit.discountedPrice}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </Card.Body>
-                  </div>
-                </Card>
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
-      <Reviews />
-      {/* <LearnMore /> */}
-      <LearnMoreProducts />
-      <Footer />
-    </div>
+                      </Card.Body>
+                    </div>
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
+        </Container>
+        <Reviews />
+        {/* <LearnMore /> */}
+        <LearnMoreProducts />
+        <Footer />
+      </div>
     </div>
   );
 }

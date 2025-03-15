@@ -58,7 +58,7 @@ export default function Cart() {
 
         <Container>
           {cartItems.length === 0 ? (
-            <div style={{ margin: "15% 0% 10% 0%", textAlign: "center" }}>
+            <div style={{ margin: "15% 0% 10% 0%", textAlign: "center" }} className="div-shopping-cart">
               <h1
                 style={{
                   letterSpacing: "3px",
@@ -66,6 +66,7 @@ export default function Cart() {
                   fontWeight: "bold",
                   fontFamily: "kapraneue, sans-serif",
                 }}
+                className="h1-shopping-empty"
               >
                 YOUR SHOPPING CART IS EMPTY
               </h1>
@@ -95,6 +96,7 @@ export default function Cart() {
                     margin: "5% auto",
                     cursor: "pointer",
                   }}
+                  className="btn-shop-cart"
                   onMouseEnter={() => setHovered(true)}
                   onMouseLeave={() => setHovered(false)}
                 >
@@ -108,6 +110,7 @@ export default function Cart() {
                       display: "block",
                       margin: "0 auto",
                     }}
+                    className="vector-shop"
                   />
                   <h3
                     style={{
@@ -122,6 +125,7 @@ export default function Cart() {
                       fontFamily: "kapraneue, sans-serif",
                       marginBottom: "0px",
                     }}
+                    className="shop-btn"
                   >
                     SHOP NOW
                   </h3>
@@ -130,7 +134,7 @@ export default function Cart() {
             </div>
           ) : (
             <>
-              <div style={{ fontFamily: "kapraneue, sans-serif" }}>
+              <div style={{ fontFamily: "kapraneue, sans-serif" }} className="div-your-cart">
                 <h1
                   style={{
                     letterSpacing: "2px",
@@ -141,6 +145,7 @@ export default function Cart() {
                     margin: "15% 0% 5% 0%",
                     fontFamily: "kapraneue, sans-serif",
                   }}
+                  className="h1-shopping-empty"
                 >
                   YOUR CART
                 </h1>
@@ -186,6 +191,7 @@ export default function Cart() {
                                   height: "auto",
                                   objectFit: "contain",
                                 }}
+                                className="cart-img-item"
                               />
                             </td>
                             <td style={{ padding: "10px" }}>
@@ -196,6 +202,7 @@ export default function Cart() {
                                   fontFamily: "kapraneue, sans-serif",
                                   letterSpacing: "1px",
                                 }}
+                                className="cart-product-title"
                               >
                                 {item.title}
                               </h3>
@@ -213,6 +220,7 @@ export default function Cart() {
                                     fontSize: "18px",
                                     opacity: "0.5",
                                   }}
+                                  className="discount-price-cart"
                                 >
                                   {" "}
                                   Rs {item.discountPrice}
@@ -222,6 +230,7 @@ export default function Cart() {
                                     fontFamily: "kapraneue, sans-serif",
                                     fontSize: "24px",
                                   }}
+                                  className="price-cart"
                                 >
                                   Rs {itemPrice.toFixed(2)}
                                 </div>
@@ -266,6 +275,7 @@ export default function Cart() {
                                   cursor: "pointer",
                                   marginRight: "15px",
                                 }}
+                                 className="minus-btn"
                               >
                                 −
                               </button>
@@ -275,6 +285,8 @@ export default function Cart() {
                                   textAlign: "center",
                                   fontWeight: "bold",
                                 }}
+                                className="count-size"
+                               
                               >
                                 {itemQuantity}
                               </span>
@@ -295,6 +307,7 @@ export default function Cart() {
                                   cursor: "pointer",
                                   marginLeft: "15px",
                                 }}
+                                className="minus-btn"
                               >
                                 +
                               </button>

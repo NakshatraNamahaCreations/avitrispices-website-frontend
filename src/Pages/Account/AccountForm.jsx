@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import Select from "react-select";
-import { useNavigate } from "react-router-dom";
 import Vector from "/media/Vector.png";
+import { useNavigate } from "react-router-dom";
 
 const countryCodes = [
   { value: "+91", label: "+91 (India)" },
@@ -13,34 +13,29 @@ const countryCodes = [
 ];
 
 export default function AccountForm() {
-  const navigate = useNavigate();
-
-  
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     phone: "",
-    countryCode: countryCodes[0], 
+    countryCode: countryCodes[0], // Default: USA
   });
 
-  useEffect(() => {
-    
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    if (storedUser) {
-      setFormData({
-        firstName: storedUser.firstName || "",
-        lastName: storedUser.lastName || "",
-        email: storedUser.email || "",
-        phone: storedUser.phone || "",
-        countryCode: countryCodes.find(c => c.value === storedUser.countryCode) || countryCodes[0],
-      });
-    }
-  }, []);
+  const handleSelectChange = (selectedOption) => {
+    setFormData({ ...formData, countryCode: selectedOption });
+  };
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data:", formData);
+  };
+
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
     navigate("/login");
   };
 
@@ -53,53 +48,40 @@ export default function AccountForm() {
           backgroundColor: "white",
           padding: "30px",
           borderRadius: "10px",
+          // boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
           border: "1px solid black",
         }}
+        className="container-accountform"
       >
         <Form
+          onSubmit={handleSubmit}
           style={{
             fontFamily: "kapraneue, sans-serif",
             letterSpacing: "1px",
             fontSize: "20px",
           }}
+          className="accountform"
         >
-          {/* First Name */}
+          {/* Name */}
           <Form.Group className="mb-3">
-            <Form.Label>First Name</Form.Label>
+            <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
-              name="firstName"
-              value={formData.firstName}
-              readOnly
+              name="name"
+              placeholder="Enter your name"
+              value={formData.name}
+              onChange={handleChange}
+              required
               style={{
                 fontSize: "18px",
                 padding: "12px",
                 letterSpacing: "1px",
                 fontFamily: "KapraNeueMedium, sans-serif",
                 borderRadius: "10px",
-                backgroundColor: "#f8f9fa",
+                backgroundColor: "#ffffff",
                 border: "1px solid #ccc",
               }}
-            />
-          </Form.Group>
-
-          {/* Last Name */}
-          <Form.Group className="mb-3">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control
-              type="text"
-              name="lastName"
-              value={formData.lastName}
-              readOnly
-              style={{
-                fontSize: "18px",
-                padding: "12px",
-                letterSpacing: "1px",
-                fontFamily: "KapraNeueMedium, sans-serif",
-                borderRadius: "10px",
-                backgroundColor: "#f8f9fa",
-                border: "1px solid #ccc",
-              }}
+              className="input-account-forms"
             />
           </Form.Group>
 
@@ -109,17 +91,20 @@ export default function AccountForm() {
             <Form.Control
               type="email"
               name="email"
+              placeholder="Enter your email"
               value={formData.email}
-              readOnly
+              onChange={handleChange}
+              required
               style={{
                 fontSize: "20px",
                 padding: "12px",
                 letterSpacing: "1px",
                 fontFamily: "KapraNeueMedium, sans-serif",
                 borderRadius: "10px",
-                backgroundColor: "#f8f9fa",
+                backgroundColor: "#ffffff",
                 border: "1px solid #ccc",
               }}
+              className="input-account-forms"
             />
           </Form.Group>
 
@@ -132,7 +117,7 @@ export default function AccountForm() {
                 <Select
                   options={countryCodes}
                   value={formData.countryCode}
-                  isDisabled
+                  onChange={handleSelectChange}
                   styles={{
                     control: (base) => ({
                       ...base,
@@ -141,18 +126,21 @@ export default function AccountForm() {
                       letterSpacing: "1px",
                       fontFamily: "KapraNeueMedium, sans-serif",
                       borderRadius: "10px",
-                      backgroundColor: "#f8f9fa",
+                      backgroundColor: "#ffffff",
                       border: "1px solid #ccc",
                     }),
                   }}
+                  className="input-account-forms"
                 />
               </div>
               {/* Phone Input */}
               <Form.Control
                 type="tel"
                 name="phone"
+                placeholder="Enter phone number"
                 value={formData.phone}
-                readOnly
+                onChange={handleChange}
+                required
                 style={{
                   flex: "0.6",
                   fontSize: "20px",
@@ -160,15 +148,15 @@ export default function AccountForm() {
                   letterSpacing: "1px",
                   fontFamily: "KapraNeueMedium, sans-serif",
                   borderRadius: "10px",
-                  backgroundColor: "#f8f9fa",
+                  backgroundColor: "#ffffff",
                   border: "1px solid #ccc",
                 }}
+                className="input-account-forms"
               />
             </div>
           </Form.Group>
         </Form>
       </Container>
-
       {/* Logout Button */}
       <div
         style={{
@@ -184,7 +172,7 @@ export default function AccountForm() {
           borderRadius: "10px",
           padding: "10px 20px",
         }}
-        onClick={handleLogout}
+        onClick={handleSignIn}
       >
         <img
           src={Vector}

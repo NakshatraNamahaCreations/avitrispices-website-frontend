@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import Vector from "/media/Vector.png";
+import { Link } from "react-router-dom";
 
 export default function LearnMoreProducts() {
 
@@ -30,6 +31,7 @@ export default function LearnMoreProducts() {
       }}
     >
       {/* Card 1 */}
+      <Link to="/diy-spices" style={{textDecoration: 'none'}}>
       <div
         style={{
           position: "relative",
@@ -73,53 +75,12 @@ export default function LearnMoreProducts() {
           DIY KIT
         </h3>
       </div>
+      </Link>
+
+     
 
       {/* Card 2 */}
-      <div
-        style={{
-          position: "relative",
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-        }}
-        onMouseEnter={() => setHoveredIndex(2)}
-        onMouseLeave={() => setHoveredIndex(null)}
-      >
-        {/* Image */}
-        <animated.img
-          src={Vector}
-          alt="Vector-img"
-          style={{
-            ...getZoomInEffect(2), 
-            width: "40%",
-            height: "100%",
-            display: "block",
-          }}
-        />
-
-        {/* Text Inside Image */}
-        <h3
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            fontSize: "22px",
-            fontWeight: "bold",
-            letterSpacing: "2px",
-            color: "white",
-            textAlign: "center",
-            padding: "5px",
-            borderRadius: "5px",
-            width: "80%",
-            fontFamily: "kapraneue, sans-serif",
-          }}
-        >
-          LEARN MORE
-        </h3>
-      </div>
-
-      {/* Card 3 */}
+      <Link to="/cart" style={{textDecoration:'none'}}>
       <div
         style={{
           position: "relative",
@@ -163,6 +124,7 @@ export default function LearnMoreProducts() {
           BUY NOW
         </h3>
       </div>
+      </Link>
     </div>
   );
 }

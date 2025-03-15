@@ -23,6 +23,7 @@ export default function Banner() {
             height: "90vh",
             overflow: "hidden",
           }}
+          className="background-banner"
         >
           <div
             style={{
@@ -61,6 +62,7 @@ export default function Banner() {
               height: "100vh",
               marginTop: "12%",
             }}
+            className="banner-top"
           >
             <img
               src={bannercoverimage}
@@ -73,6 +75,7 @@ export default function Banner() {
                 justifySelf: "center",
                 marginTop: "-2%",
               }}
+              className="banner-img-products"
             />
             <h1
               style={{
@@ -86,6 +89,7 @@ export default function Banner() {
                 display: "block",
                 justifySelf: "center",
               }}
+              className="h1-banner"
             >
               BRINGING THE FLAVOURS TO YOU!
             </h1>

@@ -33,7 +33,7 @@ export default function Account() {
       >
         <Navbar_Menu />
 
-        <div style={{ margin: "12% 20% 10% 20%" }}>
+        <div style={{ margin: "12% 20% 10% 20%" }} className="div-account">
           <h1
             style={{
               lineHeight: "1.5",
@@ -45,6 +45,7 @@ export default function Account() {
               textAlign: "center",
               marginBottom: "5%",
             }}
+            className="account-h1"
           >
             ACCOUNT
           </h1>
@@ -59,6 +60,7 @@ export default function Account() {
                 alignItems: "center",
                 gap: "20px",
                 fontFamily: "kapraneue, sans-serif",
+               
               }}
             >
               {["General", "Order Details", "Your Address"].map((tab) => (
@@ -75,6 +77,7 @@ export default function Account() {
                     transition:
                       "background-color 0.3s ease, transform 0.2s ease",
                   }}
+                  className="gen-order-address-btn"
                   onClick={() => setSelectedTab(tab)}
                 >
                   {tab}

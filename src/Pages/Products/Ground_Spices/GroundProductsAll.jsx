@@ -2,10 +2,10 @@ import { Container, Row, Col } from "react-bootstrap";
 // import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import SelectionCard from "/media/SelectionCard.png";
-import blackpepper1 from "/media/blackpepper1.png"
-import currypowder from "/media/currypowder.png"
-import gingerpowder from "/media/gingerpowder.png"
-import pav_bhaji from "/media/pav_bhaji.png"
+import blackpepper1 from "/media/blackpepper1.png";
+import currypowder from "/media/currypowder.png";
+import gingerpowder from "/media/gingerpowder.png";
+import pav_bhaji from "/media/pav_bhaji.png";
 
 // Sample product data
 const products = [
@@ -16,16 +16,18 @@ const products = [
 ];
 
 export default function GroundProductsAll() {
-
   return (
     <div style={{ padding: "5% 0" }}>
-      <h2 style={{ margin: "3% 5%", fontSize: "45px", letterSpacing: "1px" }}>
+      <h2
+        style={{ margin: "3% 5%", fontSize: "45px", letterSpacing: "2px" }}
+        className="h2-youmaylike"
+      >
         YOU MAY ALSO LIKE...
       </h2>
       <Container>
         <Row>
           {products.map(({ id, title, image }) => (
-            <Col sm={3} key={id}>
+            <Col xs={6} sm={4} md={3} key={id} className="cards-youmayalsolike">
               <Card
                 style={{
                   width: "15rem",
@@ -33,10 +35,9 @@ export default function GroundProductsAll() {
                   border: "none",
                   boxShadow: "1px 1px 5px lightgrey",
                   textAlign: "center",
-                  height:'auto',
-                  
+                  margin: "10px auto",
                 }}
-             className="zoom-in-image"
+                className="zoom-in-image cards-youmaylike"
               >
                 <Card.Title
                   style={{
@@ -47,6 +48,7 @@ export default function GroundProductsAll() {
                     fontSize: "22px",
                     letterSpacing: "1px",
                   }}
+                  className="cards-title-products"
                 >
                   {title}
                 </Card.Title>
@@ -70,74 +72,85 @@ export default function GroundProductsAll() {
                 >
                   Sale
                 </p> */}
-                  <div style={{width:'50%', height:'auto', alignSelf:'center'}}>
-                <Card.Img variant="top" src={image} />
+                <div
+                  style={{ width: "50%", height: "auto", alignSelf: "center" }}
+                >
+                  <Card.Img variant="top" src={image} />
                 </div>
-                  <div>
-                    <Card.Body style={{ padding: "0px" }}>
-                      <div style={{ position: "relative", width: "100%" }}>
-                        <img
-                          src={SelectionCard}
-                          alt="SelectionCard-img"
-                          style={{
-                            width: "100%",
-                            height: "auto",
-                            display: "block",
-                          }}
-                        />
+                <div>
+                  <Card.Body
+                    style={{
+                      padding: "0px",
+                      position: "relative",
+                      width: "100%",
+                    }}
+                  >
+                    <img
+                      src={SelectionCard}
+                      alt="SelectionCard-img"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        display: "block",
+                      }}
+                      className="selectioncard-img"
+                    />
 
-                        {/* View Product Text */}
-                        <h4
-                          style={{
-                            position: "absolute",
-                            top: "35%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
-                            fontSize: "22px",
-                            fontWeight: "bold",
-                            fontFamily: "kapraneue, sans-serif",
-                            letterSpacing: "1px",
-                          }}
-                        >
-                          VIEW PRODUCT
-                        </h4>
+                    {/* View Product Text */}
+                    <h4
+                      style={{
+                        position: "absolute",
+                        top: "35%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        fontSize: "22px",
+                        fontWeight: "bold",
+                        fontFamily: "kapraneue, sans-serif",
+                        letterSpacing: "1px",
+                      }}
+                      className="h4-view-products"
+                    >
+                      VIEW PRODUCT
+                    </h4>
 
-                        {/* Price Container */}
-                        <div
-                          style={{
-                            position: "absolute",
-                            bottom: "10px",
-                            left: "80%",
-                            transform: "translateX(-50%)",
-                            display: "inline-flex",
-                            gap: "10px",
-                            alignItems: "center",
-                            width: "100%",
-                          }}
-                        >
-                          <p
-                            style={{
-                              textDecoration: "line-through",
-                              margin: 0,
-                              fontSize: "20px",
-                            }}
-                          >
-                            Rs 135
-                          </p>
-                          <p
-                            style={{
-                              fontWeight: "bold",
-                              margin: 0,
-                              fontSize: "26px",
-                            }}
-                          >
-                            Rs 125
-                          </p>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </div>
-            
+                    {/* Price Container */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "5px",
+                        // left: "50%",
+                        // transform: "translateX(-50%)",
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "10px",
+                        alignItems: "center",
+                        width: "100%",
+                      }}
+                      className="price-cardbox"
+                    >
+                      <p
+                        style={{
+                          textDecoration: "line-through",
+                          margin: 0,
+                          fontSize: "20px",
+                        }}
+                        className="cut-price"
+                      >
+                        Rs 135
+                      </p>
+                      <p
+                        style={{
+                          fontWeight: "bold",
+                          margin: 0,
+                          fontSize: "26px",
+                        }}
+                        className="price-original"
+                      >
+                        Rs 125
+                      </p>
+                    </div>
+                  </Card.Body>
+                </div>
               </Card>
             </Col>
           ))}
