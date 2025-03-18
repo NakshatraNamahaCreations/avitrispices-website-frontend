@@ -108,11 +108,11 @@ export default function GroundSpicePage() {
           backgroundColor: "#AF261D",
           color: "white",
           textAlign: "center",
-          padding: "27% 0",
+          padding: "26% 0",
         }}
         className="div-background-carts"
       >
-        <Container>
+        <Container className="conatiner-background-carts">
           <h1
             style={{
               lineHeight: "1.5",
@@ -168,7 +168,7 @@ export default function GroundSpicePage() {
               >
                 <h2
                   style={{
-                    fontSize: "35px",
+                    fontSize: "24px",
                     margin: "5% 0",
                     letterSpacing: "1px",
                   }}
@@ -283,7 +283,7 @@ export default function GroundSpicePage() {
       <AdvertisingProducts />
 
       {/* HEALTH BENEFITS */}
-      <div style={{ marginTop: "10%", textAlign: "center" }}>
+      <div style={{ marginTop: "10%", textAlign: "center" }} className="div-healthbenefits">
         <h1
           style={{
             fontFamily: "kapraneue, sans-serif",

@@ -60,7 +60,7 @@ export default function Banner() {
               justifyContent: "center",
               alignItems: "center",
               height: "100vh",
-              marginTop: "12%",
+              marginTop: "10%",
             }}
             className="banner-top"
           >

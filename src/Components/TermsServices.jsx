@@ -32,7 +32,7 @@ export default function TermsServices() {
       {/* Navbar Top */}
       <Navbar_Menu />
       <Container>
-        <div style={{ margin: "12% 20% 10% 20%" }}>
+        <div style={{ margin: "12% 20% 10% 20%" }} className="div-terms">
           <h1
             style={{
               lineHeight: "1.5",
@@ -44,6 +44,7 @@ export default function TermsServices() {
               textAlign: "center",
               marginBottom:'5%'
             }}
+            className="termsservice"
           >
             TERMS OF SERVICES
           </h1>

@@ -171,7 +171,7 @@ export default function DiySpicesPage() {
         }}
         className="div-background-carts"
       >
-        <Container>
+        <Container className="conatiner-background-carts">
           <h1
             style={{
               lineHeight: "1.5",
@@ -225,7 +225,7 @@ export default function DiySpicesPage() {
                 }}
                 className="background-cartbox"
               >
-                <h2 style={{ fontSize: "35px", margin: "5% 0" }} className="h2-products-title">
+                <h2 style={{ fontSize: "24px", margin: "5% 0" }} className="h2-products-title">
                   {diy.title}
                 </h2>
                 <p
@@ -334,7 +334,7 @@ export default function DiySpicesPage() {
       <AdvertisingProducts />
 
       {/* HEALTH BENEFITS */}
-      <div style={{ marginTop: "10%", textAlign: "center" }}>
+      <div style={{ marginTop: "10%", textAlign: "center" }} className="div-healthbenefits">
         <h1
           style={{
             fontFamily: "kapraneue, sans-serif",

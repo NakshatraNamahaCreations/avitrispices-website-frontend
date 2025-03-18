@@ -17,6 +17,7 @@ import Footer from "../../../Components/Footer";
 // import LearnMoreProducts from "./LearnMoreProducts";
 import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
+import LearnMoreWhole from "./LearnMoreWhole";
 
 const wholespices = [
   {
@@ -186,15 +187,22 @@ export default function WholeSpices() {
           <Row className="text-center" style={{ justifyContent: "left" }}>
             {wholespices.map((kit) => {
               return (
-                <Col sm={3} key={kit.id} className="card-item">
+                <Col
+                xs={6}
+                sm={6}
+                md={4}
+                lg={3}
+                key={kit.id}
+                className="card-item-products"
+              >
                   <Card
-                    style={{
-                      width: "15rem",
+                     style={{
+                      width: "100%", 
                       borderRadius: "25px 25px 60px 60px",
                       border: "none",
                       boxShadow: "1px 1px 5px lightgrey",
                       height: "auto",
-                      marginBottom: "40px",
+                      marginBottom: "50px",
                     }}
                     onClick={() => handleCardClick(kit.id)}
                     className="zoom-in-image"
@@ -210,28 +218,6 @@ export default function WholeSpices() {
                     >
                       {kit.title}
                     </Card.Title>
-                    {/* <p
-                    style={{
-                      backgroundColor: "black",
-                      color: "white",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textAlign: "center",
-                      padding: "10px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      alignSelf: "center",
-                      height: "30px",
-                      width: "150px",
-                      letterSpacing: "1px",
-                      clipPath:
-                        "polygon(20% 0%, 80% 0%, 85% 50%, 80% 100%, 20% 100%, 15% 50%)",
-                    }}
-                  >
-                    SALE
-                  </p> */}
-
                     <div
                       style={{
                         width: "50%",
@@ -299,6 +285,7 @@ export default function WholeSpices() {
                                   margin: 0,
                                   opacity: "0.7",
                                 }}
+                                 className="discount-price"
                               >
                                 Rs {kit.originalPrice}
                               </p>
@@ -327,6 +314,7 @@ export default function WholeSpices() {
         <Reviews />
         {/* <LearnMore /> */}
         {/* <LearnMoreProducts /> */}
+        <LearnMoreWhole />
         <Footer />
       </div>
     </div>

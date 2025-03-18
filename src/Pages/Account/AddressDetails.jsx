@@ -1,31 +1,145 @@
 import AddressForm from "./AddressForm.jsx";
+import { useState, useEffect } from "react";
 import { Container, Card, Form } from "react-bootstrap";
-import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 import Vector from "/media/Vector.png";
+import axios from "axios";
 
 export default function AddressDetails() {
   const [addresses, setAddresses] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
+    const [selectedAddressId, setSelectedAddressId] = useState(null);
+  const navigate = useNavigate();
 
-  // Handle new address submission
-  const handleAddressSubmit = (data) => {
-    const newAddresses = [...addresses, data];
-    setAddresses(newAddresses);
-    setSelectedIndex(newAddresses.length - 1);
-  };
+  
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  // Handle dropdown selection change
+  useEffect(() => {
+    if (user && user.email) {
+      fetchAddresses();
+    }
+  }, [user]);
+
+  const [address, setAddress] = useState({
+    firstName: "",
+    lastName: "",
+    phoneCode: "+91",
+    phoneNumber: "",
+    address1: "",
+    address2: "",
+    city: "",
+    state: "",
+    pincode: "",
+    region: "",
+  });
+  
+
+  const handleAddressSubmit = async (e) => {
+    e.preventDefault(); 
+
+    if (!validateForm()) {
+        console.error("Form validation failed:", errors);
+        return;
+    }
+
+    try {
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        if (!storedUser || !storedUser.id) {
+            setError("User ID is missing. Cannot save address.");
+            return;
+        }
+
+        setLoading(true);
+        setSuccess("");
+
+        const payload = {
+            userId: storedUser.id,  
+            firstName: address.firstName,
+            lastName: address.lastName,
+            phoneNumber: address.phoneNumber,
+            address: address.address1 + ", " + address.address2,
+            city: address.city,
+            state: address.state,
+            pincode: address.pincode,
+            country: "India",
+            email: storedUser.email,
+        };
+
+        console.log("Sending Address Data:", payload);
+
+        const response = await axios.post(
+            "https://api.nncwebsitedevelopment.com/api/shipping-address", 
+            payload, 
+            { headers: { "Content-Type": "application/json" } }
+        );
+
+        console.log("Address successfully added:", response.data);
+        setSuccess("Address added successfully!");
+        setLoading(false);
+
+        const newAddress = response.data.shippingAddress;
+        
+        
+        setAddresses((prev) => [...prev, newAddress]);
+        setSelectedIndex((prev) => prev + 1);  
+
+    } catch (error) {
+        console.error("Error adding address:", error.response?.data || error.message);
+        setErrors({ server: `Failed to add address: ${error.response?.data?.message || "Please try again."}` });
+        setLoading(false);
+    }
+};
+
+
+
+
+
   const handleSelectChange = (event) => {
     setSelectedIndex(Number(event.target.value));
   };
 
-  const navigate = useNavigate();
-
-  // Handle logout
-  const handleSignIn = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("user");
     navigate("/login");
   };
+
+
+
+  const fetchAddresses = async () => {
+    if (!user || !user.id) {
+        console.error("Error: User not logged in!");
+        return;
+    }
+
+    try {
+        const response = await axios.get(`https://api.nncwebsitedevelopment.com/api/shipping-address/user/${user.id}`);
+
+        if (response.status === 200 && response.data.length > 0) {
+            
+            if (addresses.length === 0) {
+                setAddresses(response.data);
+                
+              
+                if (!selectedAddressId) {
+                    setSelectedAddressId(response.data[0]._id);
+                    setSelectedIndex(0);
+                }
+            }
+        } else {
+            setAddresses([]); 
+        }
+    } catch (error) {
+        console.error(" Error fetching addresses:", error.response?.data || error.message);
+    }
+};
+
+
+useEffect(() => {
+  if (user && user.id) {
+      fetchAddresses(); 
+  }
+}, []); 
 
   return (
     <Container>
@@ -45,17 +159,14 @@ export default function AddressDetails() {
           </Form.Label>
           <Form.Control
             as="select"
-            style={{
-              fontFamily: "kapraneue, sans-serif",
-              letterSpacing: "1px",
-            }}
+            style={{ fontFamily: "kapraneue, sans-serif", letterSpacing: "1px" }}
             onChange={handleSelectChange}
             value={selectedIndex ?? ""}
           >
             <option value="">Choose an address</option>
-            {addresses.map((_, index) => (
+            {addresses.map((address, index) => (
               <option key={index} value={index}>
-                Address {index + 1}
+                {address.city}, {address.state}
               </option>
             ))}
           </Form.Control>
@@ -64,32 +175,39 @@ export default function AddressDetails() {
 
       {/* Shipping Address Section */}
       <Card
-        className="mt-4 p-3 card-shippingaddress"
-        style={{
-          fontFamily: "kapraneue, sans-serif",
-          letterSpacing: "1px",
-          border: "1px solid black",
-        }}
-        
-      >
-        <h5 style={{ fontSize: "32px", letterSpacing: "1px" }} className="h5-shipping-addressdetails">
-          SHIPPING ADDRESS
-        </h5>
-        {selectedIndex !== null && addresses[selectedIndex] ? (
-          <p>
-            {addresses[selectedIndex].address1},{" "}
-            {addresses[selectedIndex].address2}, {addresses[selectedIndex].city}
-            , {addresses[selectedIndex].state} -{" "}
-            {addresses[selectedIndex].pincode}
-          </p>
-        ) : (
-          <p className="p-shipping-addressdetails">No shipping address selected.</p>
-        )}
-      </Card>
+  className="mt-4 p-3 card-shippingaddress"
+  style={{
+    fontFamily: "kapraneue, sans-serif",
+    letterSpacing: "1px",
+    border: "1px solid black",
+  }}
+>
+  <h5 style={{ fontSize: "32px", letterSpacing: "1px" }} className="h5-shipping-addressdetails">
+    SHIPPING ADDRESS
+  </h5>
+  {selectedIndex !== null && addresses.length > 0 ? (
+    <p>
+     {addresses[selectedIndex]?.firstName} {addresses[selectedIndex]?.lastName} <br />
+      {addresses[selectedIndex]?.phoneCode} {addresses[selectedIndex]?.phoneNumber} <br />
+     {addresses[selectedIndex]?.address} <br />
+       {addresses[selectedIndex]?.city} <br />
+    {addresses[selectedIndex]?.state} - {addresses[selectedIndex]?.pincode}
+    </p>
+  ) : (
+    <p className="p-shipping-addressdetails">No shipping address selected.</p>
+  )}
+</Card>
+
 
       {/* Add Address Form */}
 
-      <AddressForm onSubmit={handleAddressSubmit} />
+      {/* <AddressForm onSubmit={handleAddressSubmit} /> */}
+      <AddressForm 
+  onSubmit={handleAddressSubmit} 
+  setAddresses={setAddresses} 
+  setSelectedIndex={setSelectedIndex} 
+/>
+
 
       {/* Logout Button */}
       <div
@@ -104,7 +222,7 @@ export default function AddressDetails() {
           alignItems: "center",
           cursor: "pointer",
         }}
-        onClick={handleSignIn}
+        onClick={handleLogout}
       >
         <img
           src={Vector}

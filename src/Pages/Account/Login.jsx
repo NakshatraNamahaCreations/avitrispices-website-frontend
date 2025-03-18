@@ -5,25 +5,82 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Navbar_Menu from "../../Components/Navbar_Menu";
 import Footer from "../../Components/Footer";
 import Vector from "/media/Vector.png";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../redux/authSlice";
 
 export default function Login() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  
   useEffect(() => {
+    // Check if user is already logged in
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/account"); // Redirect if user is already logged in
+    }
+
     const timeout = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [navigate]);
 
-  const handleSignIn = () => {
-    navigate("/account");
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  
+  const handleLogin = async () => {
+    setErrorMessage("");
+
+    if (!formData.email || !formData.password) {
+        setErrorMessage("Email and Password are required.");
+        return;
+    }
+
+    try {
+        const response = await axios.post("https://api.nncwebsitedevelopment.com/api/customers/login", {
+            email: formData.email,
+            password: formData.password,
+        });
+
+        if (response.status === 200) {
+            alert("✅ Login successful!");
+
+            const { id, firstname, lastname, email, phone, countryCode } = response.data.user;
+
+            const userData = {
+                id,  // ✅ Store user ID properly
+                firstName: firstname || "",
+                lastName: lastname || "",
+                email: email || "",
+                phone: phone || "",
+                countryCode: countryCode || "+91",
+            };
+
+            // ✅ Save user to Redux
+            dispatch(loginSuccess(userData));
+
+            // ✅ Save user to Local Storage
+            localStorage.setItem("user", JSON.stringify(userData));
+
+            navigate("/account");
+        }
+    } catch (error) {
+        setErrorMessage(error.response?.data?.message || "❌ Login failed. Try again.");
+    }
+};
 
   return (
     <>
@@ -54,6 +111,13 @@ export default function Login() {
               LOGIN
             </h1>
 
+            {errorMessage && (
+              <p style={{ color: "red", textAlign: "center", fontSize: "18px" }}>
+                {errorMessage}
+              </p>
+            )}
+
+
             {/* FORM LOGIN */}
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div
@@ -63,35 +127,45 @@ export default function Login() {
                   letterSpacing: "1px",
                 }}
               >
-                <FloatingLabel
+                 <FloatingLabel
                   controlId="floatingInput"
                   label="Email address"
                   className="mb-3"
                 >
                   <Form.Control
                     type="email"
+                    name="email"
                     placeholder="name@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
                     style={{
                       fontFamily: "KapraNeueMedium, sans-serif",
                       letterSpacing: "1px",
                       fontSize: "22px",
                       borderRadius: "10px",
                     }}
-                    className="input-login"
                   />
                 </FloatingLabel>
-                <FloatingLabel controlId="floatingPassword" label="Password">
+                <FloatingLabel controlId="floatingPassword" label="Password" className="position-relative">
                   <Form.Control
-                    type="password"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
                     placeholder="Password"
-                    style={{
-                      fontFamily: "KapraNeueMedium, sans-serif",
-                      letterSpacing: "1px",
-                      fontSize: "22px",
-                      borderRadius: "10px",
-                    }}
-                    className="input-login"
+                    value={formData.password}
+                    onChange={handleChange}
                   />
+                  <span
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: "absolute",
+                      right: "15px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {showPassword ? <FaEye /> :   <FaEyeSlash />}
+                  </span>
                 </FloatingLabel>
                 <div style={{ marginTop: "20px", textDecoration: "underline" }}>
                   <p
@@ -119,7 +193,7 @@ export default function Login() {
                 alignItems: "center",
                 cursor: "pointer",
               }}
-              onClick={handleSignIn}
+              onClick={handleLogin}
             >
               <img
                 src={Vector}

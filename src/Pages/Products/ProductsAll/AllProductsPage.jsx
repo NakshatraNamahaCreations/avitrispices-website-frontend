@@ -410,7 +410,7 @@ export default function AllProductsPage() {
         }}
         className="div-background-carts"
       >
-        <Container>
+        <Container className="conatiner-background-carts">
           <h1
             style={{
               lineHeight: "1.5",
@@ -581,7 +581,7 @@ export default function AllProductsPage() {
       <AdvertisingProducts />
 
       {/* HEALTH BENEFITS */}
-      <div style={{ marginTop: "5%", marginBottom: "5%", textAlign: "center" }}>
+      <div style={{ marginTop: "5%", marginBottom: "5%", textAlign: "center" }} className="div-healthbenefits">
         <h1
           style={{
             fontFamily: "kapraneue, sans-serif",

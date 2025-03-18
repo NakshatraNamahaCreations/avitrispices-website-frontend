@@ -42,7 +42,7 @@ body {
 }
 
 .Footer-ul li a {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-size: 14px;
   letter-spacing: 1.5px;
   text-decoration: none;
@@ -60,15 +60,15 @@ body {
 .Footer-ul li {
   margin-bottom: 15px;
   font-size: 10px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .Footer-ul-title {
-  margin-bottom: 22px;
   font-size: 18px;
   letter-spacing: 1px;
   font-weight: bold;
   font-family: kapraneue, sans-serif;
+  margin-bottom: 22px;
 }
 
 .Footer-ul {
@@ -403,7 +403,7 @@ body {
 
 .advertising-container-product {
   position: absolute;
-  bottom: -85px;
+  bottom: -125px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -589,6 +589,19 @@ body {
   justify-content: center;
 }
 
+.recipe-hasta {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
+  font-family: kapraneue, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
 /* RESPONSIVE FOR TABLETS 768PX */
 
 @media (max-width: 768px) {
@@ -694,17 +707,6 @@ body {
     font-size: 18px !important;
     line-height: 1.5 !important;
   }
-  .card-item {
-    display: flex;
-    justify-content: center;
-  }
-  .card-item .card {
-    width: 12rem !important;
-    border-radius: 20px 20px 30px 30px !important;
-  }
-  .card-item .card-title {
-    font-size: 18px !important;
-  }
   .div-diyspices {
     margin: 7% 5% !important;
   }
@@ -727,13 +729,13 @@ body {
   .navbar-gap {
     gap: 0% !important;
   }
-  .left-links ul li a,
+  /* .left-links ul li a,
   .right-icons ul li a {
     font-size: 16px !important;
   }
   .left-links ul li {
     padding: 10px 5px !important;
-  }
+  } */
   .right-icons ul {
     gap: 20px !important;
   }
@@ -897,15 +899,14 @@ body {
     font-size: 55px !important;
     letter-spacing: 1.5px !important;
   }
-  .div-all-products-top {
-    margin: 15% 20% 20% !important;
-  }
+  /* .div-all-products-top {
+    margin: 15% 0% 20% !important;
+  } */
   .view-allproducts {
     font-size: 14px !important;
   }
-  .allproducts-price {
-    width: 100% !important;
-    bottom: 0px !important;
+  .allproducts-price{
+    bottom: 4px !important;
   }
   .allproducts-price-display {
     justify-content: center !important;
@@ -1094,11 +1095,14 @@ body {
     letter-spacing: 0.5 px !important;
   }
   .advertising-container-product {
-    bottom: 0px !important;
+    bottom: -140px !important;
   }
   .div-background-carts {
     height: 85vh !important;
     margin-top: 5% !important;
+  }
+  .div-healthbenefits{
+    margin-top: 20% !important;
   }
   .h1-healthbenefits {
     font-size: 35px !important;
@@ -1141,35 +1145,16 @@ body {
   }
 }
 
+
+
+
+
+
 /* RESPONSIVE FOR MOBILE 425PX */
 
 @media (max-width: 425px) {
   html {
     overflow-x: hidden;
-  }
-  .input-subscribe {
-    padding: 10px !important;
-  }
-  .div-subscribe {
-    margin: 10% 10% !important;
-  }
-  .div-footer-display {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    flex-direction:row !important;
-    margin: 20px 20px !important;
-  }
-  .logo-footer {
-    width: 80% !important;
-  }
-  .Footer-ul-title {
-    margin-bottom: 10px !important;
-    font-size: 18px !important;
-  }
-  .Footer-ul li a {
-    margin-bottom: 10px !important;
-    font-size: 14px !important;
-    letter-spacing: 1px !important;
   }
   .diy-learn-buy {
     padding: 25px !important;
@@ -1225,9 +1210,16 @@ body {
   .collection-card {
     width: 150px !important;
     min-height: 180px !important;
+    border-radius: 20px;
+  }
+  .collection-card-bg{
+    padding: 10px !important;
+    border-bottom-right-radius: 30px !important;
+    border-bottom-left-radius: 30px !important;
+    margin-top: 0px !important;
   }
   .collection-title-h4 {
-    font-size: 20px !important;
+    font-size: 14px !important;
   }
   .h2-symphony {
     font-size: 25px !important;
@@ -1235,9 +1227,9 @@ body {
     left: 20% !important;
   }
   .spices-card-h2 {
-    font-size: 25px !important;
+    font-size: 22px !important;
     line-height: 1.5 !important;
-    letter-spacing: 1px !important;
+    letter-spacing: 0.5px !important;
   }
   .food-items-container {
     grid-template-columns: repeat(2, 1fr);
@@ -1284,22 +1276,31 @@ body {
     text-align: center;
     letter-spacing: 1px !important;
   }
+  .card-item-products{
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+    height: 260px !important;
+    border-radius: 15px 15px 30px 30px !important;
+    margin-bottom: 25px !important;
+  }
+  .view-allproducts {
+    font-size: 14px !important;
+  }
   .card-item {
     width: 100%;
     max-width: 100%;
     margin-bottom: 15px;
-  }
-  .card-item .card {
-    width: 90% !important;
-    margin: 0 auto;
+    height: 240px !important;
+    border-radius: 15px 15px 30px 30px !important;
   }
   .card-item .card img {
     width: 100%;
     height: auto;
   }
   .card-item .card-title {
-    font-size: 16px !important;
-    padding: 10px !important;
+    font-size: 14px !important;
+    padding-top: 20px !important;
   }
   .find-more-container {
     width: 90% !important;
@@ -1310,6 +1311,7 @@ body {
   }
   .banner-top {
     margin-top: 40% !important;
+    height: 40vh !important;
   }
   .banner-img-products {
     width: 90% !important;
@@ -1318,25 +1320,26 @@ body {
     font-size: 35px !important;
     letter-spacing: 1px !important;
     margin-top: 5% !important;
+    text-align: center !important;
+  }
+  .allproducts-title{
+    font-size: 14px !important;
   }
   .background-banner {
-    height: 50vh !important;
+    height: 60vh !important;
   }
   .advertising-container {
-    position: absolute;
-    bottom: 350px;
-    width: 100%;
-    height: 50px;
+    top: 400px; 
   }
   .navbar-container {
     background-color: white;
     width: 100% !important;
     margin: 0% 0% !important;
   }
-  .left-links ul li a,
+  /* .left-links ul li a,
   .right-icons ul li a {
     font-size: 18px !important;
-  }
+  } */
   .login-h1 {
     font-size: 45px !important;
     letter-spacing: 1.5px !important;
@@ -1380,9 +1383,14 @@ body {
   .input-account-forms {
     font-size: 14px !important;
     width: 100% !important;
+    height: 50px !important;
   }
   .container-accountform {
     padding: 15px !important;
+  }
+  .code-account-forms{
+    height: 50px !important;
+    align-content: center !important;
   }
   .btn-invoice {
     font-size: 20px !important;
@@ -1477,29 +1485,11 @@ body {
     width: 100% !important;
   }
   .h1-all-products {
-    font-size: 45px !important;
+    font-size: 35px !important;
     letter-spacing: 1.5px !important;
   }
   .div-all-products-top {
     margin: 35% 20% 10% 20% !important;
-  }
-  .card-item {
-    width: 50% !important;
-    max-width: 100%;
-    margin-bottom: 15px;
-  }
-  .card-item .card {
-    width: 100% !important;
-    margin: 0 auto;
-    border-radius: 15px 15px 40px 40px !important;
-  }
-  .card-item .card img {
-    width: 100%;
-    height: auto;
-  }
-  .card-item .card-title {
-    font-size: 22px !important;
-    padding: 10px !important;
   }
   .allproducts-img {
     width: 55% !important;
@@ -1510,8 +1500,11 @@ body {
     letter-spacing: 0.5 px !important;
   }
   .div-background-carts {
-    height: 85vh !important;
-    margin-top: 10% !important;
+    height: 100vh !important;
+    /* margin-top: 10% !important; */
+  }
+  .conatiner-background-carts{
+    margin-top: 20% !important;
   }
   .addtoproduct-img {
     width: 32% !important;
@@ -1528,6 +1521,17 @@ body {
   }
   .price {
     font-size: 32px !important;
+  }
+  .sale-tag{
+    font-size: 12px !important;
+    padding: 2px 0 !important;
+    margin-bottom: 5px 0px !important;
+    display: block !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .selection-card{
+    width: 130% !important;
   }
   .sale-box {
     width: 55% !important;
@@ -1557,19 +1561,24 @@ body {
     width: 70px !important;
   }
   .cart-product-title {
-    font-size: 20px !important;
+    font-size: 18px !important;
+  }
+  .cart-product-price{
+    gap: 5px !important;
   }
   .discount-price-cart {
-    font-size: 14px !important;
+    font-size: 12px !important;
   }
   .price-cart {
-    font-size: 20px !important;
+    font-size: 16px !important;
+    letter-spacing: 0.5px !important;
   }
   .minus-btn {
-    padding: 2px 5px !important;
+    padding: 1px 3px !important;
+   
   }
   .count-size {
-    font-size: 10px !important;
+    font-size: 12px !important;
   }
   .shippingaddress-h1 {
     font-size: 45px !important;
@@ -1597,7 +1606,7 @@ body {
     left: 46% !important;
   }
   .h1-wholespices {
-    font-size: 30px !important;
+    font-size: 25px !important;
     letter-spacing: 1px !important;
   }
   .price-cardbox {
@@ -1611,8 +1620,9 @@ body {
     padding: 10px 0px 0px !important;
   }
   .h1-groundspices {
-    font-size: 30px !important;
-    letter-spacing: 1px !important;
+    font-size: 25px !important;
+    letter-spacing: 0px !important;
+   
   }
   .div-ground-top {
     margin: 35% 20% 0% 20% !important;
@@ -1744,7 +1754,7 @@ body {
     font-size: 22px !important;
   }
   .img-recipes-grid{
-    width: 50% !important;
+    width: 100% !important;
   }
   .div-diy-top{
     margin: 35% 20% 0% 20% !important;
@@ -1774,4 +1784,287 @@ body {
   .productsprice{
     font-size: 20px !important;
   }
+  .view-product{
+    font-size: 10px !important;
+    top: 95% !important;
+  }
+  .cut-price {
+    font-size: 10px !important;
+    opacity: 0.5 !important;
+  }
+  .originalprice{
+    font-size: 16px !important;
+  }
+  .price-container{
+    gap: 5px !important;
+    bottom: -13% !important;
+  }
+  .termsservice{
+    font-size: 45px !important;
+  }
+  .div-terms{
+    margin: 30% 5% 0% 5% !important;
+  }
+  .div-terms p{
+    font-size: 16px !important;
+  }
+  .div-p-ul {
+    letter-spacing: 1px;
+    font-size: 14px;
+  }
+  .div-p-ul ul li {
+    line-height: 1.5;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-family: KapraNeueMedium, sans-serif;
+    margin-bottom: 4px;
+  }
+  .strip-background-top{
+    top: 25px !important;
+    padding-bottom: 15px !important;
+  }
+  .browser-products{
+    padding: 0px !important;
+  }
 }
+
+.footer-container {
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  text-align: left;
+  font-family: kapraneue, sans-serif;
+}
+
+.footer-title {
+  display: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.footer-title h5 {
+  margin: 0;
+  font-size: 20px;
+  font-family: kapraneue, sans-serif;
+  color: white;
+  letter-spacing: 1.5px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  font-size: kapraneue, sans-serif ;
+}
+
+.footer-links.show {
+  max-height: 250px;
+  padding: 10px 15px;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links li a {
+  text-decoration: none;
+  color: white;
+  font-family: kapraneue, sans-serif !important;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.footer-desktop {
+  display: block;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-desktop h5 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer-desktop li {
+  margin-bottom: 15px;
+}
+
+.footer-desktop li a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+/* Mobile Styles */
+@media (max-width: 425px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    font-family: kapraneue, sans-serif !important;
+  }
+
+  .footer-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    
+  }
+
+  .footer-desktop {
+    display: none;
+  }
+  .div-footer-display{
+    display: block !important;
+  }
+  .div-subscribe{
+    width: 80% !important;
+    display: block;
+    justify-self: center;
+    margin-top: 10% !important;
+  }
+  .logo-footer{
+  width: 30% !important;
+  display: block; 
+  justify-self: center;
+  }
+}
+
+.recipes-grid-container {
+  padding: 40px 20px;
+  font-family: kapraneue, sans-serif 
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.recipe-card {
+  height: 350px !important;
+  border-radius: 25px 25px 50px 50px !important;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  background-color: #faf7f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 40px ;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+}
+
+.recipes-title-grid {
+  padding: 15px;
+  font-weight: bold;
+  font-family: kapraneue, sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.recipe-image-container {
+  width: 90%;
+  object-fit: contain;
+  margin: 0 auto;
+  padding-bottom: 15px;
+}
+
+.recipe-card-body {
+  padding: 0 !important;
+  width: 100%;
+}
+
+.recipe-selection-container {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Ensure it takes full height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.selection-card-img {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1; /* Lower z-index so text appears on top */
+}
+
+.recipe-hasta {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
+  font-family: kapraneue, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 2;
+  color: black; 
+}
+
+.recipe-text {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  z-index: 2; 
+  color: black; 
+}
+
+
+/* Mobile Styles (≤ 425px) */
+@media (max-width: 425px) {
+    .recipes-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  
+    .recipe-card {
+      height: 250px !important;
+      border-radius: 15px 15px 30px 30px !important;
+      margin-bottom: 30px !important;
+    }
+  
+    .recipes-title-grid {
+      font-size: 14px !important;
+      padding: 10px 0 0 0 !important;
+      letter-spacing: 0.5px !important;
+    }
+  
+    .recipe-hasta {
+      font-size: 14px;
+      top: 55%;
+    }
+  
+    .recipe-text {
+      font-size: 12px;
+      top: 88%;
+    }
+   
+}
+

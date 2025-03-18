@@ -30,6 +30,7 @@ export default function Products() {
           backgroundColor: "#F4B65B",
           padding: "25px",
         }}
+        className="browser-products"
       >
         <Container>
           <Row>

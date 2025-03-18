@@ -169,7 +169,7 @@ export default function WholeSpicePage() {
         }}
         className="div-background-carts"
       >
-        <Container>
+        <Container className="conatiner-background-carts">
           <h1
             style={{
               lineHeight: "1.5",
@@ -339,7 +339,7 @@ export default function WholeSpicePage() {
       <AdvertisingProducts />
 
       {/* HEALTH BENEFITS */}
-      <div style={{ marginTop: "10%", textAlign: "center" }}>
+      <div style={{ marginTop: "10%", textAlign: "center" }} className="div-healthbenefits">
         <h1
           style={{
             fontFamily: "kapraneue, sans-serif",

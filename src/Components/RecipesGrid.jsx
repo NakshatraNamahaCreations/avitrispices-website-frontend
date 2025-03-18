@@ -38,97 +38,25 @@ export default function RecipesGrid() {
   };
 
   return (
-    <Container fluid style={{ padding: "40px 20px" }}>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "20px",
-          justifyContent: "center",
-          width: "100%",
-        }}
-      >
+    <Container fluid className="recipes-grid-container">
+      <div className="recipes-grid">
         {products.map(({ id, title, image, hasta }) => (
           <Card
             key={id}
-            style={{
-              height: "380px",
-              borderRadius: "25px 25px 65px 65px",
-              border: "none",
-              textAlign: "center",
-              cursor: "pointer",
-              backgroundColor: "#faf7f1",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              marginTop:'5%'
-            }}
+            className="recipe-card"
             onClick={() => handleCardClick(id)}
-            className="zoom-in-image card-receipes-grid"
           >
-            <Card.Title
-              style={{
-                padding: "15px",
-                fontWeight: "bold",
-                fontFamily: "kapraneue, sans-serif",
-                fontSize: "20px",
-                letterSpacing: "1px",
-                textTransform: "uppercase",
-              }}
-              className="recipes-title-grid"
-            >
-              {title}
-            </Card.Title>
+            <Card.Title className="recipes-title-grid">{title}</Card.Title>
 
-            <div
-              style={{
-                width: "90%",
-                objectFit: "contain",
-                margin: "0 auto",
-                paddingBottom: "15px",
-              }}
-            >
-              <Card.Img variant="top" src={image} alt={title} style={{ width: "100%", height: "auto" }} className="img-recipes-grid" />
+            <div className="recipe-image-container">
+              <Card.Img variant="top" src={image} alt={title} className="img-recipes-grid" />
             </div>
 
-            <Card.Body style={{ padding: "0px", width: "100%" }}>
-              <div style={{ position: "relative", width: "100%" }}>
-                <img
-                  src={SelectionCard}
-                  alt="SelectionCard-img"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                  }}
-                />
-                <h4
-                  style={{
-                    position: "absolute",
-                    top: "40%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    fontFamily: "kapraneue, sans-serif",
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {hasta}
-                </h4>
-                <p
-                  style={{
-                    position: "absolute",
-                    top: "70%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    fontSize: "16px",
-                    letterSpacing: "0.5px",
-                  }}
-                >
-                  RECIPES
-                </p>
+            <Card.Body className="recipe-card-body">
+              <div className="recipe-selection-container">
+                <img src={SelectionCard} alt="SelectionCard-img" className="selection-card-img" />
+                <h4 className="recipe-hasta">{hasta}</h4>
+                <p className="recipe-text">RECIPES</p>
               </div>
             </Card.Body>
           </Card>

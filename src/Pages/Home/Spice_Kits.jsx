@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useSpring, animated } from "react-spring";
-import { Container, Row, Col } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
+import Slider from "react-slick";
+import { Container, Card } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { ChevronLeft, ChevronRight } from "lucide-react"; // Import arrow icons
+
 import SelectionCard from "/media/SelectionCard.png";
 import Vector from "/media/Vector.png";
 import chole from "/media/cholemasalakit.jpeg";
 import curry from "/media/currypowderkit.jpeg";
 import rasam from "/media/rasampowderkit.jpeg";
 import butterpaneerkit from "/media/butterpaneerkit.jpeg";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 // Spice Kits Data
 const spiceKits = [
@@ -44,19 +47,34 @@ const spiceKits = [
 ];
 
 export default function Spice_Kits() {
-  const [hoveredCard, setHoveredCard] = useState(null);
   const [hovered, setHovered] = useState(false);
+  const navigate = useNavigate();
 
   const zoomIn = useSpring({
     transform: hovered ? "scale(1)" : "scale(0.9)",
-    opacity: hovered ? 1 : 1,
+    opacity: 1,
     config: { tension: 250, friction: 25 },
   });
 
-  const navigate = useNavigate();
-
-  const handleCardClick = (id) => {
-    navigate(`/diy-spices/${id}`);
+  // Slick slider settings
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
+    responsive: [
+      {
+        breakpoint: 426,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: true,
+        },
+      },
+    ],
   };
 
   return (
@@ -74,137 +92,110 @@ export default function Spice_Kits() {
         DIY SPICE KITS RANGE
       </h2>
 
-      <Container className="mt-4" style={{ marginBottom: "5%" }}>
-        <Row className="text-center" style={{ justifyContent: "space-around" }}>
-          {spiceKits.map((kit) => {
-            const slideIn = useSpring({
-              transform:
-                hoveredCard === kit.id ? "translateY(0)" : "translateY(20px)",
-              opacity: hoveredCard === kit.id ? 1 : 0,
-              config: { tension: 350, friction: 15 },
-            });
-
-            return (
-              <Col xs={6} sm={6} md={3} key={kit.id} className="card-item">
-                <Card
+      <Container style={{ marginBottom: "5%" }}>
+        <Slider {...sliderSettings}>
+          {spiceKits.map((kit) => (
+            <div key={kit.id} style={{ padding: "10px" }}>
+              <Card
+                className="card-item"
+                style={{
+                  width: "15rem",
+                  borderRadius: "25px 25px 50px 50px",
+                  border: "none",
+                  boxShadow: "1px 1px 5px lightgrey",
+                  height: "400px",
+                  textAlign: "center",
+                  margin: "20px auto",
+                }}
+                onClick={() => navigate(`/diy-spices/${kit.id}`)}
+              >
+                <Card.Title
                   style={{
-                    width: "15rem",
-                    borderRadius: "25px 25px 60px 60px",
-                    border: "none",
-                    boxShadow: "1px 1px 5px lightgrey",
-                    height: "auto",
+                    paddingTop: "20px",
+                    fontWeight: "bold",
+                    fontSize: "24px",
+                    fontFamily: "kapraneue, sans-serif",
                   }}
-                  onClick={() => handleCardClick(kit.id)}
-                  onMouseEnter={() => setHoveredCard(kit.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <Card.Title
+                  {kit.title}
+                </Card.Title>
+                <p
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    fontWeight: "bold",
+                    fontSize: "18px",
+                    width: "150px",
+                    margin: "15px auto",
+                    clipPath:
+                      "polygon(20% 0%, 80% 0%, 85% 50%, 80% 100%, 20% 100%, 15% 50%)",
+                  }}
+                  className="sale-tag"
+                >
+                  SALE
+                </p>
+                <Card.Img
+                  variant="top"
+                  src={kit.image}
+                  style={{ width: "80%", margin: "auto" }}
+                />
+                <Card.Body>
+                  <img
+                    src={SelectionCard}
+                    alt="SelectionCard-img"
                     style={{
-                      padding: "20px",
-                      fontWeight: "bold",
-                      fontSize: "24px",
-                      textAlign: "center",
-                      fontFamily: "kapraneue, sans-serif",
+                      width: "115%",
+                      display: "block",
+                      justifySelf: "center",
                     }}
-                    
-                  >
-                    {kit.title}
-                  </Card.Title>
-                  <p
-                    style={{
-                      backgroundColor: "black",
-                      color: "white",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textAlign: "center",
-                      padding: "10px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      alignSelf: "center",
-                      height: "30px",
-                      width: "150px",
-                      letterSpacing: "1px",
-                      clipPath:
-                        "polygon(20% 0%, 80% 0%, 85% 50%, 80% 100%, 20% 100%, 15% 50%)",
-                    }}
-                  >
-                    SALE
-                  </p>
-
-                  <Card.Img
-                    variant="top"
-                    src={kit.image}
-                    style={{ width: "80%", height: "auto", margin: "0 auto" }}
+                    className="selection-card"
                   />
-                  <animated.div style={slideIn}>
-                    <Card.Body style={{ padding: "0px" }}>
-                      <div style={{ position: "relative", width: "100%" }}>
-                        <img
-                          src={SelectionCard}
-                          alt="SelectionCard-img"
-                          style={{
-                            width: "100%",
-                            height: "auto",
-                            display: "block",
-                          }}
-                        />
-                        <h4
-                          style={{
-                            position: "absolute",
-                            top: "35%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
-                            fontSize: "20px",
-                            fontWeight: "bold",
-                            fontFamily: "kapraneue, sans-serif",
-                            letterSpacing: "1px",
-                          }}
-                        >
-                          VIEW PRODUCT
-                        </h4>
-                        <div
-                          style={{
-                            position: "absolute",
-                            bottom: "10px",
-                            left: "50%",
-                            transform: "translateX(-50%)",
-                          }}
-                        >
-                          <div
-                            style={{
-                              display: "flex",
-                              gap: "10px",
-                              alignItems: "center",
-                            }}
-                          >
-                            <p
-                              style={{
-                                textDecoration: "line-through",
-                                margin: 0,
-                              }}
-                            >
-                              Rs {kit.originalPrice}
-                            </p>
-                            <p
-                              style={{
-                                fontWeight: "bold",
-                                margin: 0,
-                                fontSize: "25px",
-                              }}
-                            >
-                              Rs {kit.discountedPrice}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </animated.div>
-                </Card>
-              </Col>
-            );
-          })}
-        </Row>
+                  <h4
+                    style={{
+                      position: "absolute",
+                      top: "87%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      fontSize: "22px",
+                      fontWeight: "bold",
+                      fontFamily: "kapraneue, sans-serif",
+                      letterSpacing: "1px",
+                    }}
+                    className="view-product"
+                  >
+                    VIEW PRODUCT
+                  </h4>
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "-10px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      display: "flex",
+
+                      alignItems: "center",
+                      gap: "10px",
+                    }}
+                    className="price-container"
+                  >
+                    <p
+                      style={{ textDecoration: "line-through", opacity: 0.5 }}
+                      className="cut-price"
+                    >
+                      Rs {kit.originalPrice}
+                    </p>
+                    <p
+                      style={{ fontWeight: "bold", fontSize: "25px" }}
+                      className="originalprice"
+                    >
+                      Rs {kit.discountedPrice}
+                    </p>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
+          ))}
+        </Slider>
       </Container>
 
       {/* Find More Like This Section */}
@@ -229,7 +220,6 @@ export default function Spice_Kits() {
               height: "100%",
               display: "block",
             }}
-            
           />
           <h3
             style={{
@@ -249,6 +239,45 @@ export default function Spice_Kits() {
           </h3>
         </div>
       </Link>
+    </div>
+  );
+}
+
+// Custom Arrow Components
+function CustomPrevArrow(props) {
+  const { onClick } = props;
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        position: "absolute",
+        left: "-5%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+        zIndex: 10,
+        cursor: "pointer",
+      }}
+    >
+      <ChevronLeft size={40} color="black" />
+    </div>
+  );
+}
+
+function CustomNextArrow(props) {
+  const { onClick } = props;
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        position: "absolute",
+        right: "-5%",
+        top: "50%",
+        transform: "translate(50%, -50%)",
+        zIndex: 10,
+        cursor: "pointer",
+      }}
+    >
+      <ChevronRight size={40} color="black" />
     </div>
   );
 }

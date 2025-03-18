@@ -1,9 +1,18 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; 
 import { Form, Button,  Row, Col } from "react-bootstrap";
+import axios from "axios"; 
 
 const AddressForm = ({ onSubmit }) => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    setUser(storedUser);
+  }, []);
+
   const [address, setAddress] = useState({
     firstName: "",
     lastName: "",
@@ -17,14 +26,90 @@ const AddressForm = ({ onSubmit }) => {
     region: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
+  const [success, setSuccess] = useState("");
+
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
+
+   
+    setErrors({ ...errors, [e.target.name]: "" });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(address);
+
+  const validateForm = () => {
+    let newErrors = {};
+    if (!address.firstName.trim()) newErrors.firstName = "First Name is required";
+    if (!address.lastName.trim()) newErrors.lastName = "Last Name is required";
+    if (!address.phoneNumber.trim()) newErrors.phoneNumber = "Phone Number is required";
+    if (!address.address1.trim()) newErrors.address1 = "Address is required";
+    if (!address.city.trim()) newErrors.city = "City is required";
+    if (!address.state.trim()) newErrors.state = "State is required";
+    if (!address.pincode.trim()) newErrors.pincode = "Pincode is required";
+    if (!address.region.trim()) newErrors.region = "Region is required";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; 
   };
+
+  const handleAddressSubmit = async (e) => {
+    e.preventDefault(); 
+    
+    if (!validateForm()) {
+        console.error("Form validation failed:", errors);
+        return;
+    }
+    
+    try {
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        if (!storedUser || !storedUser.id) {
+            setError("User ID is missing. Cannot save address.");
+            console.error("User ID is missing from localStorage.");
+            return;
+        }
+
+        setLoading(true);
+        setSuccess("");
+
+        const payload = {
+            userId: storedUser.id,  
+            firstName: address.firstName,
+            lastName: address.lastName,
+            phoneNumber: address.phoneNumber,
+            address: address.address1 + ", " + address.address2,
+            city: address.city,
+            state: address.state,
+            pincode: address.pincode,
+            country: "India",
+            email: storedUser.email,
+        };
+
+        console.log("Sending Address Data:", payload);
+
+        const response = await axios.post(
+            "https://api.nncwebsitedevelopment.com/api/shipping-address", 
+            payload, 
+            { headers: { "Content-Type": "application/json" } }
+        );
+
+        console.log("Address successfully added:", response.data);
+        setSuccess("Address added successfully!");
+        setLoading(false);
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+        
+    } catch (error) {
+        console.error("Error adding address:", error.response?.data || error.message);
+        setErrors({ server: `Failed to add address: ${error.response?.data?.message || "Please try again."}` });
+        setLoading(false);
+    }
+};
+
+
 
   const handleCancel = () => {
     setAddress({
@@ -47,8 +132,11 @@ const AddressForm = ({ onSubmit }) => {
         <h2 className="text-left mb-3 h2-add-address" style={{ letterSpacing: "1px" }}>
           ADD ADDRESS
         </h2>
+        {success && <p style={{ color: "green" }}>{success}</p>}
+        {errors.server && <p style={{ color: "red" }}>{errors.server}</p>}
 
-        <Form onSubmit={handleSubmit} style={{ fontSize: "20px" }} className="form-adressdetails">
+        <Form onSubmit={handleAddressSubmit} style={{ fontSize: "20px" }}>
+
           <Row>
             <Col md={6}>
               <Form.Group controlId="firstName">
@@ -67,6 +155,7 @@ const AddressForm = ({ onSubmit }) => {
                   onChange={handleChange}
                   required
                 />
+                 <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
               </Form.Group>
             </Col>
 
@@ -87,6 +176,7 @@ const AddressForm = ({ onSubmit }) => {
                   onChange={handleChange}
                   required
                 />
+                 <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -135,6 +225,7 @@ const AddressForm = ({ onSubmit }) => {
                   onChange={handleChange}
                   required
                 />
+                 <Form.Control.Feedback type="invalid">{errors.phoneNumber}</Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -156,6 +247,7 @@ const AddressForm = ({ onSubmit }) => {
               onChange={handleChange}
               required
             />
+              <Form.Control.Feedback type="invalid">{errors.address1}</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group controlId="address2" className="mt-3">
@@ -188,6 +280,7 @@ const AddressForm = ({ onSubmit }) => {
                   onChange={handleChange}
                   required
                 />
+                <Form.Control.Feedback type="invalid">{errors.city}</Form.Control.Feedback>
               </Form.Group>
             </Col>
 
@@ -203,6 +296,7 @@ const AddressForm = ({ onSubmit }) => {
                   onChange={handleChange}
                   required
                 />
+                <Form.Control.Feedback type="invalid">{errors.state}</Form.Control.Feedback>
               </Form.Group>
             </Col>
 
@@ -218,6 +312,7 @@ const AddressForm = ({ onSubmit }) => {
                   onChange={handleChange}
                   required
                 />
+                 <Form.Control.Feedback type="invalid">{errors.pincode}</Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -235,6 +330,7 @@ const AddressForm = ({ onSubmit }) => {
               <option value="">Select Region</option>
               <option value="North America">North America</option>
               <option value="Europe">Europe</option>
+              <option value="India">India</option>
               <option value="Asia">Asia</option>
               <option value="Australia">Australia</option>
               <option value="South America">South America</option>
@@ -249,7 +345,7 @@ const AddressForm = ({ onSubmit }) => {
               variant="dark"
               style={{ letterSpacing: "1px" }}
             >
-              ADD ADDRESS
+         {loading ? "Saving..." : "ADD ADDRESS"}
             </Button>
 
             {/* Right side buttons */}

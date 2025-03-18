@@ -3,14 +3,31 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
+  const [openSection, setOpenSection] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
+
+  // Handle screen resize for mobile detection
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 425);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const toggleDropdown = (section) => {
+    setOpenSection(openSection === section ? null : section);
+  };
+
   return (
     <>
       <div
         style={{
           backgroundColor: "black",
           padding: "1px",
+          height: "auto",
         }}
       >
         <div style={{ margin: "4% 20%" }} className="div-subscribe">
@@ -68,82 +85,98 @@ export default function Footer() {
               className="logo-footer"
             />
           </Link>
+          {/* Footer Sections */}
+          {[
+            {
+              title: "SHOP SUPER-SPICES",
+              links: [
+                { name: "WHOLE SPICES", path: "/whole-spices" },
+                { name: "GROUND SPICES", path: "/ground-spices" },
+                { name: "DIY SPICE KITS", path: "/diy-spices" },
+                { name: "SPICES BLENDS", path: "/retails" },
+              ],
+            },
+            {
+              title: "ABOUT",
+              links: [
+                { name: "RECIPES", path: "/recipes" },
+                { name: "ACCOUNT", path: "/account" },
+                { name: "ABOUT US", path: "/about" },
+              ],
+            },
+            {
+              title: "SUPPORT",
+              links: [
+                { name: "SIGN UP", path: "/register" },
+                { name: "CONTACT US", path: "/contact" },
+              ],
+            },
+            {
+              title: "SOCIALS",
+              links: [
+                {
+                  name: "INSTAGRAM",
+                  path: "https://www.instagram.com/AvitriSpices/",
+                },
+                {
+                  name: "FACEBOOK",
+                  path: "https://www.facebook.com/AvitriSpices/",
+                },
+                { name: "EMAIL", path: "/email" },
+              ],
+            },
+            {
+              title: "HELP",
+              links: [
+                { name: "TERMS OF SERVICE", path: "/terms" },
+                { name: "PRIVACY POLICY", path: "/privacy" },
+                { name: "SHIPPING POLICY", path: "/shipping" },
+                { name: "REFUND POLICY", path: "/refund" },
+              ],
+            },
+          ].map((section, index) => (
+            <div key={index} className="footer-section" style={{fontFamily: "kapraneue, sans-serif"}}>
+              {/* Only show dropdown in mobile */}
+              {isMobile ? (
+                <>
+                  <div
+                    className="footer-title"
+                    onClick={() => toggleDropdown(index)}
+                  >
+                    <h5>{section.title}</h5>
+                    {openSection === index ? (
+                      <ChevronUp size={20} />
+                    ) : (
+                      <ChevronDown size={20} />
+                    )}
+                  </div>
 
-          <ul className="Footer-ul">
-            <h5 className="Footer-ul-title">SHOP SUPER-SPICES</h5>
-            <li>
-              <Link to="/whole-spices">WHOLE SPICES</Link>
-            </li>
-            <li>
-              <Link to="/ground-spices">GROUND SPICES</Link>
-            </li>
-            <li>
-              <Link to="/diy-spices">DIY SPICE KITS</Link>
-            </li>
-            <li>
-              <Link to="/retails">SPICES BLENDS</Link>
-            </li>
-          </ul>
-
-          <ul className="Footer-ul">
-            <h5 className="Footer-ul-title">ABOUT</h5>
-            {/* <li>
-              <Link to="/avitri-spices">AVITRI SPICES</Link>
-            </li> */}
-            <li>
-              <Link to="/recipes">RECIPES</Link>
-            </li>
-            <li>
-              <Link to="/account">ACCOUNT</Link>
-            </li>
-            <li>
-              <Link to="/about">ABOUT US</Link>
-            </li>
-          </ul>
-
-          <ul className="Footer-ul">
-            <h5 className="Footer-ul-title">SUPPORT</h5>
-            {/* <li>
-              <Link to="/wholesale">WHOLESALE</Link>
-            </li> */}
-            <li>
-              <Link to="/register">SIGN UP</Link>
-            </li>
-            <li>
-              <Link to="/contact">CONTACT US</Link>
-            </li>
-          </ul>
-
-          <ul className="Footer-ul">
-            <h5 className="Footer-ul-title">SOCIALS</h5>
-            <li>
-              <Link to="https://www.instagram.com/AvitriSpices/">
-                INSTAGRAM
-              </Link>
-            </li>
-            <li>
-              <Link to="https://www.facebook.com/AvitriSpices/">FACEBOOK</Link>
-            </li>
-            <li>
-              <Link to="/email">EMAIL</Link>
-            </li>
-          </ul>
-
-          <ul className="Footer-ul">
-            <h5 className="Footer-ul-title">HELP</h5>
-            <li>
-              <Link to="/terms">TERMS OF SERVICE</Link>
-            </li>
-            <li>
-              <Link to="/privacy">PRIVACY POLICY</Link>
-            </li>
-            <li>
-              <Link to="/shipping">SHIPPING POLICY</Link>
-            </li>
-            <li>
-              <Link to="/refund">REFUND POLICY</Link>
-            </li>
-          </ul>
+                  <ul
+                    className={`footer-links ${
+                      openSection === index ? "show" : ""
+                    }`}
+                  >
+                    {section.links.map((link, i) => (
+                      <li key={i}>
+                        <Link to={link.path}>{link.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                <ul className="Footer-ul">
+                  <h5 className="Footer-ul-title">{section.title}</h5>
+                  {section.links.map((link, i) => (
+                    <li key={i}>
+                      <Link to={link.path}>{link.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </>

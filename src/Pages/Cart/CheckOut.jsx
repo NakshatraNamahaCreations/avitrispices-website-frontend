@@ -729,6 +729,7 @@ export default function CheckOut({ onSubmit }) {
                                 height: "auto",
                                 objectFit: "contain",
                               }}
+                              className="cart-img-item"
                             />
                           </td>
                           <td style={{ padding: "10px" }}>
@@ -750,7 +751,7 @@ export default function CheckOut({ onSubmit }) {
                                 alignItems: "center",
                                 gap: "10px",
                               }}
-                              className="order-products-price"
+                              className="cart-product-price"
                             >
                               <div
                                 style={{
@@ -758,7 +759,7 @@ export default function CheckOut({ onSubmit }) {
                                   fontSize: "18px",
                                   opacity: "0.5",
                                 }}
-                                className="cut-price"
+                                className="discount-price-cart"
                               >
                                 {" "}
                                 Rs {item.discountPrice}
@@ -768,7 +769,7 @@ export default function CheckOut({ onSubmit }) {
                                   fontFamily: "kapraneue, sans-serif",
                                   fontSize: "24px",
                                 }}
-                                className="productsprice"
+                                className="price-cart"
                               >
                                 Rs {itemPrice.toFixed(2)}
                               </div>
@@ -811,6 +812,7 @@ export default function CheckOut({ onSubmit }) {
                                 cursor: "pointer",
                                 marginRight: "15px",
                               }}
+                               className="minus-btn"
                             >
                               −
                             </button>
@@ -820,6 +822,7 @@ export default function CheckOut({ onSubmit }) {
                                 textAlign: "center",
                                 fontWeight: "bold",
                               }}
+                              className="count-size"
                             >
                               {itemQuantity}
                             </span>
@@ -840,6 +843,7 @@ export default function CheckOut({ onSubmit }) {
                                 cursor: "pointer",
                                 marginLeft: "15px",
                               }}
+                               className="minus-btn"
                             >
                               +
                             </button>

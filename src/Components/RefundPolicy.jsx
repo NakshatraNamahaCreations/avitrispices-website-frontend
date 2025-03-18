@@ -31,7 +31,7 @@ export default function RefundPolicy() {
       {/* Navbar Top */}
       <Navbar_Menu />
       <Container>
-        <div style={{ margin: "12% 20% 10% 20%" }}>
+        <div style={{ margin: "12% 20% 10% 20%" }} className="div-terms">
           <h1
             style={{
               lineHeight: "1.5",
@@ -43,6 +43,7 @@ export default function RefundPolicy() {
               textAlign: "center",
               marginBottom: "5%",
             }}
+            className="termsservice"
           >
             REFUND POLICY
           </h1>

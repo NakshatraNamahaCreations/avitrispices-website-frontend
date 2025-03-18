@@ -11,6 +11,7 @@ import Navbar_Menu from "../../../Components/Navbar_Menu";
 import Footer from "../../../Components/Footer";
 import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
+
 import LearnMoreRetail from "./LearnMoreRetail";
 
 const wholespices = [
@@ -149,16 +150,23 @@ export default function RetailSpices() {
           <Row className="text-center" style={{ justifyContent: "left" }}>
             {wholespices.map((kit) => {
               return (
-                <Col sm={3} key={kit.id} className="card-item">
+                <Col
+                xs={6}
+                sm={6}
+                md={4}
+                lg={3}
+                key={kit.id}
+                className="card-item-products"
+              >
                   <Card
-                    style={{
-                      width: "15rem",
-                      borderRadius: "25px 25px 60px 60px",
-                      border: "none",
-                      boxShadow: "1px 1px 5px lightgrey",
-                      height: "auto",
-                      marginBottom: "40px",
-                    }}
+                      style={{
+                        width: "100%", 
+                        borderRadius: "25px 25px 60px 60px",
+                        border: "none",
+                        boxShadow: "1px 1px 5px lightgrey",
+                        height: "auto",
+                        marginBottom: "50px",
+                      }}
                     onClick={() => handleCardClick(kit.id)}
                     className="zoom-in-image"
                   >
@@ -166,7 +174,7 @@ export default function RetailSpices() {
                       style={{
                         padding: "20px",
                         fontWeight: "bold",
-                        fontSize: "25px",
+                        fontSize: "20px",
                         textAlign: "center",
                         fontFamily: "kapraneue, sans-serif",
                         letterSpacing: "1px",
@@ -257,6 +265,7 @@ export default function RetailSpices() {
                                   margin: 0,
                                   opacity: "0.7",
                                 }}
+                                 className="discount-price"
                               >
                                 Rs {kit.originalPrice}
                               </p>
@@ -283,6 +292,7 @@ export default function RetailSpices() {
         </Container>
         <Reviews />
         <LearnMoreRetail />
+       
         <Footer />
       </div>
     </div>

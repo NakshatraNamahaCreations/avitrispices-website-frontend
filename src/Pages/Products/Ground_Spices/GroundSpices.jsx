@@ -105,7 +105,7 @@ export default function GroundSpices() {
             backgroundColor: "#AF261D",
             position: "relative",
             width: "100vw",
-            height: "25vh",
+            height: "30vh",
           }}
         >
           <div
@@ -121,10 +121,7 @@ export default function GroundSpices() {
             }}
           >
             <Container>
-              <div
-                style={{ margin: "10% 20% 15%" }}
-                className="div-ground-top"
-              >
+              <div style={{ margin: "10% 20% 15%" }} className="div-ground-top">
                 <h1
                   style={{
                     lineHeight: "1.5",
@@ -149,15 +146,22 @@ export default function GroundSpices() {
           <Row className="text-center" style={{ justifyContent: "left" }}>
             {groundspices.map((kit) => {
               return (
-                <Col sm={3} key={kit.id} className="card-item">
+                <Col
+                  xs={6}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  key={kit.id}
+                  className="card-item-products"
+                >
                   <Card
                     style={{
-                      width: "15rem",
+                      width: "100%",
                       borderRadius: "25px 25px 60px 60px",
                       border: "none",
                       boxShadow: "1px 1px 5px lightgrey",
                       height: "auto",
-                      marginBottom: "40px",
+                      marginBottom: "50px",
                     }}
                     onClick={() => handleCardClick(kit.id)}
                     className="zoom-in-image"
@@ -166,10 +170,11 @@ export default function GroundSpices() {
                       style={{
                         padding: "20px",
                         fontWeight: "bold",
-                        fontSize: "22px",
+                        fontSize: "20px",
                         textAlign: "center",
                         fontFamily: "kapraneue, sans-serif",
                       }}
+                      className="allproducts-title"
                     >
                       {kit.title}
                     </Card.Title>
@@ -229,7 +234,7 @@ export default function GroundSpices() {
                               fontFamily: "kapraneue, sans-serif",
                               letterSpacing: "1px",
                             }}
-                            className="view-allproducts"
+                             className="view-allproducts"
                           >
                             VIEW PRODUCT
                           </h4>
@@ -240,7 +245,7 @@ export default function GroundSpices() {
                               left: "50%",
                               transform: "translateX(-50%)",
                             }}
-                            className="allproducts-price"
+                           className="allproducts-price"
                           >
                             <div
                               style={{
@@ -256,6 +261,7 @@ export default function GroundSpices() {
                                   margin: 0,
                                   opacity: "0.7",
                                 }}
+                                 className="discount-price"
                               >
                                 Rs {kit.originalPrice}
                               </p>

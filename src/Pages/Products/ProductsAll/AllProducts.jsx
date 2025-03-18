@@ -323,7 +323,7 @@ export default function AllProducts() {
             backgroundColor: "#AF261D",
             position: "relative",
             width: "100vw",
-            height: "25vh",
+            height: "30vh",
           }}
         >
           <div
@@ -337,9 +337,13 @@ export default function AllProducts() {
               width: "100vw",
               height: "auto",
             }}
+            className="strip-background-top"
           >
             <Container>
-              <div style={{ margin: "10% 20% 15%" }} className="div-all-products-top">
+              <div
+                style={{ margin: "10% 20% 15%" }}
+                className="div-all-products-top"
+              >
                 <h1
                   style={{
                     lineHeight: "1.5",
@@ -362,148 +366,132 @@ export default function AllProducts() {
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {allproducts.map((kit) => {
-              return (
-                <Col sm={3} key={kit.id} className="card-item">
-                  <Card
+            {allproducts.map((kit) => (
+              <Col
+                xs={6}
+                sm={6}
+                md={4}
+                lg={3}
+                key={kit.id}
+                className="card-item-products"
+              >
+                <Card
+                  style={{
+                    width: "100%",
+                    borderRadius: "25px 25px 60px 60px",
+                    border: "none",
+                    boxShadow: "1px 1px 5px lightgrey",
+                    height: "auto",
+                    marginBottom: "50px",
+                  }}
+                  onClick={() => handleCardClick(kit.id)}
+                  className="zoom-in-image"
+                >
+                  <Card.Title
                     style={{
-                      width: "15rem",
-                      borderRadius: "25px 25px 60px 60px",
-                      border: "none",
-                      boxShadow: "1px 1px 5px lightgrey",
-                      height: "auto",
-                      marginBottom: "40px",
-                    }}
-                    onClick={() => handleCardClick(kit.id)}
-                    className="zoom-in-image"
-                  >
-                    <Card.Title
-                      style={{
-                        paddingTop: "15px",
-                        fontWeight: "bold",
-                        fontSize: "22px",
-                        textAlign: "center",
-                        fontFamily: "kapraneue, sans-serif",
-                      }}
-                    >
-                      {kit.title}
-                    </Card.Title>
-                    {/* <p
-                    style={{
-                      backgroundColor: "black",
-                      color: "white",
+                      paddingTop: "15px",
                       fontWeight: "bold",
-                      fontSize: "18px",
+                      fontSize: "22px",
                       textAlign: "center",
-                      padding: "10px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      alignSelf: "center",
-                      height: "30px",
-                      width: "150px",
-                      letterSpacing: "1px",
-                      clipPath:
-                        "polygon(20% 0%, 80% 0%, 85% 50%, 80% 100%, 20% 100%, 15% 50%)",
+                      fontFamily: "kapraneue, sans-serif",
                     }}
+                    className="allproducts-title"
                   >
-                    SALE
-                  </p> */}
+                    {kit.title}
+                  </Card.Title>
 
+                  <div
+                    style={{
+                      width: "50%",
+                      height: "auto",
+                      marginBottom: "15px",
+                      alignSelf: "center",
+                    }}
+                    className="allproducts-img"
+                  >
+                    <Card.Img variant="top" src={kit.image} />
+                  </div>
+
+                  <Card.Body style={{ padding: "0px" }}>
                     <div
                       style={{
-                        width: "50%",
-                        height: "auto",
-                        marginBottom: "15px",
-                        alignSelf: "center",
+                        position: "relative",
+                        width: "100%",
+                        marginTop: "3%",
                       }}
-                      className="allproducts-img"
                     >
-                      {" "}
-                      <Card.Img variant="top" src={kit.image} />
-                    </div>
-                    <div>
-                      <Card.Body style={{ padding: "0px" }}>
+                      <img
+                        src={SelectionCard}
+                        alt="SelectionCard-img"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          display: "block",
+                        }}
+                      />
+                      <h4
+                        style={{
+                          position: "absolute",
+                          top: "35%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                          fontSize: "22px",
+                          fontWeight: "bold",
+                          fontFamily: "kapraneue, sans-serif",
+                          letterSpacing: "1px",
+                        }}
+                        className="view-allproducts"
+                      >
+                        VIEW PRODUCT
+                      </h4>
+                      <div
+                        style={{
+                          position: "absolute",
+                          bottom: "10px",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                        }}
+                        className="allproducts-price"
+                      >
                         <div
                           style={{
-                            position: "relative",
-                            width: "100%",
-                            marginTop: "3%",
+                            display: "flex",
+                            gap: "10px",
+                            alignItems: "center",
                           }}
+                          className="allproducts-price-display"
                         >
-                          <img
-                            src={SelectionCard}
-                            alt="SelectionCard-img"
+                          <p
                             style={{
-                              width: "100%",
-                              height: "auto",
-                              display: "block",
+                              textDecoration: "line-through",
+                              margin: 0,
+                              opacity: "0.7",
                             }}
-                          />
-                          <h4
+                            className="discount-price"
+                          >
+                            Rs {kit.originalPrice}
+                          </p>
+                          <p
                             style={{
-                              position: "absolute",
-                              top: "35%",
-                              left: "50%",
-                              transform: "translate(-50%, -50%)",
-                              fontSize: "22px",
-                              fontWeight: "bold",
                               fontFamily: "kapraneue, sans-serif",
                               letterSpacing: "1px",
+                              margin: 0,
+                              fontSize: "25px",
                             }}
-                            className="view-allproducts"
+                            className="original-price"
                           >
-                            VIEW PRODUCT
-                          </h4>
-                          <div
-                            style={{
-                              position: "absolute",
-                              bottom: "10px",
-                              left: "50%",
-                              transform: "translateX(-50%)",
-                            }}
-                            className="allproducts-price"
-                          >
-                            <div
-                              style={{
-                                display: "flex",
-                                gap: "10px",
-                                alignItems: "center",
-                              }}
-                              className="allproducts-price-display"
-                            >
-                              <p
-                                style={{
-                                  textDecoration: "line-through",
-                                  margin: 0,
-                                  opacity: "0.7",
-                                }}
-                                className="discount-price"
-                              >
-                                Rs {kit.originalPrice}
-                              </p>
-                              <p
-                                style={{
-                                  fontFamily: "kapraneue, sans-serif",
-                                  letterSpacing:'1px',
-                                  margin: 0,
-                                  fontSize: "25px",
-                                }}
-                                className="original-price"
-                              >
-                                Rs {kit.discountedPrice}
-                              </p>
-                            </div>
-                          </div>
+                            Rs {kit.discountedPrice}
+                          </p>
                         </div>
-                      </Card.Body>
+                      </div>
                     </div>
-                  </Card>
-                </Col>
-              );
-            })}
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
           </Row>
         </Container>
+
         <Reviews />
         {/* <LearnMore /> */}
         <LearnMoreProducts />

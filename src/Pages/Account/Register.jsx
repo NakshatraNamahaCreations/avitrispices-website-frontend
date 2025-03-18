@@ -5,17 +5,21 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Navbar_Menu from "../../Components/Navbar_Menu";
 import Footer from "../../Components/Footer";
 import Vector from "/media/Vector.png";
+import axios from "axios";
 
 export default function Register() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // State to manage form input
+
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
+    mobilenumber:"",
   });
 
   useEffect(() => {
@@ -43,7 +47,43 @@ export default function Register() {
       lastName: "",
       email: "",
       password: "",
+      mobilenumber:"",
     });
+     setErrorMessage("");
+  };
+
+
+  const handleRegister = async () => {
+    setErrorMessage(""); 
+  
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.mobilenumber) {
+      setErrorMessage("All fields are required.");
+      return;
+    }
+  
+    try {
+      const response = await axios.post("https://api.nncwebsitedevelopment.com/api/customers/register", {
+        firstname: formData.firstName,
+        lastname: formData.lastName,
+        email: formData.email,
+        mobilenumber: formData.mobilenumber,
+        password: formData.password,
+      });
+  
+      if (response.status === 201) {
+        alert(" Registration successful! Redirecting to login.");
+        navigate("/login"); 
+      }
+    } catch (error) {
+      console.error("Registration Error:", error.response?.data);
+      if (error.response?.status === 400) {
+        setErrorMessage(" Please check your inputs and try again.");
+      } else if (error.response?.status === 409) {
+        setErrorMessage(" Email already exists. Please log in instead.");
+      } else {
+        setErrorMessage(error.response?.data?.message || " Registration failed. Try again.");
+      }
+    }
   };
 
   return (
@@ -147,6 +187,28 @@ export default function Register() {
                   />
                 </FloatingLabel>
 
+                {/* Mobile number */}
+      
+                <FloatingLabel
+                  controlId="floatingMobilenumber"
+                  label="Mobile Number"
+                  className="mb-3"
+                >
+                  <Form.Control
+                    type="number"
+                    name="mobilenumber"
+                    value={formData.mobilenumber}
+                    onChange={handleChange}
+                    placeholder="enter mobile number"
+                    style={{
+                      fontFamily: "kapraneue, sans-serif",
+                      letterSpacing: "1px",
+                      fontSize: "22px",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </FloatingLabel>
+
                 {/* Password */}
                 <FloatingLabel controlId="floatingPassword" label="Password">
                   <Form.Control
@@ -179,7 +241,7 @@ export default function Register() {
                 alignItems: "center",
                 cursor: "pointer",
               }}
-              onClick={handleSignIn}
+              onClick={handleRegister}
             >
               <img
                 src={Vector}

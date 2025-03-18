@@ -213,6 +213,7 @@ export default function Cart() {
                                   alignItems: "center",
                                   gap: "10px",
                                 }}
+                                className="cart-product-price"
                               >
                                 <div
                                   style={{

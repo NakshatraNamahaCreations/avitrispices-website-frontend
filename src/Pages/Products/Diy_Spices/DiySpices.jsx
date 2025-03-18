@@ -170,22 +170,30 @@ export default function DiySpices() {
           <Row className="text-center" style={{ justifyContent: "left" }}>
             {dispices.map((kit) => {
               return (
-                <Col sm={3} key={kit.id} className="card-item">
+                <Col
+                xs={6}
+                sm={6}
+                md={4}
+                lg={3}
+                key={kit.id}
+                className="card-item-products"
+              >
                   <Card
-                    style={{
-                      width: "15rem",
+                     style={{
+                      width: "100%", 
                       borderRadius: "25px 25px 60px 60px",
                       border: "none",
                       boxShadow: "1px 1px 5px lightgrey",
                       height: "auto",
-                      marginBottom: "40px",
+                      marginBottom: "50px",
                     }}
                     onClick={() => handleCardClick(kit.id)}
                     className="zoom-in-image"
                   >
                     <Card.Title
                       style={{
-                        padding: "20px",
+                        marginTop: "15px",
+                        padding: "5px",
                         fontWeight: "bold",
                         fontSize: "18px",
                         textAlign: "center",
@@ -278,6 +286,7 @@ export default function DiySpices() {
                                   margin: 0,
                                   opacity: "0.7",
                                 }}
+                                className="discount-price"
                               >
                                 Rs {kit.originalPrice}
                               </p>
