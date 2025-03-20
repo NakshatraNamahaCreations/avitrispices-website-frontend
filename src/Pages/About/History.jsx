@@ -35,12 +35,12 @@ export default function History() {
             {
               year: "1956: THE HUMBLE BEGINNINGS",
               img: img_1956,
-              text: "The story of avitri spices trackes back to 1956, when Mr. Subray Bhat began a small farm-toshop trading business in Kumta, India, focusing on betel nut and black pepper. With a vision to connect local farmers with markets, he laid the foundation of a business deeply rooted in integrity and quality.",
+              text: "The story of avitri spices trackes back to 1956, when Mr. Subray Bhat began a small farm-to-shop trading business in Kumta, India, focusing on betel nut and black pepper. With a vision to connect local farmers with markets, he laid the foundation of a business deeply rooted in integrity and quality.",
             },
             {
               year: "1990: EXPANSION TO BANGALORE",
               img: img_1990,
-              text: "In 1990, Mr. Ganesh Bhat moved to Bangalore, recognizing the growing demand for spices in urban food manufacturing. He established E.S Trading Co, a unit dedicated to supplying highquality spices to food manufacturing companies across Karnataka, marking the family’s first step toward large-scale operations.",
+              text: "In 1990, Mr. Ganesh Bhat moved to Bangalore, recognizing the growing demand for spices in urban food manufacturing. He established E.S Trading Co, a unit dedicated to supplying high-quality spices to food manufacturing companies across Karnataka, marking the family’s first step toward large-scale operations.",
             },
             {
               year: "1997: SUSTAINABLE SOURCING IN SIRSI",
@@ -50,7 +50,7 @@ export default function History() {
             {
               year: "2005: A NATIONWIDE PRESENCE",
               img: img_2005,
-              text: "By 2005, these family-run firms-E.S Trading Co and Raja & Co; had grown into trusted suppliers of spices, catering to major cities across India. Their reputation for consistency and quality made them indispensable partners for the food industry.",
+              text: "By 2005, these family-run firms ; E.S Trading Co and Raja & Co, had grown into trusted suppliers of spices, catering to major cities across India. Their reputation for consistency and quality made them indispensable partners for the food industry.",
             },
             {
               year: "2010: Stepping into Global Markets",
