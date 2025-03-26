@@ -163,9 +163,10 @@ body {
   border-radius: 0px;
   padding: 10px;
   z-index: 9999;
-  width: 25vw;
+  width: 15vw;
+  white-space: nowrap;
   color: white;
-  height: 120px;
+  height: 80px;
 }
 
 .dropdown-box {
@@ -2002,19 +2003,20 @@ body {
 
 .selection-card-img {
   position: absolute;
-  top: 35%;
+  /* top: 35%; */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   height: auto;
   display: block;
-  z-index: 1; /* Lower z-index so text appears on top */
+  z-index: 1; 
 }
 
 .recipe-hasta {
   position: absolute;
   top: 70%;
   left: 50%;
+  margin-top: -8%;
   transform: translate(-50%, -50%);
   font-size: 18px;
   font-weight: bold;
@@ -2058,13 +2060,35 @@ body {
   
     .recipe-hasta {
       font-size: 14px;
-      top: 55%;
+      top: 75%;
     }
   
     .recipe-text {
       font-size: 12px;
       top: 88%;
     }
-   
+   .selection-card-img {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1; 
+  }
+  /* .recipe-hasta {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+    font-family: kapraneue, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+    color: black; 
+  } */
 }
 

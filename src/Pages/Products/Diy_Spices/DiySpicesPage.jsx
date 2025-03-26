@@ -1,155 +1,92 @@
 import Navbar_Menu from "../../../Components/Navbar_Menu";
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
 import LearnMore from "../../../Pages/Home/LearnMore";
 import Footer from "../../../Components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import currypowder from "/media/currypowder.png";
-import fivespieceside from "/media/fivespieceside.jpeg";
-import cholemasaladiytop from "/media/cholemasaladiytop.jpeg";
-import rasampowderkit from "/media/rasampowderkit.jpeg";
-import butterpaneerkit from "/media/butterpaneerkit.jpeg";
-import carolekittop from "/media/carolekittop.jpeg";
-import pavbhajidiytop from "/media/pavbhajidiytop.jpeg";
-import tacoseasoningtop from "/media/tacoseasoningtop.jpeg";
-import biyranimasalaside from "/media/biyranimasalaside.jpeg";
-import currypowderkit from "/media/currypowderkit.jpeg";
-import garammasalakit from "/media/garammasalakit.jpeg";
-// import gingerpowder from "/media/gingerpowder.png";
-// import pav_bhaji from "/media/pav_bhaji.png";
-// import turmericpowder from "/media/turmericpowder.png";
+import certification from "../../../../public/media/certification.png"
 import Vector from "/media/Vector.png";
 import spices from "/media/masala-collection.png";
 import masalaBox from "/media/1.png";
 import AdvertisingProducts from "../../../Pages/Products/AdvertisingProducts";
 import DiyProductsAll from "./DiyProductsAll";
 import { useParams } from "react-router-dom";
-// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
 
-const diyspiceslist = [
-  {
-    id: 45,
-    heading: "DIY CHOLE MASALA KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: cholemasaladiytop,
-    title: "DIY CHOLE MASALA KIT",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 46,
-    heading: "DIY GARAM MASALA KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: garammasalakit,
-    title: "DIY GARAM MASALA KIT",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 47,
-    heading: "DIY RASAM POWDER KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: rasampowderkit,
-    title: "DIY RASAM POWDER KIT ",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 48,
-    heading: "DIY BUTTER PANEER MASALA KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: butterpaneerkit,
-    title: "DIY BUTTER PANEER MASALA KIT",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 49,
-    heading: "DIY CAROLE SEASONING KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: carolekittop,
-    title: "DIY CAROLE SEASONING KIT",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 50,
-    heading: "DIY PAV BHAJI MASALA KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: pavbhajidiytop,
-    title: "DIY PAV BHAJI MASALA KIT",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 51,
-    heading: "DIY TACO SEASONING MASALA KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: tacoseasoningtop,
-    title: "DIY TACO SEASONING MASALA KIT",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 52,
-    heading: "DIY BIRYANI MASALA KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: biyranimasalaside,
-    title: "DIY BIRYANI MASALA KIT",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 53,
-    heading: "DIY CURRY POWDER KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: currypowderkit,
-    title: "DIY CURRY POWDER KIT",
-    discountPrice: "135",
-    price: "125",
-  },
 
-  {
-    id: 54,
-    heading: "DIY CHINESE FIVE SPICE KIT",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: fivespieceside,
-    title: "DIY CHINESE FIVE SPICE KIT",
-    discountPrice: "135",
-    price: "125",
-  },
-];
 
 export default function DiySpicesPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const handleAddToCart = (id, title, discountPrice, price, image) => {
-    dispatch(addToCart({ id, title, discountPrice, price, image }));
-    navigate("/cart");
-  };
+
+  const [product, setProduct] = useState(null);
+
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0); 
+
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://api.nncwebsitedevelopment.com/api/products/${id}`);
+  
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            setProduct(data.data);
+          } else {
+            console.error("Product fetch failed");
+          }
+        } 
+        else {
+          console.error("Product fetch failed with status:", response.status);
+        }
+      } catch (err) {
+        console.error("Error fetching product:", err);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { id } = useParams();
-  const diy = diyspiceslist.find((p) => p.id === parseInt(id));
 
-  if (!diy) {
-    return <h2>Diy Spices not found</h2>;
+  // const diy = diyspiceslist.find((p) => p.id === parseInt(id));
+
+  // if (!diy) {
+  //   return <h2>Diy Spices not found</h2>;
+  // }
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: product._id,
+        title: product.name,
+        price: product.variants?.[selectedVariantIndex]?.price || "0",
+        image: product.images?.[0]
+        ? `https://api.nncwebsitedevelopment.com${product.images[0]}`
+        : "/media/fallback.jpg",
+      })
+    );
+    navigate("/cart");
+  };
+
+  if (!product) {
+    return (
+      <>
+        <Navbar_Menu />
+        <div style={{ padding: "10%", textAlign: "center" }}>
+          <h2>Loading Product...</h2>
+        </div>
+        <Footer />
+      </>
+    );
   }
 
   return (
@@ -183,7 +120,8 @@ export default function DiySpicesPage() {
               margin: "3% 0",
             }}
           >
-            {diy.heading}
+         {product.name}
+
           </h1>
           <Row className="justify-content-center">
             <Col sm={4} className="d-flex flex-column justify-content-center">
@@ -195,13 +133,16 @@ export default function DiySpicesPage() {
                 }}
                 className="p-contents-products"
               >
-                {diy.content}
-              </p>
+                {product.description}             </p>
             </Col>
             <Col sm={4} className="d-flex flex-column justify-content-center">
               <img
-                src={diy.image}
-                alt="whitepepper"
+             src={
+              product.images?.[0]
+                ? `https://api.nncwebsitedevelopment.com${product.images[0]}`
+                : "/media/fallback.jpg"
+            }
+              alt={product.name}
                 style={{
                   width: "70%",
                   height: "auto",
@@ -226,27 +167,56 @@ export default function DiySpicesPage() {
                 className="background-cartbox"
               >
                 <h2 style={{ fontSize: "24px", margin: "5% 0" }} className="h2-products-title">
-                  {diy.title}
+                {product.name}
                 </h2>
-                <p
-                  style={{
-                    backgroundImage: "url('/media/Sale.png')",
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    width: "100%",
-                    color: "white",
-                    fontWeight: "bold",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "24px",
-                    textAlign: "center",
-                  }}
-                   className="sale-box"
-                >
-                  Sale
-                </p>
+                <div
+  style={{
+    backgroundImage: "url('/media/Sale.png')",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    width: "100%",
+    color: "white",
+    fontWeight: "bold",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "24px",
+    textAlign: "center",
+    height: "80px", 
+  }}
+  className="sale-box"
+>
+  {product.variants?.length > 0 ? (
+    <select
+      style={{
+        background: "transparent",
+        color: "white",
+        fontWeight: "bold",
+        fontSize: "20px",
+        border: "none",
+        textAlign: "center",
+        padding: "5px 10px",
+        cursor: "pointer",
+        WebkitAppearance: "none", 
+      }}
+      value={selectedVariantIndex}
+      onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
+    >
+      {product.variants.map((variant, index) => (
+        <option
+          key={variant._id}
+          value={index}
+          style={{ color: "black" }} 
+        >
+          {variant.quantity}g - ₹{variant.price}
+        </option>
+      ))}
+    </select>
+  ) : (
+    "Sale"
+  )}
+</div>
                 <div
                   style={{
                     display: "flex",
@@ -267,7 +237,7 @@ export default function DiySpicesPage() {
                     }}
                     className="cutprice"
                   >
-                    Rs {diy.discountPrice}
+                    Rs {150}
                   </p>
                   <p
                     style={{
@@ -275,9 +245,11 @@ export default function DiySpicesPage() {
                       margin: 0,
                     }}
                   >
-                    Rs {diy.price}
+                     Rs {product.variants?.[selectedVariantIndex]?.price || "0"}
                   </p>
                 </div>
+                
+
                 <div
                   style={{
                     position: "relative",
@@ -286,15 +258,7 @@ export default function DiySpicesPage() {
                     cursor: "pointer",
                   }}
                   className="zoom-in-image"
-                  onClick={() =>
-                    handleAddToCart(
-                      diy.id,
-                      diy.title,
-                      diy.discountPrice,
-                      diy.price,
-                      diy.image
-                    )
-                  }
+                  onClick={handleAddToCart}
                 >
                   <img
                     src={Vector}
@@ -325,6 +289,17 @@ export default function DiySpicesPage() {
                     ADD TO CART
                   </h3>
                 </div>
+                <div style={{ textAlign: "center", marginTop: "10px" }}>
+  <img
+    src={certification} 
+    alt="Certification"
+    style={{
+      width: "200px",
+      height: "auto",
+      objectFit: "contain",
+    }}
+  />
+</div>
               </div>
             </Col>
           </Row>

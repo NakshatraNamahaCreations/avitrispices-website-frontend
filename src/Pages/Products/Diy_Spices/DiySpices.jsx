@@ -9,7 +9,7 @@ import butterpaneerkit from "/media/butterpaneerkit.jpeg";
 import carolekittop from "/media/carolekittop.jpeg";
 import pavbhajidiytop from "/media/pavbhajidiytop.jpeg";
 import tacoseasoningtop from "/media/tacoseasoningtop.jpeg";
-import biyranimasalaside from "/media/biyranimasalaside.jpeg";
+
 import currypowderkit from "/media/currypowderkit.jpeg";
 import fivespieceside from "/media/fivespieceside.jpeg";
 import Navbar_Menu from "../../../Components/Navbar_Menu";
@@ -19,82 +19,103 @@ import LearnMoreDiy from "./LearnMoreDiy";
 import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
 
-const dispices = [
-  {
-    id: 45,
-    title: "DIY CHOLE MASALA KIT",
-    image: cholemasalakit,
-    originalPrice: 135,
-    discountedPrice: 125,
-  },
-  {
-    id: 46,
-    title: "DIY GARAM MASALA KIT",
-    image: garammasalakit,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 47,
-    title: "DIY RASAM POWDER KIT",
-    image: rasampowderkit,
-    originalPrice: 140,
-    discountedPrice: 120,
-  },
-  {
-    id: 48,
-    title: "DIY BUTTER PANEER MASALA KIT",
-    image: butterpaneerkit,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 49,
-    title: "DIY CAROLE SEASONING KIT",
-    image: carolekittop,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 50,
-    title: "DIY PAV BHAJI MASALA KIT",
-    image: pavbhajidiytop,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 51,
-    title: "DIY TACO SEASONING MASALA KIT",
-    image: tacoseasoningtop,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 52,
-    title: "DIY BIRYANI MASALA KIT",
-    image: biyranimasalaside,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 53,
-    title: "DIY CURRY POWDER KIT",
-    image: currypowderkit,
-    originalPrice: 125,
-    discountedPrice: 115,
-  },
+// const dispices = [
+//   {
+//     id: 45,
+//     title: "DIY CHOLE MASALA KIT",
+//     image: cholemasalakit,
+//     originalPrice: 135,
+//     discountedPrice: 125,
+//   },
+//   {
+//     id: 46,
+//     title: "DIY GARAM MASALA KIT",
+//     image: garammasalakit,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 47,
+//     title: "DIY RASAM POWDER KIT",
+//     image: rasampowderkit,
+//     originalPrice: 140,
+//     discountedPrice: 120,
+//   },
+//   {
+//     id: 48,
+//     title: "DIY BUTTER PANEER MASALA KIT",
+//     image: butterpaneerkit,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 49,
+//     title: "DIY CAROLE SEASONING KIT",
+//     image: carolekittop,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 50,
+//     title: "DIY PAV BHAJI MASALA KIT",
+//     image: pavbhajidiytop,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 51,
+//     title: "DIY TACO SEASONING MASALA KIT",
+//     image: tacoseasoningtop,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 52,
+//     title: "DIY BIRYANI MASALA KIT",
+//     image: biyranimasalaside,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 53,
+//     title: "DIY CURRY POWDER KIT",
+//     image: currypowderkit,
+//     originalPrice: 125,
+//     discountedPrice: 115,
+//   },
 
-  {
-    id: 54,
-    title: "DIY CHINESE FIVE SPICE KIT",
-    image: fivespieceside,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-];
+//   {
+//     id: 54,
+//     title: "DIY CHINESE FIVE SPICE KIT",
+//     image: fivespieceside,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+// ];
 
 export default function DiySpices() {
   const [isVisible, setIsVisible] = useState(false);
+  const [diySpices, setDiySpices] = useState([]);
+
+
+  useEffect(() => {
+    const fetchDiySpices = async () => {
+      try {
+        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products?category=DIY%20SPICES%20KITS");
+        const data = await response.json();
+        if (data.success) {
+          setDiySpices(data.data);
+        } else {
+          console.error("Failed to fetch DIY spices:", data.message);
+        }
+      } catch (err) {
+        console.error("Error fetching DIY spices:", err);
+      }
+    };
+  
+    fetchDiySpices();
+  }, []);
+  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -168,14 +189,14 @@ export default function DiySpices() {
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {dispices.map((kit) => {
+            {diySpices.map((kit) => {
               return (
                 <Col
                 xs={6}
                 sm={6}
                 md={4}
                 lg={3}
-                key={kit.id}
+                key={kit._id}
                 className="card-item-products"
               >
                   <Card
@@ -187,7 +208,8 @@ export default function DiySpices() {
                       height: "auto",
                       marginBottom: "50px",
                     }}
-                    onClick={() => handleCardClick(kit.id)}
+                    onClick={() => handleCardClick(kit._id)}
+
                     className="zoom-in-image"
                   >
                     <Card.Title
@@ -200,7 +222,7 @@ export default function DiySpices() {
                         fontFamily: "kapraneue, sans-serif",
                       }}
                     >
-                      {kit.title}
+                      {kit.name}
                     </Card.Title>
                     {/* <p
                     style={{
@@ -234,7 +256,18 @@ export default function DiySpices() {
                       }}
                     >
                       {" "}
-                      <Card.Img variant="top" src={kit.image} />
+                      <Card.Img
+  variant="top"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "100%", height: "200px" }}
+/>
+
+
                     </div>
                     <div>
                       <Card.Body style={{ padding: "0px" }}>
@@ -288,7 +321,7 @@ export default function DiySpices() {
                                 }}
                                 className="discount-price"
                               >
-                                Rs {kit.originalPrice}
+                                {/* Rs {150} */}
                               </p>
                               <p
                                 style={{
@@ -298,7 +331,7 @@ export default function DiySpices() {
                                 }}
                                  className="original-price"
                               >
-                                Rs {kit.discountedPrice}
+                                {/* Rs {kit.price} */}
                               </p>
                             </div>
                           </div>

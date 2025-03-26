@@ -14,46 +14,66 @@ import Reviews from "../../Home/Reviews";
 
 import LearnMoreRetail from "./LearnMoreRetail";
 
-const wholespices = [
-  {
-    id: 55,
-    title: "CURRY POWDER",
-    image: currypowder,
-    originalPrice: 135,
-    discountedPrice: 125,
-  },
-  {
-    id: 56,
-    title: "BIRYANI MASALA",
-    image: birani_masala,
-    originalPrice: 125,
-    discountedPrice: 115,
-  },
-  {
-    id: 57,
-    title: "CHOLE MASALA",
-    image: chole_masala,
-    originalPrice: 140,
-    discountedPrice: 120,
-  },
-  {
-    id: 58,
-    title: "RASAM MASALA",
-    image: rasam_powder,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 59,
-    title: "PAV BHAJI MASALA",
-    image: pav_bhaji,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-];
+// const wholespices = [
+//   {
+//     id: 55,
+//     title: "CURRY POWDER",
+//     image: currypowder,
+//     originalPrice: 135,
+//     discountedPrice: 125,
+//   },
+//   {
+//     id: 56,
+//     title: "BIRYANI MASALA",
+//     image: birani_masala,
+//     originalPrice: 125,
+//     discountedPrice: 115,
+//   },
+//   {
+//     id: 57,
+//     title: "CHOLE MASALA",
+//     image: chole_masala,
+//     originalPrice: 140,
+//     discountedPrice: 120,
+//   },
+//   {
+//     id: 58,
+//     title: "RASAM MASALA",
+//     image: rasam_powder,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 59,
+//     title: "PAV BHAJI MASALA",
+//     image: pav_bhaji,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+// ];
 
 export default function RetailSpices() {
   const [isVisible, setIsVisible] = useState(false);
+  const [retailSpices, setRetailSpices] = useState([])
+
+  useEffect(() => {
+    const fetchDiySpices = async () => {
+      try {
+        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products/category/SPICES%20BLENDS");
+  
+        const data = await response.json();
+        if (data.success) {
+          setRetailSpices(data.data);
+        } else {
+          console.error("Failed to fetch DIY spices:", data.message);
+        }
+      } catch (err) {
+        console.error("Error fetching DIY spices:", err);
+      }
+    };
+  
+    fetchDiySpices();
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -148,14 +168,14 @@ export default function RetailSpices() {
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {wholespices.map((kit) => {
+            {retailSpices.map((kit) => {
               return (
                 <Col
                 xs={6}
                 sm={6}
                 md={4}
                 lg={3}
-                key={kit.id}
+                key={kit._id}
                 className="card-item-products"
               >
                   <Card
@@ -167,7 +187,7 @@ export default function RetailSpices() {
                         height: "auto",
                         marginBottom: "50px",
                       }}
-                    onClick={() => handleCardClick(kit.id)}
+                    onClick={() => handleCardClick(kit._id)}
                     className="zoom-in-image"
                   >
                     <Card.Title
@@ -180,7 +200,7 @@ export default function RetailSpices() {
                         letterSpacing: "1px",
                       }}
                     >
-                      {kit.title}
+                      {kit.name}
                     </Card.Title>
                     {/* <p
                     style={{
@@ -213,7 +233,16 @@ export default function RetailSpices() {
                       }}
                     >
                       {" "}
-                      <Card.Img variant="top" src={kit.image} />
+                      <Card.Img
+  variant="top"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "100%", height: "200px" }}
+/>
                     </div>
                     <div>
                       <Card.Body style={{ padding: "0px" }}>
@@ -267,7 +296,7 @@ export default function RetailSpices() {
                                 }}
                                  className="discount-price"
                               >
-                                Rs {kit.originalPrice}
+                                {/* Rs {150} */}
                               </p>
                               <p
                                 style={{
@@ -277,7 +306,7 @@ export default function RetailSpices() {
                                 }}
                                 className="original-price"
                               >
-                                Rs {kit.discountedPrice}
+                                   {/* Rs {kit.price} */}
                               </p>
                             </div>
                           </div>

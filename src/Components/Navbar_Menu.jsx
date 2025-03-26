@@ -27,7 +27,8 @@ export default function Navbar_Menu() {
   };
 
   return (
-    <div className="navbar-container" style={{ position: "relative" }}>
+    <>
+    <div className="navbar-container d-none d-lg-block" style={{ position: "relative" }}>
       {/* Fixed Navbar */}
       <nav
         className="navbar"
@@ -821,7 +822,7 @@ button:hover {
 }
 
 
-/* 🔻 Fade-In Animation */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -831,7 +832,7 @@ button:hover {
   }
 }
 
-/* 🔻 Mobile Optimization */
+
 @media screen and (max-width: 425px) {
   .desktop-menu,
   .right-icons, 
@@ -884,5 +885,237 @@ button:hover {
       `}
       </style>
     </div>
+
+
+    
+    <div className="d-block d-lg-none">
+    <div className="mobile-header-wrapper">
+  {/* Header Row: Socials | Logo | Menu */}
+  <div className="mobile-header-row">
+    {/* Social Icons - Left */}
+    <div className="social-icons-left">
+      <a href="https://api.whatsapp.com/send/?phone=917349444419" target="_blank">
+        <img src={whatsapp} alt="whatsapp" />
+      </a>
+      <a href="https://www.instagram.com/AvitriSpices/" target="_blank">
+        <img src={instragram} alt="instagram" />
+      </a>
+      <a href="https://www.facebook.com/AvitriSpices/" target="_blank">
+        <img src={facebook} alt="facebook" />
+      </a>
+    </div>
+
+    {/* Menu Icon - Right */}
+    <button className="mobile-menu-btn" onClick={() => setMenuOpen(true)}>
+      <FiMenu size={28} />
+    </button>
+
+    {/* Centered Floating Logo */}
+    <div className="mobile-logo-badge">
+      <Link to="/">
+        <img src={avitri_logo} alt="logo" className="mobile-logo-img" />
+      </Link>
+    </div>
+  </div>
+
+  {/* Offcanvas Menu */}
+  {menuOpen && (
+    <div className="mobile-offcanvas">
+      <button className="close-offcanvas" onClick={() => setMenuOpen(false)}>
+        <FiX size={26} />
+      </button>
+
+      {/* Account Buttons */}
+      <div className="account-buttons">
+        <Link to="/register"><button className="btn-login">CREATE ACCOUNT</button></Link>
+        <Link to="/login"><button className="btn-login">LOGIN</button></Link>
+      </div>
+
+      {/* Navigation */}
+      <ul className="mobile-nav-links">
+        <li>
+          <button className="dropdown-toggle" onClick={() => toggleDropdown("SHOP")}>SHOP</button>
+          {activeDropdown === "SHOP" && (
+            <ul className="dropdown-items">
+              <li><Link to="/all-products">All Products</Link></li>
+              <li><Link to="/whole-spices">Whole Spices</Link></li>
+              <li><Link to="/ground-spices">Ground Spices</Link></li>
+              <li><Link to="/diy-spices">DIY Spice Kits</Link></li>
+              <li><Link to="/retails">Spice Blends</Link></li>
+            </ul>
+          )}
+        </li>
+
+        <li>
+          <button className="dropdown-toggle" onClick={() => toggleDropdown("DISCOVER")}>DISCOVER</button>
+          {activeDropdown === "DISCOVER" && (
+            <ul className="dropdown-items">
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/all-products">Products</Link></li>
+            </ul>
+          )}
+        </li>
+
+        <li><Link to="/recipes">RECIPES</Link></li>
+        <li><Link to="/cart">CART</Link></li>
+      </ul>
+    </div>
+  )}
+
+  {/* Inline CSS */}
+  <style>{`
+    .mobile-header-wrapper {
+     position: sticky; 
+      top: 0;
+      background: white;
+      padding: 12px 15px 24px;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 100;
+    }
+
+    .mobile-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .social-icons-left {
+      display: flex;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .social-icons-left img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .mobile-menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Floating Logo */
+    .mobile-logo-badge {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+
+    .mobile-logo-img {
+      width: 55%;
+      height: auto;
+       margin-left: 20%;
+    }
+
+    .mobile-offcanvas {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 80vw;
+      height: 100vh;
+      background: white;
+      box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+      padding: 20px;
+      z-index: 9999;
+      animation: slideIn 0.3s ease;
+    }
+
+    .close-offcanvas {
+      background: none;
+      border: none;
+      font-size: 22px;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+    }
+
+    .account-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 60px;
+    }
+
+    .btn-login {
+      padding: 10px;
+      border-radius: 30px;
+      border: 2px solid #AF261D;
+      background: none;
+      color: #333;
+      font-family: kapraneue, sans-serif;
+      font-size: 14px;
+    }
+
+    .btn-login:hover {
+      background: black;
+      color: white;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-family: kapraneue, sans-serif;
+    }
+
+    .mobile-nav-links li a,
+    .dropdown-toggle {
+      font-size: 18px;
+      color: #222;
+      text-decoration: none;
+      font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+    }
+
+    .dropdown-items {
+      margin-top: 10px;
+      padding-left: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dropdown-items li a {
+      font-size: 16px;
+      color: #444;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+  `}</style>
+</div>
+
+
+
+
+
+</div>
+
+    </>
   );
 }

@@ -22,7 +22,7 @@ import turmericpowder from "/media/turmericpowder.png";
 // import box from "/media/1.png";
 import fivespieceside from "/media/fivespieceside.jpeg";
 import garammasalakit from "/media/garammasalakit.jpeg";
-import biyranimasalaside from "/media/biyranimasalaside.jpeg";
+
 import tacoseasoningtop from "/media/tacoseasoningtop.jpeg";
 import pavbhajidiytop from "/media/pavbhajidiytop.jpeg";
 import carolekittop from "/media/carolekittop.jpeg";
@@ -38,239 +38,259 @@ import bayleaf from "/media/bayleaf.png";
 import coriseed from "/media/coriseed.png";
 import LearnMoreProducts from "./LearnMoreProducts";
 
-const allproducts = [
-  {
-    id: 1,
-    title: "BLACK PEPPER",
-    image: blackpepper,
-    originalPrice: 135,
-    discountedPrice: 125,
-  },
-  {
-    id: 2,
-    title: "WHITE PEPPER",
-    image: whitepepper,
-    originalPrice: 125,
-    discountedPrice: 115,
-  },
-  {
-    id: 3,
-    title: "AMCHUR",
-    image: amchur,
-    originalPrice: 140,
-    discountedPrice: 120,
-  },
-  {
-    id: 4,
-    title: "STAR ANISE",
-    image: star_anise,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 5,
-    title: "CINNAMON STICKS",
-    image: cinnamon_sticks,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 6,
-    title: "CLOVES",
-    image: cloves,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 7,
-    title: "GREEN CARDAMOM",
-    image: green_cardamom,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 8,
-    title: "BLACK CARDAMOM",
-    image: black_cardamom,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 9,
-    title: "NUTMEG",
-    image: nutmeg,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 10,
-    title: "CASIA",
-    image: nutmeg,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
+// const allproducts = [
+//   {
+//     id: 1,
+//     title: "BLACK PEPPER",
+//     image: blackpepper,
+//     originalPrice: 135,
+//     discountedPrice: 125,
+//   },
+//   {
+//     id: 2,
+//     title: "WHITE PEPPER",
+//     image: whitepepper,
+//     originalPrice: 125,
+//     discountedPrice: 115,
+//   },
+//   {
+//     id: 3,
+//     title: "AMCHUR",
+//     image: amchur,
+//     originalPrice: 140,
+//     discountedPrice: 120,
+//   },
+//   {
+//     id: 4,
+//     title: "STAR ANISE",
+//     image: star_anise,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 5,
+//     title: "CINNAMON STICKS",
+//     image: cinnamon_sticks,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 6,
+//     title: "CLOVES",
+//     image: cloves,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 7,
+//     title: "GREEN CARDAMOM",
+//     image: green_cardamom,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 8,
+//     title: "BLACK CARDAMOM",
+//     image: black_cardamom,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 9,
+//     title: "NUTMEG",
+//     image: nutmeg,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 10,
+//     title: "CASIA",
+//     image: nutmeg,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
 
-  {
-    id: 11,
-    title: "BLACK PEPPER POWDER",
-    image: blackpepper,
-    originalPrice: 135,
-    discountedPrice: 125,
-  },
-  {
-    id: 12,
-    title: "CURRY POWDER",
-    image: currypowder,
-    originalPrice: 125,
-    discountedPrice: 115,
-  },
-  {
-    id: 13,
-    title: "GINGER POWDER",
-    image: gingerpowder,
-    originalPrice: 140,
-    discountedPrice: 120,
-  },
-  {
-    id: 14,
-    title: "PAV BAJI MASALA",
-    image: pav_bhaji,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 15,
-    title: "TURMERIC POWDER",
-    image: turmericpowder,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
+//   {
+//     id: 11,
+//     title: "BLACK PEPPER POWDER",
+//     image: blackpepper,
+//     originalPrice: 135,
+//     discountedPrice: 125,
+//   },
+//   {
+//     id: 12,
+//     title: "CURRY POWDER",
+//     image: currypowder,
+//     originalPrice: 125,
+//     discountedPrice: 115,
+//   },
+//   {
+//     id: 13,
+//     title: "GINGER POWDER",
+//     image: gingerpowder,
+//     originalPrice: 140,
+//     discountedPrice: 120,
+//   },
+//   {
+//     id: 14,
+//     title: "PAV BAJI MASALA",
+//     image: pav_bhaji,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 15,
+//     title: "TURMERIC POWDER",
+//     image: turmericpowder,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
 
-  {
-    id: 16,
-    title: "DIY CHOLE MASALA KIT",
-    image: cholemasalakit,
-    originalPrice: 135,
-    discountedPrice: 125,
-  },
-  {
-    id: 17,
-    title: "DIY CURRY POWDER KIT",
-    image: currypowderkit,
-    originalPrice: 125,
-    discountedPrice: 115,
-  },
-  {
-    id: 18,
-    title: "DIY RASAM POWDER KIT",
-    image: rasampowderkit,
-    originalPrice: 140,
-    discountedPrice: 120,
-  },
-  {
-    id: 19,
-    title: "DIY BUTTER PANEER MASALA KIT",
-    image: butterpaneerkit,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 20,
-    title: "DIY CAROLE SEASONING KIT",
-    image: carolekittop,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 21,
-    title: "DIY PAV BHAJI MASALA KIT",
-    image: pavbhajidiytop,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 22,
-    title: "DIY TACO SEASONING MASALA KIT",
-    image: tacoseasoningtop,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 23,
-    title: "DIY BIRYANI MASALA KIT",
-    image: biyranimasalaside,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 24,
-    title: "DIY GARAM MASALA KIT",
-    image: garammasalakit,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 25,
-    title: "DIY CHINESE FIVE SPICE KIT",
-    image: fivespieceside,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
+//   {
+//     id: 16,
+//     title: "DIY CHOLE MASALA KIT",
+//     image: cholemasalakit,
+//     originalPrice: 135,
+//     discountedPrice: 125,
+//   },
+//   {
+//     id: 17,
+//     title: "DIY CURRY POWDER KIT",
+//     image: currypowderkit,
+//     originalPrice: 125,
+//     discountedPrice: 115,
+//   },
+//   {
+//     id: 18,
+//     title: "DIY RASAM POWDER KIT",
+//     image: rasampowderkit,
+//     originalPrice: 140,
+//     discountedPrice: 120,
+//   },
+//   {
+//     id: 19,
+//     title: "DIY BUTTER PANEER MASALA KIT",
+//     image: butterpaneerkit,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 20,
+//     title: "DIY CAROLE SEASONING KIT",
+//     image: carolekittop,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 21,
+//     title: "DIY PAV BHAJI MASALA KIT",
+//     image: pavbhajidiytop,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 22,
+//     title: "DIY TACO SEASONING MASALA KIT",
+//     image: tacoseasoningtop,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 23,
+//     title: "DIY BIRYANI MASALA KIT",
+//     image: biyranimasalaside,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 24,
+//     title: "DIY GARAM MASALA KIT",
+//     image: garammasalakit,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 25,
+//     title: "DIY CHINESE FIVE SPICE KIT",
+//     image: fivespieceside,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
 
-  {
-    id: 26,
-    title: "BIRYANI MASALA",
-    image: birani_masala,
-    originalPrice: 125,
-    discountedPrice: 115,
-  },
-  {
-    id: 27,
-    title: "CHOLE MASALA",
-    image: chole_masala,
-    originalPrice: 140,
-    discountedPrice: 120,
-  },
-  {
-    id: 28,
-    title: "RASAM MASALA",
-    image: rasam_powder,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 29,
-    title: "CUMIN SEEDS",
-    image: cuminseed,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 30,
-    title: "BAY LEAVES",
-    image: bayleaf,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 31,
-    title: "CORIANDER SEEDS",
-    image: coriseed,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
+//   {
+//     id: 26,
+//     title: "BIRYANI MASALA",
+//     image: birani_masala,
+//     originalPrice: 125,
+//     discountedPrice: 115,
+//   },
+//   {
+//     id: 27,
+//     title: "CHOLE MASALA",
+//     image: chole_masala,
+//     originalPrice: 140,
+//     discountedPrice: 120,
+//   },
+//   {
+//     id: 28,
+//     title: "RASAM MASALA",
+//     image: rasam_powder,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 29,
+//     title: "CUMIN SEEDS",
+//     image: cuminseed,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 30,
+//     title: "BAY LEAVES",
+//     image: bayleaf,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
+//   {
+//     id: 31,
+//     title: "CORIANDER SEEDS",
+//     image: coriseed,
+//     originalPrice: 145,
+//     discountedPrice: 135,
+//   },
 
-  // {
-  //   id: 32,
-  //   title: "BIRYANI MASALA KIT",
-  //   image: box,
-  //   originalPrice: 145,
-  //   discountedPrice: 135,
-  // },
-];
+//   // {
+//   //   id: 32,
+//   //   title: "BIRYANI MASALA KIT",
+//   //   image: box,
+//   //   originalPrice: 145,
+//   //   discountedPrice: 135,
+//   // },
+// ];
 
 export default function AllProducts() {
   const [isVisible, setIsVisible] = useState(false);
+const[allProducts, setAllProducts] = useState([])
+
+  useEffect(() => {
+    const fetchDiySpices = async () => {
+      try {
+        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products");
+  
+        const data = await response.json();
+        if (data.success) {
+          setAllProducts(data.data);
+        } else {
+          console.error("Failed to fetch DIY spices:", data.message);
+        }
+      } catch (err) {
+        console.error("Error fetching DIY spices:", err);
+      }
+    };
+  
+    fetchDiySpices();
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -366,13 +386,13 @@ export default function AllProducts() {
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {allproducts.map((kit) => (
+            {allProducts.map((kit) => (
               <Col
                 xs={6}
                 sm={6}
                 md={4}
                 lg={3}
-                key={kit.id}
+                key={kit._id}
                 className="card-item-products"
               >
                 <Card
@@ -380,11 +400,12 @@ export default function AllProducts() {
                     width: "100%",
                     borderRadius: "25px 25px 60px 60px",
                     border: "none",
+                    cursor:'pointer',
                     boxShadow: "1px 1px 5px lightgrey",
                     height: "auto",
                     marginBottom: "50px",
                   }}
-                  onClick={() => handleCardClick(kit.id)}
+                  onClick={() => handleCardClick(kit._id)}
                   className="zoom-in-image"
                 >
                   <Card.Title
@@ -397,7 +418,7 @@ export default function AllProducts() {
                     }}
                     className="allproducts-title"
                   >
-                    {kit.title}
+                     {kit.name}
                   </Card.Title>
 
                   <div
@@ -409,7 +430,16 @@ export default function AllProducts() {
                     }}
                     className="allproducts-img"
                   >
-                    <Card.Img variant="top" src={kit.image} />
+                    <Card.Img
+  variant="top"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "100%", height: "200px" }}
+/>
                   </div>
 
                   <Card.Body style={{ padding: "0px" }}>
@@ -469,7 +499,7 @@ export default function AllProducts() {
                             }}
                             className="discount-price"
                           >
-                            Rs {kit.originalPrice}
+                            {/* Rs {150} */}
                           </p>
                           <p
                             style={{
@@ -480,7 +510,7 @@ export default function AllProducts() {
                             }}
                             className="original-price"
                           >
-                            Rs {kit.discountedPrice}
+                                {/* Rs {kit.price} */}
                           </p>
                         </div>
                       </div>

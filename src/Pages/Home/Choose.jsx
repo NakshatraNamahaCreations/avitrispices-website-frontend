@@ -106,7 +106,7 @@ export default function Choose() {
               }}
               className="p-choose"
             >
-              No chemical or pesticides
+              Adulterant free Spices
             </p>
           </div>
           <div
@@ -137,7 +137,7 @@ export default function Choose() {
               }}
               className="p-choose"
             >
-              Fastest delivery to your doorsteps
+              Quick delivery to your doorsteps
             </p>
           </div>
         </div>

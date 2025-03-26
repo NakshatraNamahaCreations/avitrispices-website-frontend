@@ -2,7 +2,6 @@ import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import SelectionCard from "/media/SelectionCard.png";
-
 import garammasalacurry from "/media/garammasalacurry.png";
 import PavBhaji from "/media/PavBhaji.png";
 import PUNJABICHOLERECIPE from "/media/PUNJABICHOLERECIPE.png";

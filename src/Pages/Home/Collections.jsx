@@ -12,7 +12,7 @@ export default function Collections() {
   const collections = [
     { img: pepperMasala, title: "WHOLE SPICES", link: "/whole-spices" },
     { img: Masala, title: "GROUND SPICES", link: "/ground-spices" },
-    { img: Masala1, title: "DIY PAV BHAJI MASALA KIT", link: "/diy-spices" },
+    { img: Masala1, title: "DIY SPICE KIT", link: "/diy-spices" },
     { img: Masala2, title: "SPICES BLENDS", link: "/retails" },
   ];
 
@@ -84,18 +84,21 @@ export default function Collections() {
                       overflow: "hidden",
                     }}
                   >
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      style={{
-                        width:
-                          item.title === "DIY PAV BHAJI MASALA KIT"
-                            ? "125%"
-                            : "80%",
-                        height: "auto",
-                        objectFit: "cover",
-                      }}
-                    />
+                   <img
+  src={item.img}
+  alt={item.title}
+  style={{
+    width: "100%",
+    height:
+      item.title === "DIY SPICE KIT"
+        ? "340px" 
+        : "340px", 
+    objectFit: item.title === "DIY SPICE KIT"
+    ? "contain"  
+    : "cover",
+  }}
+/>
+
                   </div>
 
                   <Card.Body

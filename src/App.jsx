@@ -28,6 +28,7 @@ import AddressDetails from "./Pages/Account/AddressDetails";
 import Register from "./Pages/Account/Register";
 import ThankYou from "./Pages/Cart/ThankYou";
 import CheckOut from "./Pages/Cart/CheckOut";
+import ContactUs from "./Components/Contact";
 // import CartRedux from "./Pages/Cart/CartRedux";
 
 function App() {
@@ -70,7 +71,7 @@ function App() {
       <Route path="/product/:id" element={<ProductPage />} />
 
 
-
+<Route path="contact" element={<ContactUs/>} />
       <Route path="/thank-you" element={<ThankYou />} />
       
     </Routes>

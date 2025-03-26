@@ -1,5 +1,5 @@
 import Navbar_Menu from "../../../Components/Navbar_Menu";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import LearnMore from "../../../Pages/Home/LearnMore";
 import Footer from "../../../Components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
@@ -11,6 +11,7 @@ import pav_bhaji from "/media/pav_bhaji.png";
 import Vector from "/media/Vector.png";
 import spices from "/media/masala-collection.png";
 import masalaBox from "/media/1.png";
+import certification from "../../../../public/media/certification.png"
 import AdvertisingProducts from "../../../Pages/Products/AdvertisingProducts";
 import { useParams } from "react-router-dom";
 import RetailProductsAll from "./RetailProductsAll";
@@ -18,78 +19,122 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
 
-const retailist = [
-  {
-    id: 55,
-    heading: "CURRY POWDER",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: currypowder,
-    title: "CURRY POWDER",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 56,
-    heading: "BIRYANI MASALA",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: birani_masala,
-    title: "BIRYANI MASALA",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 57,
-    heading: "CHOLE MASALA",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: chole_masala,
-    title: "CHOLE MASALA",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 58,
-    heading: "RASAM MASALA",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: rasam_powder,
-    title: "RASAM MASALA",
-    discountPrice: "135",
-    price: "125",
-  },
-  {
-    id: 59,
-    heading: "PAV BHAJI MASALA",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: pav_bhaji,
-    title: "PAV BHAJI MASALA",
-    discountPrice: "135",
-    price: "125",
-  },
-];
+// const retailist = [
+//   {
+//     id: 55,
+//     heading: "CURRY POWDER",
+//     content:
+//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//     image: currypowder,
+//     title: "CURRY POWDER",
+//     discountPrice: "135",
+//     price: "125",
+//   },
+//   {
+//     id: 56,
+//     heading: "BIRYANI MASALA",
+//     content:
+//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//     image: birani_masala,
+//     title: "BIRYANI MASALA",
+//     discountPrice: "135",
+//     price: "125",
+//   },
+//   {
+//     id: 57,
+//     heading: "CHOLE MASALA",
+//     content:
+//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//     image: chole_masala,
+//     title: "CHOLE MASALA",
+//     discountPrice: "135",
+//     price: "125",
+//   },
+//   {
+//     id: 58,
+//     heading: "RASAM MASALA",
+//     content:
+//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//     image: rasam_powder,
+//     title: "RASAM MASALA",
+//     discountPrice: "135",
+//     price: "125",
+//   },
+//   {
+//     id: 59,
+//     heading: "PAV BHAJI MASALA",
+//     content:
+//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//     image: pav_bhaji,
+//     title: "PAV BHAJI MASALA",
+//     discountPrice: "135",
+//     price: "125",
+//   },
+// ];
 
 export default function RetailSpicesPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const handleAddToCart = (id, title, discountPrice, price, image) => {
-    dispatch(addToCart({ id, title, discountPrice, price, image }));
-    navigate("/cart");
-  };
+  const [product, setProduct] = useState(null);
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0); 
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const { id } = useParams();
-  const blends = retailist.find((p) => p.id === parseInt(id));
 
-  if (!blends) {
-    return <h2>Blends Spices not found</h2>;
-  }
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://api.nncwebsitedevelopment.com/api/products/${id}`);
+  
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            setProduct(data.data);
+          } else {
+            console.error("Product fetch failed");
+          }
+        } 
+        else {
+          console.error("Product fetch failed with status:", response.status);
+        }
+      } catch (err) {
+        console.error("Error fetching product:", err);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
+  
+
+  const handleAddToCart = () => {
+     dispatch(
+       addToCart({
+         id: product._id,
+         title: product.name,
+         price: product.variants?.[selectedVariantIndex]?.price || "0",
+         image: product.images?.[0]
+         ? `https://api.nncwebsitedevelopment.com${product.images[0]}`
+         : "/media/fallback.jpg",
+       })
+     );
+     navigate("/cart");
+   };
+ 
+   if (!product) {
+     return (
+       <>
+         <Navbar_Menu />
+         <div style={{ padding: "10%", textAlign: "center" }}>
+           <h2>Loading Product...</h2>
+         </div>
+         <Footer />
+       </>
+     );
+   }
+
 
   return (
     <>
@@ -122,7 +167,7 @@ export default function RetailSpicesPage() {
               margin: "3% 0",
             }}
           >
-            {blends.heading}
+              {product.name}
           </h1>
           <Row className="justify-content-center">
             <Col sm={4} className="d-flex flex-column justify-content-center">
@@ -134,13 +179,17 @@ export default function RetailSpicesPage() {
                 }}
                 className="p-contents-products"
               >
-                {blends.content}
+             {product.description} 
               </p>
             </Col>
             <Col sm={4} className="d-flex flex-column justify-content-center">
               <img
-                src={blends.image}
-                alt="whitepepper"
+                src={
+                  product.images?.[0]
+                    ? `https://api.nncwebsitedevelopment.com${product.images[0]}`
+                    : "/media/fallback.jpg"
+                }
+                alt={product.name}
                 style={{
                   width: "55%",
                   height: "auto",
@@ -172,27 +221,56 @@ export default function RetailSpicesPage() {
                   }}
                    className="h2-products-title"
                 >
-                  {blends.title}
+                   {product.name}
                 </h2>
-                <p
-                  style={{
-                    backgroundImage: "url('/media/Sale.png')",
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    width: "100%",
-                    color: "white",
-                    fontWeight: "bold",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "24px",
-                    textAlign: "center",
-                  }}
-                   className="sale-box"
-                >
-                  Sale
-                </p>
+                <div
+  style={{
+    backgroundImage: "url('/media/Sale.png')",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    width: "100%",
+    color: "white",
+    fontWeight: "bold",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "24px",
+    textAlign: "center",
+    height: "80px", 
+  }}
+  className="sale-box"
+>
+  {product.variants?.length > 0 ? (
+    <select
+      style={{
+        background: "transparent",
+        color: "white",
+        fontWeight: "bold",
+        fontSize: "20px",
+        border: "none",
+        textAlign: "center",
+        padding: "5px 10px",
+        cursor: "pointer",
+        WebkitAppearance: "none", 
+      }}
+      value={selectedVariantIndex}
+      onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
+    >
+      {product.variants.map((variant, index) => (
+        <option
+          key={variant._id}
+          value={index}
+          style={{ color: "black" }} 
+        >
+          {variant.quantity}g - ₹{variant.price}
+        </option>
+      ))}
+    </select>
+  ) : (
+    "Sale"
+  )}
+</div>
                 <div
                   style={{
                     display: "flex",
@@ -213,7 +291,7 @@ export default function RetailSpicesPage() {
                     }}
                     className="cutprice"
                   >
-                    Rs {blends.discountPrice}
+                    Rs {150}
                   </p>
                   <p
                     style={{
@@ -221,7 +299,7 @@ export default function RetailSpicesPage() {
                       margin: 0,
                     }}
                   >
-                    Rs {blends.price}
+                    Rs {product.variants?.[selectedVariantIndex]?.price || "0"}
                   </p>
                 </div>
 
@@ -233,14 +311,7 @@ export default function RetailSpicesPage() {
                     cursor: "pointer",
                   }}
                   className="zoom-in-image"
-                  onClick={() =>
-                    handleAddToCart(
-                      blends.id,
-                      blends.title,
-                      blends.discountPrice,
-                      blends.price
-                    )
-                  }
+                  onClick={handleAddToCart}
                 >
                   <img
                     src={Vector}
@@ -271,6 +342,17 @@ export default function RetailSpicesPage() {
                     ADD TO CART
                   </h3>
                 </div>
+                <div style={{ textAlign: "center", marginTop: "10px" }}>
+                                  <img
+                                    src={certification} 
+                                    alt="Certification"
+                                    style={{
+                                      width: "200px",
+                                      height: "auto",
+                                      objectFit: "contain",
+                                    }}
+                                  />
+                                </div>
               </div>
             </Col>
           </Row>

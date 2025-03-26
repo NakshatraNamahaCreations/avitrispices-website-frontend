@@ -1,11 +1,16 @@
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import garamMasala from "/media/garam-masala.png";
-import pav_bhaji from "/media/pav_bhaji.png";
-import chole_masala from "/media/chole_masala.png";
-import birani_masala from "/media/birani_masala.png";
-import rasam_powder from "/media/rasam_powder.png";
+// import pav_bhaji from "/media/pavbhajidiytop.png";
+import pav_bhaji from "../../public/media/pavbhajidiytop.jpeg"
+import chole_masala from "../../public/media/cholemasalakit.jpeg";
+// /media/cholemasalakit/jpeg";
+import birani_masala from "/media/biryanikit.jpeg";
+import rasam_powder from "/media/rasampowderkit.jpeg";
+import butter_panner from "../../public/media/butterpaneerkit.jpeg";
+import taco_image from "../../public/media/tacoseasoningtop.jpeg"
 import Navbar_Menu from "./Navbar_Menu";
+import five_image from "../../public/media/fivespieceside.jpeg"
 import { useEffect, useState } from "react";
 import LearnMore from "../Pages/Home/LearnMore";
 import Footer from "./Footer";
@@ -238,7 +243,7 @@ const products = [
   {
     id: 6,
     title: "Butter Paneer Masala",
-    image: rasam_powder,
+    image: butter_panner,
     serves: "4-6",
     time: "30 minutes",
     cookingTime: "1 hour",
@@ -280,7 +285,7 @@ const products = [
   {
     id: 7,
     title: "DIY Taco",
-    image: rasam_powder,
+    image: taco_image,
     serves: "4",
     time: "30 minutes",
     cookingTime: "1 hour",
@@ -423,7 +428,7 @@ const products = [
   {
     id: 10,
     title: "Chinese Five Spice Stir-Fry",
-    image: rasam_powder,
+    image: five_image,
     serves: "4",
     time: "15 minutes",
     cookingTime: "15 minutes",
