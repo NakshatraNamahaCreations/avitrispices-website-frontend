@@ -336,7 +336,7 @@ export default function PrivacyPolicy() {
                         letterSpacing: "1.5px",
                       }}
                     >
-                      Contact@AvitriSpices.in.
+                      admin@avitrispices.in.
                     </span>
                   </li>
                 </ul>
@@ -368,7 +368,7 @@ export default function PrivacyPolicy() {
                         letterSpacing: "2px",
                       }}
                     >
-                      Contact@AvitriSpices.in
+                      admin@avitrispices.in
                     </span>
                   </li>
                   <li>

@@ -15,6 +15,12 @@ const ContactUs = () => {
     return () => clearTimeout(timeout);
   }, []);
 
+
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div
@@ -55,7 +61,7 @@ const ContactUs = () => {
                   <i className="bi bi-envelope-fill fs-1 text-danger"></i>
                 </div>
                 <h5 className="fw-bold">EMAIL US</h5>
-                <p>info@avitrispices.com</p>
+                <p>admin@avitrispices.in</p>
               </div>
             </div>
           </div>

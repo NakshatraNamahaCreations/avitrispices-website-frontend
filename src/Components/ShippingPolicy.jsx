@@ -87,14 +87,14 @@ export default function ShippingPolicy() {
             <p>
               Check your local customs policies before placing an order. Lost or
               Delayed Packages For delayed or lost packages, contact us at <span style={{fontFamily:'kapraneue, sans-serif', letterSpacing:'1px', fontSize:'20px'}}>
-              info@avitrispicies.com</span>. We will coordinate with the carrier to
+              admin@avitrispices.in</span>. We will coordinate with the carrier to
               resolve the issue. Address Errors Please double-check your
               shipping address at checkout. Orders sent to an incorrect address
               may incur additional shipping fees.
             </p>
             <ul>
               <p>Contact Us For any questions, feel free to reach out: </p>
-              <li>Email: <span style={{fontSize:'18px', marginLeft:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>info@avitrispicies.com</span></li>
+              <li>Email: <span style={{fontSize:'18px', marginLeft:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>admin@avitrispices.in</span></li>
               <li>Phone: <span style={{fontSize:'18px', marginLeft:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>+91 734 944 4419</span></li>
             </ul>
             <p> Thank you for shopping with Avitri Spices!</p>

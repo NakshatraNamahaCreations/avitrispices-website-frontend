@@ -67,7 +67,7 @@ export default function TermsServices() {
             <li>
               <span style={{fontSize:'18px', marginRight:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>Contact Information:</span> For any inquiries, you can reach us at:
               <ul style={{listStyleType:'none'}}>
-                <li>- Email: <span style={{fontSize:'18px', marginLeft:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>info@avitrispices.in</span></li>
+                <li>- Email: <span style={{fontSize:'18px', marginLeft:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>admin@avitrispices.in</span></li>
                 <li>- Phone: <span style={{fontSize:'18px', marginLeft:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>+91 734 944 4419</span></li>
               </ul>
             </li>
@@ -195,7 +195,7 @@ export default function TermsServices() {
             Terms and Conditions, please contact us at:
           </p>
           <ul>
-            <li>Email: <span style={{fontSize:'18px', marginLeft:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>info@avitrispices.in</span></li>
+            <li>Email: <span style={{fontSize:'18px', marginLeft:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>admin@avitrispices.in</span></li>
             <li>Phone: <span style={{fontSize:'18px', marginLeft:'5px', fontFamily:'kapraneue, sans-serif', letterSpacing:'1.5px'}}>+91 734 944 4419</span></li>
           </ul>
 

@@ -21,7 +21,7 @@ export default function DiySpicesPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const [product, setProduct] = useState(null);
 
@@ -32,16 +32,15 @@ export default function DiySpicesPage() {
     const fetchProduct = async () => {
       try {
         const response = await fetch(`https://api.nncwebsitedevelopment.com/api/products/${id}`);
-  
         if (response.ok) {
           const data = await response.json();
           if (data.success) {
             setProduct(data.data);
+            setSelectedImage(data.data.images?.[0] || null); // Set the first image by default
           } else {
             console.error("Product fetch failed");
           }
-        } 
-        else {
+        } else {
           console.error("Product fetch failed with status:", response.status);
         }
       } catch (err) {
@@ -136,21 +135,41 @@ export default function DiySpicesPage() {
                 {product.description}             </p>
             </Col>
             <Col sm={4} className="d-flex flex-column justify-content-center">
+              {/* Display main selected image */}
               <img
-             src={
-              product.images?.[0]
-                ? `https://api.nncwebsitedevelopment.com${product.images[0]}`
-                : "/media/fallback.jpg"
-            }
-              alt={product.name}
+                src={
+                  selectedImage
+                    ? `https://api.nncwebsitedevelopment.com${selectedImage}`
+                    : "/media/fallback.jpg"
+                }
+                alt={product.name}
                 style={{
-                  width: "70%",
+                  width: "55%",
                   height: "auto",
                   objectFit: "cover",
                   alignSelf: "center",
                 }}
-                 className="addtoproduct-img"
+                className="addtoproduct-img"
               />
+              {/* Thumbnails of all images */}
+              <div style={{ display: "flex", marginTop: "15px", justifyContent: "center" }}>
+                {product.images.map((image, index) => (
+                  <img
+                    key={index}
+                    src={`https://api.nncwebsitedevelopment.com${image}`}
+                    alt={`Thumbnail ${index}`}
+                    onClick={() => setSelectedImage(image)} // Update selected image on click
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      objectFit: "cover",
+                      margin: "0 5px",
+                      cursor: "pointer",
+                      border: selectedImage === image ? "2px solid #AF261D" : "none", // Highlight selected thumbnail
+                    }}
+                  />
+                ))}
+              </div>
             </Col>
             <Col
               sm={4}

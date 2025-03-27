@@ -143,12 +143,13 @@ useEffect(() => {
                       width: "100%",
                       borderRadius: "25px 25px 60px 60px",
                       border: "none",
+                      cursor:'pointer',
                       boxShadow: "1px 1px 5px lightgrey",
                       height: "auto",
                       marginBottom: "50px",
                     }}
                     onClick={() => handleCardClick(kit._id)}
-                    className="zoom-in-image"
+                    // className="zoom-in-image"
                   >
                     <Card.Title
                       style={{
@@ -184,7 +185,30 @@ useEffect(() => {
                     SALE
                   </p> */}
 
+<div
+                    className="d-none d-lg-block"
+                      style={{
+                        width: "50%",
+                        height: "auto",
+                        marginBottom: "15px",
+                        alignSelf: "",
+                      }}
+                    >
+                      {" "}
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "305px", height: "300px" }}
+/>
+                    </div>
                     <div
+                    className="d-block d-lg-none"
                       style={{
                         width: "50%",
                         height: "auto",
@@ -195,24 +219,25 @@ useEffect(() => {
                       {" "}
                       <Card.Img
   variant="top"
+  className="responsive-image-card"
   src={
     kit.images?.[0]
       ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
       : "/media/fallback.jpg"
   }
   alt={kit.name}
-  style={{ objectFit: "cover", width: "100%", height: "200px" }}
+  style={{ objectFit: "cover", width: "100%", height: "100px" }}
 />
                     </div>
                     <div>
                       <Card.Body style={{ padding: "0px" }}>
-                        <div style={{ position: "relative", width: "100%" }}>
+                        <div style={{ position: "relative", width: "100%",  }}>
                           <img
                             src={SelectionCard}
                             alt="SelectionCard-img"
                             style={{
                               width: "100%",
-                              height: "auto",
+                              height: "70px",
                               display: "block",
                             }}
                           />

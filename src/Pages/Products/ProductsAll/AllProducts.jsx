@@ -38,236 +38,7 @@ import bayleaf from "/media/bayleaf.png";
 import coriseed from "/media/coriseed.png";
 import LearnMoreProducts from "./LearnMoreProducts";
 
-// const allproducts = [
-//   {
-//     id: 1,
-//     title: "BLACK PEPPER",
-//     image: blackpepper,
-//     originalPrice: 135,
-//     discountedPrice: 125,
-//   },
-//   {
-//     id: 2,
-//     title: "WHITE PEPPER",
-//     image: whitepepper,
-//     originalPrice: 125,
-//     discountedPrice: 115,
-//   },
-//   {
-//     id: 3,
-//     title: "AMCHUR",
-//     image: amchur,
-//     originalPrice: 140,
-//     discountedPrice: 120,
-//   },
-//   {
-//     id: 4,
-//     title: "STAR ANISE",
-//     image: star_anise,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 5,
-//     title: "CINNAMON STICKS",
-//     image: cinnamon_sticks,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 6,
-//     title: "CLOVES",
-//     image: cloves,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 7,
-//     title: "GREEN CARDAMOM",
-//     image: green_cardamom,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 8,
-//     title: "BLACK CARDAMOM",
-//     image: black_cardamom,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 9,
-//     title: "NUTMEG",
-//     image: nutmeg,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 10,
-//     title: "CASIA",
-//     image: nutmeg,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
 
-//   {
-//     id: 11,
-//     title: "BLACK PEPPER POWDER",
-//     image: blackpepper,
-//     originalPrice: 135,
-//     discountedPrice: 125,
-//   },
-//   {
-//     id: 12,
-//     title: "CURRY POWDER",
-//     image: currypowder,
-//     originalPrice: 125,
-//     discountedPrice: 115,
-//   },
-//   {
-//     id: 13,
-//     title: "GINGER POWDER",
-//     image: gingerpowder,
-//     originalPrice: 140,
-//     discountedPrice: 120,
-//   },
-//   {
-//     id: 14,
-//     title: "PAV BAJI MASALA",
-//     image: pav_bhaji,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 15,
-//     title: "TURMERIC POWDER",
-//     image: turmericpowder,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-
-//   {
-//     id: 16,
-//     title: "DIY CHOLE MASALA KIT",
-//     image: cholemasalakit,
-//     originalPrice: 135,
-//     discountedPrice: 125,
-//   },
-//   {
-//     id: 17,
-//     title: "DIY CURRY POWDER KIT",
-//     image: currypowderkit,
-//     originalPrice: 125,
-//     discountedPrice: 115,
-//   },
-//   {
-//     id: 18,
-//     title: "DIY RASAM POWDER KIT",
-//     image: rasampowderkit,
-//     originalPrice: 140,
-//     discountedPrice: 120,
-//   },
-//   {
-//     id: 19,
-//     title: "DIY BUTTER PANEER MASALA KIT",
-//     image: butterpaneerkit,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 20,
-//     title: "DIY CAROLE SEASONING KIT",
-//     image: carolekittop,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 21,
-//     title: "DIY PAV BHAJI MASALA KIT",
-//     image: pavbhajidiytop,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 22,
-//     title: "DIY TACO SEASONING MASALA KIT",
-//     image: tacoseasoningtop,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 23,
-//     title: "DIY BIRYANI MASALA KIT",
-//     image: biyranimasalaside,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 24,
-//     title: "DIY GARAM MASALA KIT",
-//     image: garammasalakit,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 25,
-//     title: "DIY CHINESE FIVE SPICE KIT",
-//     image: fivespieceside,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-
-//   {
-//     id: 26,
-//     title: "BIRYANI MASALA",
-//     image: birani_masala,
-//     originalPrice: 125,
-//     discountedPrice: 115,
-//   },
-//   {
-//     id: 27,
-//     title: "CHOLE MASALA",
-//     image: chole_masala,
-//     originalPrice: 140,
-//     discountedPrice: 120,
-//   },
-//   {
-//     id: 28,
-//     title: "RASAM MASALA",
-//     image: rasam_powder,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 29,
-//     title: "CUMIN SEEDS",
-//     image: cuminseed,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 30,
-//     title: "BAY LEAVES",
-//     image: bayleaf,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 31,
-//     title: "CORIANDER SEEDS",
-//     image: coriseed,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-
-//   // {
-//   //   id: 32,
-//   //   title: "BIRYANI MASALA KIT",
-//   //   image: box,
-//   //   originalPrice: 145,
-//   //   discountedPrice: 135,
-//   // },
-// ];
 
 export default function AllProducts() {
   const [isVisible, setIsVisible] = useState(false);
@@ -406,7 +177,7 @@ const[allProducts, setAllProducts] = useState([])
                     marginBottom: "50px",
                   }}
                   onClick={() => handleCardClick(kit._id)}
-                  className="zoom-in-image"
+                  // className="zoom-in-image"
                 >
                   <Card.Title
                     style={{
@@ -422,16 +193,18 @@ const[allProducts, setAllProducts] = useState([])
                   </Card.Title>
 
                   <div
-                    style={{
-                      width: "50%",
-                      height: "auto",
-                      marginBottom: "15px",
-                      alignSelf: "center",
-                    }}
-                    className="allproducts-img"
-                  >
-                    <Card.Img
+                    className="d-none d-lg-block"
+                      style={{
+                        width: "50%",
+                        height: "auto",
+                        marginBottom: "15px",
+                        alignSelf: "center",
+                      }}
+                    >
+                      {" "}
+                      <Card.Img
   variant="top"
+  className="responsive-image-card"
   src={
     kit.images?.[0]
       ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
@@ -440,7 +213,29 @@ const[allProducts, setAllProducts] = useState([])
   alt={kit.name}
   style={{ objectFit: "cover", width: "100%", height: "200px" }}
 />
-                  </div>
+                    </div>
+                    <div
+                    className="d-block d-lg-none"
+                      style={{
+                        width: "50%",
+                        height: "auto",
+                        marginBottom: "15px",
+                        alignSelf: "center",
+                      }}
+                    >
+                      {" "}
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "100%", height: "100px" }}
+/>
+                    </div>
 
                   <Card.Body style={{ padding: "0px" }}>
                     <div
@@ -455,7 +250,7 @@ const[allProducts, setAllProducts] = useState([])
                         alt="SelectionCard-img"
                         style={{
                           width: "100%",
-                          height: "auto",
+                          height: "70px",
                           display: "block",
                         }}
                       />

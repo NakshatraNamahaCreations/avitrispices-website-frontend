@@ -13,84 +13,11 @@ import black_cardamom from "/media/black_cardamom.png";
 import nutmeg from "/media/nutmeg.png";
 import Navbar_Menu from "../../../Components/Navbar_Menu";
 import Footer from "../../../Components/Footer";
-// import LearnMore from "../../Home/LearnMore";
-// import LearnMoreProducts from "./LearnMoreProducts";
 import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
 import LearnMoreWhole from "./LearnMoreWhole";
 
-// const wholespices = [
-//   {
-//     id: 32,
-//     title: "BLACK PEPPER",
-//     image: blackpepper,
-//     originalPrice: 135,
-//     discountedPrice: 125,
-//   },
-//   {
-//     id: 33,
-//     title: "WHITE PEPPER",
-//     image: whitepepper,
-//     originalPrice: 125,
-//     discountedPrice: 115,
-//   },
-//   {
-//     id: 34,
-//     title: "AMCHUR",
-//     image: amchur,
-//     originalPrice: 140,
-//     discountedPrice: 120,
-//   },
-//   {
-//     id: 35,
-//     title: "STAR ANISE",
-//     image: star_anise,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 36,
-//     title: "CINNAMON STICKS",
-//     image: cinnamon_sticks,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 37,
-//     title: "CLOVES",
-//     image: cloves,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 38,
-//     title: "GREEN CARDAMOM",
-//     image: green_cardamom,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 39,
-//     title: "BLACK CARDAMOM",
-//     image: black_cardamom,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 40,
-//     title: "NUTMEG",
-//     image: nutmeg,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 41,
-//     title: "CASIA",
-//     image: nutmeg,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-// ];
+
 
 export default function WholeSpices() {
   const [isVisible, setIsVisible] = useState(false);
@@ -242,6 +169,29 @@ export default function WholeSpices() {
                       {kit.name}
                     </Card.Title>
                     <div
+                    className="d-none d-lg-block"
+                      style={{
+                        width: "50%",
+                        height: "auto",
+                        marginBottom: "15px",
+                        alignSelf: "",
+                      }}
+                    >
+                      {" "}
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "305px", height: "300px" }}
+/>
+                    </div>
+                    <div
+                    className="d-block d-lg-none"
                       style={{
                         width: "50%",
                         height: "auto",
@@ -252,13 +202,14 @@ export default function WholeSpices() {
                       {" "}
                       <Card.Img
   variant="top"
+  className="responsive-image-card"
   src={
     kit.images?.[0]
       ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
       : "/media/fallback.jpg"
   }
   alt={kit.name}
-  style={{ objectFit: "cover", width: "100%", height: "auto" }}
+  style={{ objectFit: "cover", width: "100%", height: "100px" }}
 />
                     </div>
                     <div>
@@ -267,7 +218,7 @@ export default function WholeSpices() {
                           style={{
                             position: "relative",
                             width: "100%",
-                            marginTop: "3%",
+                            marginTop: "-8%",
                           }}
                         >
                           <img
@@ -275,7 +226,7 @@ export default function WholeSpices() {
                             alt="SelectionCard-img"
                             style={{
                               width: "100%",
-                              height: "auto",
+                              height: "70px",
                               display: "block",
                             }}
                           />

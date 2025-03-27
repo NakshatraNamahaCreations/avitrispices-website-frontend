@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import garamMasala from "/media/garam-masala.png";
+import garamMasala from "/media/garammasaladiykit.jpeg";
 // import pav_bhaji from "/media/pavbhajidiytop.png";
 import pav_bhaji from "../../public/media/pavbhajidiytop.jpeg"
 import chole_masala from "../../public/media/cholemasalakit.jpeg";
 // /media/cholemasalakit/jpeg";
-import birani_masala from "/media/biryanikit.jpeg";
+import birani_masala from "/media/biyranimasalaside.jpeg";
 import rasam_powder from "/media/rasampowderkit.jpeg";
 import butter_panner from "../../public/media/butterpaneerkit.jpeg";
 import taco_image from "../../public/media/tacoseasoningtop.jpeg"

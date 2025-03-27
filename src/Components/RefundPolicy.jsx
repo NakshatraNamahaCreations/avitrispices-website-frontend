@@ -154,7 +154,7 @@ export default function RefundPolicy() {
                     letterSpacing: "1.5px",
                   }}
                 >
-                  support@avitrispices.in
+                  admin@avitrispices.in
                 </span>{" "}
                 with your order number, details of the issue, and photos of the
                 product (if applicable).
@@ -265,7 +265,7 @@ export default function RefundPolicy() {
                     letterSpacing: "1.5px",
                   }}
                 >
-                  support@avitrispices.in
+                  admin@avitrispices.in
                 </span>
               </li>
               <li>

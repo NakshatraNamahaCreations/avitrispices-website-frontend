@@ -101,7 +101,7 @@ export default function DiySpices() {
   useEffect(() => {
     const fetchDiySpices = async () => {
       try {
-        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products?category=DIY%20SPICES%20KITS");
+        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products?category=DIY%20SPICE%20KIT");
         const data = await response.json();
         if (data.success) {
           setDiySpices(data.data);
@@ -204,13 +204,14 @@ export default function DiySpices() {
                       width: "100%", 
                       borderRadius: "25px 25px 60px 60px",
                       border: "none",
+                      cursor:'pointer',
                       boxShadow: "1px 1px 5px lightgrey",
                       height: "auto",
                       marginBottom: "50px",
                     }}
                     onClick={() => handleCardClick(kit._id)}
 
-                    className="zoom-in-image"
+                    // className="zoom-in-image"
                   >
                     <Card.Title
                       style={{
@@ -246,18 +247,19 @@ export default function DiySpices() {
                     SALE
                   </p> */}
 
-                    <div
+<div
+                    className="d-none d-lg-block"
                       style={{
-                        width: "75%",
+                        width: "50%",
                         height: "auto",
-                        marginBottom: "10%",
-                        marginTop: "5%",
+                        marginBottom: "15px",
                         alignSelf: "center",
                       }}
                     >
                       {" "}
                       <Card.Img
   variant="top"
+  className="responsive-image-card"
   src={
     kit.images?.[0]
       ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
@@ -266,8 +268,28 @@ export default function DiySpices() {
   alt={kit.name}
   style={{ objectFit: "cover", width: "100%", height: "200px" }}
 />
-
-
+                    </div>
+                    <div
+                    className="d-block d-lg-none"
+                      style={{
+                        width: "50%",
+                        height: "auto",
+                        marginBottom: "15px",
+                        alignSelf: "center",
+                      }}
+                    >
+                      {" "}
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "100%", height: "100px" }}
+/>
                     </div>
                     <div>
                       <Card.Body style={{ padding: "0px" }}>
@@ -277,7 +299,7 @@ export default function DiySpices() {
                             alt="SelectionCard-img"
                             style={{
                               width: "100%",
-                              height: "auto",
+                              height: "70px",
                               display: "block",
                             }}
                           />
