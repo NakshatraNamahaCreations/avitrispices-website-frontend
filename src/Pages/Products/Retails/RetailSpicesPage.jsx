@@ -284,7 +284,7 @@ export default function RetailSpicesPage() {
           value={index}
           style={{ color: "black" }} 
         >
-          {variant.quantity}g - ₹{variant.price}
+          {variant.quantity} - ₹{variant.price}
         </option>
       ))}
     </select>

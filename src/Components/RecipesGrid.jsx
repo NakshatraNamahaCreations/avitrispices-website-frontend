@@ -7,6 +7,7 @@ import PavBhaji from "/media/PavBhaji.png";
 import PUNJABICHOLERECIPE from "/media/PUNJABICHOLERECIPE.png";
 import biryani1 from "/media/biryani1.png";
 import CHINESEFIVE from "/media/CHINESEFIVE.png";
+import rasamsamber from "../../public/media/rasam picture.jpeg";
 import BUTTERPANEERMASALA from "/media/BUTTERPANEERMASALA.png";
 import ChickenCurry from "/media/ChickenCurry.png";
 import VegetarianCurry from "/media/VegetarianCurry.png";
@@ -19,7 +20,7 @@ const products = [
   { id: 2, title: "PAV BHAJI", image: PavBhaji, hasta: "#ClassicPavBhaji" },
   { id: 3, title: "PUNJABI CHOLE RECIPE", image: PUNJABICHOLERECIPE, hasta: "#PunjabiChole" },
   { id: 4, title: "BIRYANI", image: biryani1, hasta: "#AuthenticBiryani" },
-  { id: 5, title: "RASAM", image: garammasalacurry, hasta: "#Rasam" },
+  { id: 5, title: "RASAM", image: rasamsamber, hasta: "#Rasam" },
   { id: 6, title: "BUTTER PANEER MASALA", image: BUTTERPANEERMASALA, hasta: "#ButterPannerMasala" },
   { id: 7, title: "TACO", image: taco, hasta: "#Taco" },
   { id: 8, title: "CHICKEN CURRY", image: ChickenCurry, hasta: "#ChickenCurry" },

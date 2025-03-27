@@ -2,16 +2,17 @@ import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import garamMasala from "/media/garammasaladiykit.jpeg";
 // import pav_bhaji from "/media/pavbhajidiytop.png";
-import pav_bhaji from "../../public/media/pavbhajidiytop.jpeg"
-import chole_masala from "../../public/media/cholemasalakit.jpeg";
+import pav_bhaji from "../../public/media/PM FS.png"
+import chole_masala from "../../public/media/chole FS.png";
 // /media/cholemasalakit/jpeg";
 import birani_masala from "/media/biyranimasalaside.jpeg";
-import rasam_powder from "/media/rasampowderkit.jpeg";
-import butter_panner from "../../public/media/butterpaneerkit.jpeg";
-import taco_image from "../../public/media/tacoseasoningtop.jpeg"
+import rasam_powder from "/media/RP FS.png";
+import butter_panner from "../../public/media/PBM FS.png";
+import taco_image from "../../public/media/TS FS.png"
 import Navbar_Menu from "./Navbar_Menu";
 import five_image from "../../public/media/fivespieceside.jpeg"
 import { useEffect, useState } from "react";
+import carol_seasoning from "../../public/media/CS FS.png"
 import LearnMore from "../Pages/Home/LearnMore";
 import Footer from "./Footer";
 import delicious_icon from "/media/delicious-icon.png";
@@ -372,7 +373,7 @@ const products = [
   {
     id: 9,
     title: "Vegetarian Curry",
-    image: rasam_powder,
+    image: garamMasala,
     serves: "4",
     time: "15 minutes",
     cookingTime: "30 minutes",
@@ -482,7 +483,7 @@ const products = [
   {
     id: 11,
     title: "Creole Shrimp Pasta",
-    image: rasam_powder,
+    image: carol_seasoning,
     serves: "4",
     time: "15 minutes",
     cookingTime: "15 minutes",
@@ -532,7 +533,7 @@ const products = [
   {
     id: 12,
     title: "Vegetarian Creole Rice Bowl",
-    image: rasam_powder,
+    image: carol_seasoning,
     serves: "4",
     time: "15 minutes",
     cookingTime: "15 minutes",

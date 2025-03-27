@@ -228,7 +228,7 @@ export default function DiySpicesPage() {
           value={index}
           style={{ color: "black" }} 
         >
-          {variant.quantity}g - ₹{variant.price}
+          {variant.quantity} - ₹{variant.price}
         </option>
       ))}
     </select>

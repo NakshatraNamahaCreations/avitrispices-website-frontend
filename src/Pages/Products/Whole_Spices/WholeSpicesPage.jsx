@@ -146,6 +146,14 @@ export default function WholeSpicePage() {
 
 
   useEffect(() => {
+    // Set default image to the second one in the array (if it exists)
+    if (product && product.images.length > 1) {
+      setSelectedImage(product.images[1]); // Default to the second image
+    }
+  }, [product]);
+
+
+  useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(`https://api.nncwebsitedevelopment.com/api/products/${id}`);
@@ -242,7 +250,7 @@ export default function WholeSpicePage() {
               </p>
             </Col>
             <Col sm={4} className="d-flex flex-column justify-content-center">
-              {/* Display main selected image */}
+              
               <img
                 src={
                   selectedImage
@@ -258,21 +266,21 @@ export default function WholeSpicePage() {
                 }}
                 className="addtoproduct-img"
               />
-              {/* Thumbnails of all images */}
+            
               <div style={{ display: "flex", marginTop: "15px", justifyContent: "center" }}>
                 {product.images.map((image, index) => (
                   <img
                     key={index}
                     src={`https://api.nncwebsitedevelopment.com${image}`}
                     alt={`Thumbnail ${index}`}
-                    onClick={() => setSelectedImage(image)} // Update selected image on click
+                    onClick={() => setSelectedImage(image)} 
                     style={{
                       width: "60px",
                       height: "60px",
                       objectFit: "cover",
                       margin: "0 5px",
                       cursor: "pointer",
-                      border: selectedImage === image ? "2px solid #AF261D" : "none", // Highlight selected thumbnail
+                      border: selectedImage === image ? "2px solid #AF261D" : "none", 
                     }}
                   />
                 ))}
@@ -343,7 +351,7 @@ export default function WholeSpicePage() {
           value={index}
           style={{ color: "black" }} 
         >
-          {variant.quantity}g - ₹{variant.price}
+          {variant.quantity} - ₹{variant.price}
         </option>
       ))}
     </select>
