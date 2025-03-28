@@ -18,6 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
+import { ChevronDown } from "lucide-react";
 
 
 export default function AllProductsPage() {
@@ -189,10 +190,14 @@ export default function AllProductsPage() {
                 >
                    {product.name}
                 </h2>
-                <div
+                <p style={{ fontSize: '18px', marginTop: '10%', fontWeight: 'bold', textAlign: 'center' }}>
+  Select the Quantity
+</p>
+
+<div
   style={{
     backgroundImage: "url('/media/Sale.png')",
-    backgroundSize: "contain",
+    backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     width: "100%",
@@ -203,36 +208,53 @@ export default function AllProductsPage() {
     alignItems: "center",
     fontSize: "24px",
     textAlign: "center",
-    height: "80px", 
+    height: "90px", 
+    borderRadius: "8px",
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+    position: "relative",
   }}
   className="sale-box"
 >
   {product.variants?.length > 0 ? (
-    <select
-      style={{
-        background: "transparent",
-        color: "white",
-        fontWeight: "bold",
-        fontSize: "20px",
-        border: "none",
-        textAlign: "center",
-        padding: "5px 10px",
-        cursor: "pointer",
-        WebkitAppearance: "none", 
-      }}
-      value={selectedVariantIndex}
-      onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
-    >
-      {product.variants.map((variant, index) => (
-        <option
-          key={variant._id}
-          value={index}
-          style={{ color: "black" }} 
-        >
-          {variant.quantity} - ₹{variant.price}
-        </option>
-      ))}
-    </select>
+    <div style={{ position: "relative", display: "inline-block" }}>
+      <select
+        style={{
+          background: "rgba(255, 255, 255, 0.2)",
+          color: "white",
+          fontWeight: "bold",
+          fontSize: "18px",
+          border: "1px solid white",
+          textAlign: "center",
+          padding: "8px 12px",
+          borderRadius: "6px",
+          cursor: "pointer",
+          appearance: "none",
+          width: "200px",
+          backdropFilter: "blur(5px)", 
+        }}
+        value={selectedVariantIndex}
+        onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
+      >
+        {product.variants.map((variant, index) => (
+          <option key={variant._id} value={index} style={{ color: "black" }}>
+            {variant.quantity} - ₹{variant.price}
+          </option>
+        ))}
+      </select>
+
+      {/* Dropdown Icon */}
+      <ChevronDown
+        style={{
+          position: "absolute",
+          right: "12px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          color: "white",
+          pointerEvents: "none",
+          fontSize: "20px",
+        }}
+      />
+    </div>
   ) : (
     "Sale"
   )}
