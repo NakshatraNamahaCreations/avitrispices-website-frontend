@@ -404,7 +404,7 @@ body {
 
 .advertising-container-product {
   position: absolute;
-  bottom: -125px;
+  /* bottom: -125px; */
   width: 100%;
   display: flex;
   align-items: center;
@@ -1098,7 +1098,7 @@ body {
     letter-spacing: 0.5 px !important;
   }
   .advertising-container-product {
-    bottom: -140px !important;
+    bottom: -333px !important;
   }
   .div-background-carts {
     height: 85vh !important;
@@ -1110,6 +1110,7 @@ body {
   .h1-healthbenefits {
     font-size: 35px !important;
     letter-spacing: 1px !important;
+    margin-top: 78%;
   }
   .img-healthbenefits {
     width: 150px !important;
@@ -1146,8 +1147,23 @@ body {
   .price-original {
     font-size: 20px !important;
   }
+  .background-container-fixed{
+    margin-top: -6%;
+  }
+  .spices-title-continer{
+    margin-top: 44% !important; 
+  }
 }
 
+
+.spices-title-continer{
+ letter-spacing: 2px;
+  font-size: 40px;
+  max-width: 100%;
+  font-weight: bold;
+  font-family: kapraneue, sans-serif;
+  margin-top: 7%;
+}
 
 
 

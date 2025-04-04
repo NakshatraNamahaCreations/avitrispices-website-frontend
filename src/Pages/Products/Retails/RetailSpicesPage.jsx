@@ -20,58 +20,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
 import { ChevronDown } from "lucide-react";
 
-// const retailist = [
-//   {
-//     id: 55,
-//     heading: "CURRY POWDER",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: currypowder,
-//     title: "CURRY POWDER",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 56,
-//     heading: "BIRYANI MASALA",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: birani_masala,
-//     title: "BIRYANI MASALA",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 57,
-//     heading: "CHOLE MASALA",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: chole_masala,
-//     title: "CHOLE MASALA",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 58,
-//     heading: "RASAM MASALA",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: rasam_powder,
-//     title: "RASAM MASALA",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 59,
-//     heading: "PAV BHAJI MASALA",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: pav_bhaji,
-//     title: "PAV BHAJI MASALA",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-// ];
+
 
 export default function RetailSpicesPage() {
   const dispatch = useDispatch();
@@ -85,6 +34,12 @@ export default function RetailSpicesPage() {
   }, []);
 
   const { id } = useParams();
+
+  useEffect(() => {
+    if (product && product.images?.length > 0) {
+      setSelectedImage(product.images[selectedVariantIndex]);
+    }
+  }, [selectedVariantIndex, product]);
 
 
   useEffect(() => {
@@ -142,7 +97,7 @@ export default function RetailSpicesPage() {
     <>
       {/* Navbar Top */}
       <Navbar_Menu />
-
+      <div className="background-container-fixed">
       {/* Banner Advertising */}
       <div
         style={{
@@ -158,16 +113,17 @@ export default function RetailSpicesPage() {
         className="div-background-carts"
       >
         <Container className="conatiner-background-carts">
-          <h1
-            style={{
-              lineHeight: "1.5",
-              letterSpacing: "2px",
-              fontSize: "40px",
-              maxWidth: "100%",
-              fontWeight: "bold",
-              fontFamily: "kapraneue, sans-serif",
-              margin: "3% 0",
-            }}
+          <h1 className="spices-title-continer"
+            // style={{
+            //   lineHeight: "1.5",
+            //   letterSpacing: "2px",
+            //   fontSize: "40px",
+            //   maxWidth: "100%",
+            //   fontWeight: "bold",
+            //   fontFamily: "kapraneue, sans-serif",
+            //   // margin: "3% 0",
+            //   marginTop:'7%'
+            // }}
           >
               {product.name}
           </h1>
@@ -194,7 +150,7 @@ export default function RetailSpicesPage() {
                 }
                 alt={product.name}
                 style={{
-                  width: "55%",
+                  width: "90%",
                   height: "auto",
                   objectFit: "cover",
                   alignSelf: "center",
@@ -596,7 +552,7 @@ export default function RetailSpicesPage() {
       <RetailProductsAll />
 
       <LearnMore />
-
+</div>
       {/* FOOTER */}
       <Footer />
     </>

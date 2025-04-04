@@ -33,6 +33,11 @@ export default function AllProductsPage() {
 
   const { id } = useParams();
   
+  useEffect(() => {
+    if (product && product.images?.length > 0) {
+      setSelectedImage(product.images[selectedVariantIndex]);
+    }
+  }, [selectedVariantIndex, product]);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -87,7 +92,7 @@ export default function AllProductsPage() {
     <>
       {/* Navbar Top */}
       <Navbar_Menu />
-
+      <div className="background-container-fixed">
       {/* Banner Advertising */}
       <div
         style={{
@@ -103,16 +108,16 @@ export default function AllProductsPage() {
         className="div-background-carts"
       >
         <Container className="conatiner-background-carts">
-          <h1
-            style={{
-              lineHeight: "1.5",
-              letterSpacing: "2px",
-              fontSize: "6opx",
-              maxWidth: "100%",
-              fontWeight: "bold",
-              fontFamily: "kapraneue, sans-serif",
-              margin: "1% 0",
-            }}
+          <h1 className="spices-title-continer"
+            // style={{
+            //   lineHeight: "1.5",
+            //   letterSpacing: "2px",
+            //   fontSize: "6opx",
+            //   maxWidth: "100%",
+            //   fontWeight: "bold",
+            //   fontFamily: "kapraneue, sans-serif",
+            //   margin: "7% 0",
+            // }}
           >
             {product.name}
           </h1>
@@ -351,7 +356,7 @@ export default function AllProductsPage() {
       <AdvertisingProducts />
 
       {/* HEALTH BENEFITS */}
-      <div style={{ marginTop: "5%", marginBottom: "5%", textAlign: "center" }} className="div-healthbenefits">
+      <div style={{ marginTop: "10%", textAlign: "center" }} className="div-healthbenefits">
         <h1
           style={{
             fontFamily: "kapraneue, sans-serif",
@@ -541,7 +546,7 @@ export default function AllProductsPage() {
       {/* <WholeProductsAll /> */}
 
       <LearnMore />
-
+</div>
       {/* FOOTER */}
       <Footer />
     </>

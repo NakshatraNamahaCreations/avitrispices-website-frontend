@@ -87,6 +87,11 @@ const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    if (product && product.images?.length > 0) {
+      setSelectedImage(product.images[selectedVariantIndex]);
+    }
+  }, [selectedVariantIndex, product]);
   
   useEffect(() => {
     const fetchProduct = async () => {
@@ -144,7 +149,7 @@ const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
     <>
       {/* Navbar Top */}
       <Navbar_Menu />
-
+      <div className="background-container-fixed">
       {/* Banner Advertising */}
       <div
         style={{
@@ -160,16 +165,16 @@ const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
         className="div-background-carts"
       >
         <Container className="conatiner-background-carts">
-          <h1
-            style={{
-              lineHeight: "1.5",
-              letterSpacing: "2px",
-              fontSize: "40px",
-              maxWidth: "100%",
-              fontWeight: "bold",
-              fontFamily: "kapraneue, sans-serif",
-              margin: "3% 0",
-            }}
+          <h1 className="spices-title-continer"
+            // style={{
+            //   lineHeight: "1.5",
+            //   letterSpacing: "2px",
+            //   fontSize: "40px",
+            //   maxWidth: "100%",
+            //   fontWeight: "bold",
+            //   fontFamily: "kapraneue, sans-serif",
+            //   margin: "3% 0",
+            // }}
           >
             {product.name}
           </h1>
@@ -196,7 +201,7 @@ const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
                 }
                 alt={product.name}
                 style={{
-                  width: "55%",
+                  width: "90%",
                   height: "auto",
                   objectFit: "cover",
                   alignSelf: "center",
@@ -597,7 +602,7 @@ const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
       <GroundProductsAll />
 
       <LearnMore />
-
+</div>
       {/* FOOTER */}
       <Footer />
     </>

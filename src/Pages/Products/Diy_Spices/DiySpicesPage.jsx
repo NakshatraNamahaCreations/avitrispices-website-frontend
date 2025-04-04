@@ -93,7 +93,7 @@ export default function DiySpicesPage() {
     <>
       {/* Navbar Top */}
       <Navbar_Menu />
-
+      <div className="background-container-fixed">
       {/* Banner Advertising */}
       <div
         style={{
@@ -109,16 +109,16 @@ export default function DiySpicesPage() {
         className="div-background-carts"
       >
         <Container className="conatiner-background-carts">
-          <h1
-            style={{
-              lineHeight: "1.5",
-              letterSpacing: "2px",
-              fontSize: "40px",
-              maxWidth: "100%",
-              fontWeight: "bold",
-              fontFamily: "kapraneue, sans-serif",
-              margin: "3% 0",
-            }}
+          <h1 className="spices-title-continer"
+            // style={{
+            //   lineHeight: "1.5",
+            //   letterSpacing: "2px",
+            //   fontSize: "40px",
+            //   maxWidth: "100%",
+            //   fontWeight: "bold",
+            //   fontFamily: "kapraneue, sans-serif",
+            //   margin: "3% 0",
+            // }}
           >
          {product.name}
 
@@ -540,7 +540,7 @@ export default function DiySpicesPage() {
       <DiyProductsAll />
 
       <LearnMore />
-
+</div>
       {/* FOOTER */}
       <Footer />
     </>

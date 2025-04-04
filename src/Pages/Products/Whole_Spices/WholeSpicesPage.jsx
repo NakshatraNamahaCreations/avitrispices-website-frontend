@@ -29,108 +29,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
 
-// const wholespiceslist = [
-//   {
-//     id: 32,
-//     heading: "BLACK PEPPER",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: blackpepper,
-//     title: "BLACK PEPPER ",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 33,
-//     heading: "WHITE PEPPER",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: whitepepper,
-//     title: "WHITE PEPPER ",
-//     discountPrice: "125",
-//     price: "115",
-//   },
-//   {
-//     id: 34,
-//     heading: "AMCHUR",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: amchur,
-//     title: "AMCHUR ",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 35,
-//     heading: "STAR ANISE",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: star_anise,
-//     title: "STAR ANISE ",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 36,
-//     heading: "CINNAMON STICKS",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: cinnamon_sticks,
-//     title: "CINNAMON STICKS",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 37,
-//     heading: "CLOVES",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: cloves,
-//     title: "CLOVES",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 38,
-//     heading: "GREEN CARDAMOM",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: green_cardamom,
-//     title: "GREEN CARDAMOM",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 39,
-//     heading: "BLACK CARDAMOM",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: black_cardamom,
-//     title: "BLACK CARDAMOM",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 40,
-//     heading: "NUTMEG",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: nutmeg,
-//     title: "NUTMEG",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-//   {
-//     id: 41,
-//     heading: "CASIA",
-//     content:
-//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-//     image: nutmeg,
-//     title: "CASIA",
-//     discountPrice: "135",
-//     price: "125",
-//   },
-// ];
 
 export default function WholeSpicePage() {
   const dispatch = useDispatch();
@@ -146,13 +44,20 @@ export default function WholeSpicePage() {
   const { id } = useParams();
 
 
-  useEffect(() => {
-    // Set default image to the second one in the array (if it exists)
-    if (product && product.images.length > 1) {
-      setSelectedImage(product.images[1]); // Default to the second image
-    }
-  }, [product]);
+  // useEffect(() => {
+  //   // Set default image to the second one in the array (if it exists)
+  //   if (product && product.images.length > 1) {
+  //     setSelectedImage(product.images[1]); // Default to the second image
+  //   }
+  // }, [product]);
 
+  useEffect(() => {
+    if (product && product.images?.length > selectedVariantIndex + 1) {
+      setSelectedImage(product.images[selectedVariantIndex + 1]);
+    }
+  }, [selectedVariantIndex, product]);
+  
+  
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -208,7 +113,7 @@ export default function WholeSpicePage() {
     <>
       {/* Navbar Top */}
       <Navbar_Menu />
-
+<div className="background-container-fixed">
       {/* Banner Advertising */}
       <div
         style={{
@@ -224,16 +129,17 @@ export default function WholeSpicePage() {
         className="div-background-carts"
       >
         <Container className="conatiner-background-carts">
-          <h1
-            style={{
-              lineHeight: "1.5",
-              letterSpacing: "2px",
-              fontSize: "40px",
-              maxWidth: "100%",
-              fontWeight: "bold",
-              fontFamily: "kapraneue, sans-serif",
-              margin: "3% 0",
-            }}
+          <h1 className="spices-title-continer"
+            // style={{
+            //   // lineHeight: "1.5",
+            //   letterSpacing: "2px",
+            //   fontSize: "40px",
+            //   maxWidth: "100%",
+            //   fontWeight: "bold",
+            //   fontFamily: "kapraneue, sans-serif",
+            //   // margin: "3% 0",
+            //   marginTop:'7%'
+            // }}
           >
              {product.name}
           </h1>
@@ -260,7 +166,7 @@ export default function WholeSpicePage() {
                 }
                 alt={product.name}
                 style={{
-                  width: "55%",
+                  width: "90%",
                   height: "auto",
                   objectFit: "cover",
                   alignSelf: "center",
@@ -665,7 +571,7 @@ export default function WholeSpicePage() {
       <WholeProductsAll />
 
       <LearnMore />
-
+</div>
       {/* FOOTER */}
       <Footer />
     </>
