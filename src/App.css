@@ -404,7 +404,7 @@ body {
 
 .advertising-container-product {
   position: absolute;
-  /* bottom: -125px; */
+  bottom: -200px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -728,6 +728,7 @@ body {
   }
   .banner-img-products {
     width: 85% !important;
+    margin-top: -20% !important;
   }
   .navbar-gap {
     gap: 0% !important;

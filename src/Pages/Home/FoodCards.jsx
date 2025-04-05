@@ -126,6 +126,7 @@ export default function FoodCards() {
                         flex: 1,
                         textAlign: "left",
                         letterSpacing: "1px",
+                        whiteSpace:'nowrap',
                         // fontFamily:'KapraNeueMedium, sans-serif'
                         fontFamily: "kapraneue, sans-serif",
                       }}

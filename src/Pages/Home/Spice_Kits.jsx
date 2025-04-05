@@ -103,7 +103,7 @@ export default function Spice_Kits() {
                   borderRadius: "25px 25px 50px 50px",
                   border: "none",
                   boxShadow: "1px 1px 5px lightgrey",
-                  height: "400px",
+                  height: "370px",
                   textAlign: "center",
                   margin: "20px auto",
                 }}
@@ -119,21 +119,24 @@ export default function Spice_Kits() {
                 >
                   {kit.title}
                 </Card.Title>
-                <p
-                  style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    fontWeight: "bold",
-                    fontSize: "18px",
-                    width: "150px",
-                    margin: "15px auto",
-                    clipPath:
-                      "polygon(20% 0%, 80% 0%, 85% 50%, 80% 100%, 20% 100%, 15% 50%)",
-                  }}
-                  className="sale-tag"
-                >
-                  SALE
-                </p>
+                <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
+    <p
+      style={{
+        backgroundColor: "black",
+        color: "white",
+        fontWeight: "bold",
+        fontSize: "18px",
+        width: "150px",
+        clipPath:
+          "polygon(20% 0%, 80% 0%, 85% 50%, 80% 100%, 20% 100%, 15% 50%)",
+        textAlign: "center",
+        padding: "5px 0",
+      }}
+      className="sale-tag"
+    >
+      SALE
+    </p>
+  </div>
                 <Card.Img
                   variant="top"
                   src={kit.image}
@@ -145,6 +148,7 @@ export default function Spice_Kits() {
                     alt="SelectionCard-img"
                     style={{
                       width: "115%",
+                      height:'62%',
                       display: "block",
                       justifySelf: "center",
                     }}
@@ -153,7 +157,7 @@ export default function Spice_Kits() {
                   <h4
                     style={{
                       position: "absolute",
-                      top: "87%",
+                      top: "95%",
                       left: "50%",
                       transform: "translate(-50%, -50%)",
                       fontSize: "22px",
@@ -182,13 +186,13 @@ export default function Spice_Kits() {
                       style={{ textDecoration: "line-through", opacity: 0.5 }}
                       className="cut-price"
                     >
-                      Rs {kit.originalPrice}
+                      {/* Rs {kit.originalPrice} */}
                     </p>
                     <p
                       style={{ fontWeight: "bold", fontSize: "25px" }}
                       className="originalprice"
                     >
-                      Rs {kit.discountedPrice}
+                      {/* Rs {kit.discountedPrice} */}
                     </p>
                   </div>
                 </Card.Body>

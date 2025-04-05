@@ -231,6 +231,7 @@ const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
             <Col
               sm={4}
               className="d-flex flex-column justify-content-center align-items-center"
+              style={{marginTop:'4%'}}
             >
               <div
                style={{

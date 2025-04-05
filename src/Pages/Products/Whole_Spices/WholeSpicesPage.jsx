@@ -174,7 +174,7 @@ export default function WholeSpicePage() {
                 className="addtoproduct-img"
               />
             
-              <div style={{ display: "flex", marginTop: "15px", justifyContent: "center" }}>
+              {/* <div style={{ display: "flex", marginTop: "15px", justifyContent: "center" }}>
                 {product.images.map((image, index) => (
                   <img
                     key={index}
@@ -191,11 +191,34 @@ export default function WholeSpicePage() {
                     }}
                   />
                 ))}
-              </div>
+              </div> */}
+               <div style={{ display: "flex", marginTop: "15px", justifyContent: "center" }}>
+              {product.images.map((image, index) =>
+  index !== 0 && (
+    <img
+      key={index}
+      src={`https://api.nncwebsitedevelopment.com${image}`}
+      alt={`Thumbnail ${index}`}
+      onClick={() => setSelectedImage(image)} 
+      style={{
+        width: "60px",
+        height: "60px",
+        objectFit: "cover",
+        margin: "0 5px",
+        cursor: "pointer",
+        border: selectedImage === image ? "2px solid #AF261D" : "none", 
+      }}
+    />
+  )
+)}
+</div>
+
+              
             </Col>
             <Col
               sm={4}
               className="d-flex flex-column justify-content-center align-items-center"
+              style={{marginTop:'4%'}}
             >
               <div
                 style={{
