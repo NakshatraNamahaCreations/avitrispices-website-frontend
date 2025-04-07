@@ -254,7 +254,7 @@ export default function Cart() {
                             <td
                               style={{
                                 padding: "10px",
-
+                                whiteSpace:'nowrap',
                                 alignItems: "center",
                                 justifyContent: "center",
                               }}
