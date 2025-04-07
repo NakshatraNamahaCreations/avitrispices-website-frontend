@@ -14,7 +14,26 @@ import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
 import LearnMoreGround from "./LearnMoreGround";
 
-
+function ShimmerCard() {
+  return (
+    <Col xs={6} sm={6} md={4} lg={3} className="card-item-products">
+      <div
+        style={{
+          width: "100%",
+          height: "400px",
+          borderRadius: "25px 25px 60px 60px",
+          boxShadow: "1px 1px 5px lightgrey",
+          marginBottom: "50px",
+          padding: "15px",
+        }}
+      >
+        <div className="shimmer" style={{ height: "40px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "250px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "70px" }} />
+      </div>
+    </Col>
+  );
+}
 
 export default function GroundSpices() {
   const [isVisible, setIsVisible] = useState(false);
@@ -128,8 +147,11 @@ useEffect(() => {
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {groundSpices.map((kit) => {
-              return (
+            {/* {groundSpices.map((kit) => { */}
+            {groundSpices.length === 0
+              ? Array.from({ length: 8 }).map((_, index) => <ShimmerCard key={index} />)
+              : groundSpices.map((kit) => (
+              // return (
                 <Col
                   xs={6}
                   sm={6}
@@ -300,8 +322,8 @@ useEffect(() => {
                     </div>
                   </Card>
                 </Col>
-              );
-            })}
+              // );
+            ))}
           </Row>
         </Container>
         <Reviews />

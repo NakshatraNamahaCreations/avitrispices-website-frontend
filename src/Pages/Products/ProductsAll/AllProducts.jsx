@@ -38,7 +38,26 @@ import bayleaf from "/media/bayleaf.png";
 import coriseed from "/media/coriseed.png";
 import LearnMoreProducts from "./LearnMoreProducts";
 
-
+function ShimmerCard() {
+  return (
+    <Col xs={6} sm={6} md={4} lg={3} className="card-item-products">
+      <div
+        style={{
+          width: "100%",
+          height: "400px",
+          borderRadius: "25px 25px 60px 60px",
+          boxShadow: "1px 1px 5px lightgrey",
+          marginBottom: "50px",
+          padding: "15px",
+        }}
+      >
+        <div className="shimmer" style={{ height: "40px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "200px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "70px" }} />
+      </div>
+    </Col>
+  );
+}
 
 export default function AllProducts() {
   const [isVisible, setIsVisible] = useState(false);
@@ -157,7 +176,11 @@ const[allProducts, setAllProducts] = useState([])
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {allProducts.map((kit) => (
+            {/* {allProducts.map((kit) => (
+               */}
+                {allProducts.length === 0
+              ? Array.from({ length: 8 }).map((_, index) => <ShimmerCard key={index} />)
+              : allProducts.map((kit) => (
               <Col
                 xs={6}
                 sm={6}

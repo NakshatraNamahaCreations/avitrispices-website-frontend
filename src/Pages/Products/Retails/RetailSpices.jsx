@@ -14,43 +14,26 @@ import Reviews from "../../Home/Reviews";
 
 import LearnMoreRetail from "./LearnMoreRetail";
 
-// const wholespices = [
-//   {
-//     id: 55,
-//     title: "CURRY POWDER",
-//     image: currypowder,
-//     originalPrice: 135,
-//     discountedPrice: 125,
-//   },
-//   {
-//     id: 56,
-//     title: "BIRYANI MASALA",
-//     image: birani_masala,
-//     originalPrice: 125,
-//     discountedPrice: 115,
-//   },
-//   {
-//     id: 57,
-//     title: "CHOLE MASALA",
-//     image: chole_masala,
-//     originalPrice: 140,
-//     discountedPrice: 120,
-//   },
-//   {
-//     id: 58,
-//     title: "RASAM MASALA",
-//     image: rasam_powder,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 59,
-//     title: "PAV BHAJI MASALA",
-//     image: pav_bhaji,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-// ];
+function ShimmerCard() {
+  return (
+    <Col xs={6} sm={6} md={4} lg={3} className="card-item-products">
+      <div
+        style={{
+          width: "100%",
+          height: "400px",
+          borderRadius: "25px 25px 60px 60px",
+          boxShadow: "1px 1px 5px lightgrey",
+          marginBottom: "50px",
+          padding: "15px",
+        }}
+      >
+        <div className="shimmer" style={{ height: "40px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "250px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "70px" }} />
+      </div>
+    </Col>
+  );
+}
 
 export default function RetailSpices() {
   const [isVisible, setIsVisible] = useState(false);
@@ -168,8 +151,11 @@ export default function RetailSpices() {
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {retailSpices.map((kit) => {
-              return (
+            {/* {retailSpices.map((kit) => { */}
+            {retailSpices.length === 0
+              ? Array.from({ length: 8 }).map((_, index) => <ShimmerCard key={index} />)
+              : retailSpices.map((kit) => (
+              // return (
                 <Col
                 xs={6}
                 sm={6}
@@ -340,8 +326,8 @@ export default function RetailSpices() {
                     </div>
                   </Card>
                 </Col>
-              );
-            })}
+              // );
+                              ))}
           </Row>
         </Container>
         <Reviews />

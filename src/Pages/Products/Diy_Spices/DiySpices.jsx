@@ -19,79 +19,26 @@ import LearnMoreDiy from "./LearnMoreDiy";
 import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
 
-// const dispices = [
-//   {
-//     id: 45,
-//     title: "DIY CHOLE MASALA KIT",
-//     image: cholemasalakit,
-//     originalPrice: 135,
-//     discountedPrice: 125,
-//   },
-//   {
-//     id: 46,
-//     title: "DIY GARAM MASALA KIT",
-//     image: garammasalakit,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 47,
-//     title: "DIY RASAM POWDER KIT",
-//     image: rasampowderkit,
-//     originalPrice: 140,
-//     discountedPrice: 120,
-//   },
-//   {
-//     id: 48,
-//     title: "DIY BUTTER PANEER MASALA KIT",
-//     image: butterpaneerkit,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 49,
-//     title: "DIY CAROLE SEASONING KIT",
-//     image: carolekittop,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 50,
-//     title: "DIY PAV BHAJI MASALA KIT",
-//     image: pavbhajidiytop,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 51,
-//     title: "DIY TACO SEASONING MASALA KIT",
-//     image: tacoseasoningtop,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 52,
-//     title: "DIY BIRYANI MASALA KIT",
-//     image: biyranimasalaside,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-//   {
-//     id: 53,
-//     title: "DIY CURRY POWDER KIT",
-//     image: currypowderkit,
-//     originalPrice: 125,
-//     discountedPrice: 115,
-//   },
-
-//   {
-//     id: 54,
-//     title: "DIY CHINESE FIVE SPICE KIT",
-//     image: fivespieceside,
-//     originalPrice: 145,
-//     discountedPrice: 135,
-//   },
-// ];
+function ShimmerCard() {
+  return (
+    <Col xs={6} sm={6} md={4} lg={3} className="card-item-products">
+      <div
+        style={{
+          width: "100%",
+          height: "400px",
+          borderRadius: "25px 25px 60px 60px",
+          boxShadow: "1px 1px 5px lightgrey",
+          marginBottom: "50px",
+          padding: "15px",
+        }}
+      >
+        <div className="shimmer" style={{ height: "40px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "200px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "70px" }} />
+      </div>
+    </Col>
+  );
+}
 
 export default function DiySpices() {
   const [isVisible, setIsVisible] = useState(false);
@@ -189,8 +136,11 @@ export default function DiySpices() {
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {diySpices.map((kit) => {
-              return (
+            {/* {diySpices.map((kit) => { */}
+            {diySpices.length === 0
+              ? Array.from({ length: 8 }).map((_, index) => <ShimmerCard key={index} />)
+              : diySpices.map((kit) => (
+              // return (
                 <Col
                 xs={6}
                 sm={6}
@@ -362,8 +312,8 @@ export default function DiySpices() {
                     </div>
                   </Card>
                 </Col>
-              );
-            })}
+              // );
+                              ))}
           </Row>
         </Container>
         <Reviews />

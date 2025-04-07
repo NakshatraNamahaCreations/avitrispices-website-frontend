@@ -19,9 +19,7 @@ import masalaBox from "/media/1.png";
 import { ChevronDown } from "lucide-react";
 import currypowder from "/media/currypowder.png";
 // import AdvertisingProducts from "../../../Pages/products/AdvertisingProducts";
-
 import AdvertisingProducts from "../../../Pages/Products/AdvertisingProducts";
-
 import WholeProductsAll from "./WholeProductsAll";
 import { useParams } from "react-router-dom";
 // import { useState } from "react";
@@ -67,7 +65,7 @@ export default function WholeSpicePage() {
           const data = await response.json();
           if (data.success) {
             setProduct(data.data);
-            setSelectedImage(data.data.images?.[0] || null); // Set the first image by default
+            setSelectedImage(data.data.images?.[0] || null); 
           } else {
             console.error("Product fetch failed");
           }
@@ -217,6 +215,7 @@ export default function WholeSpicePage() {
             </Col>
             <Col
               sm={4}
+              xs={12} 
               className="d-flex flex-column justify-content-center align-items-center"
               style={{marginTop:'4%'}}
             >
@@ -244,7 +243,7 @@ export default function WholeSpicePage() {
                 <p style={{ fontSize: '18px', marginTop: '10%', fontWeight: 'bold', textAlign: 'center' }}>
   Select the Quantity
 </p>
-
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
 <div
   style={{
     backgroundImage: "url('/media/Sale.png')",
@@ -252,6 +251,7 @@ export default function WholeSpicePage() {
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     width: "100%",
+    maxWidth: "350px",
     color: "white",
     fontWeight: "bold",
     display: "flex",
@@ -311,7 +311,7 @@ export default function WholeSpicePage() {
   )}
 </div>
 
-
+</div>
 
                 <div
                   style={{
@@ -421,8 +421,10 @@ export default function WholeSpicePage() {
             <Col sm={4}>
               <div
                 style={{
-                  display: "inline-block",
-                  justifyItems: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
                 }}
               >
                 <div
@@ -482,10 +484,12 @@ export default function WholeSpicePage() {
             </Col>
             <Col sm={4}>
               <div
-                style={{
-                  display: "inline-block",
-                  justifyItems: "center",
-                }}
+             style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+            }}
               >
                 <div
                   style={{
@@ -535,10 +539,12 @@ export default function WholeSpicePage() {
             </Col>
             <Col sm={4}>
               <div
-                style={{
-                  display: "inline-block",
-                  justifyItems: "center",
-                }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+              }}
               >
                 <div
                   style={{

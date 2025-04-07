@@ -18,6 +18,27 @@ import Reviews from "../../Home/Reviews";
 import LearnMoreWhole from "./LearnMoreWhole";
 
 
+function ShimmerCard() {
+  return (
+    <Col xs={6} sm={6} md={4} lg={3} className="card-item-products">
+      <div
+        style={{
+          width: "100%",
+          height: "400px",
+          borderRadius: "25px 25px 60px 60px",
+          boxShadow: "1px 1px 5px lightgrey",
+          marginBottom: "50px",
+          padding: "15px",
+        }}
+      >
+        <div className="shimmer" style={{ height: "40px", marginBottom: "20px", borderRadius: "5px" }} />
+        <div className="shimmer" style={{ height: "250px", borderRadius: "15px" }} />
+        <div className="shimmer" style={{ height: "70px", marginTop: "20px", borderRadius: "10px" }} />
+      </div>
+    </Col>
+  );
+}
+
 
 export default function WholeSpices() {
   const [isVisible, setIsVisible] = useState(false);
@@ -134,7 +155,10 @@ export default function WholeSpices() {
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {wholeSpices.map((kit) => {
+            {/* {wholeSpices.map((kit) => { */}
+            {wholeSpices.length === 0
+              ? Array.from({ length: 8 }).map((_, index) => <ShimmerCard key={index} />)
+              : wholeSpices.map((kit) => {
               return (
                 <Col
                 xs={6}

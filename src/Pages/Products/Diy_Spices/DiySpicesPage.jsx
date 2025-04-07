@@ -174,6 +174,7 @@ export default function DiySpicesPage() {
             </Col>
             <Col
               sm={4}
+              xs={12}
               className="d-flex flex-column justify-content-center align-items-center"
               style={{marginTop:'4%'}}
             >
@@ -193,7 +194,7 @@ export default function DiySpicesPage() {
                 <p style={{ fontSize: '18px', marginTop: '10%', fontWeight: 'bold', textAlign: 'center' }}>
   Select the Quantity
 </p>
-
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
 <div
   style={{
     backgroundImage: "url('/media/Sale.png')",
@@ -201,6 +202,8 @@ export default function DiySpicesPage() {
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     width: "100%",
+ maxWidth: "350px",
+
     color: "white",
     fontWeight: "bold",
     display: "flex",
@@ -258,6 +261,7 @@ export default function DiySpicesPage() {
   ) : (
     "Sale"
   )}
+</div>
 </div>
                 <div
                   style={{
@@ -368,8 +372,10 @@ export default function DiySpicesPage() {
             <Col sm={4}>
               <div
                 style={{
-                  display: "inline-block",
-                  justifyItems: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
                 }}
               >
                 <div
@@ -429,9 +435,15 @@ export default function DiySpicesPage() {
             </Col>
             <Col sm={4}>
               <div
+                // style={{
+                //   display: "inline-block",
+                //   justifyItems: "center",
+                // }}
                 style={{
-                  display: "inline-block",
-                  justifyItems: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
                 }}
               >
                 <div
@@ -482,9 +494,15 @@ export default function DiySpicesPage() {
             </Col>
             <Col sm={4}>
               <div
+                // style={{
+                //   display: "inline-block",
+                //   justifyItems: "center",
+                // }}
                 style={{
-                  display: "inline-block",
-                  justifyItems: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
                 }}
               >
                 <div

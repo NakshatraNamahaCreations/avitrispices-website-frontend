@@ -142,15 +142,23 @@ export default function Spice_Kits() {
                   src={kit.image}
                   style={{ width: "80%", margin: "auto" }}
                 />
-                <Card.Body>
+                <Card.Body   style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "0",
+    height: "100px", // Adjust as needed based on your layout
+  }}>
                   <img
                     src={SelectionCard}
                     alt="SelectionCard-img"
                     style={{
                       width: "115%",
                       height:'62%',
-                      display: "block",
-                      justifySelf: "center",
+                      // display: "block",
+                      // justifyContent: "center",
+                      // alignItems:"center"
+                      margin:'auto'
                     }}
                     className="selection-card"
                   />
