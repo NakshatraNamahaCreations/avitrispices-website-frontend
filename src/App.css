@@ -700,7 +700,7 @@ body {
     letter-spacing: 1.5px !important;
   }
   .h2-symphony {
-    font-size: 55px !important;
+    font-size: 30px !important;
   }
   .h2-our-products {
     font-size: 35px !important;
@@ -717,6 +717,11 @@ body {
     font-size: 30px !important;
     letter-spacing: 1px !important;
   }
+  .banner-heading {
+    font-size: 28px !important;
+    text-align: center;
+    letter-spacing: 1px !important;
+  }
   .view-product-spiceskit {
     font-size: 14px !important;
   }
@@ -728,7 +733,7 @@ body {
   }
   .banner-img-products {
     width: 85% !important;
-    margin-top: -20% !important;
+    margin-top: -4% !important;
   }
   .navbar-gap {
     gap: 0% !important;
@@ -1098,9 +1103,9 @@ body {
     line-height: 1.5 !important;
     letter-spacing: 0.5 px !important;
   }
-  .advertising-container-product {
+  /* .advertising-container-product {
     bottom: -333px !important;
-  }
+  } */
   .div-background-carts {
     height: 85vh !important;
     margin-top: 5% !important;
@@ -1112,6 +1117,9 @@ body {
     font-size: 35px !important;
     letter-spacing: 1px !important;
     margin-top: 78%;
+  }
+  .background-banner {
+    height: 50vh !important;
   }
   .img-healthbenefits {
     width: 150px !important;
@@ -1151,8 +1159,11 @@ body {
   .background-container-fixed{
     margin-top: -6%;
   }
+  .advertising-container {
+    top: 400px; 
+  }
   .spices-title-continer{
-    margin-top: 44% !important; 
+    margin-top: 69% !important; 
   }
 }
 
@@ -1166,6 +1177,96 @@ body {
   margin-top: 7%;
 }
 
+/* Default card styles for desktop */
+.card-item {
+  width: 15rem;
+  margin: 20px auto;
+}
+
+/* Space between slider cards */
+.slick-slide {
+  padding: 0 8px; /* space between cards */
+}
+
+/* Adjust view-product text and price font on smaller screens */
+@media screen and (max-width: 768px) {
+  .card-item {
+    width: 90% !important;
+    margin: 10px auto;
+  }
+
+  .card-item .view-product {
+    font-size: 16px !important;
+    margin-top: 6%;
+  }
+
+  
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    font-family: kapraneue, sans-serif !important;
+  }
+
+  .footer-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    
+  }
+
+  .footer-desktop {
+    display: none;
+  }
+  .div-footer-display{
+    display: block !important;
+  }
+  
+  .div-subscribe{
+    width: 80% !important;
+    display: block;
+    justify-self: center;
+    margin-top: 10% !important;
+  }
+  .logo-footer{
+  width: 30% !important;
+  display: block; 
+  justify-self: center;
+  }
+
+  .card-item .originalprice {
+    font-size: 18px !important;
+  }
+
+  .card-item .cut-price {
+    font-size: 14px !important;
+  }
+
+  .card-item .sale-tag {
+    font-size: 14px !important;
+    width: 120px !important;
+  }
+
+  .card-item img.selection-card {
+    width: 100% !important;
+    height: auto !important;
+    margin-top: -15% !important;
+  }
+  .h1-banner {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+    margin-top: 5% !important;
+    text-align: center !important;
+  }
+}
+
+/* For ultra-small devices like iPhone SE */
+@media screen and (max-width: 430px) {
+  .card-item {
+    width: 95% !important;
+  }
+
+}
 
 
 
@@ -1176,8 +1277,15 @@ body {
   html {
     overflow-x: hidden;
   }
+  .card-item img.selection-card {
+  
+    margin-top: 19% !important;
+  }
   .diy-learn-buy {
     padding: 25px !important;
+  }
+  .advertising-container-product {
+    bottom: -361px !important;
   }
   .vector-img {
     width: 80% !important;
@@ -1185,6 +1293,9 @@ body {
   .diy-learn-buy-h3 {
     font-size: 18px !important;
     letter-spacing: 1px !important;
+  }
+  .spices-title-continer{
+    margin-top: 69% !important; 
   }
   .choose-background {
     padding: 5px !important;
@@ -1806,7 +1917,8 @@ body {
   }
   .view-product{
     font-size: 10px !important;
-    top: 95% !important;
+    top: 91% !important;
+    white-space: nowrap;
   }
   .cut-price {
     font-size: 10px !important;
@@ -1930,15 +2042,12 @@ body {
     align-items: center;
     font-family: kapraneue, sans-serif !important;
   }
-
   .footer-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: auto;
-    
   }
-
   .footer-desktop {
     display: none;
   }

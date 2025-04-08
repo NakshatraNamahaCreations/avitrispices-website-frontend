@@ -29,6 +29,7 @@ export default function Account() {
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
+          overflow:'hidden'
         }}
       >
         <Navbar_Menu />

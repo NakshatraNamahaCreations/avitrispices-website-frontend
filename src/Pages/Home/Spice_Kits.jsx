@@ -74,6 +74,24 @@ export default function Spice_Kits() {
           arrows: true,
         },
       },
+      {
+        breakpoint: 1024, // tablets
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768, // mobile devices
+        settings: {
+          slidesToShow: 2, // show 2 cards on mobile
+        },
+      },
+      {
+        breakpoint: 480, // small phones (optional)
+        settings: {
+          slidesToShow: 1,
+        },
+      },
     ],
   };
 
@@ -87,12 +105,14 @@ export default function Spice_Kits() {
           padding: "1% 0",
           fontFamily: "kapraneue, sans-serif",
           letterSpacing: "2px",
+          justifyContent:'center',
+          
         }}
       >
         DIY SPICE KITS RANGE
       </h2>
 
-      <Container style={{ marginBottom: "5%" }}>
+      <Container style={{ marginBottom: "5%", padding:'0 10px' }}>
         <Slider {...sliderSettings}>
           {spiceKits.map((kit) => (
             <div key={kit.id} style={{ padding: "10px" }}>

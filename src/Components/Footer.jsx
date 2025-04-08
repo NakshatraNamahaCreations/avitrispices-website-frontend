@@ -3,13 +3,15 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Footer() {
-  const [openSection, setOpenSection] = useState(null);
+  const [email, setEmail] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
-
+  const [openSection, setOpenSection] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   // Handle screen resize for mobile detection
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 425);
@@ -21,6 +23,25 @@ export default function Footer() {
     setOpenSection(openSection === section ? null : section);
   };
 
+  const handleSubscribe = async () => {
+    if (!email) {
+      alert("Please enter a valid email.");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const response = await axios.post("https://api.nncwebsitedevelopment.com/api/subscribe", { email });
+      alert("Subscription successful! Thank you.");
+      setEmail(""); // Reset email input field
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error subscribing", error);
+      alert("Failed to subscribe. Please try again.");
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <div
@@ -28,41 +49,43 @@ export default function Footer() {
           backgroundColor: "black",
           padding: "1px",
           height: "auto",
-        }}
+        // overflow:'hidden'     
+           }}
       >
         <div style={{ margin: "4% 20%" }} className="div-subscribe">
-          <InputGroup
-            className="mb-3 "
-            style={{ padding: "0", borderRadius: "0px" }}
+        <InputGroup className="mb-3" style={{ padding: "0", borderRadius: "0px" }}>
+          <Form.Control
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            aria-label="Email"
+            aria-describedby="basic-addon2"
+            style={{
+              padding: "20px",
+              borderRadius: "0px",
+              fontFamily: "kapraneue, sans-serif",
+              letterSpacing: "1px",
+            }}
+          />
+          <Button
+            variant="outline-secondary"
+            id="button-addon2"
+            style={{
+              borderRadius: "0px",
+              padding: "10px 15px",
+              backgroundColor: "#AF261D",
+              borderColor: "#AF261D",
+              color: "white",
+              fontFamily: "kapraneue, sans-serif",
+              letterSpacing: "1px",
+            }}
+            onClick={handleSubscribe}
+            disabled={isLoading}
           >
-            <Form.Control
-              placeholder="Email"
-              aria-label="Email"
-              aria-describedby="basic-addon2"
-              style={{
-                padding: "20px",
-                borderRadius: "0px",
-                fontFamily: "kapraneue, sans-serif",
-                letterSpacing: "1px",
-              }}
-              className="input-subscribe"
-            />
-            <Button
-              variant="outline-secondary"
-              id="button-addon2"
-              style={{
-                borderRadius: "0px",
-                padding: "10px 15px",
-                backgroundColor: "#AF261D",
-                borderColor: "#AF261D",
-                color: "white",
-                fontFamily: "kapraneue, sans-serif",
-                letterSpacing: "1px",
-              }}
-            >
-              SUBSCRIBE
-            </Button>
-          </InputGroup>
+            {isLoading ? "Subscribing..." : "SUBSCRIBE"}
+          </Button>
+        </InputGroup>
         </div>
         <div
           style={{

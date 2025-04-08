@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar_Menu from './Navbar_Menu';
 import LearnMore from '../Pages/Home/LearnMore';
 import Footer from './Footer';
+import axios from "axios";
+
 
 const ContactUs = () => {
 
@@ -14,6 +16,44 @@ const ContactUs = () => {
 
     return () => clearTimeout(timeout);
   }, []);
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    message: "",
+  });
+
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const res = await axios.post("https://api.nncwebsitedevelopment.com/api/contact-form", formData); // Update URL if deployed
+      alert("Message sent successfully!");
+      // setFormData({
+      //   firstName: "",
+      //   lastName: "",
+      //   email: "",
+      //   phoneNumber: "",
+      //   message: "",
+      // });
+    } catch (err) {
+      console.error(err);
+      alert("Failed to send message. Please try again.");
+    }
+  };
+  
 
 
   
@@ -27,7 +67,7 @@ const ContactUs = () => {
         className="page-content"
         style={{
           opacity: isVisible ? 1 : 0,
-          
+          overflow:'hidden',
           transition: "opacity 0.5s ease-in-out",
         }}
       >
@@ -66,7 +106,7 @@ const ContactUs = () => {
             </div>
           </div>
 
-          <div className="row">
+          {/* <div className="row">
   <div className="col-md-12">
     <div className="card shadow-sm p-4 rounded" style={{ backgroundColor: "#fff" }}>
       <form>
@@ -96,7 +136,74 @@ const ContactUs = () => {
       </form>
     </div>
   </div>
-</div>
+</div> */}
+
+<form onSubmit={handleSubmit}>
+  <div className="row g-3 shadow-sm p-4 rounded" style={{ backgroundColor: "#fff" }}>
+    <div className="col-md-6" >
+      <input
+        type="text"
+        className="form-control"
+        name="firstName"
+        placeholder="First name"
+        value={formData.firstName}
+        onChange={handleChange}
+        required
+      />
+    </div>
+    <div className="col-md-6">
+      <input
+        type="text"
+        className="form-control"
+        name="lastName"
+        placeholder="Last name"
+        value={formData.lastName}
+        onChange={handleChange}
+        required
+      />
+    </div>
+    <div className="col-md-12">
+      <input
+        type="email"
+        className="form-control"
+        name="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+      />
+    </div>
+    <div className="col-md-12 input-group">
+      <select className="form-select" style={{ maxWidth: "80px" }} disabled>
+        <option>+91</option>
+      </select>
+      <input
+        type="tel"
+        className="form-control"
+        name="phoneNumber"
+        placeholder="Phone number"
+        value={formData.phoneNumber}
+        onChange={handleChange}
+        required
+      />
+    </div>
+    <div className="col-md-12">
+      <textarea
+        className="form-control"
+        name="message"
+        rows="5"
+        placeholder="Send message"
+        value={formData.message}
+        onChange={handleChange}
+        required
+      />
+    </div>
+    <div className="col-md-12 text-center">
+      <button type="submit" className="btn btn-dark px-5 py-2">SUBMIT</button>
+    </div>
+  </div>
+</form>
+
 
         </div>
         <LearnMore />
