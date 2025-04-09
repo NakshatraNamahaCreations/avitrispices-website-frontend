@@ -610,7 +610,7 @@ export default function RecipesPage() {
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
-          overflow:'hidden'
+          // overflow:'hidden'
         }}
       >
       {/* Navbar Top */}
@@ -635,7 +635,7 @@ export default function RecipesPage() {
           >
             {product.title}
           </h1>
-          <div style={{ textAlign: "center" }}>
+          <div style={{ textAlign: "center" }} className="image-recipe-page">
             <img
               src={product.image}
               alt={product.title}

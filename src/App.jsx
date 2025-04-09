@@ -29,6 +29,9 @@ import Register from "./Pages/Account/Register";
 import ThankYou from "./Pages/Cart/ThankYou";
 import CheckOut from "./Pages/Cart/CheckOut";
 import ContactUs from "./Components/Contact";
+import WholeSale from "./Pages/Products/wholesale";
+import Export from "./Pages/Products/Export";
+import ResetPassword from "./Pages/Account/ResetPassword";
 // import CartRedux from "./Pages/Cart/CartRedux";
 
 function App() {
@@ -69,6 +72,11 @@ function App() {
       <Route path="/address-details" element={<AddressDetails />} />
 
       <Route path="/product/:id" element={<ProductPage />} />
+
+      <Route path="/wholesale" element={<WholeSale />} />
+      <Route path="/export" element={<Export />} />
+      <Route path="/reset-password/:token" element={<ResetPassword />} />
+
 
 
 <Route path="contact" element={<ContactUs/>} />

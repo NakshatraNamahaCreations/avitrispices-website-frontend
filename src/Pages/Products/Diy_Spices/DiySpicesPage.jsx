@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
 import { ChevronDown } from "lucide-react";
+import CustomAdvertising from "../CustomAdvertising";
 
 
 
@@ -99,7 +100,7 @@ export default function DiySpicesPage() {
         style={{
           display: "flex",
           alignItems: "center",
-          height: "100vh",
+          height: "120vh",
           position: "relative",
           backgroundColor: "#AF261D",
           color: "white",
@@ -108,7 +109,7 @@ export default function DiySpicesPage() {
         }}
         className="div-background-carts"
       >
-        <Container className="conatiner-background-carts">
+        <Container className="conatiner-background-diy">
           <h1 className="spices-title-continer"
             // style={{
             //   lineHeight: "1.5",
@@ -124,7 +125,7 @@ export default function DiySpicesPage() {
 
           </h1>
           <Row className="justify-content-center">
-            <Col sm={4} className="d-flex flex-column justify-content-center">
+            {/* <Col sm={4} className="d-flex flex-column justify-content-center">
               <p
                 style={{
                   fontSize: "20px",
@@ -134,7 +135,32 @@ export default function DiySpicesPage() {
                 className="p-contents-products"
               >
                 {product.description}             </p>
-            </Col>
+            </Col> */}
+            <Col sm={4} className="d-flex flex-column justify-content-center">
+  <div
+    style={{
+      fontSize: "15px",
+      lineHeight: "1.7",
+      textAlign:'left',
+      fontFamily: "kapraneue, sans-serif",
+      letterSpacing: "1px",
+
+    }}
+    className="p-contents-products"
+  >
+    {product.description &&
+      product.description
+        .split('.')
+        .filter(line => line.trim() !== '')
+        .map((line, index) => (
+          <div key={index}>
+            {line.trim()}.
+            <br />
+          </div>
+        ))}
+  </div>
+</Col>
+
             <Col sm={4} className="d-flex flex-column justify-content-center">
               {/* Display main selected image */}
               <img
@@ -352,10 +378,14 @@ export default function DiySpicesPage() {
         </Container>
       </div>
 
-      <AdvertisingProducts />
+     {/* <div className="diy-advertising">
+  <AdvertisingProducts />
+  </div> */}
+  <CustomAdvertising/>
+
 
       {/* HEALTH BENEFITS */}
-      <div style={{ marginTop: "10%", textAlign: "center" }} className="div-healthbenefits">
+      <div style={{ marginTop: "10%", textAlign: "center" }} className="div-healthbenefits-diykits">
         <h1
           style={{
             fontFamily: "kapraneue, sans-serif",

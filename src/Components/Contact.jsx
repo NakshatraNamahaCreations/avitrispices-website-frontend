@@ -4,6 +4,9 @@ import Navbar_Menu from './Navbar_Menu';
 import LearnMore from '../Pages/Home/LearnMore';
 import Footer from './Footer';
 import axios from "axios";
+import { Link } from 'react-router-dom'; 
+import { BsWhatsapp } from 'react-icons/bs'; 
+
 
 
 const ContactUs = () => {
@@ -67,7 +70,7 @@ const ContactUs = () => {
         className="page-content"
         style={{
           opacity: isVisible ? 1 : 0,
-          overflow:'hidden',
+          // overflow:'hidden',
           transition: "opacity 0.5s ease-in-out",
         }}
       >
@@ -104,6 +107,7 @@ const ContactUs = () => {
                 <p>admin@avitrispices.in</p>
               </div>
             </div>
+            
           </div>
 
           {/* <div className="row">
@@ -206,8 +210,18 @@ const ContactUs = () => {
 
 
         </div>
+        
         <LearnMore />
         <Footer />
+        <Link
+  to="https://api.whatsapp.com/send/?phone=917349444419"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="whatsapp-float"
+>
+  <BsWhatsapp size={30} />
+</Link>
+
       </div>
     </>
   );

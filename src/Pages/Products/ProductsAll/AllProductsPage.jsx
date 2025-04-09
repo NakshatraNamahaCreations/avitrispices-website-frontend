@@ -32,12 +32,18 @@ export default function AllProductsPage() {
   }, []);
 
   const { id } = useParams();
-  
   useEffect(() => {
     if (product && product.images?.length > 0) {
-      setSelectedImage(product.images[selectedVariantIndex]);
+      if (product.category === "WHOLE SPICES") {
+      
+        setSelectedImage(product.images[selectedVariantIndex + 1] || null);
+      } else {
+      
+        setSelectedImage(product.images[selectedVariantIndex] || null);
+      }
     }
   }, [selectedVariantIndex, product]);
+  
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -152,7 +158,7 @@ export default function AllProductsPage() {
                 className="addtoproduct-img"
               />
               {/* Thumbnails of all images */}
-              <div style={{ display: "flex", marginTop: "15px", justifyContent: "center" }}>
+              {/* <div style={{ display: "flex", marginTop: "15px", justifyContent: "center" }}>
                 {product.images.map((image, index) => (
                   <img
                     key={index}
@@ -169,7 +175,34 @@ export default function AllProductsPage() {
                     }}
                   />
                 ))}
-              </div>
+              </div> */}
+              {/* Thumbnails of all images */}
+<div style={{ display: "flex", marginTop: "15px", justifyContent: "center" }}>
+  {product.images
+    .filter((_, index) => {
+      if (product.category === "WHOLE SPICES") {
+        return index !== 0;
+      }
+      return true;
+    })
+    .map((image, index) => (
+      <img
+        key={index}
+        src={`https://api.nncwebsitedevelopment.com${image}`}
+        alt={`Thumbnail ${index}`}
+        onClick={() => setSelectedImage(image)} // Update selected image on click
+        style={{
+          width: "60px",
+          height: "60px",
+          objectFit: "cover",
+          margin: "0 5px",
+          cursor: "pointer",
+          border: selectedImage === image ? "2px solid #AF261D" : "none", // Highlight selected thumbnail
+        }}
+      />
+    ))}
+</div>
+
             </Col>
             <Col
               sm={4}

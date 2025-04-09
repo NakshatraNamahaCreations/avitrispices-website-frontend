@@ -9,12 +9,14 @@ import { useState, useEffect } from "react";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [openSection, setOpenSection] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // Handle screen resize for mobile detection
+  
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 425);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -33,7 +35,7 @@ export default function Footer() {
       setIsLoading(true);
       const response = await axios.post("https://api.nncwebsitedevelopment.com/api/subscribe", { email });
       alert("Subscription successful! Thank you.");
-      setEmail(""); // Reset email input field
+      setEmail(""); 
       setIsLoading(false);
     } catch (error) {
       console.error("Error subscribing", error);
@@ -52,7 +54,10 @@ export default function Footer() {
         // overflow:'hidden'     
            }}
       >
-        <div style={{ margin: "4% 20%" }} className="div-subscribe">
+        <div style={{ margin: "1% 20%" }} className="div-subscribe">
+          <label style={{fontSize:'24px', fontWeight:'bold', color:'white'  ,marginLeft:'40%' , marginBottom:'2%', fontFamily: "kapraneue, sans-serif",}}  className="label-tag-title">
+            NEWSLETTER
+          </label>
         <InputGroup className="mb-3" style={{ padding: "0", borderRadius: "0px" }}>
           <Form.Control
             type="email"
@@ -132,6 +137,8 @@ export default function Footer() {
               links: [
                 { name: "SIGN UP", path: "/register" },
                 { name: "CONTACT US", path: "/contact" },
+                { name: "WHOLESALE", path: "/wholesale" },
+                { name: "EXPORT", path: "/export" },
               ],
             },
             {
@@ -161,43 +168,40 @@ export default function Footer() {
             <div key={index} className="footer-section" style={{fontFamily: "kapraneue, sans-serif"}}>
               {/* Only show dropdown in mobile */}
               {isMobile ? (
-                <>
-                  <div
-                    className="footer-title"
-                    onClick={() => toggleDropdown(index)}
-                  >
-                    <h5>{section.title}</h5>
-                    {openSection === index ? (
-                      <ChevronUp size={20} />
-                    ) : (
-                      <ChevronDown size={20} />
-                    )}
-                  </div>
+  <>
+    <div
+      className="footer-title"
+      onClick={() => toggleDropdown(index)}
+      style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}
+    >
+      <h5>{section.title}</h5>
+      {openSection === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+    </div>
 
-                  <ul
-                    className={`footer-links ${
-                      openSection === index ? "show" : ""
-                    }`}
-                  >
-                    {section.links.map((link, i) => (
-                      <li key={i}>
-                        <Link to={link.path}>{link.name}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ) : (
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                <ul className="Footer-ul">
-                  <h5 className="Footer-ul-title">{section.title}</h5>
-                  {section.links.map((link, i) => (
-                    <li key={i}>
-                      <Link to={link.path}>{link.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-                </div>
-              )}
+    <ul
+      className={`footer-links ${openSection === index ? "show" : ""}`}
+      style={{ display: openSection === index ? "block" : "none", marginTop: "0.5rem" }}
+    >
+      {section.links.map((link, i) => (
+        <li key={i}>
+          <Link to={link.path} style={{ color: 'white', fontSize: '0.9rem' }}>{link.name}</Link>
+        </li>
+      ))}
+    </ul>
+  </>
+) : (
+  <div style={{ display: "flex", flexDirection: "column" }}>
+    <ul className="Footer-ul">
+      <h5 className="Footer-ul-title">{section.title}</h5>
+      {section.links.map((link, i) => (
+        <li key={i}>
+          <Link to={link.path} style={{ color: 'white', fontSize: '0.9rem' }}>{link.name}</Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
             </div>
           ))}
         </div>

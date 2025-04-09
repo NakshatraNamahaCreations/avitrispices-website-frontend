@@ -13,10 +13,14 @@ import { loginSuccess } from "../../redux/authSlice";
 export default function Login() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({ email: "", password: "" });
+const [isForgotPassword, setIsForgotPassword] = useState(false); 
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,6 +44,15 @@ export default function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+
+  const handleForgot = async () => {
+    try {
+      const res = await axios.post("https://api.nncwebsitedevelopment.com/api/customers/forgot-password", { email });
+      setMessage(res.data.message);
+    } catch (err) {
+      setMessage(err.response.data.message);
+    }
+  };
   
   const handleLogin = async () => {
     setErrorMessage("");
@@ -89,7 +102,7 @@ export default function Login() {
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
-          overflow:'hidden'
+          // overflow:'hidden'
         }}
       >
         <Navbar_Menu />
@@ -128,7 +141,7 @@ export default function Login() {
                   letterSpacing: "1px",
                 }}
               >
-                 <FloatingLabel
+                 {/* <FloatingLabel
                   controlId="floatingInput"
                   label="Email address"
                   className="mb-3"
@@ -146,8 +159,8 @@ export default function Login() {
                       borderRadius: "10px",
                     }}
                   />
-                </FloatingLabel>
-                <FloatingLabel controlId="floatingPassword" label="Password" className="position-relative">
+                </FloatingLabel> */}
+                {/* <FloatingLabel controlId="floatingPassword" label="Password" className="position-relative">
                   <Form.Control
                     type={showPassword ? "text" : "password"}
                     name="password"
@@ -167,17 +180,159 @@ export default function Login() {
                   >
                     {showPassword ? <FaEye /> :   <FaEyeSlash />}
                   </span>
-                </FloatingLabel>
-                <div style={{ marginTop: "20px", textDecoration: "underline" }}>
-                  <p
-                    style={{
-                      fontFamily: "kapraneue, sans-serif",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    Forget your Password
-                  </p>
-                </div>
+                </FloatingLabel> */}
+                {!email && !message && (
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+  <div
+    style={{
+      width: "500px",
+      fontFamily: "kapraneue, sans-serif",
+      letterSpacing: "1px",
+    }}
+  >
+    {isForgotPassword ? (
+      <>
+        <FloatingLabel label="Enter your email to reset password" className="mb-3">
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ fontFamily: "KapraNeueMedium, sans-serif", fontSize: "18px" }}
+          />
+        </FloatingLabel>
+        <div
+          style={{
+            backgroundColor: "#000",
+            color: "#fff",
+            textAlign: "center",
+            padding: "12px",
+            borderRadius: "8px",
+            cursor: "pointer",
+          }}
+          onClick={handleForgot}
+        >
+          Send Reset Link
+        </div>
+        {message && (
+          <p style={{ marginTop: "10px", color: "green", textAlign: "center" }}>
+            {message}
+          </p>
+        )}
+        <p
+          style={{
+            marginTop: "20px",
+            textAlign: "center",
+            textDecoration: "underline",
+            cursor: "pointer",
+            color: "#007bff",
+          }}
+          onClick={() => {
+            setIsForgotPassword(false);
+            setMessage("");
+            setEmail("");
+          }}
+        >
+          Back to Login
+        </p>
+      </>
+    ) : (
+      <>
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Email address"
+          className="mb-3"
+        >
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="name@example.com"
+            value={formData.email}
+            onChange={handleChange}
+            style={{
+              fontFamily: "KapraNeueMedium, sans-serif",
+              letterSpacing: "1px",
+              fontSize: "22px",
+              borderRadius: "10px",
+            }}
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingPassword" label="Password" className="position-relative">
+          <Form.Control
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            style={{
+              position: "absolute",
+              right: "15px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              cursor: "pointer",
+            }}
+          >
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
+          </span>
+        </FloatingLabel>
+        <div
+          style={{ marginTop: "20px", textDecoration: "underline", cursor: "pointer" }}
+          onClick={() => setIsForgotPassword(true)}
+        >
+          <p
+            style={{
+              fontFamily: "kapraneue, sans-serif",
+              letterSpacing: "1px",
+              color: "#007bff",
+              textAlign: "center"
+            }}
+          >
+            Forgot your Password?
+          </p>
+        </div>
+      </>
+    )}
+  </div>
+</div>
+
+)}
+
+{/* Show email field and send button if forgot password is triggered */}
+{email && (
+  <div style={{ marginTop: "20px" }}>
+    <FloatingLabel label="Enter your email to reset password" className="mb-3">
+      <Form.Control
+        type="email"
+        placeholder="Enter email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={{ fontFamily: "KapraNeueMedium, sans-serif", fontSize: "18px" }}
+      />
+    </FloatingLabel>
+    <div
+      style={{
+        backgroundColor: "#000",
+        color: "#fff",
+        textAlign: "center",
+        padding: "12px",
+        borderRadius: "8px",
+        cursor: "pointer",
+      }}
+      onClick={handleForgot}
+    >
+      Send Reset Link
+    </div>
+    {message && (
+      <p style={{ marginTop: "10px", color: "green", textAlign: "center" }}>
+        {message}
+      </p>
+    )}
+  </div>
+)}
+
               </div>
             </div>
 

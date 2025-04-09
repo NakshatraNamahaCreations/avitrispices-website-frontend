@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import for navigation
+import { useNavigate } from "react-router-dom"; 
 import { Container, Form, Button } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Navbar_Menu from "../../Components/Navbar_Menu";
 import Footer from "../../Components/Footer";
 import Vector from "/media/Vector.png";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 
 export default function Register() {
@@ -12,7 +13,7 @@ export default function Register() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
-
+  const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -93,7 +94,7 @@ export default function Register() {
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
-          overflow:'hidden'
+          // overflow:'hidden'
         }}
       >
         <Navbar_Menu />
@@ -211,9 +212,9 @@ export default function Register() {
                 </FloatingLabel>
 
                 {/* Password */}
-                <FloatingLabel controlId="floatingPassword" label="Password">
+                <FloatingLabel controlId="floatingPassword" label="Password" className="position-relative">
                   <Form.Control
-                    type="password"
+                  type={showPassword ? "text" : "password"}
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
@@ -225,6 +226,18 @@ export default function Register() {
                       borderRadius: "10px",
                     }}
                   />
+                  <span
+                                      onClick={() => setShowPassword(!showPassword)}
+                                      style={{
+                                        position: "absolute",
+                                        right: "15px",
+                                        top: "50%",
+                                        transform: "translateY(-50%)",
+                                        cursor: "pointer",
+                                      }}
+                                    >
+                                      {showPassword ? <FaEye /> :   <FaEyeSlash />}
+                                    </span>
                 </FloatingLabel>
               </div>
             </div>
