@@ -33,7 +33,7 @@ const ResetPassword = () => {
       setVariant("success");
       setMessage(res.data.message);
       setTimeout(() => {
-        window.location.href = "https://avitrispices.in/login"; // ✅ Redirect to live site
+        window.location.href = "https://avitrispices.in/login"; 
       }, 5173);
     } catch (err) {
       setVariant("danger");

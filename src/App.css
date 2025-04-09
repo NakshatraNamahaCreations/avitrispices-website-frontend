@@ -1332,7 +1332,7 @@ body {
   }
 
   .page-content{
-    overflow: hidden;
+    overflow-x: hidden;
   }
   
   .footer-container {
