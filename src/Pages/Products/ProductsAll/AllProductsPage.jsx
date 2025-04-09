@@ -259,20 +259,20 @@ export default function AllProductsPage() {
   {product.variants?.length > 0 ? (
     <div style={{ position: "relative", display: "inline-block" }}>
       <select
-        style={{
-          background: "rgba(255, 255, 255, 0.2)",
-          color: "white",
-          fontWeight: "bold",
-          fontSize: "18px",
-          border: "1px solid white",
-          textAlign: "center",
-          padding: "8px 12px",
-          borderRadius: "6px",
-          cursor: "pointer",
-          appearance: "none",
-          width: "200px",
-          backdropFilter: "blur(5px)", 
-        }}
+       style={{
+        background: "black",
+        color: "white",
+        fontWeight: "bold",
+        fontSize: "18px",
+        border: "1px solid white",
+        textAlign: "center",
+        padding: "8px 12px",
+        borderRadius: "6px",
+        cursor: "pointer",
+        appearance: "none",
+        width: "150px",
+        backdropFilter: "blur(5px)", 
+      }}
         value={selectedVariantIndex}
         onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
       >

@@ -233,7 +233,7 @@ export default function RetailSpicesPage() {
     <div style={{ position: "relative", display: "inline-block" }}>
       <select
         style={{
-          background: "rgba(255, 255, 255, 0.2)",
+          background: "black",
           color: "white",
           fontWeight: "bold",
           fontSize: "18px",
@@ -243,7 +243,7 @@ export default function RetailSpicesPage() {
           borderRadius: "6px",
           cursor: "pointer",
           appearance: "none",
-          width: "200px",
+          width: "150px",
           backdropFilter: "blur(5px)", 
         }}
         value={selectedVariantIndex}
