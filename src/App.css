@@ -1662,7 +1662,7 @@ body {
     letter-spacing: 1.5px !important;
   }
   .div-login {
-    margin: 30% 20% 10% 20% !important;
+    margin: 30% 20% 10% 3% !important;
   }
   .input-login {
     font-size: 20px !important;
@@ -2103,8 +2103,12 @@ body {
   }
   .view-product{
     font-size: 10px !important;
-    top: 91% !important;
+    top: 100% !important;
     white-space: nowrap;
+  }
+  .animatedimage{
+    margin-left: 1%;
+    width: 94% !important;
   }
   .cut-price {
     font-size: 10px !important;

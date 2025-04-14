@@ -791,7 +791,7 @@ export default function CheckOut({ onSubmit }) {
                           <td
                             style={{
                               padding: "10px",
-
+                              whiteSpace:'nowrap',
                               alignItems: "center",
                               justifyContent: "center",
                             }}
