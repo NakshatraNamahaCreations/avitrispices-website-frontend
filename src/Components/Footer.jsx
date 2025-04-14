@@ -116,7 +116,7 @@ export default function Footer() {
           {/* Footer Sections */}
           {[
             {
-              title: "SHOP SUPER-SPICES",
+              title: "SHOP",
               links: [
                 { name: "WHOLE SPICES", path: "/whole-spices" },
                 { name: "GROUND SPICES", path: "/ground-spices" },
@@ -130,6 +130,8 @@ export default function Footer() {
                 { name: "RECIPES", path: "/recipes" },
                 { name: "ACCOUNT", path: "/account" },
                 { name: "ABOUT US", path: "/about" },
+                { name: "WHOLESALE", path: "/wholesale" },
+                { name: "EXPORT", path: "/export" },
               ],
             },
             {
@@ -137,8 +139,8 @@ export default function Footer() {
               links: [
                 { name: "SIGN UP", path: "/register" },
                 { name: "CONTACT US", path: "/contact" },
-                { name: "WHOLESALE", path: "/wholesale" },
-                { name: "EXPORT", path: "/export" },
+                { name: "BLOGS", path: "/blogs" },
+
               ],
             },
             {

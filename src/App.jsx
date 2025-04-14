@@ -32,6 +32,8 @@ import ContactUs from "./Components/Contact";
 import WholeSale from "./Pages/Products/wholesale";
 import Export from "./Pages/Products/Export";
 import ResetPassword from "./Pages/Account/ResetPassword";
+import Blogs from "./Pages/Products/Blogs";
+import BlogDetails from "./Pages/Products/BlogDetails";
 // import CartRedux from "./Pages/Cart/CartRedux";
 
 function App() {
@@ -78,6 +80,8 @@ function App() {
       <Route path="/reset-password/:token" element={<ResetPassword />} />
 
 
+      <Route path="/blogs" element={<Blogs />} />
+      <Route path="/blogs/:title" element={<BlogDetails />} />
 
 <Route path="contact" element={<ContactUs/>} />
       <Route path="/thank-you" element={<ThankYou />} />

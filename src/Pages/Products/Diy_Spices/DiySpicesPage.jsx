@@ -229,7 +229,6 @@ export default function DiySpicesPage() {
     backgroundPosition: "center",
     width: "100%",
  maxWidth: "350px",
-
     color: "white",
     fontWeight: "bold",
     display: "flex",
@@ -239,7 +238,7 @@ export default function DiySpicesPage() {
     textAlign: "center",
     height: "90px", 
     borderRadius: "8px",
-    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",   
     position: "relative",
   }}
   className="sale-box"

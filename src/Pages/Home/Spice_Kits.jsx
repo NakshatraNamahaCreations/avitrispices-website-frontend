@@ -106,7 +106,7 @@ export default function Spice_Kits() {
           fontFamily: "kapraneue, sans-serif",
           letterSpacing: "2px",
           justifyContent:'center',
-          
+          justifySelf:'center'
         }}
       >
         DIY SPICE KITS RANGE
@@ -127,7 +127,7 @@ export default function Spice_Kits() {
                   textAlign: "center",
                   margin: "20px auto",
                 }}
-                onClick={() => navigate(`/diy-spices/${kit.id}`)}
+                onClick={() => navigate(`/diy-spices`)}
               >
                 <Card.Title
                   style={{
@@ -245,6 +245,7 @@ export default function Spice_Kits() {
         >
           <animated.img
             src={Vector}
+            className= "animatedimage"
             alt="Vector-img"
             style={{
               ...zoomIn,
@@ -262,6 +263,7 @@ export default function Spice_Kits() {
               fontSize: "18px",
               fontWeight: "bold",
               letterSpacing: "2px",
+              whiteSpace:'nowrap',
               color: "white",
               textAlign: "center",
               fontFamily: "kapraneue, sans-serif",
