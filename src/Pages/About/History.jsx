@@ -16,7 +16,7 @@ import redline from "/media/redline.png";
 export default function History() {
   return (
     <>
-      <div style={{ padding: "30px", marginTop: "28%", position: "relative" }} className="div-history d-none d-lg-block">
+      <div style={{ padding: "30px", marginTop: "25%", position: "relative" }} className="div-history d-none d-lg-block">
         <h2
           style={{
             fontSize: "50px",
@@ -226,7 +226,7 @@ export default function History() {
       </div>
       <div className="d-block d-lg-none">
       {window.innerWidth <= 768 && (
-  <div style={{ padding: "20px", marginTop: "108%", position: "relative" }} className="div-history-mobile">
+  <div style={{ padding: "20px", marginTop: "128%", position: "relative" }} className="div-history-mobile">
     <h2
       style={{
         fontSize: "30px",

@@ -116,7 +116,7 @@ export default function Footer() {
           {/* Footer Sections */}
           {[
             {
-              title: "SHOP",
+              title: "SHOP SPICES",
               links: [
                 { name: "WHOLE SPICES", path: "/whole-spices" },
                 { name: "GROUND SPICES", path: "/ground-spices" },
