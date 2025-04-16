@@ -54,11 +54,11 @@ export default function Footer() {
         // overflow:'hidden'     
            }}
       >
-        <div style={{ margin: "1% 20%" }} className="div-subscribe">
+        {/* <div style={{ margin: "1% 20%" }} className="div-subscribe">
           <label style={{fontSize:'24px', fontWeight:'bold', color:'white'  ,marginLeft:'40%' , marginBottom:'2%', fontFamily: "kapraneue, sans-serif",}}  className="label-tag-title">
             NEWSLETTER
           </label>
-        <InputGroup className="mb-3" style={{ padding: "0", borderRadius: "0px" }}>
+        <InputGroup className="mb-3" style={{ padding: "", borderRadius: "0px", }}>
           <Form.Control
             type="email"
             placeholder="Enter your email"
@@ -91,7 +91,67 @@ export default function Footer() {
             {isLoading ? "Subscribing..." : "SUBSCRIBE"}
           </Button>
         </InputGroup>
-        </div>
+        </div> */}
+        <div
+  className="div-subscribe"
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "20px",
+    maxWidth: "600px",
+    margin: "0 auto",
+    textAlign: "center",
+  }}
+>
+  <label
+    className="label-tag-title"
+    style={{
+      fontSize: "24px",
+      fontWeight: "bold",
+      color: "white",
+      marginBottom: "2%",
+      fontFamily: "kapraneue, sans-serif",
+    }}
+  >
+    NEWSLETTER
+  </label>
+
+  <InputGroup className="mb-3" style={{ width: "100%" }}>
+    <Form.Control
+      type="email"
+      placeholder="Enter your email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      aria-label="Email"
+      aria-describedby="basic-addon2"
+      style={{
+        padding: "20px",
+        borderRadius: "0px",
+        fontFamily: "kapraneue, sans-serif",
+        letterSpacing: "1px",
+      }}
+    />
+    <Button
+      variant="outline-secondary"
+      id="button-addon2"
+      style={{
+        borderRadius: "0px",
+        padding: "10px 15px",
+        backgroundColor: "#AF261D",
+        borderColor: "#AF261D",
+        color: "white",
+        fontFamily: "kapraneue, sans-serif",
+        letterSpacing: "1px",
+      }}
+      onClick={handleSubscribe}
+      disabled={isLoading}
+    >
+      {isLoading ? "Subscribing..." : "SUBSCRIBE"}
+    </Button>
+  </InputGroup>
+</div>
+
         <div
           style={{
             display: "flex",

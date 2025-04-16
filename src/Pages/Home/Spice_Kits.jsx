@@ -106,7 +106,8 @@ export default function Spice_Kits() {
           fontFamily: "kapraneue, sans-serif",
           letterSpacing: "2px",
           justifyContent:'center',
-          justifySelf:'center'
+          justifySelf:'center',
+          textAlign:'center'
         }}
       >
         DIY SPICE KITS RANGE

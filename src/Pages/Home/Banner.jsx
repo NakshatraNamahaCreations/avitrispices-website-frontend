@@ -73,6 +73,7 @@ export default function Banner() {
                 objectFit: "cover",
                 display: "block",
                 justifySelf: "center",
+                margin:'auto',
                 marginTop: "-2%",
               }}
               className="banner-img-products"
@@ -87,7 +88,9 @@ export default function Banner() {
                 fontFamily: "kapraneue, sans-serif",
                 padding: "0% 0",
                 display: "block",
-                justifySelf: "center",
+                // margin:'auto',
+                textAlign:'center',
+                justifySelf: "center ",
               }}
               className="h1-banner"
             >

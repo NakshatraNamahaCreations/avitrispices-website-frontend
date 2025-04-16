@@ -1075,7 +1075,7 @@ body {
     font-size: 22px !important;
   }
   .h1-legacyexcellence {
-    font-size: 30px !important;
+    font-size: 28px !important;
     letter-spacing: 1px !important;
   }
   .div-history {
@@ -1248,6 +1248,7 @@ body {
   .logo-footer {
     width: 120px;
     height: auto;
+
     margin-bottom: 1rem;
   }
 
@@ -1470,7 +1471,7 @@ body {
     bottom: -96%;
   }
   .advertising-container-product {
-    bottom: -361px !important;
+    bottom: -382px !important;
   }
   .vector-img {
     width: 80% !important;
@@ -1572,16 +1573,19 @@ body {
     display: block;
     justify-self: center;
     text-align: center;
+    margin: auto;
   }
   .img-ourproducts {
     width: 70% !important;
     display: block;
+    margin: auto;
     justify-self: center;
   }
   .ourproducts-btn {
     display: block;
     justify-self: center;
     margin: 5% 0;
+    margin: auto;
   }
   .our-products-h3 {
     font-size: 16px !important;
@@ -1631,9 +1635,10 @@ body {
   }
   .banner-img-products {
     width: 90% !important;
+    margin: auto;
   }
   .h1-banner {
-    font-size: 35px !important;
+    font-size: 25px !important;
     letter-spacing: 1px !important;
     margin-top: 5% !important;
     text-align: center !important;
@@ -1863,8 +1868,9 @@ body {
     padding: 0 !important;
   }
   .h1-healthbenefits {
-    font-size: 28px !important;
+    font-size: 22px !important;
     letter-spacing: 1px !important;
+    margin-top: 111%;
   }
   .div-your-cart {
     margin: 35% 0% 10% 0% !important;
@@ -2000,7 +2006,7 @@ body {
     width: 100% !important;
   }
   .h1-legacyexcellence {
-    font-size: 26px !important;
+    font-size: 24px !important;
     letter-spacing: 1px !important;
   }
   .background-legacyellence{
@@ -2150,6 +2156,20 @@ body {
   }
 }
 
+
+@media (max-width: 767px) {
+  .div-subscribe {
+    padding: 10px 15px !important;
+  }
+
+  .label-tag-title {
+    font-size: 20px !important;
+    margin-left: 0 !important;
+    text-align: center;
+  }
+}
+
+
 .footer-container {
   display: flex;
   justify-content: space-evenly;
@@ -2254,6 +2274,7 @@ body {
   width: 30% !important;
   display: block; 
   justify-self: center;
+  margin: auto;
   }
 }
 
@@ -2365,7 +2386,7 @@ body {
     }
   
     .recipe-card {
-      height: 250px !important;
+      height: 200px !important;
       border-radius: 15px 15px 30px 30px !important;
       margin-bottom: 30px !important;
     }
@@ -2378,12 +2399,12 @@ body {
   
     .recipe-hasta {
       font-size: 14px;
-      top: 75%;
+      top: 90%;
     }
   
     .recipe-text {
       font-size: 12px;
-      top: 88%;
+      top: 110%;
     }
    .selection-card-img {
     position: absolute;

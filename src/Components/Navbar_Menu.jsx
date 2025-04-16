@@ -424,6 +424,7 @@ export default function Navbar_Menu() {
               style={{
                 width: "80%",
                 height: "auto",
+                margin:'auto',
                 display: "block",
                 justifySelf: "center",
               }}
