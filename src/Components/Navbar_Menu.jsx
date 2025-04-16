@@ -1020,6 +1020,7 @@ button:hover {
     .mobile-logo-img {
       width: 55%;
       height: auto;
+      margin:auto;
        margin-left: 20%;
     }
 

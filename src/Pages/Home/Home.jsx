@@ -70,7 +70,7 @@ export default function Home() {
         </div>
 
         {/* Choose & Footer */}
-        <div style={{ height: "100vh" }}>
+        <div style={{ height: "" }}>
           <Choose />
           <LearnMore />
           <Footer />
