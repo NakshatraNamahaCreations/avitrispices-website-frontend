@@ -73,7 +73,7 @@ export default function Login() {
 
         dispatch(loginSuccess(userData));
         localStorage.setItem("user", JSON.stringify(userData));
-        navigate("/account");
+        navigate("/");
       }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "❌ Login failed. Try again.");

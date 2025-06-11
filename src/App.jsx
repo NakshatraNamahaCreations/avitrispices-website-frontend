@@ -34,6 +34,7 @@ import Export from "./Pages/Products/Export";
 import ResetPassword from "./Pages/Account/ResetPassword";
 import Blogs from "./Pages/Products/Blogs";
 import BlogDetails from "./Pages/Products/BlogDetails";
+import Payment from "./Payment";
 // import CartRedux from "./Pages/Cart/CartRedux";
 
 function App() {
@@ -85,7 +86,8 @@ function App() {
 
 <Route path="contact" element={<ContactUs/>} />
       <Route path="/thank-you" element={<ThankYou />} />
-      
+      <Route path="/payment" element={<Payment />} />
+      <Route path="/payment/status/:merchantTransactionId" element={<Payment />} />
     </Routes>
   );
 }

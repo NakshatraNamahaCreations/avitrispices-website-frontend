@@ -1,15 +1,16 @@
 import Footer from "../../Components/Footer";
 import Navbar_Menu from "../../Components/Navbar_Menu";
 import LearnMore from "../Home/LearnMore";
-import { Row, Col, Form, Button, Container, Table } from "react-bootstrap";
+import { Row, Col, Form, Button, Container, Table, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
 import Vector from "/media/Vector.png";
-import mongoose from "mongoose";
 import { removeFromCart, updateQuantity } from "../../redux/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify"; // Added for toast notifications
+import "react-toastify/dist/ReactToastify.css"; // Added for toast styles
 
 export default function CheckOut({ onSubmit }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,10 +20,12 @@ export default function CheckOut({ onSubmit }) {
   const [savedAddressId, setSavedAddressId] = useState(null);
   const [selectedAddressId, setSelectedAddressId] = useState(null);
   const [isUsingManualAddress, setIsUsingManualAddress] = useState(false);
-
+  const [phoneError, setPhoneError] = useState("");
   const user = useSelector((state) => state.auth?.user || null);
+  const [isLoading, setIsLoading] = useState(false); // Added for loading state
+  const [showConfirmModal, setShowConfirmModal] = useState(false); // Added for confirmation modal
 
-  console.log("User Data in Redux:", user);
+  const RAPIDSHYP_TOKEN = "f5e498941467ae1f3a4d9e9db8d7dd74e1293d75e8dc81abd902abef41b30f8a";
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -36,6 +39,12 @@ export default function CheckOut({ onSubmit }) {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    if (user && user.id) {
+      fetchSavedAddresses();
+    }
+  }, [user]);
+
   const navigate = useNavigate();
   const [address, setAddress] = useState({
     firstName: "",
@@ -48,17 +57,33 @@ export default function CheckOut({ onSubmit }) {
     state: "",
     pincode: "",
     region: "",
+    country: "", // Added country to initial state
   });
 
-  const handleChange = (e) => {
-    setAddress({ ...address, [e.target.name]: e.target.value });
+  const validatePhoneNumber = (phone) => {
+    const cleanedPhone = phone.replace(/\D/g, "");
+    if (cleanedPhone.length !== 10) {
+      return "Phone number must be exactly 10 digits long.";
+    }
+    if (!/^[6-9]/.test(cleanedPhone)) {
+      return "Phone number must start with 6, 7, 8, or 9.";
+    }
+    return "";
   };
 
-  useEffect(() => {
-    if (user && user.id) {
-      fetchSavedAddresses();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAddress((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "phoneNumber") {
+      const error = validatePhoneNumber(value);
+      setPhoneError(error);
     }
-  }, [user]); // ✅ Ensures the effect runs when `user` changes
+
+    // if (name === "pincode" && value.length === 6) {
+    //   checkServiceability(value);
+    // }
+  };
 
   const fetchSavedAddresses = async () => {
     if (!user || !user.id) {
@@ -76,21 +101,18 @@ export default function CheckOut({ onSubmit }) {
         console.log("✅ Addresses fetched:", response.data);
         setSavedAddresses(response.data);
 
-        // ✅ Automatically select the first address if none is selected
         if (!selectedAddressId) {
           setSelectedAddressId(response.data[0]._id);
         }
 
-        // ✅ Ensure manual form is hidden if addresses exist
         setIsUsingManualAddress(false);
       } else {
         console.warn("⚠️ No saved addresses found.");
         setSavedAddresses([]);
 
-        // ✅ Automatically show form if no saved addresses exist
         setTimeout(() => {
           setIsUsingManualAddress(true);
-        }, 100); // 🔹 Small delay to ensure state updates properly
+        }, 100);
       }
     } catch (error) {
       console.error(
@@ -110,115 +132,19 @@ export default function CheckOut({ onSubmit }) {
     }
   };
 
-  //   const handleSaveAddress = async (e) => {
-  //     e.preventDefault();
-
-  //     if (!user || !user.id) {
-  //         alert("⚠️ Please login before saving your address.");
-  //         navigate("/login");
-  //         return;
-  //     }
-
-  //     const shippingData = {
-  //         userId: user.id, // ✅ Send userId in request
-  //         firstName: address.firstName,
-  //         lastName: address.lastName,
-  //         phoneNumber: address.phoneNumber,
-  //         address: address.address1 + (address.address2 ? ", " + address.address2 : ""),
-  //         city: address.city,
-  //         state: address.state,
-  //         pincode: address.pincode,
-  //         country: address.country,
-  //         email: user.email,
-  //     };
-
-  //     console.log("🔹 Shipping Data Sent to API:", shippingData); // ✅ Debugging
-
-  //     try {
-  //         const response = await axios.post("https://api.nncwebsitedevelopment.com/api/shipping-address", shippingData);
-
-  //         if (response.status === 201) {
-  //             alert("✅ Shipping address saved successfully!");
-  //             // fetchSavedAddresses();
-  //             setSavedAddressId(response.data.shippingAddress._id);
-  //         } else {
-  //             alert("❌ Failed to save address. Try again.");
-  //         }
-  //     } catch (error) {
-  //         console.error("🚨 Error saving address:", error.response?.data || error.message);
-  //         alert(`❌ Error saving address: ${error.response?.data?.message || "Unknown error"}`);
-  //     }
-  // };
-
-  //   const handlePlaceOrder = async () => {
-  //     if (!savedAddressId) {
-  //         alert("Please save your shipping address before placing an order.");
-  //         return;
-  //     }
-
-  //     if (!user || !user.id) {
-  //         alert(" Please log in to proceed to checkout.");
-  //         navigate("/login");
-  //         return;
-  //     }
-
-  //     console.log(" Cart Items Before Fix:", cartItems);
-
-  //     if (!cartItems || cartItems.length === 0) {
-  //         alert(" No valid products in the cart. Please add items again.");
-  //         return;
-  //     }
-
-  //     const cartItemsFixed = cartItems.map((item) => ({
-  //         _id: String(item.id),
-  //         name: item.title || "Unnamed Product",
-  //         price: parseFloat(item.price) || 0,
-  //         quantity: item.quantity || 1,
-  //         images: item.image ? [item.image] : [],
-  //         category: item.category || "Uncategorized",
-  //     }));
-
-  //     console.log(" Cart Items After Fix:", cartItemsFixed);
-
-  //     if (cartItemsFixed.length === 0) {
-  //         alert("No valid products found in the cart. Please add items again.");
-  //         return;
-  //     }
-
-  //     const orderData = {
-  //         email: user.email,
-  //         firstName: address.firstName,
-  //         lastName: address.lastName,
-  //         phoneNumber: address.phoneNumber,
-  //         shippingAddress: savedAddressId,
-  //         cartItems: cartItemsFixed,
-  //         paymentMethod: "Online Payment",
-  //         totalAmount: total,
-  //         userId: user.id,
-  //     };
-
-  //     console.log("🔹 Order Data Sent to API:", orderData);
-  //     try {
-  //         const response = await axios.post("https://api.nncwebsitedevelopment.com/api/orders", orderData);
-
-  //         if (response.status === 201) {
-  //             alert(" Order placed successfully!");
-  //             navigate("/thank-you");
-  //         } else {
-  //             alert(" Failed to place order. Try again.");
-  //         }
-  //     } catch (error) {
-  //         console.error(" Error placing order:", error.response?.data || error.message);
-  //         alert(` Error placing order: ${error.response?.data?.message || "Unknown error"}`);
-  //     }
-  // };
-
   const handleSaveAddress = async (e) => {
     e.preventDefault();
 
     if (!user || !user.id) {
-      alert("⚠️ Please login before saving your address.");
+      toast.error("⚠️ Please login before saving your address.");
       navigate("/login");
+      return;
+    }
+
+    const phoneValidationError = validatePhoneNumber(address.phoneNumber);
+    if (phoneValidationError) {
+      setPhoneError(phoneValidationError);
+      toast.error(phoneValidationError);
       return;
     }
 
@@ -227,8 +153,7 @@ export default function CheckOut({ onSubmit }) {
       firstName: address.firstName,
       lastName: address.lastName,
       phoneNumber: address.phoneNumber,
-      address:
-        address.address1 + (address.address2 ? ", " + address.address2 : ""),
+      address: address.address1 + (address.address2 ? ", " + address.address2 : ""),
       city: address.city,
       state: address.state,
       pincode: address.pincode,
@@ -245,125 +170,270 @@ export default function CheckOut({ onSubmit }) {
       );
 
       if (response.status === 201) {
-        alert("Shipping address saved successfully!");
-
+        toast.success("Shipping address saved successfully!");
         fetchSavedAddresses();
-
         setSelectedAddressId(response.data.shippingAddress._id);
-
         setIsUsingManualAddress(false);
       } else {
-        alert("Failed to save address. Try again.");
+        toast.error("Failed to save address. Try again.");
       }
     } catch (error) {
-      console.error(
-        "Error saving address:",
-        error.response?.data || error.message
-      );
-      alert(
-        `Error saving address: ${
-          error.response?.data?.message || "Unknown error"
-        }`
-      );
+      console.error("Error saving address:", error.response?.data || error.message);
+      toast.error(`Error saving address: ${error.response?.data?.message || "Unknown error"}`);
     }
   };
 
-  const handlePlaceOrder = async () => {
+  const checkServiceability = async (deliveryPincode) => {
+    try {
+      const response = await axios.post(
+        "https://api.nncwebsitedevelopment.com/api/rapidshyp/serviceability-check",
+        {
+          Pickup_pincode: "562123", // Updated to match handlePlaceOrder
+          Delivery_pincode: deliveryPincode,
+          cod: false, // PREPAID for Cashfree
+          total_order_value: total,
+          weight: 2,
+        },
+        {
+          headers: {
+            "rapidshyp-token": RAPIDSHYP_TOKEN,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Serviceability response:", response.data);
+
+      if (response.data.status === true) {
+        toast.success("✅ This pincode is serviceable");
+        const couriers = response.data.serviceable_courier_list;
+        console.log("Available Couriers:", couriers);
+
+        const origin = couriers[0];
+        if (origin.origin_state || origin.origin_city) {
+          setAddress((prev) => ({
+            ...prev,
+            state: origin.origin_state || prev.state,
+            city: origin.origin_city || prev.city,
+          }));
+        }
+      } else {
+        toast.error("❌ This pincode is not serviceable.");
+      }
+    } catch (error) {
+      console.error("Serviceability error:", error.response?.data || error.message);
+      toast.error("Error checking pincode. Try again.");
+    }
+  };
+
+
+const handlePlaceOrder = async () => {
+  setIsLoading(true);
+  try {
+    // Step 0: Validation
     if (!selectedAddressId && !isUsingManualAddress) {
-      alert("Please select or add a shipping address before placing an order.");
+      toast.error("Please select or add a shipping address.");
       return;
     }
 
     if (!user || !user.id) {
-      alert("Please log in to proceed to checkout.");
+      toast.error("Please log in to proceed.");
       navigate("/login");
       return;
     }
 
-    let selectedAddress = null;
+    // Step 1: Determine Selected Address
+    const selectedAddress = isUsingManualAddress
+      ? {
+          firstName: address.firstName,
+          lastName: address.lastName,
+          phone: address.phoneNumber,
+          addressLine1: address.address1,
+          addressLine2: address.address2 || "",
+          city: address.city,
+          state: address.state,
+          pinCode: address.pincode,
+          email: user.email,
+        }
+      : savedAddresses.find((addr) => addr._id === selectedAddressId);
 
-    if (isUsingManualAddress) {
-      selectedAddress = {
-        firstName: address.firstName,
-        lastName: address.lastName,
-        phoneNumber: address.phoneNumber,
-        address:
-          address.address1 + (address.address2 ? ", " + address.address2 : ""),
-        city: address.city,
-        state: address.state,
-        pincode: address.pincode,
-        country: address.country,
-      };
-    } else {
-      selectedAddress = savedAddresses.find(
-        (addr) => addr._id === selectedAddressId
-      );
-
-      if (!selectedAddress) {
-        alert("Selected address not found. Please try again.");
-        return;
-      }
+    if (!selectedAddress) {
+      toast.error("Selected address not found.");
+      return;
     }
 
-    const orderData = {
-      email: user.email,
-      firstName: selectedAddress.firstName,
-      lastName: selectedAddress.lastName,
-      phoneNumber: selectedAddress.phoneNumber,
-      shippingAddress: isUsingManualAddress ? null : selectedAddressId,
-      cartItems: cartItems.map((item) => ({
-        _id: String(item.id),
-        name: item.title || "Unnamed Product",
-        price: parseFloat(item.price) || 0,
-        quantity: item.quantity || 1,
-        images: item.image ? [item.image] : [],
-        category: item.category || "Uncategorized",
+    // Step 2: Clean and Validate Phone Number
+    const cleanPhone = (phone) => {
+      const cleaned = (phone || "").replace(/\D/g, "");
+      if (cleaned.length !== 10) {
+        throw new Error("Phone number must be exactly 10 digits.");
+      }
+      if (!/^[6-9]/.test(cleaned)) {
+        throw new Error("Phone number must start with 6, 7, 8, or 9.");
+      }
+      return cleaned;
+    };
+
+    let phoneNumber;
+    try {
+      phoneNumber = cleanPhone(selectedAddress.phone || selectedAddress.phoneNumber);
+    } catch (error) {
+      toast.error(`Invalid phone number: ${error.message}`);
+      return;
+    }
+
+    // Step 3: Prepare Order Payload (to send to backend for temporary storage)
+    const generateAlphaString = (length) => {
+      const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      return Array.from({ length }, () => letters[Math.floor(Math.random() * letters.length)]).join("");
+    };
+
+    const uniquePickupName = `Yantaganahalli${generateAlphaString(5)}`;
+
+    const orderPayload = {
+      pickupLocation: {
+        contactName: "Harshita Jethender Bhat",
+        pickupName: uniquePickupName,
+        pickupEmail: "mahesh.mehra@rapidshyp.com",
+        pickupPhone: "9513186600",
+        pickupAddress1: "24/2, Behind BP petrol bunk, Yantaganahalli",
+        pickupAddress2: "Nelamangala, Bengaluru, Karnataka",
+        pinCode: "562123",
+      },
+      shippingAddress: {
+        firstName: selectedAddress.firstName,
+        lastName: selectedAddress.lastName,
+        addressLine1: selectedAddress.addressLine1 || selectedAddress.address,
+        addressLine2: selectedAddress.addressLine2 || "",
+        pinCode: selectedAddress.pinCode || selectedAddress.pincode,
+        email: selectedAddress.email,
+        phone: phoneNumber,
+      },
+      orderItems: cartItems.map((item) => ({
+        itemName: item.title,
+        sku: item.id,
+        description: `${item.title} description`,
+        units: item.quantity,
+        unitPrice: parseFloat(item.price),
+        tax: 0,
+        hsn: "6109",
+        productLength: 20.0,
+        productBreadth: 15.0,
+        productHeight: 3.0,
+        productWeight: 0.3,
+        brand: "BrandX",
+        imageURL: item.image,
+        isFragile: false,
+        isPersonalisable: false,
       })),
-      paymentMethod: "Online Payment",
-      totalAmount: total,
+      totalOrderValue: Number((subtotal + shipping).toFixed(2)),
+      paymentMethod: "Prepaid",
+      subtotal,
+      shipping,
+      tax,
+      total,
       userId: user.id,
     };
 
-    console.log("🔹 Order Data Sent to API:", orderData);
+    const orderId = `ORD-${Date.now()}`;
 
-    try {
-      const response = await axios.post(
-        "https://api.nncwebsitedevelopment.com/api/orders",
-        orderData
-      );
+    // Step 4: Create Payment on Cashfree
+    const customerDetails = {
+      customer_id: user.id,
+      customer_name: `${selectedAddress.firstName} ${selectedAddress.lastName}`,
+      customer_email: selectedAddress.email,
+      customer_phone: phoneNumber,
+    };
 
-      if (response.status === 201) {
-        alert(" Order placed successfully!");
-        navigate("/thank-you");
-      } else {
-        alert("Failed to place order. Try again.");
+    const orderMeta = {
+      return_url: `https://avitrispices.in/thank-you?order_id=${orderId}`,
+      notify_url: "https://api.nncwebsitedevelopment.com/api/payments/webhook", // Update to your actual webhook URL
+    };
+
+    console.log("Sending payment request:", { customerDetails, orderMeta, orderId });
+
+    const maxRetries = 2;
+    let retryCount = 0;
+    let paymentResponse;
+
+    while (retryCount <= maxRetries) {
+      try {
+        const token = localStorage.getItem("token");
+        paymentResponse = await axios.post(
+          "https://api.nncwebsitedevelopment.com/api/payments/create",
+          {
+            order_amount:1, //Number((subtotal + shipping ).toFixed(2)),
+            order_currency: "INR",
+            customer_details: customerDetails,
+            order_meta: orderMeta,
+            order_id: orderId,
+            order_payload: orderPayload, // Send order details to backend for temporary storage
+          },
+          {
+            headers: {
+              Authorization: token ? `Bearer ${token}` : undefined,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        console.log("Cashfree Payment Response:", paymentResponse.data);
+
+        if (paymentResponse.status === 201 && paymentResponse.data.payment?.payment_link) {
+          // Log the payment link for debugging
+          console.log("Payment Link:", paymentResponse.data.payment.payment_link);
+
+          // Save pending order to localStorage (optional, for UI purposes)
+          const pendingOrder = {
+            orderId,
+            payment_id: paymentResponse.data.payment.payment_id,
+            status: "Awaiting Payment",
+            createdAt: new Date().toISOString(),
+          };
+          const existingOrders = JSON.parse(localStorage.getItem(`userOrders_${user.id}`)) || [];
+          existingOrders.push(pendingOrder);
+          localStorage.setItem(`userOrders_${user.id}`, JSON.stringify(existingOrders));
+
+          // Redirect to payment page
+          try {
+            window.location.href = paymentResponse.data.payment.payment_link;
+          } catch (error) {
+            console.error("Redirection error:", error);
+            toast.error("Failed to redirect to payment page. Please try again.");
+            return;
+          }
+          return;
+        } else {
+          throw new Error(paymentResponse.data.error || "Failed to create payment link");
+        }
+      } catch (error) {
+        console.error(`Payment Attempt ${retryCount + 1} Failed:`, error.response?.data || error.message);
+        toast.error(`Payment error: ${error.response?.data?.message || error.message || "Unable to process payment."}`);
+        if (retryCount === maxRetries) {
+          return;
+        }
+        retryCount++;
+        await new Promise((resolve) => setTimeout(resolve, Math.pow(2, retryCount) * 1000));
       }
-    } catch (error) {
-      console.error(
-        " Error placing order:",
-        error.response?.data || error.message
-      );
-      alert(
-        ` Error placing order: ${
-          error.response?.data?.message || "Unknown error"
-        }`
-      );
     }
-  };
+  } catch (error) {
+    console.error("Error in handlePlaceOrder:", error);
+    toast.error("An unexpected error occurred. Please try again.");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
-  const subtotal = cartItems.reduce(
+
+
+const subtotal = cartItems.reduce(
     (acc, item) =>
       acc + (parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1),
     0
   );
-  // Fixed shipping cost
   const shipping = 50;
-
-  // Tax (18% of subtotal)
   const tax = subtotal * 0.18;
-
-  // Total (Subtotal + Shipping + Tax)
-  const total = subtotal + shipping + tax;
+  const total = subtotal + shipping ;
 
   const [hovered, setHovered] = useState(false);
 
@@ -373,23 +443,28 @@ export default function CheckOut({ onSubmit }) {
     config: { tension: 250, friction: 25 },
   });
 
+  const handleConfirmOrder = () => {
+    setShowConfirmModal(true);
+  };
+
+  const handleConfirmSubmit = () => {
+    setShowConfirmModal(false);
+    handlePlaceOrder();
+  };
+
   return (
     <>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} /> {/* Added ToastContainer */}
       <div
         className="page-content"
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
-          // overflow:'hidden'
         }}
       >
-        {/* Navbar */}
         <Navbar_Menu />
 
-        <div
-          style={{ margin: "15% 0% 10% 0%" }}
-          className="div-shippingaddress"
-        >
+        <div style={{ margin: "15% 0% 10% 0%" }} className="div-shippingaddress">
           <h1
             style={{
               letterSpacing: "3px",
@@ -403,7 +478,6 @@ export default function CheckOut({ onSubmit }) {
             SHIPPING ADDRESS
           </h1>
 
-          {/* Show saved addresses in card format if available */}
           {savedAddresses.length > 0 && (
             <div className="address-list">
               <h3 style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -446,7 +520,6 @@ export default function CheckOut({ onSubmit }) {
             </div>
           )}
 
-          {/* Show the form only if no address is selected OR user is using manual entry */}
           {(isUsingManualAddress || savedAddresses.length === 0) && (
             <div>
               <Container
@@ -454,10 +527,7 @@ export default function CheckOut({ onSubmit }) {
                 className="d-flex justify-content-center align-items-center max-vh-100 bg-light pt-5"
               >
                 <div className="form-container p-4">
-                  <Form
-                    onSubmit={handleSaveAddress}
-                    style={{ fontSize: "20px" }}
-                  >
+                  <Form onSubmit={handleSaveAddress} style={{ fontSize: "20px" }}>
                     <Row>
                       <Col md={6}>
                         <Form.Group controlId="firstName">
@@ -500,7 +570,6 @@ export default function CheckOut({ onSubmit }) {
                       </Col>
                     </Row>
 
-                    {/* Phone Number */}
                     <Row className="mt-3">
                       <Col md={4}>
                         <Form.Group controlId="phoneCode">
@@ -543,12 +612,15 @@ export default function CheckOut({ onSubmit }) {
                             value={address.phoneNumber}
                             onChange={handleChange}
                             required
+                            isInvalid={!!phoneError}
                           />
+                          <Form.Control.Feedback type="invalid">
+                            {phoneError}
+                          </Form.Control.Feedback>
                         </Form.Group>
                       </Col>
                     </Row>
 
-                    {/* Address Fields */}
                     <Form.Group controlId="address1" className="mt-3">
                       <Form.Label>Address 1</Form.Label>
                       <Form.Control
@@ -655,9 +727,7 @@ export default function CheckOut({ onSubmit }) {
                       </Form.Control>
                     </Form.Group>
 
-                    {/* Buttons */}
                     <div className="d-flex justify-content-between mt-3">
-                      {/* Left side button */}
                       <Button
                         type="submit"
                         variant="dark"
@@ -672,13 +742,11 @@ export default function CheckOut({ onSubmit }) {
             </div>
           )}
 
-          {/* {savedAddresses.length === 0 && ( */}
           <Container>
             <div style={{ marginTop: "5%" }}>
               <h1
                 style={{
                   letterSpacing: "2px",
-
                   fontWeight: "bold",
                   fontFamily: "kapraneue, sans-serif",
                   textAlign: "center",
@@ -690,27 +758,13 @@ export default function CheckOut({ onSubmit }) {
 
             <div style={{ fontFamily: "kapraneue, sans-serif" }}>
               <div>
-                {/* Cart Table */}
-                <Table
-                  className="custom-table"
-                  hover
-                  responsive
-                  style={{ margin: "auto" }}
-                >
+                <Table className="custom-table" hover responsive style={{ margin: "auto" }}>
                   <thead>
                     <tr>
-                      <th style={{ textAlign: "center", padding: "10px" }}>
-                        Image
-                      </th>
-                      <th style={{ textAlign: "center", padding: "10px" }}>
-                        Product Name
-                      </th>
-                      <th style={{ textAlign: "center", padding: "10px" }}>
-                        Quantity
-                      </th>
-                      <th style={{ textAlign: "center", padding: "10px" }}>
-                        Price
-                      </th>
+                      <th style={{ textAlign: "center", padding: "10px" }}>Image</th>
+                      <th style={{ textAlign: "center", padding: "10px" }}>Product Name</th>
+                      <th style={{ textAlign: "center", padding: "10px" }}>Quantity</th>
+                      <th style={{ textAlign: "center", padding: "10px" }}>Price</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -762,7 +816,6 @@ export default function CheckOut({ onSubmit }) {
                                 }}
                                 className="discount-price-cart"
                               >
-                                {" "}
                                 Rs {item.discountPrice}
                               </div>
                               <div
@@ -791,7 +844,7 @@ export default function CheckOut({ onSubmit }) {
                           <td
                             style={{
                               padding: "10px",
-                              whiteSpace:'nowrap',
+                              whiteSpace: "nowrap",
                               alignItems: "center",
                               justifyContent: "center",
                             }}
@@ -813,7 +866,7 @@ export default function CheckOut({ onSubmit }) {
                                 cursor: "pointer",
                                 marginRight: "15px",
                               }}
-                               className="minus-btn"
+                              className="minus-btn"
                             >
                               −
                             </button>
@@ -844,7 +897,7 @@ export default function CheckOut({ onSubmit }) {
                                 cursor: "pointer",
                                 marginLeft: "15px",
                               }}
-                               className="minus-btn"
+                              className="minus-btn"
                             >
                               +
                             </button>
@@ -860,7 +913,6 @@ export default function CheckOut({ onSubmit }) {
                 </Table>
               </div>
 
-              {/* Subtotal Section */}
               <div
                 style={{
                   display: "block",
@@ -871,37 +923,29 @@ export default function CheckOut({ onSubmit }) {
                 className="subtotal-checkout"
               >
                 <h1 style={{ letterSpacing: "1px" }}>
-                  SUB TOTAL:{" "}
-                  <span style={{ float: "right" }}>
-                    Rs {subtotal.toFixed(2)}
-                  </span>
+                  SUB TOTAL: <span style={{ float: "right" }}>Rs {subtotal.toFixed(2)}</span>
                 </h1>
                 <h1
                   style={{ letterSpacing: "1px", fontSize: "28px" }}
                   className="checkout-subtotal-details"
                 >
-                  SHIPPING:{" "}
-                  <span style={{ float: "right" }}>
-                    Rs {shipping.toFixed(2)}
-                  </span>
+                  SHIPPING: <span style={{ float: "right" }}>Rs {shipping.toFixed(2)}</span>
                 </h1>
-                <h1
+                {/* <h1
                   style={{ letterSpacing: "1px", fontSize: "28px" }}
                   className="checkout-subtotal-details"
                 >
-                  TAX (18%):{" "}
-                  <span style={{ float: "right" }}>Rs {tax.toFixed(2)}</span>
-                </h1>
+                  TAX (18%): <span style={{ float: "right" }}>Rs {tax.toFixed(2)}</span>
+                </h1> */}
                 <hr />
                 <h1 style={{ letterSpacing: "1px" }}>
-                  TOTAL:{" "}
-                  <span style={{ float: "right" }}>Rs {total.toFixed(2)}</span>
+                  TOTAL: <span style={{ float: "right" }}>Rs {total.toFixed(2)}</span>
                 </h1>
                 <p
                   style={{ fontSize: "18px", letterSpacing: "0.5px" }}
                   className="p-paynow"
                 >
-                  After clicking “PAY NOW” you will be redirected to PhonePe
+                  After clicking “PAY NOW” you will be redirected to Cashfree
                   Payment Gateway (UPI, Cards & Net Banking) to complete your
                   purchase securely.
                 </p>
@@ -918,9 +962,7 @@ export default function CheckOut({ onSubmit }) {
                     overflow: "hidden",
                     cursor: "pointer",
                   }}
-                  onClick={() => navigate("/thank-you")}
                 >
-                  {/* Image */}
                   <animated.img
                     src={Vector}
                     alt="Vector-img"
@@ -931,10 +973,8 @@ export default function CheckOut({ onSubmit }) {
                       display: "block",
                     }}
                   />
-
-                  {/* Text Inside Image */}
                   <h3
-                    onClick={handlePlaceOrder}
+                    onClick={handleConfirmOrder} // Changed to show confirmation modal
                     style={{
                       position: "absolute",
                       top: "50%",
@@ -948,30 +988,60 @@ export default function CheckOut({ onSubmit }) {
                       width: "100%",
                     }}
                   >
-                    PAY NOW
+                    {isLoading ? "PROCESSING..." : "PAY NOW"} {/* Show loading text */}
                   </h3>
                 </div>
               </div>
             </div>
           </Container>
-          {/* )} */}
+
+          {/* Confirmation Modal */}
+          <Modal show={showConfirmModal} onHide={() => setShowConfirmModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirm Your Order</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>Please review your order details before proceeding to payment:</p>
+              <p><strong>Subtotal:</strong> Rs {subtotal.toFixed(2)}</p>
+              <p><strong>Shipping:</strong> Rs {shipping.toFixed(2)}</p>
+              {/* <p><strong>Tax (18%):</strong> Rs {tax.toFixed(2)}</p> */}
+              <p><strong>Total:</strong> Rs {total.toFixed(2)}</p>
+              <p><strong>Items:</strong></p>
+              <ul>
+                {cartItems.map((item) => (
+                  <li key={item.id}>
+                    {item.title} (Qty: {item.quantity}) - Rs {(parseFloat(item.price) * item.quantity).toFixed(2)}
+                  </li>
+                ))}
+              </ul>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShowConfirmModal(false)}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={handleConfirmSubmit} disabled={isLoading}>
+                Confirm and Pay
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
           <LearnMore />
           <Footer />
 
           <style>{`
-        .form-container {
-          background-color: #ffffff;
-          max-width: 700px;
-          width: 100%;
-          border-radius: 12px;
-          border: 1px solid black;
-          font-family: KapraNeueMedium, sans-serif;
-          letter-spacing: 1px;
-        }
-        .bg-light {
-          background-color: #FAF7F1 !important;
-        }
-      `}</style>
+            .form-container {
+              background-color: #ffffff;
+              max-width: 700px;
+              width: 100%;
+              border-radius: 12px;
+              border: 1px solid black;
+              font-family: KapraNeueMedium, sans-serif;
+              letter-spacing: 1px;
+            }
+            .bg-light {
+              background-color: #FAF7F1 !important;
+            }
+          `}</style>
         </div>
       </div>
     </>
