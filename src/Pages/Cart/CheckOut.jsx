@@ -362,7 +362,7 @@ const handlePlaceOrder = async () => {
         paymentResponse = await axios.post(
           "https://api.nncwebsitedevelopment.com/api/payments/create",
           {
-            order_amount:1, //Number((subtotal + shipping ).toFixed(2)),
+            order_amount: Number((subtotal + shipping ).toFixed(2)),
             order_currency: "INR",
             customer_details: customerDetails,
             order_meta: orderMeta,
