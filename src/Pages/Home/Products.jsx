@@ -6,7 +6,6 @@ import { useSpring, animated } from "react-spring";
 import { Link } from "react-router-dom";
 
 export default function Products() {
-
   const [hovered, setHovered] = useState(false);
 
   const zoomIn = useSpring({
@@ -31,6 +30,7 @@ export default function Products() {
           backgroundColor: "#F4B65B",
           padding: "25px",
         }}
+        className="browser-products"
       >
         <Container>
           <Row>
@@ -43,6 +43,7 @@ export default function Products() {
                   fontFamily: "kapraneue, sans-serif",
                   marginBottom: "3%",
                 }}
+                className="h2-our-products"
               >
                 BROWSE OUR LATEST PRODUCTS
               </h2>
@@ -54,6 +55,7 @@ export default function Products() {
                   width: "80%",
                   fontFamily: "KapraNeueMedium, sans-serif",
                 }}
+                className="p-our-products"
               >
                 Experience the richness of authentic flavors, crafted from
                 carefully selected, pure spices that honor our traditional
@@ -61,48 +63,51 @@ export default function Products() {
                 warmth and depth to every dish.
               </p>
               <Link to="/all-products">
-              <div
-                style={{
-                  position: "relative",
-                  width: "35%",
-                  height: "50px",
-                }}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-              >
-                {/* Animated Image */}
-                <animated.img
-                  src={Vector}
-                  alt="Vector-img"
+                <div
                   style={{
-                    ...zoomIn,
-                    width: "100%",
-                    height: "100%",
-                    display: "block",
+                    position: "relative",
+                    width: "35%",
+                    height: "50px",
                   }}
-                />
-
-                {/* Text Inside Image */}
-                <h3
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    letterSpacing: "2px",
-                    color: "white",
-                    textAlign: "center",
-                    padding: "5px",
-                    borderRadius: "5px",
-                    width: "100%",
-                    fontFamily: "kapraneue, sans-serif",
-                  }}
+                  className="ourproducts-btn"
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
                 >
-                  OUR PRODUCTS
-                </h3>
-              </div>
+                  {/* Animated Image */}
+                  <animated.img
+                    src={Vector}
+                    alt="Vector-img"
+                    style={{
+                      ...zoomIn,
+                      width: "100%",
+                      height: "100%",
+                      display: "block",
+                    }}
+                    
+                  />
+
+                  {/* Text Inside Image */}
+                  <h3
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                      letterSpacing: "2px",
+                      color: "white",
+                      textAlign: "center",
+                      padding: "5px",
+                      borderRadius: "5px",
+                      width: "100%",
+                      fontFamily: "kapraneue, sans-serif",
+                    }}
+                    className="our-products-h3"
+                  >
+                    OUR PRODUCTS
+                  </h3>
+                </div>
               </Link>
             </Col>
             <Col sm={4}>
@@ -115,6 +120,7 @@ export default function Products() {
                     height: "auto",
                     objectFit: "contain",
                   }}
+                  className="img-ourproducts"
                 />
               </div>
             </Col>

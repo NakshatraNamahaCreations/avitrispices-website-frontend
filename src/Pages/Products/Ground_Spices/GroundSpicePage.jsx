@@ -1,5 +1,5 @@
 import Navbar_Menu from "../../../Components/Navbar_Menu";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import LearnMore from "../../../Pages/Home/LearnMore";
 import Footer from "../../../Components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
@@ -11,93 +11,145 @@ import turmericpowder from "/media/turmericpowder.png";
 import Vector from "/media/Vector.png";
 import spices from "/media/masala-collection.png";
 import masalaBox from "/media/1.png";
-// import AdvertisingProducts from "../../../Pages/products/AdvertisingProducts";
+import certification from "../../../../public/media/certification.png"
 import AdvertisingProducts from "../../../Pages/Products/AdvertisingProducts";
 import GroundProductsAll from "./GroundProductsAll";
 import { useParams } from "react-router-dom";
-// import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
+import { ChevronDown } from "lucide-react";
 
-const groundspices = [
-  {
-    id: 42,
-    heading: "BLACK PEPPER POWDER",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: blackpepper1,
-    title: "BLACK PEPPER POWDER",
-    discountPrice: "135",
-    price: "125",
-  },
-  // {
-  //   id: 2,
-  //   heading: "CURRY POWDER",
-  //   content:
-  //     "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-  //   image: currypowder,
-  //   title: "CURRY POWDER",
-  //   discountPrice: "135",
-  //   price: "125",
-  // },
-  {
-    id: 43,
-    heading: "GINGER POWDER",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: gingerpowder,
-    title: "GINGER POWDER ",
-    discountPrice: "135",
-    price: "125",
-  },
-  // {
-  //   id: 4,
-  //   heading: "PAV BAJI MASALA",
-  //   content:
-  //     "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-  //   image: pav_bhaji,
-  //   title: "PAV BAJI MASALA",
-  //   discountPrice: "135",
-  //   price: "125",
-  // },
-  {
-    id: 44,
-    heading: "TURMERIC POWDER",
-    content:
-      "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
-    image: turmericpowder,
-    title: "TURMERIC POWDER",
-    discountPrice: "135",
-    price: "125",
-  },
-];
+// const groundspices = [
+//   {
+//     id: 42,
+//     heading: "BLACK PEPPER POWDER",
+//     content:
+//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//     image: blackpepper1,
+//     title: "BLACK PEPPER POWDER",
+//     discountPrice: "135",
+//     price: "125",
+//   },
+//   // {
+//   //   id: 2,
+//   //   heading: "CURRY POWDER",
+//   //   content:
+//   //     "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//   //   image: currypowder,
+//   //   title: "CURRY POWDER",
+//   //   discountPrice: "135",
+//   //   price: "125",
+//   // },
+//   {
+//     id: 43,
+//     heading: "GINGER POWDER",
+//     content:
+//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//     image: gingerpowder,
+//     title: "GINGER POWDER ",
+//     discountPrice: "135",
+//     price: "125",
+//   },
+//   // {
+//   //   id: 4,
+//   //   heading: "PAV BAJI MASALA",
+//   //   content:
+//   //     "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//   //   image: pav_bhaji,
+//   //   title: "PAV BAJI MASALA",
+//   //   discountPrice: "135",
+//   //   price: "125",
+//   // },
+//   {
+//     id: 44,
+//     heading: "TURMERIC POWDER",
+//     content:
+//       "Introducing the Avitri Spices DIY Biryani Masala Kit – your ticket to cooking up a delicious, aromatic biryani right at home! No more guessing the right spice blends or measuring out tiny quantities. We have done the hard work for you, so you can focus on what matters most: making (and enjoying) that mouth-watering biryani!",
+//     image: turmericpowder,
+//     title: "TURMERIC POWDER",
+//     discountPrice: "135",
+//     price: "125",
+//   },
+// ];
 
 export default function GroundSpicePage() {
   const dispatch = useDispatch();
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [product, setProduct] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+const [selectedVariantIndex, setSelectedVariantIndex] = useState(0); 
 
-  const handleAddToCart = (id, title, discountPrice, price, image) => {
-    dispatch(addToCart({ id, title, discountPrice, price, image }));
-    navigate("/cart");
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { id } = useParams();
-  const ground = groundspices.find((p) => p.id === parseInt(id));
+  useEffect(() => {
+    if (product && product.images?.length > 0) {
+      setSelectedImage(product.images[selectedVariantIndex]);
+    }
+  }, [selectedVariantIndex, product]);
+  
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://api.nncwebsitedevelopment.com/api/products/${id}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            setProduct(data.data);
+            setSelectedImage(data.data.images?.[0] || null); // Set the first image by default
+          } else {
+            console.error("Product fetch failed");
+          }
+        } else {
+          console.error("Product fetch failed with status:", response.status);
+        }
+      } catch (err) {
+        console.error("Error fetching product:", err);
+      }
+    };
+    fetchProduct();
+  }, [id]);
 
-  if (!ground) {
-    return <h2>Whole Spices not found</h2>;
-  }
+
+
+  // const ground = groundspices.find((p) => p.id === parseInt(id));
+ const handleAddToCart = () => {
+     dispatch(
+       addToCart({
+         id: product._id,
+         title: product.name,
+         price: product.variants?.[selectedVariantIndex]?.price || "0",
+         image: product.images?.[0]
+         ? `https://api.nncwebsitedevelopment.com${product.images[0]}`
+         : "/media/fallback.jpg",
+       })
+     );
+     navigate("/cart");
+   };
+ 
+   if (!product) {
+     return (
+       <>
+         <Navbar_Menu />
+         <div style={{ padding: "10%", textAlign: "center" }}>
+           <h2>Loading Product...</h2>
+         </div>
+         <Footer />
+       </>
+     );
+   }
+
 
   return (
     <>
       {/* Navbar Top */}
       <Navbar_Menu />
-
+      <div className="background-container-fixed">
       {/* Banner Advertising */}
       <div
         style={{
@@ -108,22 +160,23 @@ export default function GroundSpicePage() {
           backgroundColor: "#AF261D",
           color: "white",
           textAlign: "center",
-          padding: "27% 0",
+          padding: "26% 0",
         }}
+        className="div-background-carts"
       >
-        <Container>
-          <h1
-            style={{
-              lineHeight: "1.5",
-              letterSpacing: "2px",
-              fontSize: "40px",
-              maxWidth: "100%",
-              fontWeight: "bold",
-              fontFamily: "kapraneue, sans-serif",
-              margin: "3% 0",
-            }}
+        <Container className="conatiner-background-carts">
+          <h1 className="spices-title-continer"
+            // style={{
+            //   lineHeight: "1.5",
+            //   letterSpacing: "2px",
+            //   fontSize: "40px",
+            //   maxWidth: "100%",
+            //   fontWeight: "bold",
+            //   fontFamily: "kapraneue, sans-serif",
+            //   margin: "3% 0",
+            // }}
           >
-            {ground.heading}
+            {product.name}
           </h1>
           <Row className="justify-content-center">
             <Col sm={4} className="d-flex flex-column justify-content-center">
@@ -133,63 +186,145 @@ export default function GroundSpicePage() {
                   lineHeight: "1.7",
                   letterSpacing: "1px",
                 }}
+                className="p-contents-products"
               >
-                {ground.content}
+                {product.description} 
               </p>
             </Col>
             <Col sm={4} className="d-flex flex-column justify-content-center">
+              {/* Display main selected image */}
               <img
-                src={ground.image}
-                alt="whitepepper"
+                src={
+                  selectedImage
+                    ? `https://api.nncwebsitedevelopment.com${selectedImage}`
+                    : "/media/fallback.jpg"
+                }
+                alt={product.name}
                 style={{
-                  width: "55%",
+                  width: "90%",
                   height: "auto",
                   objectFit: "cover",
                   alignSelf: "center",
                 }}
+                className="addtoproduct-img"
               />
+              {/* Thumbnails of all images */}
+              <div style={{ display: "flex", marginTop: "15px", justifyContent: "center" }}>
+                {product.images.map((image, index) => (
+                  <img
+                    key={index}
+                    src={`https://api.nncwebsitedevelopment.com${image}`}
+                    alt={`Thumbnail ${index}`}
+                    onClick={() => setSelectedImage(image)} // Update selected image on click
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      objectFit: "cover",
+                      margin: "0 5px",
+                      cursor: "pointer",
+                      border: selectedImage === image ? "2px solid #AF261D" : "none", // Highlight selected thumbnail
+                    }}
+                  />
+                ))}
+              </div>
             </Col>
             <Col
               sm={4}
+              xs={12} 
               className="d-flex flex-column justify-content-center align-items-center"
+              style={{marginTop:'4%'}}
             >
               <div
-                style={{
-                  backgroundColor: "white",
-                  padding: "15px",
-                  textAlign: "center",
-                  color: "black",
-                  width:'300px',
-                  height:'300px'
-                }}
+               style={{
+                backgroundColor: "white",
+                padding: "50px",
+                textAlign: "center",
+                color: "black",
+                width: "80%",
+              }}
+              className="background-cartbox"
               >
                 <h2
                   style={{
-                    fontSize: "35px",
+                    fontSize: "24px",
                     margin: "5% 0",
                     letterSpacing: "1px",
                   }}
+                  className="h2-products-title"
                 >
-                  {ground.title}
+                   {product.name}
                 </h2>
-                <p
-                  style={{
-                    backgroundImage: "url('/media/Sale.png')",
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    width: "100%",
-                    color: "white",
-                    fontWeight: "bold",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "24px",
-                    textAlign: "center",
-                  }}
-                >
-                  Sale
-                </p>
+                <p style={{ fontSize: '18px', marginTop: '10%', fontWeight: 'bold', textAlign: 'center' }}>
+  Select the Quantity
+</p>
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+<div
+  style={{
+    backgroundImage: "url('/media/Sale.png')",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    width: "100%",
+    maxWidth: "350px",
+    color: "white",
+    fontWeight: "bold",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "24px",
+    textAlign: "center",
+    height: "90px", 
+    borderRadius: "8px",
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+    position: "relative",
+  }}
+  className="sale-box"
+>
+  {product.variants?.length > 0 ? (
+    <div style={{ position: "relative", display: "inline-block" }}>
+      <select
+       style={{
+        background: "black",
+        color: "white",
+        fontWeight: "bold",
+        fontSize: "18px",
+        border: "1px solid white",
+        textAlign: "center",
+        padding: "8px 12px",
+        borderRadius: "6px",
+        cursor: "pointer",
+        appearance: "none",
+        width: "150px",
+        backdropFilter: "blur(5px)", 
+      }}
+        value={selectedVariantIndex}
+        onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
+      >
+        {product.variants.map((variant, index) => (
+          <option key={variant._id} value={index} style={{ color: "black" }}>
+            {variant.quantity} - ₹{variant.price}
+          </option>
+        ))}
+      </select>
+
+      {/* Dropdown Icon */}
+      <ChevronDown
+        style={{
+          position: "absolute",
+          right: "12px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          color: "white",
+          pointerEvents: "none",
+          fontSize: "20px",
+        }}
+      />
+    </div>
+  ) : (
+    "Sale"
+  )}
+</div>
+</div>
                 <div
                   style={{
                     display: "flex",
@@ -199,6 +334,7 @@ export default function GroundSpicePage() {
                     justifyContent: "center",
                     fontSize: "45px",
                   }}
+                  className="price"
                 >
                   <p
                     style={{
@@ -207,8 +343,9 @@ export default function GroundSpicePage() {
                       fontSize: "25px",
                       opacity: "0.5",
                     }}
+                    className="cutprice"
                   >
-                    Rs {ground.discountPrice}
+                    Rs {150}
                   </p>
                   <p
                     style={{
@@ -216,7 +353,7 @@ export default function GroundSpicePage() {
                       margin: 0,
                     }}
                   >
-                    Rs {ground.price}
+                    Rs {product.variants?.[selectedVariantIndex]?.price || "0"}
                   </p>
                 </div>
 
@@ -228,15 +365,7 @@ export default function GroundSpicePage() {
                     cursor: "pointer",
                   }}
                   className="zoom-in-image"
-                  onClick={() =>
-                    handleAddToCart(
-                      ground.id,
-                      ground.title,
-                      ground.discountPrice,
-                      ground.price,
-                      ground.image
-                    )
-                  }
+                  onClick={handleAddToCart}
                 >
                   <img
                     src={Vector}
@@ -262,10 +391,22 @@ export default function GroundSpicePage() {
                       width: "100%",
                       fontFamily: "kapraneue, sans-serif",
                     }}
+                    className="addtocart-btn"
                   >
                     ADD TO CART
                   </h3>
                 </div>
+                <div style={{ textAlign: "center", marginTop: "10px" }}>
+                                  <img
+                                    src={certification} 
+                                    alt="Certification"
+                                    style={{
+                                      width: "200px",
+                                      height: "auto",
+                                      objectFit: "contain",
+                                    }}
+                                  />
+                                </div>
               </div>
             </Col>
           </Row>
@@ -275,7 +416,7 @@ export default function GroundSpicePage() {
       <AdvertisingProducts />
 
       {/* HEALTH BENEFITS */}
-      <div style={{ marginTop: "10%", textAlign: "center" }}>
+      <div style={{ marginTop: "10%", textAlign: "center" }} className="div-healthbenefits">
         <h1
           style={{
             fontFamily: "kapraneue, sans-serif",
@@ -283,6 +424,7 @@ export default function GroundSpicePage() {
             letterSpacing: "2px",
             marginBottom: "5%",
           }}
+          className="h1-healthbenefits"
         >
           SO WHAT ARE THE HEALTH BENEFITS OF OUR WHOLE SPICES
         </h1>
@@ -290,10 +432,12 @@ export default function GroundSpicePage() {
           <Row>
             <Col sm={4}>
               <div
-                style={{
-                  display: "inline-block",
-                  justifyItems: "center",
-                }}
+               style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+              }}
               >
                 <div
                   style={{
@@ -308,6 +452,7 @@ export default function GroundSpicePage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={spices}
@@ -330,6 +475,7 @@ export default function GroundSpicePage() {
                     fontSize: "35px",
                     letterSpacing: "1px",
                   }}
+                  className="h2-spices-title"
                 >
                   WHOLE SPICES
                 </h2>
@@ -339,6 +485,7 @@ export default function GroundSpicePage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                      className="p-spices-contents"
                 >
                   Whole spices are natural seasonings used to enhance the flavor
                   and aroma of food. They include ingredients like cinnamon
@@ -349,10 +496,12 @@ export default function GroundSpicePage() {
             </Col>
             <Col sm={4}>
               <div
-                style={{
-                  display: "inline-block",
-                  justifyItems: "center",
-                }}
+               style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+              }}
               >
                 <div
                   style={{
@@ -367,6 +516,7 @@ export default function GroundSpicePage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                  className="img-healthbenefits"
                 >
                   <img
                     src={masalaBox}
@@ -390,6 +540,7 @@ export default function GroundSpicePage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices are dried, unprocessed plant parts used in
                   cooking to add depth to dishes. Popular options like bay
@@ -401,8 +552,10 @@ export default function GroundSpicePage() {
             <Col sm={4}>
               <div
                 style={{
-                  display: "inline-block",
-                  justifyItems: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
                 }}
               >
                 <div
@@ -418,6 +571,7 @@ export default function GroundSpicePage() {
                     backgroundColor: "#B0261E",
                     marginBottom: "30px",
                   }}
+                    className="img-healthbenefits"
                 >
                   <img
                     src={currypowder}
@@ -441,6 +595,7 @@ export default function GroundSpicePage() {
                     lineHeight: "1.4",
                     letterSpacing: "1px",
                   }}
+                  className="p-spices-contents"
                 >
                   Whole spices retain their full flavor as they are not ground
                   into powder. Their fresh and aromatic qualities make them
@@ -457,7 +612,7 @@ export default function GroundSpicePage() {
       <GroundProductsAll />
 
       <LearnMore />
-
+</div>
       {/* FOOTER */}
       <Footer />
     </>

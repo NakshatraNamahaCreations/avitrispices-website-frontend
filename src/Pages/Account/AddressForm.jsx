@@ -1,10 +1,10 @@
-import { useState ,useEffect} from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; 
+import { Form, Button,  Row, Col } from "react-bootstrap";
 import axios from "axios"; 
 
 const AddressForm = ({ onSubmit }) => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
 
   const [user, setUser] = useState(null);
 
@@ -55,24 +55,22 @@ const AddressForm = ({ onSubmit }) => {
   };
 
   const handleAddressSubmit = async (e) => {
-    e.preventDefault();
-
+    e.preventDefault(); 
+    
     if (!validateForm()) {
-      console.error("🚨 Form validation failed:", errors);
-      return;
+        console.error("Form validation failed:", errors);
+        return;
     }
     
     try {
         const storedUser = JSON.parse(localStorage.getItem("user"));
-
         if (!storedUser || !storedUser.id) {
-            setError("⚠️ User ID is missing. Cannot save address.");
-            console.error("🚨 User ID is missing from localStorage.");
+            setError("User ID is missing. Cannot save address.");
+            console.error("User ID is missing from localStorage.");
             return;
         }
 
         setLoading(true);
-       
         setSuccess("");
 
         const payload = {
@@ -88,37 +86,30 @@ const AddressForm = ({ onSubmit }) => {
             email: storedUser.email,
         };
 
-        console.log("📤 Sending Address Data:", payload);
+        console.log("Sending Address Data:", payload);
 
-        const response = await axios.post("https://api.nncwebsitedevelopment.com/api/shipping-address", payload, {
-            headers: { "Content-Type": "application/json" }
-        });
+        const response = await axios.post(
+            "https://api.nncwebsitedevelopment.com/api/shipping-address", 
+            payload, 
+            { headers: { "Content-Type": "application/json" } }
+        );
 
-        console.log("✅ Address successfully added:", response.data);
-
+        console.log("Address successfully added:", response.data);
         setSuccess("Address added successfully!");
         setLoading(false);
+
         setTimeout(() => {
-          window.location.reload();
+            window.location.reload();
         }, 1000);
-        fetchAddresses();
+        
     } catch (error) {
-        console.error("🚨 Error adding address:", error.response?.data || error.message);
+        console.error("Error adding address:", error.response?.data || error.message);
         setErrors({ server: `Failed to add address: ${error.response?.data?.message || "Please try again."}` });
         setLoading(false);
     }
 };
 
 
-
-
-
-
-  
-  
-  
-
-  
 
   const handleCancel = () => {
     setAddress({
@@ -136,22 +127,15 @@ const AddressForm = ({ onSubmit }) => {
   };
 
   return (
-    <Container
-      fluid
-      className="d-flex justify-content-center align-items-center min-vh-100 bg-light"
-    >
+  
       <div className="form-container p-4">
-        <h2 className="text-left mb-3" style={{ letterSpacing: "1px" }}>
+        <h2 className="text-left mb-3 h2-add-address" style={{ letterSpacing: "1px" }}>
           ADD ADDRESS
         </h2>
-
         {success && <p style={{ color: "green" }}>{success}</p>}
         {errors.server && <p style={{ color: "red" }}>{errors.server}</p>}
 
-        <Form onSubmit={(e) => { 
-    e.preventDefault(); 
-    handleAddressSubmit(address); 
-}} style={{ fontSize: "20px" }}>
+        <Form onSubmit={handleAddressSubmit} style={{ fontSize: "20px" }}>
 
           <Row>
             <Col md={6}>
@@ -165,12 +149,13 @@ const AddressForm = ({ onSubmit }) => {
                     letterSpacing: "1px",
                     fontFamily: "KapraNeueMedium, sans-serif",
                   }}
+                  className="input-addressdetails"
                   placeholder="Enter first name"
                   value={address.firstName}
                   onChange={handleChange}
                   required
                 />
-                   <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
+                 <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
               </Form.Group>
             </Col>
 
@@ -185,12 +170,13 @@ const AddressForm = ({ onSubmit }) => {
                     letterSpacing: "1px",
                     fontFamily: "KapraNeueMedium, sans-serif",
                   }}
+                  className="input-addressdetails"
                   placeholder="Enter last name"
                   value={address.lastName}
                   onChange={handleChange}
                   required
                 />
-                   <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
+                 <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -208,6 +194,7 @@ const AddressForm = ({ onSubmit }) => {
                     letterSpacing: "1px",
                     fontFamily: "KapraNeueMedium, sans-serif",
                   }}
+                  className="input-addressdetails"
                   value={address.phoneCode}
                   onChange={handleChange}
                   required
@@ -232,14 +219,14 @@ const AddressForm = ({ onSubmit }) => {
                     letterSpacing: "1px",
                     fontFamily: "KapraNeueMedium, sans-serif",
                   }}
+                  className="input-addressdetails"
                   placeholder="Enter phone number"
                   value={address.phoneNumber}
                   onChange={handleChange}
                   required
                 />
-                <Form.Control.Feedback type="invalid">{errors.phoneNumber}</Form.Control.Feedback>
+                 <Form.Control.Feedback type="invalid">{errors.phoneNumber}</Form.Control.Feedback>
               </Form.Group>
-
             </Col>
           </Row>
 
@@ -254,12 +241,13 @@ const AddressForm = ({ onSubmit }) => {
                 letterSpacing: "1px",
                 fontFamily: "KapraNeueMedium, sans-serif",
               }}
+              className="input-addressdetails"
               placeholder="Enter address line 1"
               value={address.address1}
               onChange={handleChange}
               required
             />
-             <Form.Control.Feedback type="invalid">{errors.address1}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{errors.address1}</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group controlId="address2" className="mt-3">
@@ -272,6 +260,7 @@ const AddressForm = ({ onSubmit }) => {
                 letterSpacing: "1px",
                 fontFamily: "KapraNeueMedium, sans-serif",
               }}
+              className="input-addressdetails"
               placeholder="Enter address line 2 (optional)"
               value={address.address2}
               onChange={handleChange}
@@ -287,10 +276,11 @@ const AddressForm = ({ onSubmit }) => {
                   name="city"
                   placeholder="Enter city"
                   value={address.city}
+                  className="input-addressdetails"
                   onChange={handleChange}
                   required
                 />
-                  <Form.Control.Feedback type="invalid">{errors.city}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors.city}</Form.Control.Feedback>
               </Form.Group>
             </Col>
 
@@ -302,10 +292,11 @@ const AddressForm = ({ onSubmit }) => {
                   name="state"
                   placeholder="Enter state"
                   value={address.state}
+                  className="input-addressdetails"
                   onChange={handleChange}
                   required
                 />
-                 <Form.Control.Feedback type="invalid">{errors.state}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors.state}</Form.Control.Feedback>
               </Form.Group>
             </Col>
 
@@ -317,10 +308,11 @@ const AddressForm = ({ onSubmit }) => {
                   name="pincode"
                   placeholder="Enter pincode"
                   value={address.pincode}
+                  className="input-addressdetails"
                   onChange={handleChange}
                   required
                 />
-                <Form.Control.Feedback type="invalid">{errors.pincode}</Form.Control.Feedback>
+                 <Form.Control.Feedback type="invalid">{errors.pincode}</Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -331,6 +323,7 @@ const AddressForm = ({ onSubmit }) => {
               as="select"
               name="region"
               value={address.region}
+              className="input-addressdetails"
               onChange={handleChange}
               required
             >
@@ -375,24 +368,26 @@ const AddressForm = ({ onSubmit }) => {
             </div>
           </div>
         </Form>
-      </div>
-
-      {/* CSS Styles */}
+            {/* CSS Styles */}
       <style>{`
         .form-container {
           background-color: #ffffff;
-          max-width: 700px;
+          max-width: 735px;
           width: 100%;
           border-radius: 12px;
           border: 1px solid black;
           font-family: KapraNeueMedium, sans-serif;
           letter-spacing: 1px;
+          margin-top:5%;
         }
         .bg-light {
           background-color: #FAF7F1 !important;
         }
       `}</style>
-    </Container>
+      </div>
+
+  
+  
   );
 };
 

@@ -8,113 +8,62 @@ import amchur from "/media/amchur.png";
 import star_anise from "/media/star_anise.png";
 import cinnamon_sticks from "/media/cinnamon_sticks.png";
 import cloves from "/media/cloves.png";
-import axios from "axios";
 import green_cardamom from "/media/green_cardamom.png";
 import black_cardamom from "/media/black_cardamom.png";
 import nutmeg from "/media/nutmeg.png";
 import Navbar_Menu from "../../../Components/Navbar_Menu";
 import Footer from "../../../Components/Footer";
-// import LearnMore from "../../Home/LearnMore";
-import LearnMoreWhole from "./LearnMoreWhole";
 import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
+import LearnMoreWhole from "./LearnMoreWhole";
 
-const wholespices = [
-  {
-    id: 32,
-    title: "BLACK PEPPER",
-    image: blackpepper,
-    originalPrice: 135,
-    discountedPrice: 125,
-  },
-  {
-    id: 33,
-    title: "WHITE PEPPER",
-    image: whitepepper,
-    originalPrice: 125,
-    discountedPrice: 115,
-  },
-  {
-    id: 34,
-    title: "AMCHUR",
-    image: amchur,
-    originalPrice: 140,
-    discountedPrice: 120,
-  },
-  {
-    id: 35,
-    title: "STAR ANISE",
-    image: star_anise,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 36,
-    title: "CINNAMON STICKS",
-    image: cinnamon_sticks,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 37,
-    title: "CLOVES",
-    image: cloves,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 38,
-    title: "GREEN CARDAMOM",
-    image: green_cardamom,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 39,
-    title: "BLACK CARDAMOM",
-    image: black_cardamom,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 40,
-    title: "NUTMEG",
-    image: nutmeg,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 41,
-    title: "CASIA",
-    image: nutmeg,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-];
+
+function ShimmerCard() {
+  return (
+    <Col xs={6} sm={6} md={4} lg={3} className="card-item-products">
+      <div
+        style={{
+          width: "100%",
+          height: "400px",
+          borderRadius: "25px 25px 60px 60px",
+          boxShadow: "1px 1px 5px lightgrey",
+          marginBottom: "50px",
+          padding: "15px",
+        }}
+      >
+        <div className="shimmer" style={{ height: "40px", marginBottom: "20px", borderRadius: "5px" }} />
+        <div className="shimmer" style={{ height: "250px", borderRadius: "15px" }} />
+        <div className="shimmer" style={{ height: "70px", marginTop: "20px", borderRadius: "10px" }} />
+      </div>
+    </Col>
+  );
+}
+
 
 export default function WholeSpices() {
   const [isVisible, setIsVisible] = useState(false);
-
-  const [apiProducts, setApiProducts] = useState([]);
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get("https://api.nncwebsitedevelopment.com/api/products");
-      const productsData = response.data.data || [];
-
-     
-      const wholeSpicesFromAPI = productsData.filter(
-        (product) => product.category === "WHOLE SPICES"
-      );
-
-      setApiProducts(wholeSpicesFromAPI);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
+  const [wholeSpices, setWholeSpices] = useState([])
 
   useEffect(() => {
-    fetchProducts();
+    const fetchDiySpices = async () => {
+      try {
+        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products/category/WHOLE%20SPICES");
+  
+        const data = await response.json();
+        if (data.success) {
+          setWholeSpices(data.data);
+        } else {
+          console.error("Failed to fetch DIY spices:", data.message);
+        }
+      } catch (err) {
+        console.error("Error fetching DIY spices:", err);
+      }
+    };
+  
+    fetchDiySpices();
   }, []);
+  
+  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -183,7 +132,7 @@ export default function WholeSpices() {
             }}
           >
             <Container>
-              <div style={{ margin: "10% 20% 15%" }}>
+              <div style={{ margin: "10% 20% 15%" }} className="div-all-products-top">
                 <h1
                   style={{
                     lineHeight: "1.5",
@@ -195,6 +144,7 @@ export default function WholeSpices() {
                     textAlign: "center",
                     color: "white",
                   }}
+                  className="h1-wholespices"
                 >
                   SHOP BY WHOLE SPICES
                 </h1>
@@ -205,20 +155,31 @@ export default function WholeSpices() {
 
         <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {wholespices.map((kit) => {
+            {/* {wholeSpices.map((kit) => { */}
+            {wholeSpices.length === 0
+              ? Array.from({ length: 8 }).map((_, index) => <ShimmerCard key={index} />)
+              : wholeSpices.map((kit) => {
               return (
-                <Col sm={3} key={kit.id} className="card-item">
+                <Col
+                xs={6}
+                sm={6}
+                md={4}
+                lg={3}
+                key={kit._id}
+                className="card-item-products"
+              >
                   <Card
-                    style={{
-                      width: "15rem",
+                     style={{
+                      width: "100%", 
                       borderRadius: "25px 25px 60px 60px",
                       border: "none",
                       boxShadow: "1px 1px 5px lightgrey",
                       height: "auto",
-                      marginBottom: "40px",
+                      marginBottom: "50px",
+                      cursor:'pointer'
                     }}
-                    onClick={() => handleCardClick(kit.id)}
-                    className="zoom-in-image"
+                    onClick={() => handleCardClick(kit._id)}
+                    // className="zoom-in-image"
                   >
                     <Card.Title
                       style={{
@@ -229,31 +190,32 @@ export default function WholeSpices() {
                         fontFamily: "kapraneue, sans-serif",
                       }}
                     >
-                      {kit.title}
+                      {kit.name}
                     </Card.Title>
-                    {/* <p
-                    style={{
-                      backgroundColor: "black",
-                      color: "white",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textAlign: "center",
-                      padding: "10px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      alignSelf: "center",
-                      height: "30px",
-                      width: "150px",
-                      letterSpacing: "1px",
-                      clipPath:
-                        "polygon(20% 0%, 80% 0%, 85% 50%, 80% 100%, 20% 100%, 15% 50%)",
-                    }}
-                  >
-                    SALE
-                  </p> */}
-
                     <div
+                    className="d-none d-lg-block"
+                      style={{
+                        width: "50%",
+                        height: "auto",
+                        marginBottom: "15px",
+                        alignSelf: "",
+                      }}
+                    >
+                      {" "}
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "305px", height: "300px" }}
+/>
+                    </div>
+                    <div
+                    className="d-block d-lg-none"
                       style={{
                         width: "50%",
                         height: "auto",
@@ -262,7 +224,17 @@ export default function WholeSpices() {
                       }}
                     >
                       {" "}
-                      <Card.Img variant="top" src={kit.image} />
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "100%", height: "100px" }}
+/>
                     </div>
                     <div>
                       <Card.Body style={{ padding: "0px" }}>
@@ -270,7 +242,7 @@ export default function WholeSpices() {
                           style={{
                             position: "relative",
                             width: "100%",
-                            marginTop: "3%",
+                            marginTop: "-8%",
                           }}
                         >
                           <img
@@ -278,7 +250,7 @@ export default function WholeSpices() {
                             alt="SelectionCard-img"
                             style={{
                               width: "100%",
-                              height: "auto",
+                              height: "70px",
                               display: "block",
                             }}
                           />
@@ -293,6 +265,7 @@ export default function WholeSpices() {
                               fontFamily: "kapraneue, sans-serif",
                               letterSpacing: "1px",
                             }}
+                            className="view-allproducts"
                           >
                             VIEW PRODUCT
                           </h4>
@@ -303,6 +276,7 @@ export default function WholeSpices() {
                               left: "50%",
                               transform: "translateX(-50%)",
                             }}
+                            className="allproducts-price"
                           >
                             <div
                               style={{
@@ -310,6 +284,7 @@ export default function WholeSpices() {
                                 gap: "10px",
                                 alignItems: "center",
                               }}
+                              className="allproducts-price-display"
                             >
                               <p
                                 style={{
@@ -317,17 +292,20 @@ export default function WholeSpices() {
                                   margin: 0,
                                   opacity: "0.7",
                                 }}
+                                 className="discount-price"
                               >
-                                Rs {kit.originalPrice}
+                                {/* Rs {150} */}
                               </p>
                               <p
                                 style={{
-                                  fontWeight: "bold",
+                                  fontFamily: "kapraneue, sans-serif",
+                                  letterSpacing:'1px',
                                   margin: 0,
                                   fontSize: "25px",
                                 }}
+                                className="original-price"
                               >
-                                Rs {kit.discountedPrice}
+                                {/* Rs {kit.price} */}
                               </p>
                             </div>
                           </div>
@@ -342,6 +320,7 @@ export default function WholeSpices() {
         </Container>
         <Reviews />
         {/* <LearnMore /> */}
+        {/* <LearnMoreProducts /> */}
         <LearnMoreWhole />
         <Footer />
       </div>

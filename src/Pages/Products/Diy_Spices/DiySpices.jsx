@@ -9,7 +9,7 @@ import butterpaneerkit from "/media/butterpaneerkit.jpeg";
 import carolekittop from "/media/carolekittop.jpeg";
 import pavbhajidiytop from "/media/pavbhajidiytop.jpeg";
 import tacoseasoningtop from "/media/tacoseasoningtop.jpeg";
-import biyranimasalaside from "/media/biyranimasalaside.jpeg";
+
 import currypowderkit from "/media/currypowderkit.jpeg";
 import fivespieceside from "/media/fivespieceside.jpeg";
 import Navbar_Menu from "../../../Components/Navbar_Menu";
@@ -19,82 +19,50 @@ import LearnMoreDiy from "./LearnMoreDiy";
 import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
 
-const dispices = [
-  {
-    id: 45,
-    title: "DIY CHOLE MASALA KIT",
-    image: cholemasalakit,
-    originalPrice: 135,
-    discountedPrice: 125,
-  },
-  {
-    id: 46,
-    title: "DIY GARAM MASALA KIT",
-    image: garammasalakit,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 47,
-    title: "DIY RASAM POWDER KIT",
-    image: rasampowderkit,
-    originalPrice: 140,
-    discountedPrice: 120,
-  },
-  {
-    id: 48,
-    title: "DIY BUTTER PANEER MASALA KIT",
-    image: butterpaneerkit,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 49,
-    title: "DIY CAROLE SEASONING KIT",
-    image: carolekittop,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 50,
-    title: "DIY PAV BHAJI MASALA KIT",
-    image: pavbhajidiytop,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 51,
-    title: "DIY TACO SEASONING MASALA KIT",
-    image: tacoseasoningtop,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 52,
-    title: "DIY BIRYANI MASALA KIT",
-    image: biyranimasalaside,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-  {
-    id: 53,
-    title: "DIY CURRY POWDER KIT",
-    image: currypowderkit,
-    originalPrice: 125,
-    discountedPrice: 115,
-  },
-
-  {
-    id: 54,
-    title: "DIY CHINESE FIVE SPICE KIT",
-    image: fivespieceside,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-];
+function ShimmerCard() {
+  return (
+    <Col xs={6} sm={6} md={4} lg={3} className="card-item-products">
+      <div
+        style={{
+          width: "100%",
+          height: "400px",
+          borderRadius: "25px 25px 60px 60px",
+          boxShadow: "1px 1px 5px lightgrey",
+          marginBottom: "50px",
+          padding: "15px",
+        }}
+      >
+        <div className="shimmer" style={{ height: "40px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "200px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "70px" }} />
+      </div>
+    </Col>
+  );
+}
 
 export default function DiySpices() {
   const [isVisible, setIsVisible] = useState(false);
+  const [diySpices, setDiySpices] = useState([]);
+
+
+  useEffect(() => {
+    const fetchDiySpices = async () => {
+      try {
+        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products?category=DIY%20SPICE%20KIT");
+        const data = await response.json();
+        if (data.success) {
+          setDiySpices(data.data);
+        } else {
+          console.error("Failed to fetch DIY spices:", data.message);
+        }
+      } catch (err) {
+        console.error("Error fetching DIY spices:", err);
+      }
+    };
+  
+    fetchDiySpices();
+  }, []);
+  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -129,14 +97,13 @@ export default function DiySpices() {
             backgroundColor: "#AF261D",
             position: "relative",
             width: "100vw",
-            height: "30vh",
+            height: "25vh",
           }}
         >
           <div
             style={{
               position: "absolute",
               top: "1%",
-
               backgroundImage: 'url("/media/strip-reverse.png")',
               backgroundSize: "100%",
               backgroundPosition: "center",
@@ -146,7 +113,7 @@ export default function DiySpices() {
             }}
           >
             <Container>
-              <div style={{ margin: "10% 20% 15%" }}>
+              <div style={{ margin: "10% 20% 15%" }}  className="div-diy-top">
                 <h1
                   style={{
                     lineHeight: "1.5",
@@ -158,6 +125,7 @@ export default function DiySpices() {
                     textAlign: "center",
                     color: "white",
                   }}
+                  className="h1-wholespices"
                 >
                   SHOP BY DIY SPICES KIT
                 </h1>
@@ -166,33 +134,46 @@ export default function DiySpices() {
           </div>
         </div>
 
-        <Container style={{ marginBottom: "10%", marginTop: "10%" }}>
+        <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {dispices.map((kit) => {
-              return (
-                <Col sm={3} key={kit.id} className="card-item">
+            {/* {diySpices.map((kit) => { */}
+            {diySpices.length === 0
+              ? Array.from({ length: 8 }).map((_, index) => <ShimmerCard key={index} />)
+              : diySpices.map((kit) => (
+              // return (
+                <Col
+                xs={6}
+                sm={6}
+                md={4}
+                lg={3}
+                key={kit._id}
+                className="card-item-products"
+              >
                   <Card
-                    style={{
-                      width: "15rem",
+                     style={{
+                      width: "100%", 
                       borderRadius: "25px 25px 60px 60px",
                       border: "none",
+                      cursor:'pointer',
                       boxShadow: "1px 1px 5px lightgrey",
                       height: "auto",
-                      marginBottom: "40px",
+                      marginBottom: "50px",
                     }}
-                    onClick={() => handleCardClick(kit.id)}
-                    className="zoom-in-image"
+                    onClick={() => handleCardClick(kit._id)}
+
+                    // className="zoom-in-image"
                   >
                     <Card.Title
                       style={{
-                        padding: "20px",
+                        marginTop: "15px",
+                        padding: "5px",
                         fontWeight: "bold",
                         fontSize: "18px",
                         textAlign: "center",
                         fontFamily: "kapraneue, sans-serif",
                       }}
                     >
-                      {kit.title}
+                      {kit.name}
                     </Card.Title>
                     {/* <p
                     style={{
@@ -216,17 +197,49 @@ export default function DiySpices() {
                     SALE
                   </p> */}
 
-                    <div
+<div
+                    className="d-none d-lg-block"
                       style={{
-                        width: "75%",
+                        width: "50%",
                         height: "auto",
-                        marginBottom: "10%",
-                        marginTop: "5%",
+                        marginBottom: "15px",
                         alignSelf: "center",
                       }}
                     >
                       {" "}
-                      <Card.Img variant="top" src={kit.image} />
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "100%", height: "200px" }}
+/>
+                    </div>
+                    <div
+                    className="d-block d-lg-none"
+                      style={{
+                        width: "50%",
+                        height: "auto",
+                        marginBottom: "15px",
+                        alignSelf: "center",
+                      }}
+                    >
+                      {" "}
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "100%", height: "100px" }}
+/>
                     </div>
                     <div>
                       <Card.Body style={{ padding: "0px" }}>
@@ -236,7 +249,7 @@ export default function DiySpices() {
                             alt="SelectionCard-img"
                             style={{
                               width: "100%",
-                              height: "auto",
+                              height: "70px",
                               display: "block",
                             }}
                           />
@@ -251,6 +264,7 @@ export default function DiySpices() {
                               fontFamily: "kapraneue, sans-serif",
                               letterSpacing: "1px",
                             }}
+                             className="view-allproducts"
                           >
                             VIEW PRODUCT
                           </h4>
@@ -261,6 +275,7 @@ export default function DiySpices() {
                               left: "50%",
                               transform: "translateX(-50%)",
                             }}
+                            className="allproducts-price"
                           >
                             <div
                               style={{
@@ -268,6 +283,7 @@ export default function DiySpices() {
                                 gap: "10px",
                                 alignItems: "center",
                               }}
+                              className="allproducts-price-display"
                             >
                               <p
                                 style={{
@@ -275,8 +291,9 @@ export default function DiySpices() {
                                   margin: 0,
                                   opacity: "0.7",
                                 }}
+                                className="discount-price"
                               >
-                                Rs {kit.originalPrice}
+                                {/* Rs {150} */}
                               </p>
                               <p
                                 style={{
@@ -284,8 +301,9 @@ export default function DiySpices() {
                                   margin: 0,
                                   fontSize: "25px",
                                 }}
+                                 className="original-price"
                               >
-                                Rs {kit.discountedPrice}
+                                {/* Rs {kit.price} */}
                               </p>
                             </div>
                           </div>
@@ -294,8 +312,8 @@ export default function DiySpices() {
                     </div>
                   </Card>
                 </Col>
-              );
-            })}
+              // );
+                              ))}
           </Row>
         </Container>
         <Reviews />

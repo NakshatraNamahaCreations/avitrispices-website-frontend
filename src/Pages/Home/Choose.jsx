@@ -5,7 +5,6 @@ import fastdelivery from "/media/fastdelivery.png";
 
 export default function Choose() {
   useEffect(() => {
-    // No need to add scroll event listener for zoom-in effect
   }, []);
 
   return (
@@ -27,6 +26,7 @@ export default function Choose() {
           textAlign: "center",
           color: "white",
         }}
+        className="choose-background"
       >
         <h2
           style={{
@@ -36,6 +36,7 @@ export default function Choose() {
             marginBottom: "5%",
             fontFamily: "kapraneue, sans-serif",
           }}
+          className="choose-h2"
         >
           WHY CHOOSE US?
         </h2>
@@ -67,7 +68,15 @@ export default function Choose() {
                 }}
               />
             </div>
-            <p style={{fontFamily: 'KapraNeueMedium, sans-serif', fontSize:'16px'}}>Highly tasty and nutritious</p>
+            <p
+              style={{
+                fontFamily: "KapraNeueMedium, sans-serif",
+                fontSize: "16px",
+              }}
+              className="p-choose"
+            >
+              Highly tasty and nutritious
+            </p>
           </div>
           <div
             style={{
@@ -90,7 +99,15 @@ export default function Choose() {
                 }}
               />
             </div>
-            <p style={{fontFamily: 'KapraNeueMedium, sans-serif', fontSize:'16px'}}>No chemical or pesticides</p>
+            <p
+              style={{
+                fontFamily: "KapraNeueMedium, sans-serif",
+                fontSize: "16px",
+              }}
+              className="p-choose"
+            >
+              Adulterant free Spices
+            </p>
           </div>
           <div
             style={{
@@ -113,7 +130,15 @@ export default function Choose() {
                 }}
               />
             </div>
-            <p style={{fontFamily:'KapraNeueMedium, sans-serif', fontSize:'16px'}}>Fastest delivery to your doorsteps</p>
+            <p
+              style={{
+                fontFamily: "KapraNeueMedium, sans-serif",
+                fontSize: "16px",
+              }}
+              className="p-choose"
+            >
+              Quick delivery to your doorsteps
+            </p>
           </div>
         </div>
       </div>

@@ -30,10 +30,11 @@ export default function Vision_Commitment() {
                   fontWeight: "bold",
                   letterSpacing: "2px",
                 }}
+                className="h2-vision-commentment"
               >
                 OUR VISION
               </h2>
-              <p style={{ fontSize: "26px", letterSpacing: "1px" }}>
+              <p style={{ fontSize: "26px", letterSpacing: "1px" }} className="p-vision-commentment">
                 At Avitri Spices, our vision is to transform cooking into an art
                 form by delivering spices that inspire. We aim to bring the
                 bold, authentic flavors of India to homes and businesses
@@ -63,10 +64,11 @@ export default function Vision_Commitment() {
                   fontWeight: "bold",
                   letterSpacing: "2px",
                 }}
+                className="h2-vision-commentment"
               >
                 OUR COMMITMENT
               </h2>
-              <p style={{ fontSize: "26px", letterSpacing: "1px" }}>
+              <p style={{ fontSize: "26px", letterSpacing: "1px" }} className="p-vision-commentment">
                 We’re committed to delivering authentic flavours, enhancing
                 culinary experiences, and building lasting partnerships. Whether
                 you’re a home cook, a professional chef, or a food business,
@@ -96,10 +98,11 @@ export default function Vision_Commitment() {
               textAlign: "center",
               letterSpacing:"2px"
             }}
+            className="certification-h2"
           >
             OUR CERTIFICATIONS
           </h2>
-          <img src={certification} alt="certification" style={{width:'30%', height:'auto'}} />
+          <img src={certification} alt="certification" style={{width:'30%', height:'auto'}} className="img-certification" />
 
         </div>
     </div>

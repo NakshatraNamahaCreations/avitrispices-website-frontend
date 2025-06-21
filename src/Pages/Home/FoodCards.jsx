@@ -11,15 +11,13 @@ import vegBiryani from "/media/CHINESEFIVE.png";
 import save from "/media/save-icon.png";
 
 const foodItems = [
-  { title: "Chole Masala", image: chole,  route: "/ground-spices", },
-  { title: "Pav Bhaji", image: pavbhaji,  route: "/ground-spices",},
-  { title: "Taco Seasoning", image: taco,  route: "/ground-spices", },
-  { title: "Chinese Five Spices", image: vegBiryani, route: "/ground-spices", },
-
+  { title: "Chole Masala", image: chole, route: "/ground-spices" },
+  { title: "Pav Bhaji", image: pavbhaji, route: "/ground-spices" },
+  { title: "Taco Seasoning", image: taco, route: "/ground-spices" },
+  { title: "Chinese Five Spices", image: vegBiryani, route: "/ground-spices" },
 ];
 
 export default function FoodCards() {
-
   // const [hoveredCard, setHoveredCard] = useState(null);
 
   // const slideIn = (cardIndex) =>
@@ -32,49 +30,51 @@ export default function FoodCards() {
 
   return (
     <Container fluid className="p-5" style={{ backgroundColor: "#AF261D" }}>
-        {/* Left Section - Image & Title */}
-        <div
-          style={{
-            textAlign: "center",
-            marginBottom:'2%'
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "45px",
-              fontWeight: "bold",
-              letterSpacing: "2px",
-              textAlign: "center",
-              fontFamily: "kapraneue, sans-serif",
-              color: "white",
-              lineHeight:'1.7'
-            }}
-          >
-             Spice It Up with Avitri - Recipes that Inspire!
-          </h2>
-        </div>
+      {/* Left Section - Image & Title */}
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          gap: "30px",
+          textAlign: "center",
+          marginBottom: "2%",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "45px",
+            fontWeight: "bold",
+            letterSpacing: "2px",
+            textAlign: "center",
+            fontFamily: "kapraneue, sans-serif",
+            color: "white",
+            lineHeight: "1.7",
+          }}
+          className="spices-card-h2"
+        >
+          Spice It Up with Avitri - Recipes that Inspire!
+        </h2>
+      </div>
+      <div
+        style={{
+          // display: "flex",
+          // alignItems: "center",
+          // justifyContent: "center",
+          // flexWrap: "wrap",
+          // gap: "30px",
           width: "100%",
         }}
       >
-      
-
         {/* Right Section - Food Items Grid */}
         <div
-          style={{
-            flex: "2",
-            display: "flex",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-            gap: "20px",
-            width: "100%",
-            justifyContent: "center",
-          }}
+          style={
+            {
+              // flex: "2",
+              // display: "flex",
+              // gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+              // gap: "20px",
+              // width: "100%",
+              // justifyContent: "center",
+            }
+          }
+          className="food-items-container"
         >
           {foodItems.map((item, index) => (
             <Card
@@ -85,6 +85,7 @@ export default function FoodCards() {
                 border: "none",
                 backgroundColor: "#AF261D",
               }}
+
               // className="zoom-in-image"
               // onMouseEnter={() => setHoveredCard(index)}
               // onMouseLeave={() => setHoveredCard(null)}
@@ -99,6 +100,7 @@ export default function FoodCards() {
                   objectFit: "cover",
                   borderRadius: "10px",
                 }}
+                className="img-card-spices"
               />
               <Card.Body style={{ padding: "0" }}>
                 <Card.Text>
@@ -115,7 +117,7 @@ export default function FoodCards() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      textTransform:'uppercase'
+                      textTransform: "uppercase",
                     }}
                   >
                     <h4
@@ -124,9 +126,11 @@ export default function FoodCards() {
                         flex: 1,
                         textAlign: "left",
                         letterSpacing: "1px",
+                        whiteSpace:'nowrap',
                         // fontFamily:'KapraNeueMedium, sans-serif'
-                        fontFamily:'kapraneue, sans-serif'
+                        fontFamily: "kapraneue, sans-serif",
                       }}
+                      className="card-spices-h4"
                     >
                       {item.title.split("<br />").map((line, index) => (
                         <React.Fragment key={index}>
@@ -144,6 +148,7 @@ export default function FoodCards() {
                         objectFit: "contain",
                         marginLeft: "10px",
                       }}
+                      className="card-save-icon"
                     />
                   </div>
                 </Card.Text>

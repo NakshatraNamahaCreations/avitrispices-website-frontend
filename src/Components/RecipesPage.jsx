@@ -1,12 +1,18 @@
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import garamMasala from "/media/garam-masala.png";
-import pav_bhaji from "/media/pav_bhaji.png";
-import chole_masala from "/media/chole_masala.png";
-import birani_masala from "/media/birani_masala.png";
-import rasam_powder from "/media/rasam_powder.png";
+import garamMasala from "/media/garammasaladiykit.jpeg";
+// import pav_bhaji from "/media/pavbhajidiytop.png";
+import pav_bhaji from "../../public/media/PM FS.png"
+import chole_masala from "../../public/media/chole FS.png";
+// /media/cholemasalakit/jpeg";
+import birani_masala from "/media/biyranimasalaside.jpeg";
+import rasam_powder from "/media/RP FS.png";
+import butter_panner from "../../public/media/PBM FS.png";
+import taco_image from "../../public/media/TS FS.png"
 import Navbar_Menu from "./Navbar_Menu";
+import five_image from "../../public/media/fivespieceside.jpeg"
 import { useEffect, useState } from "react";
+import carol_seasoning from "../../public/media/CS FS.png"
 import LearnMore from "../Pages/Home/LearnMore";
 import Footer from "./Footer";
 import delicious_icon from "/media/delicious-icon.png";
@@ -238,7 +244,7 @@ const products = [
   {
     id: 6,
     title: "Butter Paneer Masala",
-    image: rasam_powder,
+    image: butter_panner,
     serves: "4-6",
     time: "30 minutes",
     cookingTime: "1 hour",
@@ -280,7 +286,7 @@ const products = [
   {
     id: 7,
     title: "DIY Taco",
-    image: rasam_powder,
+    image: taco_image,
     serves: "4",
     time: "30 minutes",
     cookingTime: "1 hour",
@@ -367,7 +373,7 @@ const products = [
   {
     id: 9,
     title: "Vegetarian Curry",
-    image: rasam_powder,
+    image: garamMasala,
     serves: "4",
     time: "15 minutes",
     cookingTime: "30 minutes",
@@ -423,7 +429,7 @@ const products = [
   {
     id: 10,
     title: "Chinese Five Spice Stir-Fry",
-    image: rasam_powder,
+    image: five_image,
     serves: "4",
     time: "15 minutes",
     cookingTime: "15 minutes",
@@ -477,7 +483,7 @@ const products = [
   {
     id: 11,
     title: "Creole Shrimp Pasta",
-    image: rasam_powder,
+    image: carol_seasoning,
     serves: "4",
     time: "15 minutes",
     cookingTime: "15 minutes",
@@ -527,7 +533,7 @@ const products = [
   {
     id: 12,
     title: "Vegetarian Creole Rice Bowl",
-    image: rasam_powder,
+    image: carol_seasoning,
     serves: "4",
     time: "15 minutes",
     cookingTime: "15 minutes",
@@ -604,6 +610,7 @@ export default function RecipesPage() {
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
+          // overflow:'hidden'
         }}
       >
       {/* Navbar Top */}
@@ -611,7 +618,7 @@ export default function RecipesPage() {
       <Navbar_Menu />
 
       <Container style={{ padding: "50px", marginTop: "2%" }}>
-        <div style={{ margin: "5% 20% 10% 20%" }}>
+        <div style={{ margin: "5% 20% 10% 20%" }} className="div-recipespage">
           <h1
             style={{
               lineHeight: "1.5",
@@ -624,14 +631,16 @@ export default function RecipesPage() {
               // marginBottom: "5%",
               textTransform: "uppercase",
             }}
+            className="h1-recipes-title"
           >
             {product.title}
           </h1>
-          <div style={{ textAlign: "center" }}>
+          <div style={{ textAlign: "center" }} className="image-recipe-page">
             <img
               src={product.image}
               alt={product.title}
               style={{ width: "300px", height: "auto" }}
+              className="recipes-img"
             />
           </div>
           <div
@@ -643,6 +652,7 @@ export default function RecipesPage() {
               marginBottom: "2%",
               fontSize: "22px",
             }}
+            className="services-prepartion-cooking"
           >
             <p>
               <span
@@ -708,6 +718,7 @@ export default function RecipesPage() {
                 src={delicious_icon}
                 alt="delicious"
                 style={{ width: "50%", height: "auto", objectFit: "cover" }}
+                
               />
               <p
                 style={{
@@ -716,6 +727,7 @@ export default function RecipesPage() {
                   letterSpacing: "1px",
                   fontFamily: "kapraneue, sans-serif",
                 }}
+                className="benefits-p"
               >
                 DELICIOUS
               </p>
@@ -733,6 +745,7 @@ export default function RecipesPage() {
                   letterSpacing: "1px",
                   fontFamily: "kapraneue, sans-serif",
                 }}
+                 className="benefits-p"
               >
                 AROMATIC
               </p>
@@ -750,6 +763,7 @@ export default function RecipesPage() {
                   letterSpacing: "1px",
                   fontFamily: "kapraneue, sans-serif",
                 }}
+                 className="benefits-p"
               >
                 FLAVOURY
               </p>

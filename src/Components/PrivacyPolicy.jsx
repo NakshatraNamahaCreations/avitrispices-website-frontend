@@ -27,12 +27,13 @@ export default function PrivacyPolicy() {
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
+          // overflow:'hidden'
         }}
       >
       {/* Navbar Top */}
       <Navbar_Menu />
       <Container>
-        <div style={{ margin: "12% 20% 10% 20%" }}>
+        <div style={{ margin: "12% 20% 10% 20%" }} className="div-terms">
           <h1
             style={{
               lineHeight: "1.5",
@@ -44,6 +45,7 @@ export default function PrivacyPolicy() {
               textAlign: "center",
               marginBottom: "5%",
             }}
+            className="termsservice"
           >
             PRIVACY POLICY
           </h1>
@@ -335,7 +337,7 @@ export default function PrivacyPolicy() {
                         letterSpacing: "1.5px",
                       }}
                     >
-                      Contact@AvitriSpices.in.
+                      admin@avitrispices.in.
                     </span>
                   </li>
                 </ul>
@@ -367,7 +369,7 @@ export default function PrivacyPolicy() {
                         letterSpacing: "2px",
                       }}
                     >
-                      Contact@AvitriSpices.in
+                      admin@avitrispices.in
                     </span>
                   </li>
                   <li>

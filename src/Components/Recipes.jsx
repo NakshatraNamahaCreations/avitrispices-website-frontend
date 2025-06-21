@@ -27,6 +27,7 @@ export default function Recipes() {
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
+          // overflow:'hidden'
         }}
       >
       {/* Navbar Top */}
@@ -34,9 +35,9 @@ export default function Recipes() {
 
       {/* RECIPES */}
 
-      <div style={{ backgroundColor: "#B0261E", padding: "10px" }}>
+      <div style={{ backgroundColor: "#B0261E", padding: "10px" }} >
         <Container>
-          <div style={{ margin: "10% 0% 5% 0%" }}>
+          <div style={{ margin: "10% 0% 5% 0%" }} className="div-recpies">
             <h1
               style={{
                 // lineHeight: "1.5",
@@ -48,6 +49,7 @@ export default function Recipes() {
                 textAlign: "center",
                 color: "white",
               }}
+              className="h1-recipes"
             >
               {/* Super-Spicy Recipes: */}
               Spice It Up with Avitri - Recipes that Inspire!

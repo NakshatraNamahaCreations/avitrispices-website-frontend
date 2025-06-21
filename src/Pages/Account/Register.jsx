@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import for navigation
+import { useNavigate } from "react-router-dom"; 
 import { Container, Form, Button } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Navbar_Menu from "../../Components/Navbar_Menu";
 import Footer from "../../Components/Footer";
 import Vector from "/media/Vector.png";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
-
 
 export default function Register() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [showPassword, setShowPassword] = useState(false);
 
-  // State to manage form input
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -55,10 +55,10 @@ export default function Register() {
 
 
   const handleRegister = async () => {
-    setErrorMessage(""); // Reset error message before request
+    setErrorMessage(""); 
   
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.mobilenumber) {
-      setErrorMessage("⚠️ All fields are required.");
+      setErrorMessage("All fields are required.");
       return;
     }
   
@@ -72,24 +72,20 @@ export default function Register() {
       });
   
       if (response.status === 201) {
-        alert("✅ Registration successful! Redirecting to login.");
-        navigate("/login"); // Redirect to login page after success
+        alert(" Registration successful! Redirecting to login.");
+        navigate("/login"); 
       }
     } catch (error) {
-      console.error("❌ Registration Error:", error.response?.data); // Log error for debugging
+      console.error("Registration Error:", error.response?.data);
       if (error.response?.status === 400) {
-        setErrorMessage("⚠️ Please check your inputs and try again.");
+        setErrorMessage(" Please check your inputs and try again.");
       } else if (error.response?.status === 409) {
-        setErrorMessage("⚠️ Email already exists. Please log in instead.");
+        setErrorMessage(" Email already exists. Please log in instead.");
       } else {
-        setErrorMessage(error.response?.data?.message || "❌ Registration failed. Try again.");
+        setErrorMessage(error.response?.data?.message || " Registration failed. Try again.");
       }
     }
   };
-  
-  
-  
-
 
   return (
     <>
@@ -98,12 +94,13 @@ export default function Register() {
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
+          // overflow:'hidden'
         }}
       >
         <Navbar_Menu />
 
         <Container>
-          <div style={{ margin: "12% 20% 10% 20%" }}>
+          <div style={{ margin: "12% 20% 10% 20%" }} className="div-register">
             <h1
               style={{
                 lineHeight: "1.5",
@@ -115,6 +112,7 @@ export default function Register() {
                 textAlign: "center",
                 marginBottom: "5%",
               }}
+              className="h1-createaccount"
             >
               CREATE ACCOUNT
             </h1>
@@ -191,9 +189,9 @@ export default function Register() {
                   />
                 </FloatingLabel>
 
-{/* Mobile number */}
+                {/* Mobile number */}
       
-                      <FloatingLabel
+                <FloatingLabel
                   controlId="floatingMobilenumber"
                   label="Mobile Number"
                   className="mb-3"
@@ -212,10 +210,11 @@ export default function Register() {
                     }}
                   />
                 </FloatingLabel>
+
                 {/* Password */}
-                <FloatingLabel controlId="floatingPassword" label="Password">
+                <FloatingLabel controlId="floatingPassword" label="Password" className="position-relative">
                   <Form.Control
-                    type="password"
+                  type={showPassword ? "text" : "password"}
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
@@ -227,6 +226,18 @@ export default function Register() {
                       borderRadius: "10px",
                     }}
                   />
+                  <span
+                                      onClick={() => setShowPassword(!showPassword)}
+                                      style={{
+                                        position: "absolute",
+                                        right: "15px",
+                                        top: "50%",
+                                        transform: "translateY(-50%)",
+                                        cursor: "pointer",
+                                      }}
+                                    >
+                                      {showPassword ? <FaEye /> :   <FaEyeSlash />}
+                                    </span>
                 </FloatingLabel>
               </div>
             </div>
@@ -254,6 +265,7 @@ export default function Register() {
                   height: "100%",
                   display: "block",
                 }}
+                 className="vector-signin"
               />
               <h3
                 style={{
@@ -270,6 +282,7 @@ export default function Register() {
                   fontFamily: "kapraneue, sans-serif",
                   whiteSpace: "nowrap",
                 }}
+                className="submit-btn-createaccount"
               >
                 SUBMIT
               </h3>
@@ -286,23 +299,25 @@ export default function Register() {
                   padding: "5px 20px",
                   fontFamily: "kapraneue, sans-serif",
                   marginRight: "15px",
-                  letterSpacing:'1px'
+                  letterSpacing: "1px",
                 }}
+                className="reset-cancel-create"
               >
                 Reset
               </Button>
 
               {/* Cancel Button - Navigates to another page */}
               <Button
-                onClick={() => navigate("/")} 
+                onClick={() => navigate("/")}
                 variant="outline-dark"
                 style={{
                   fontSize: "20px",
                   padding: "5px 20px",
                   fontFamily: "kapraneue, sans-serif",
-                  marginLeft: "15px", 
-                  letterSpacing:'1px'
+                  marginLeft: "15px",
+                  letterSpacing: "1px",
                 }}
+                className="reset-cancel-create"
               >
                 Cancel
               </Button>
@@ -343,6 +358,7 @@ export default function Register() {
                     height: "100%",
                     display: "block",
                   }}
+                  className="vector-create-btn"
                 />
                 <h3
                   style={{
@@ -359,6 +375,7 @@ export default function Register() {
                     fontFamily: "kapraneue, sans-serif",
                     whiteSpace: "nowrap",
                   }}
+                  className="create-account-btn"
                 >
                   SIGN IN
                 </h3>

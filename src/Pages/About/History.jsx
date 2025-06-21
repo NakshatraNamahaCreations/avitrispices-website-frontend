@@ -3,7 +3,7 @@ import card from "/media/timeline.png";
 import card1 from "/media/timeline.png";
 import logo from "/media/logo.png";
 import img_1956 from "/media/1956_1.png";
-import img_1990 from "/media/1990_2.png";
+import img_1990 from "/media/esspieces.jpeg";
 import img_1997 from "/media/1997_3.png";
 import img_2005 from "/media/2005_4.png";
 import img_2010 from "/media/2010_5.png";
@@ -16,7 +16,7 @@ import redline from "/media/redline.png";
 export default function History() {
   return (
     <>
-      <div style={{ padding: "30px", marginTop: "20%", position: "relative" }}>
+      <div style={{ padding: "30px", marginTop: "25%", position: "relative" }} className="div-history d-none d-lg-block">
         <h2
           style={{
             fontSize: "50px",
@@ -25,6 +25,7 @@ export default function History() {
             marginBottom: "3%",
             textAlign: "center",
           }}
+          className="h2-whereitallbegan"
         >
           WHERE IT ALL BEGAN
         </h2>
@@ -34,12 +35,12 @@ export default function History() {
             {
               year: "1956: THE HUMBLE BEGINNINGS",
               img: img_1956,
-              text: "The story of avitri spices trackes back to 1956, when Mr. Subray Bhat began a small farm-toshop trading business in Kumta, India, focusing on betel nut and black pepper. With a vision to connect local farmers with markets, he laid the foundation of a business deeply rooted in integrity and quality.",
+              text: "The story of avitri spices trackes back to 1956, when Mr. Subray Bhat began a small farm-to-shop trading business in Kumta, India, focusing on betel nut and black pepper. With a vision to connect local farmers with markets, he laid the foundation of a business deeply rooted in integrity and quality.",
             },
             {
               year: "1990: EXPANSION TO BANGALORE",
               img: img_1990,
-              text: "In 1990, Mr. Ganesh Bhat moved to Bangalore, recognizing the growing demand for spices in urban food manufacturing. He established E.S Trading Co, a unit dedicated to supplying highquality spices to food manufacturing companies across Karnataka, marking the family’s first step toward large-scale operations.",
+              text: "In 1990, Mr. Ganesh Bhat moved to Bangalore, recognizing the growing demand for spices in urban food manufacturing. He established E.S Trading Co, a unit dedicated to supplying high-quality spices to food manufacturing companies across Karnataka, marking the family’s first step toward large-scale operations.",
             },
             {
               year: "1997: SUSTAINABLE SOURCING IN SIRSI",
@@ -49,7 +50,7 @@ export default function History() {
             {
               year: "2005: A NATIONWIDE PRESENCE",
               img: img_2005,
-              text: "By 2005, these family-run firms-E.S Trading Co and Raja & Co-had grown into trusted suppliers of spices, catering to major cities across India. Their reputation for consistency and quality made them indispensable partners for the food industry.",
+              text: "By 2005, these family-run firms ; E.S Trading Co and Raja & Co, had grown into trusted suppliers of spices, catering to major cities across India. Their reputation for consistency and quality made them indispensable partners for the food industry.",
             },
             {
               year: "2010: Stepping into Global Markets",
@@ -69,7 +70,7 @@ export default function History() {
             {
               year: "2024: Conquering Western Markets",
               img: img_2024,
-              text: "In 2024, Avitri Spices entered the Western markets, bringing Indian flavors to new audiences. With a strong export presence in Europe, North America, and Australia, Avitri continues to make strides in becoming a global leader in the spice industry. Starting new and unique products such as the DIY Spice kits Avitri looks to its future with a head on spirit.",
+              text: "In 2024, Avitri Spices entered the Western markets, bringing Indian flavors to new audiences. With a strong export presence in Europe, North America and Australia, Avitri continues to make strides in becoming a global leader in the spice industry. Starting new and unique products such as the DIY Spice kits Avitri looks to its future with a head on spirit.",
             },
           ].map((item, index) => (
             <Row key={index} className="align-items-center mb-5 mt-5">
@@ -85,7 +86,8 @@ export default function History() {
                         borderRadius: "50%",
                         boxShadow: "2px 2px 5px lightgrey",
                       }}
-                      className="zoom-in-image"
+                       
+                      className="zoom-in-image img-history"
                     />
                   </Col>
                   <Col md={6}>
@@ -109,15 +111,16 @@ export default function History() {
                       <div className="content-overlay p-3">
                         <h3
                           style={{
-                            fontSize: "35px",
+                            fontSize: "32px",
                             color: "#B0261E",
                             letterSpacing: "2px",
                             fontFamily: "kapraneue, sans-serif",
                           }}
+                          className="h3-history-title"
                         >
                           {item.year}
                         </h3>
-                        <p style={{ fontSize: "20px", letterSpacing: "1px" }}>
+                        <p style={{ fontSize: "18px", letterSpacing: "1px" }} className="p-history-description">
                           {item.text}
                         </p>
                       </div>
@@ -137,6 +140,7 @@ export default function History() {
                         textAlign: "right",
                   
                       }}
+                      
                     >
                       <img
                         src={index % 4 === 0 ? card : card1}
@@ -147,15 +151,16 @@ export default function History() {
                       <div className="content-overlay p-3">
                         <h3
                           style={{
-                            fontSize: "35px",
+                            fontSize: "32px",
                             color: "#B0261E",
                             letterSpacing: "2px",
                             fontFamily: "kapraneue, sans-serif",
                           }}
+                          className="h3-history-title"
                         >
                           {item.year}
                         </h3>
-                        <p style={{ fontSize: "20px", letterSpacing: "1px" }}>
+                        <p style={{ fontSize: "18px", letterSpacing: "1px" }} className="p-history-description">
                           {item.text}
                         </p>
                       </div>
@@ -171,7 +176,7 @@ export default function History() {
                         borderRadius: "50%",
                         boxShadow: "2px 2px 5px lightgrey",
                       }}
-                      className="zoom-in-image"
+                      className="zoom-in-image img-history"
                     />
                   </Col>
                 </>
@@ -218,6 +223,137 @@ export default function History() {
             />
           </div>
         </Container>
+      </div>
+      <div className="d-block d-lg-none">
+      {window.innerWidth <= 768 && (
+  <div style={{ padding: "20px", marginTop: "128%", position: "relative" }} className="div-history-mobile">
+    <h2
+      style={{
+        fontSize: "30px",
+        fontWeight: "bold",
+        letterSpacing: "1px",
+        marginBottom: "5%",
+        textAlign: "center",
+      }}
+    >
+      WHERE IT ALL BEGAN
+    </h2>
+
+    {[
+      {
+        year: "1956: THE HUMBLE BEGINNINGS",
+        img: img_1956,
+        text: "The story of avitri spices trackes back to 1956, when Mr. Subray Bhat began a small farm-to-shop trading business in Kumta, India, focusing on betel nut and black pepper. With a vision to connect local farmers with markets, he laid the foundation of a business deeply rooted in integrity and quality.",
+      },
+      {
+        year: "1990: EXPANSION TO BANGALORE",
+        img: img_1990,
+        text: "In 1990, Mr. Ganesh Bhat moved to Bangalore, recognizing the growing demand for spices in urban food manufacturing. He established E.S Trading Co, a unit dedicated to supplying high-quality spices to food manufacturing companies across Karnataka, marking the family’s first step toward large-scale operations.",
+      },
+      {
+        year: "1997: SUSTAINABLE SOURCING IN SIRSI",
+        img: img_1997,
+        text: "To further strengthen the supply chain and support sustainable practices, Mr. Nagaraj Bhat set up Raja & Co in Sirsi, nestled in the heart of the western ghats. This initative ensured the ethical sourcing of spices directly from farmer’s while maintaining the ecosystem’s balance.”",
+      },
+      {
+        year: "2005: A NATIONWIDE PRESENCE",
+        img: img_2005,
+        text: "By 2005, these family-run firms ; E.S Trading Co and Raja & Co, had grown into trusted suppliers of spices, catering to major cities across India. Their reputation for consistency and quality made them indispensable partners for the food industry.",
+      },
+      {
+        year: "2010: Stepping into Global Markets",
+        img: img_2010,
+        text: "The year 2010 marked a new milestone with the beginning of exports to Gulf countries. This move not only expanded the business geographically but also introduced the world to the rich flavors of Indian spices.",
+      },
+      {
+        year: "2016: The Birth of Avitri",
+        img: img_2016,
+        text: "To unify the family legacy and scale operations, Avitri Spices was established in 2016. With a state-of-the-art 30,000 sq. ft. facility in Bangalore, equipped with advanced machinery like Destoners, Colour Sorters, Steam Sterilizers, and Metal Detectors, Avitri emerged as a powerhouse in spice processing and manufacturing.",
+      },
+      {
+        year: "2020: A Trusted Partner Across India",
+        img: img_2020,
+        text: "By 2020, Avitri Spices had become a household name, supplying spices and blends to all major retail and FMCG companies across India. The commitment to quality, innovation, and customer satisfaction remained the cornerstone of their success.",
+      },
+      {
+        year: "2024: Conquering Western Markets",
+        img: img_2024,
+        text: "In 2024, Avitri Spices entered the Western markets, bringing Indian flavors to new audiences. With a strong export presence in Europe, North America and Australia, Avitri continues to make strides in becoming a global leader in the spice industry. Starting new and unique products such as the DIY Spice kits Avitri looks to its future with a head on spirit.",
+      },
+    ].map((item, index) => (
+      <div key={index} style={{ marginBottom: "40px", textAlign: "center" }}>
+        <img
+          src={item.img}
+          alt={item.year}
+          style={{
+            width: "60%",
+            borderRadius: "50%",
+            boxShadow: "2px 2px 5px lightgrey",
+            marginBottom: "20px",
+          }}
+        />
+        <div
+          style={{
+            backgroundColor: "#fff",
+            padding: "20px",
+            boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
+            borderRadius: "12px",
+            margin: "0 auto",
+            width: "100%",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "20px",
+              color: "#B0261E",
+              letterSpacing: "1px",
+              marginBottom: "10px",
+              fontFamily: "kapraneue, sans-serif",
+            }}
+          >
+            {item.year}
+          </h3>
+          <p style={{ fontSize: "16px", letterSpacing: "0.5px", color: "#444" }}>{item.text}</p>
+        </div>
+      </div>
+    ))}
+
+    {/* <div style={{ textAlign: "center", marginTop: "40px" }}>
+      <img src={redcircle} alt="red-circle" style={{ width: "50%", height: "auto" }} />
+    </div>
+
+    <div style={{ textAlign: "center", marginTop: "30px" }}>
+      <img src={redline} alt="red-line" style={{ width: "100%", height: "auto" }} />
+    </div> */}
+
+    <div
+      style={{
+        width: "100px",
+        height: "100px",
+        borderRadius: "50%",
+        boxShadow: "1px 1px 5px lightgrey",
+        overflow: "hidden",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "white",
+        margin: "30px auto",
+      }}
+    >
+      <img
+        src={logo}
+        alt="avitri-logo"
+        style={{
+          width: "70%",
+          height: "auto",
+          objectFit: "cover",
+          borderRadius: "50%",
+        }}
+      />
+    </div>
+  </div>
+)}
+
       </div>
     </>
   );

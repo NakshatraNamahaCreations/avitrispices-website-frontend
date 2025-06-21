@@ -19,7 +19,6 @@
   font-style: normal;
 }
 
-
 h2 {
   font-family: kapraneue, sans-serif;
 }
@@ -43,34 +42,33 @@ body {
 }
 
 .Footer-ul li a {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-size: 14px;
   letter-spacing: 1.5px;
   text-decoration: none;
   color: white;
   font-family: KapraNeueMedium, sans-serif;
-  
 }
 
 .Footer-ul li:hover a {
-  text-decoration: underline #AF261D;
+  text-decoration: underline #af261d;
   text-underline-offset: 10px;
   text-decoration-thickness: 2px;
-  color: #F4B65B;
+  color: #f4b65b;
 }
 
 .Footer-ul li {
   margin-bottom: 15px;
   font-size: 10px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .Footer-ul-title {
-  margin-bottom: 22px;
   font-size: 18px;
   letter-spacing: 1px;
   font-weight: bold;
   font-family: kapraneue, sans-serif;
+  margin-bottom: 22px;
 }
 
 .Footer-ul {
@@ -125,7 +123,7 @@ body {
   object-fit: cover;
 }
 
-/* Responsive Design */
+/* Responsive Design
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -137,7 +135,7 @@ body {
     justify-content: center;
     margin-top: 10px;
   }
-}
+} */
 
 /* Navbar Dropdown */
 /* .dropdown-box {
@@ -165,9 +163,10 @@ body {
   border-radius: 0px;
   padding: 10px;
   z-index: 9999;
-  width: 25vw;
+  width: 15vw;
+  white-space: nowrap;
   color: white;
-  height: 120px;
+  height: 80px;
 }
 
 .dropdown-box {
@@ -184,14 +183,14 @@ body {
   height: 250px;
 }
 
-.product-shop{
+.product-shop {
   display: block;
   justify-content: center;
   width: 15%;
-  border-right: 2px solid #F4B65B;
+  border-right: 2px solid #f4b65b;
 }
 
-.product-shop1{
+.product-shop1 {
   display: block;
   justify-content: center;
   width: 50%;
@@ -223,11 +222,11 @@ body {
   transition: background-color 0.2s ease-in-out;
 }
 
-.dropdown-box ul li:hover a{
-  text-decoration: underline #AF261D;
+.dropdown-box ul li:hover a {
+  text-decoration: underline #af261d;
   text-underline-offset: 10px;
   text-decoration-thickness: 2px;
-  color: #F4B65B;
+  color: #f4b65b;
 }
 
 .dropdown-box ul li a {
@@ -239,13 +238,12 @@ body {
   display: block; /* Makes the link take full width */
 }
 
-
-.dropdown-box1 ul li:hover a{
+.dropdown-box1 ul li:hover a {
   /* background-color: #af271daa; */
-  text-decoration: underline #AF261D;
+  text-decoration: underline #af261d;
   text-underline-offset: 10px;
   text-decoration-thickness: 2px;
-  color: #F4B65B;
+  color: #f4b65b;
 }
 
 .dropUp {
@@ -274,7 +272,7 @@ body {
 }
 
 .left-links ul li.hovered {
-  background-color: #AF261D;
+  background-color: #af261d;
   transform: scale(1);
 }
 
@@ -368,7 +366,7 @@ body {
     opacity: 0;
   }
   100% {
-    transform: scale(1.1); /* Zoom in by 10% */
+    transform: scale(1.1); 
     opacity: 1;
   }
 }
@@ -379,8 +377,8 @@ body {
 }
 
 .zoom-in-image:hover {
-  transform: scale(1.1); /* Scale up to 110% */
-  opacity: 1; /* Keep opacity at 1 during hover */
+  transform: scale(1.1); 
+  opacity: 1; 
 }
 
 /* ABOUT */
@@ -391,7 +389,6 @@ body {
   width: 85%;
   height: 40vh;
   overflow: hidden;
-
 }
 
 /* Background Image */
@@ -407,7 +404,21 @@ body {
 
 .advertising-container-product {
   position: absolute;
-  bottom: -85px;
+  bottom: -200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/media/Spice_TB_9-01.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.custom-advertising-container {
+  position: absolute;
+  bottom: -200px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -478,15 +489,14 @@ body {
   border-radius: 50%;
 }
 
-
 /* SHIPPING POLICY */
 
-.div-p-ul{
+.div-p-ul {
   letter-spacing: 1.5px;
   font-size: 18px;
 }
 
-.div-p-ul ul li{
+.div-p-ul ul li {
   line-height: 1.7;
   letter-spacing: 1.5px;
   font-size: 18px;
@@ -522,15 +532,20 @@ body {
   border: none;
 }
 
-
 .blink-effect {
   animation: slow-blink 1.5s ease-in-out;
 }
 
 @keyframes slow-blink {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Cart Table */
@@ -558,7 +573,6 @@ body {
   letter-spacing: 1px;
 }
 
-
 .red-circle-container {
   position: absolute;
   top: 4%;
@@ -581,4 +595,1845 @@ body {
 .responsive-image {
   width: 100%;
   height: auto;
+}
+
+
+
+.food-items-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto adjust */
+  gap: 20px;
+  justify-content: center;
+}
+
+.recipe-hasta {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
+  font-family: kapraneue, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
+/* RESPONSIVE FOR TABLETS 768PX */
+
+@media (max-width: 768px) {
+  .input-subscribe {
+    padding: 10px !important;
+  }
+  .logo-footer {
+    width: 70% !important;
+  }
+  .Footer-ul-title {
+    margin-bottom: 15px !important;
+    font-size: 16px !important;
+  }
+  .Footer-ul li a {
+    margin-bottom: 15px !important;
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+  }
+  .diy-learn-buy {
+    padding: 35px !important;
+  }
+  .vector-img {
+    width: 50% !important;
+  }
+  .diy-learn-buy-h3 {
+    font-size: 20px !important;
+    letter-spacing: 1px !important;
+  }
+  .choose-h2 {
+    margin-bottom: 3% !important;
+  }
+  .choose-background {
+    padding: 10px !important;
+  }
+  .review-background {
+    padding: 25px !important;
+  }
+  .quotes-position {
+    left: -15% !important;
+    top: -15% !important;
+  }
+  .custom-advertising-container {
+    bottom: -58%;
+    
+  }
+
+  .quotes-position1 {
+    right: -70% !important;
+  }
+  .quotes-position img {
+    width: 15% !important;
+  }
+  .quotes-position1 img {
+    width: 15% !important;
+  }
+  .testimonial-img {
+    width: 100% !important;
+  }
+  .p-review {
+    font-size: 15px !important;
+    letter-spacing: 0px !important;
+  }
+  .h3-review {
+    font-size: 25px !important;
+    letter-spacing: 1px !important;
+  }
+  .h2-collection {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+  }
+  .card-collections {
+    padding: 25px 0px !important;
+  }
+  .img-card-spices {
+    height: 200px !important;
+  }
+  .spices-card-h2 {
+    font-size: 35px !important;
+  }
+  .card-spices-h4 {
+    font-size: 12px !important;
+    font-weight: 900 !important;
+  }
+  .card-save-icon {
+    width: 15px !important;
+    height: 15px !important;
+  }
+  .advertising-item {
+    gap: 0px !important;
+  }
+  .icon-container {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  .advertising-list {
+    gap: 35px !important;
+    font-size: 18px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .h2-symphony {
+    font-size: 30px !important;
+  }
+  .h2-our-products {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+  }
+  .p-our-products {
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+  }
+  .div-diyspices {
+    margin: 7% 5% !important;
+  }
+  .banner-heading-h2 {
+    font-size: 30px !important;
+    letter-spacing: 1px !important;
+  }
+  .banner-heading {
+    font-size: 28px !important;
+    text-align: center;
+    letter-spacing: 1px !important;
+  }
+  .view-product-spiceskit {
+    font-size: 14px !important;
+  }
+  .price-items-spiceskits {
+    bottom: 5px !important;
+  }
+  .banner-top {
+    margin-top: 37% !important;
+
+  }
+  .animatedimage{
+    width: 180% !important;
+    margin-left: -42%;
+  }
+  .banner-img-products {
+    width: 100% !important;
+    margin-top: -4% !important;
+    align-items: center !important;
+    justify-self: center !important;
+  }
+  .navbar-gap {
+    gap: 0% !important;
+  }
+  /* .left-links ul li a,
+  .right-icons ul li a {
+    font-size: 16px !important;
+  }
+  .left-links ul li {
+    padding: 10px 5px !important;
+  } */
+  .right-icons ul {
+    gap: 20px !important;
+  }
+  .logo-top {
+    width: 80px !important;
+    height: 80px !important;
+    left: 50% !important;
+    top: 5% !important;
+  }
+  .h1-recipes {
+    font-size: 55px !important;
+  }
+  .div-recipes {
+    margin: 15% 0% 0% 0% !important;
+  }
+  .recipesgrid-div {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  }
+  .cardsforrecipes {
+    border-radius: 15px 15px 25px 25px !important;
+    height: 300px !important;
+    margin-bottom: 5% !important;
+  }
+  .recipes-title-h1 {
+    font-size: 40px !important;
+    letter-spacing: 1px !important;
+  }
+  .img-recpies {
+    width: 200px !important;
+    margin-bottom: 20px !important;
+  }
+  .service-prepartion-cooking {
+    font-size: 14px !important;
+  }
+  .recipes-benefits {
+    font-size: 32px !important;
+    letter-spacing: 1px !important;
+  }
+  .three-icon {
+    width: 35% !important;
+  }
+  .three-text {
+    font-size: 20px !important;
+  }
+  .container-padding {
+    padding: 50px 0px !important;
+  }
+  .right-icons ul li img {
+    width: 25px !important;
+  }
+  .link-cart {
+    font-size: 16px !important;
+  }
+  .h1-shopping-empty {
+    font-size: 55px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .shop-btn {
+    font-size: 24px !important;
+    letter-spacing: 1px !important;
+    top: 20% !important;
+  }
+  .vector-shop {
+    width: 105% !important;
+    height: auto !important;
+  }
+  .login-h1 {
+    font-size: 55px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .label-tag-title{
+
+  }
+  .conatiner-background-diy{
+    margin-top: 69%;
+  }
+  .div-healthbenefits-diykits{
+    margin-top: 149% !important;
+  }
+  .signin-btn {
+    font-size: 24px !important;
+    letter-spacing: 1px !important;
+  }
+  .vector-signin {
+    width: 35% !important;
+    height: auto !important;
+  }
+  .create-account-btn {
+    font-size: 24px !important;
+    letter-spacing: 1px !important;
+  }
+  .vector-create-btn {
+    width: 84% !important;
+    height: auto !important;
+  }
+  .account-h1 {
+    font-size: 55px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .gen-order-address-btn {
+    font-size: 20px !important;
+  }
+  .input-account-forms {
+    font-size: 16px !important;
+  }
+  .btn-invoice {
+    font-size: 30px !important;
+  }
+  .btn-track {
+    font-size: 30px !important;
+  }
+  .circle-track {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  .icon-track {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .h5-tracktitle {
+    font-size: 16px !important;
+    letter-spacing: 0px !important;
+  }
+  .p-tracktitle {
+    font-size: 14px !important;
+    letter-spacing: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .h5-delivery {
+    font-size: 20px !important;
+    letter-spacing: 1px !important;
+  }
+  .h5-orderinvoice {
+    font-size: 20px !important;
+  }
+  .download {
+    font-size: 18px !important;
+  }
+  .tr-thead {
+    font-size: 20px !important;
+  }
+  .td-tbody {
+    font-size: 16px !important;
+  }
+  .h6-shipping {
+    font-size: 20px !important;
+  }
+  .p-address {
+    font-size: 16px !important;
+  }
+  .total-orderinvoice {
+    font-size: 20px !important;
+  }
+  .h5-shipping-addressdetails {
+    font-size: 28px !important;
+  }
+  .p-shipping-addressdetails {
+    font-size: 14px !important;
+  }
+  .h2-add-address {
+    font-size: 26px !important;
+  }
+  .form-adressdetails {
+    font-size: 18px !important;
+  }
+  .input-addressdetails {
+    font-size: 14px !important;
+  }
+  .h1-all-products {
+    font-size: 55px !important;
+    letter-spacing: 1.5px !important;
+  }
+  /* .div-all-products-top {
+    margin: 15% 0% 20% !important;
+  } */
+  .view-allproducts {
+    font-size: 14px !important;
+  }
+  .allproducts-price{
+    bottom: 4px !important;
+  }
+  .allproducts-price-display {
+    justify-content: center !important;
+  }
+  .original-price {
+    font-size: 18px !important;
+  }
+  .discount-price {
+    font-size: 12px !important;
+  }
+  .allproducts-img {
+    width: 55% !important;
+    /* padding-top: 45% !important; */
+  }
+  .div-aboutus {
+    margin: 5% 10% !important;
+    padding: 0px !important;
+  }
+  .aboutus-h2 {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+  }
+  .aboutus-para {
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+  }
+  .img-aboutus {
+    width: 85% !important;
+  }
+  .h2-vision-commentment {
+    font-size: 30px !important;
+    letter-spacing: 1px !important;
+  }
+  .p-vision-commentment {
+    font-size: 18px !important;
+    letter-spacing: 0.5px !important;
+  }
+  .certification-h2 {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+  }
+  .div-offer-choose-connect {
+    margin: 0% auto !important;
+    width: 90% !important;
+  }
+  .whoweare-col {
+    padding: 0px !important;
+  }
+  .h2-whoweare {
+    font-size: 35px !important;
+  }
+  .p-whoweare {
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.5px !important;
+  }
+  .ul-whoweare {
+    font-size: 20px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 1px !important;
+  }
+  .ul-whoweare ul li {
+    font-size: 18px !important;
+  }
+  .span-whoweare {
+    font-size: 18px !important;
+  }
+  .h2-whatweoffer {
+    font-size: 35px !important;
+  }
+  .p-whatweoffer {
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.5px !important;
+  }
+  .img-whatweoffer {
+    width: 40% !important;
+  }
+  .div-whatweoffer {
+    gap: 30px !important;
+  }
+  .h2-whychooseus {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+  }
+  .p-whychooseus {
+    font-size: 20px !important;
+  }
+  .span-whychooseus {
+    font-size: 18px !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.5 !important;
+  }
+  .img-whychooseus {
+    width: 40% !important;
+  }
+  .h2-letsconnect {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+  }
+  .p-letsconnect {
+    font-size: 18px !important;
+    letter-spacing: 0.5px !important;
+  }
+  .h1-wholespices {
+    font-size: 42px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .h1-groundspices {
+    font-size: 45px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .h1-diyspices {
+    font-size: 55px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .h1-spicesblends {
+    font-size: 45px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .shopnow-about {
+    font-size: 22px !important;
+  }
+  .h1-legacyexcellence {
+    font-size: 28px !important;
+    letter-spacing: 1px !important;
+  }
+  .div-history {
+    margin-top: 35% !important;
+  }
+  .h2-whereitallbegan {
+    font-size: 40px !important;
+    letter-spacing: 1px !important;
+  }
+  .red-circle-container {
+    max-width: 20px !important;
+  }
+  .red-line-container {
+    max-width: 2px !important;
+  }
+  .background-container {
+    width: 50% !important;
+  }
+  .h3-history-title {
+    font-size: 22px !important;
+    letter-spacing: 1px !important;
+  }
+  .p-history-description {
+    font-size: 14px !important;
+  }
+  .h1-createaccount {
+    font-size: 55px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .submit-btn-createaccount {
+    font-size: 24px !important;
+    letter-spacing: 1px !important;
+  }
+  .reset-cancel-create {
+    font-size: 16px !important;
+    padding: 2px 10px !important;
+  }
+  .addtocart-btn {
+    font-size: 20px !important;
+  }
+  .cutprice {
+    font-size: 22px !important;
+  }
+  .price {
+    font-size: 32px !important;
+  }
+  .sale-box {
+    width: 55% !important;
+    font-size: 14px !important;
+    justify-self: center !important;
+  }
+  .h2-products-title {
+    font-size: 22px !important;
+  }
+  .background-cartbox {
+    padding: 20px !important;
+  }
+  .p-contents-products {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.5 px !important;
+  }
+  /* .advertising-container-product {
+    bottom: -333px !important;
+  } */
+  .div-background-carts {
+    height: 85vh !important;
+    margin-top: 5% !important;
+  }
+  .div-healthbenefits{
+    margin-top: 20% !important;
+  }
+  .h1-healthbenefits {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+    margin-top: 78%;
+  }
+  .background-banner {
+    height: 50vh !important;
+  }
+  .img-healthbenefits {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  .h2-spices-title {
+    font-size: 25px !important;
+  }
+  .p-spices-contents {
+    font-size: 16px !important;
+  }
+  .h2-youmaylike {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+  }
+  .cards-youmaylike {
+    width: 10rem !important;
+    border-radius: 15px 15px 35px 35px !important;
+  }
+  .cards-title-products {
+    font-size: 20px !important;
+    padding: 0 !important;
+  }
+  .h4-view-products {
+    font-size: 14px !important;
+  }
+  .price-cardbox {
+    bottom: 2px !important;
+  }
+  .cut-price {
+    font-size: 16px !important;
+    opacity: 0.5 !important;
+  }
+  .price-original {
+    font-size: 20px !important;
+  }
+  .background-container-fixed{
+    margin-top: -6%;
+  }
+  .advertising-container {
+    top: 330px; 
+    position: sticky !important;
+  }
+  .spices-title-continer{
+    margin-top: 69% !important; 
+  }
+}
+
+
+.spices-title-continer{
+ letter-spacing: 2px;
+  font-size: 40px;
+  max-width: 100%;
+  font-weight: bold;
+  font-family: kapraneue, sans-serif;
+  margin-top: 7%;
+}
+
+/* Default card styles for desktop */
+.card-item {
+  width: 15rem;
+  margin: 20px auto;
+}
+
+/* Space between slider cards */
+.slick-slide {
+  padding: 0 8px; /* space between cards */
+}
+
+@media screen and (max-width: 768px) {
+  .div-footer-display {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 5%;
+  }
+
+  .footer-section {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .Footer-ul {
+    margin-top: 0.5rem;
+  }
+
+  .div-subscribe {
+    margin: 5% 5%;
+  }
+
+  .logo-footer {
+    width: 120px;
+    height: auto;
+
+    margin-bottom: 1rem;
+  }
+
+  .footer-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .footer-title h5 {
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+    flex: 1;
+  }
+
+  .footer-links li a,
+  .Footer-ul li a {
+    font-size: 0.85rem;
+  }
+
+  .Footer-ul-title {
+    font-size: 1rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .recipe-card {
+    width: 100%;
+    max-width: 95%;
+  }
+
+  .recipe-title-grid {
+    font-size: 0.9rem;
+  }
+
+  .recipe-hasta {
+    font-size: 0.8rem;
+  }
+
+  .recipe-text {
+    font-size: 0.7rem;
+    margin-top: -6% !important;
+  }
+
+  .recipe-image-container {
+    /* height: 140px; */
+    width: 65% !important;
+  }
+  .image-recipe-page{
+    text-align: center !important;
+  }
+  .img-recipes-grid{
+    width: 56%;
+  }
+
+  .selection-card-img {
+    width: 40px;
+  }
+}
+
+.footer-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.footer-title h5 {
+  margin: 0;
+  font-size: 1rem;
+  color: white;
+  flex: 1; 
+}
+
+
+
+/* Adjust view-product text and price font on smaller screens */
+@media screen and (max-width: 768px) {
+  .card-item {
+    width: 90% !important;
+    margin: 10px auto;
+  }
+
+  .card-item .view-product {
+    font-size: 16px !important;
+    margin-top: -1%;
+  }
+
+  .page-content{
+    overflow-x: hidden;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    font-family: kapraneue, sans-serif !important;
+  }
+
+  .footer-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    
+  }
+
+  .footer-desktop {
+    display: none;
+  }
+  .div-footer-display{
+    display: block !important;
+  }
+  
+  .div-subscribe{
+    width: 80% !important;
+    display: block;
+    justify-self: center;
+    margin-top: 10% !important;
+  }
+  .logo-footer{
+  width: 30% !important;
+  display: block; 
+  justify-self: center;
+  }
+
+  .card-item .originalprice {
+    font-size: 18px !important;
+  }
+
+  .card-item .cut-price {
+    font-size: 14px !important;
+  }
+
+  /* .selection-card-img {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1; 
+  } */
+
+  .card-item .sale-tag {
+    font-size: 14px !important;
+    width: 120px !important;
+  }
+
+  .card-item img.selection-card {
+    width: 100% !important;
+    height: 105% !important;
+    margin-top: -10% !important;
+  }
+  .h1-banner {
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+    margin-top: 5% !important;
+    text-align: center !important;
+  }
+  .services-prepartion-cooking{
+    display: block !important;
+    font-size: 18px !important;
+   text-align: center;
+   letter-spacing: 1px !important;
+  }
+}
+
+/* For ultra-small devices like iPhone SE */
+@media screen and (max-width: 430px) {
+  .card-item {
+    width: 95% !important;
+  }
+  .advertising-container {
+    top: 400px; 
+    position: static !important;
+  }
+
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right:  20px;
+  background-color: #25d366;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 1000;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+
+
+/* RESPONSIVE FOR MOBILE 425PX */
+
+@media (max-width: 425px) {
+  html {
+    overflow-x: hidden;
+  }
+  .card-item img.selection-card {
+  
+    margin-top: 19% !important;
+  }
+  .diy-learn-buy {
+    padding: 25px !important;
+  }
+  .custom-advertising-container {
+    bottom: -96%;
+  }
+  .advertising-container-product {
+    bottom: -382px !important;
+  }
+  .vector-img {
+    width: 80% !important;
+  }
+  .diy-learn-buy-h3 {
+    font-size: 18px !important;
+    letter-spacing: 1px !important;
+  }
+  .spices-title-continer{
+    margin-top: 69% !important; 
+  }
+  .choose-background {
+    padding: 5px !important;
+  }
+  .choose-h2 {
+    margin-bottom: 1% !important;
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+  }
+  .p-choose {
+    font-size: 12px !important;
+    margin-top: 10px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0px !important;
+  }
+  .review-background {
+    padding: 45px !important;
+  }
+  .quotes-position {
+    left: -10% !important;
+    top: -15% !important;
+  }
+  .quotes-position1 {
+    right: -65% !important;
+  }
+  .quotes-position img {
+    width: 10% !important;
+  }
+  .quotes-position1 img {
+    width: 10% !important;
+  }
+  .testimonial-img {
+    width: 100% !important;
+    margin: 10% !important;
+  }
+  .card-collections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 15px 0 !important;
+    justify-content: center;
+  }
+  .collection-card {
+    width: 150px !important;
+    min-height: 180px !important;
+    border-radius: 20px;
+  }
+  .collection-card-bg{
+    padding: 10px !important;
+    border-bottom-right-radius: 30px !important;
+    border-bottom-left-radius: 30px !important;
+    margin-top: 0px !important;
+  }
+  .collection-title-h4 {
+    font-size: 14px !important;
+  }
+  .h2-symphony {
+    font-size: 25px !important;
+    letter-spacing: 1px !important;
+    left: 20% !important;
+  }
+  .spices-card-h2 {
+    font-size: 22px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.5px !important;
+  }
+  .food-items-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .img-card-spices {
+    height: 180px;
+  }
+  .card-spices-h4 {
+    font-size: 16px;
+  }
+  .card-save-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .h2-our-products {
+    font-size: 25px !important;
+    letter-spacing: 1px !important;
+    text-align: center;
+  }
+  .p-our-products {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    display: block;
+    justify-self: center;
+    text-align: center;
+    margin: auto;
+  }
+  .img-ourproducts {
+    width: 70% !important;
+    display: block;
+    margin: auto;
+    justify-self: center;
+  }
+  .ourproducts-btn {
+    display: block;
+    justify-self: center;
+    margin: 5% 0;
+    margin: auto;
+  }
+  .our-products-h3 {
+    font-size: 16px !important;
+    letter-spacing: 1px !important;
+  }
+  .banner-heading {
+    font-size: 28px !important;
+    text-align: center;
+    letter-spacing: 1px !important;
+  }
+  .card-item-products{
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+    height: 260px !important;
+    border-radius: 15px 15px 30px 30px !important;
+    margin-bottom: 25px !important;
+  }
+  .view-allproducts {
+    font-size: 14px !important;
+  }
+  .card-item {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+    height: 240px !important;
+    border-radius: 15px 15px 30px 30px !important;
+  }
+  .card-item .card img {
+    width: 100%;
+    height: auto;
+  }
+  .card-item .card-title {
+    font-size: 14px !important;
+    padding-top: 20px !important;
+  }
+  .find-more-container {
+    width: 90% !important;
+    margin: 0 auto !important;
+  }
+  .find-more-container h3 {
+    font-size: 16px !important;
+  }
+  .banner-top {
+    margin-top: 40% !important;
+    height: 40vh !important;
+  }
+  .banner-img-products {
+    width: 90% !important;
+    margin: auto;
+  }
+  .h1-banner {
+    font-size: 25px !important;
+    letter-spacing: 1px !important;
+    margin-top: 5% !important;
+    text-align: center !important;
+  }
+  .allproducts-title{
+    font-size: 14px !important;
+  }
+  .background-banner {
+    height: 60vh !important;
+  }
+  .advertising-container {
+    top: 400px; 
+    position: static !important;
+  }
+  .navbar-container {
+    background-color: white;
+    width: 100% !important;
+    margin: 0% 0% !important;
+  }
+  /* .left-links ul li a,
+  .right-icons ul li a {
+    font-size: 18px !important;
+  } */
+  .login-h1 {
+    font-size: 45px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .div-login {
+    margin: 30% 20% 10% 3% !important;
+  }
+  .input-login {
+    font-size: 20px !important;
+    width: 350px !important;
+  }
+  .vector-signin {
+    width: 50% !important;
+    height: auto !important;
+  }
+  .signin-btn {
+    font-size: 20px !important;
+    letter-spacing: 1px !important;
+  }
+  .vector-create-btn {
+    width: 85% !important;
+    height: auto !important;
+  }
+  .create-account-btn {
+    font-size: 20px !important;
+    letter-spacing: 1px !important;
+  }
+  .account-h1 {
+    font-size: 45px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .div-account {
+    margin: 30% 20% 10% 20% !important;
+  }
+  .gen-order-address-btn {
+    font-size: 18px !important;
+  }
+  .accountform {
+    font-size: 18px !important;
+  }
+  .input-account-forms {
+    font-size: 14px !important;
+    width: 100% !important;
+    height: 50px !important;
+  }
+  .container-accountform {
+    padding: 15px !important;
+  }
+  .code-account-forms{
+    height: 50px !important;
+    align-content: center !important;
+  }
+  .btn-invoice {
+    font-size: 20px !important;
+  }
+  .h5-orderinvoice {
+    font-size: 18px !important;
+  }
+  .download {
+    font-size: 16px !important;
+  }
+  .tr-thead {
+    font-size: 18px !important;
+    letter-spacing: 0.5px !important;
+  }
+  .td-tbody {
+    font-size: 14px !important;
+  }
+  .h6-shipping {
+    font-size: 18px !important;
+    letter-spacing: 0.5px !important;
+  }
+  .p-address {
+    font-size: 14px !important;
+  }
+  .btn-track {
+    font-size: 20px !important;
+  }
+  .circle-track {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  .icon-track {
+    width: 25px !important;
+    height: 25px !important;
+  }
+  .h5-tracktitle {
+    font-size: 18px !important;
+    letter-spacing: 0px !important;
+  }
+  .h5-delivery {
+    font-size: 16px !important;
+    letter-spacing: 0.5px !important;
+  }
+  .h5-shipping-addressdetails {
+    font-size: 24px !important;
+  }
+  .h2-add-address {
+    font-size: 24px !important;
+  }
+  .form-container {
+    background-color: #ffffff;
+    max-width: 735px;
+    width: 170% !important;
+    border-radius: 12px;
+    border: 1px solid black;
+    font-family: KapraNeueMedium, sans-serif;
+    letter-spacing: 1px;
+    margin-top: 5%;
+    display: block;
+    justify-self: center;
+  }
+  .h1-createaccount {
+    font-size: 35px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .div-register {
+    margin: 35% 20% 10% 20% !important;
+  }
+  .card-shippingaddress {
+    width: 170%;
+    display: block;
+    justify-self: center;
+  }
+  .order-background-card {
+    width: 150% !important;
+    display: block;
+    justify-self: center;
+  }
+  .h1-shopping-empty {
+    font-size: 45px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .div-shopping-cart {
+    margin: 35% 20% 10% 20% !important;
+  }
+  .shop-btn {
+    font-size: 20px !important;
+    letter-spacing: 1px !important;
+    top: 20% !important;
+  }
+  .btn-shop-cart {
+    width: 100% !important;
+  }
+  .h1-all-products {
+    font-size: 35px !important;
+    letter-spacing: 1.5px !important;
+  }
+  /* .div-all-products-top {
+    margin: 35% 20% 10% 20% !important;
+  } */
+  .allproducts-img {
+    width: 55% !important;
+  }
+  .p-contents-products {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.5 px !important;
+  }
+  .div-background-carts {
+    height: 100vh !important;
+    /* margin-top: 10% !important; */
+  }
+  .conatiner-background-carts{
+    margin-top: 20% !important;
+  }
+  .addtoproduct-img {
+    width: 32% !important;
+    margin-bottom: 5% !important;
+  }
+  .background-cartbox {
+    padding: 10px !important;
+  }
+  .addtocart-btn {
+    font-size: 20px !important;
+  }
+  .cutprice {
+    font-size: 22px !important;
+  }
+  .price {
+    font-size: 32px !important;
+  }
+  .sale-tag{
+    font-size: 12px !important;
+    padding: 2px 0 !important;
+    margin-bottom: 5px 0px !important;
+    display: block !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .selection-card{
+    width: 130% !important;
+  }
+  .sale-box {
+    width: 55% !important;
+    font-size: 14px !important;
+    justify-self: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .h2-products-title {
+    font-size: 26px !important;
+    margin: 5px !important;
+    padding: 0 !important;
+  }
+  .h1-healthbenefits {
+    font-size: 22px !important;
+    letter-spacing: 1px !important;
+    margin-top: 111%;
+  }
+  .div-your-cart {
+    margin: 35% 0% 10% 0% !important;
+  }
+  .custom-table thead tr {
+    border-bottom: 2px solid black !important;
+    font-size: 20px !important;
+    letter-spacing: 0.5px !important;
+  }
+  .cart-img-item {
+    width: 70px !important;
+  }
+  .cart-product-title {
+    font-size: 18px !important;
+  }
+  .cart-product-price{
+    gap: 5px !important;
+  }
+  .discount-price-cart {
+    font-size: 12px !important;
+  }
+  .price-cart {
+    font-size: 16px !important;
+    letter-spacing: 0.5px !important;
+  }
+  .minus-btn {
+    padding: 1px 3px !important;
+   
+  }
+  .count-size {
+    font-size: 12px !important;
+  }
+  .shippingaddress-h1 {
+    font-size: 45px !important;
+  }
+  .div-shippingaddress {
+    margin: 35% 0% 10% 0% !important;
+  }
+  .thankyou-h1{
+    font-size: 50px !important;
+  }
+  .p-orderconfirmed{
+    font-size: 24px !important;
+  }
+  .div-thankyou{
+    margin: 30% 0% 10% 0% !important;
+  }
+  .thankyou-img{
+    width: 130% !important;
+    display: block;
+    justify-self: center !important;
+  }
+  .correct-icon{
+    font-size: 50px !important;
+    top: 60% !important;
+    left: 46% !important;
+  }
+  .h1-wholespices {
+    font-size: 25px !important;
+    letter-spacing: 1px !important;
+  }
+  .price-cardbox {
+    bottom: 2px !important;
+    display: flex;
+    justify-content: center !important;
+  }
+  .cards-youmaylike {
+    width: 10rem !important;
+    border-radius: 10px 10px 35px 35px !important;
+    padding: 10px 0px 0px !important;
+  }
+  .h1-groundspices {
+    font-size: 25px !important;
+    letter-spacing: 0px !important;
+   
+  }
+  .div-ground-top {
+    margin: 35% 20% 0% 20% !important;
+  }
+  .div-aboutus {
+    margin: 25% 10% 5%  !important;
+    padding: 0px !important;
+  }
+  .aboutus-h2 {
+    font-size: 45px !important;
+    letter-spacing: 2px !important;
+    text-align: center;
+  }
+  .aboutus-para {
+    font-size: 20px !important;
+    line-height: 1.5 !important;
+    text-align: center;
+  }
+  .img-aboutus {
+    width: 85% !important;
+    display: block;
+    justify-content: center;
+    justify-self: center !important;
+    margin: 10% 0px !important;
+  }
+  .certification-h2 {
+    font-size: 25px !important;
+    letter-spacing: 1px !important;
+  }
+  .img-certification{
+    width: 50% !important;
+  }
+  .div-offer-choose-connect {
+    margin: 0% auto !important;
+    width: 90% !important;
+    padding: 25px 0 !important;
+  }
+  .div-whatweoffer {
+    display: block !important;
+    gap: 30px !important;
+  }
+  .img-whatweoffer {
+    width: 100% !important;
+  }
+  .h2-whatweoffer {
+    font-size: 35px !important;
+    text-align: center;
+  }
+  .p-whatweoffer {
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 1px !important;
+  }
+  .div-whychoose{
+    display: block !important;
+  }
+  .img-whychooseus {
+    width: 100% !important;
+  }
+  .h1-legacyexcellence {
+    font-size: 24px !important;
+    letter-spacing: 1px !important;
+  }
+  .background-legacyellence{
+    padding: 20px !important;
+  }
+  .div-history {
+    margin-top: 75% !important;
+  }
+  .h2-whereitallbegan {
+    font-size: 30px !important;
+  }
+  .background-container {
+    width: 85%;
+    height: 40vh;
+  }
+  .h3-history-title {
+    font-size: 16px !important;
+    letter-spacing: 1px !important;
+  }
+  .p-history-description {
+    font-size: 10px !important;
+    letter-spacing: 0px !important;
+  }
+  .content-overlay {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 100%; 
+  }
+  .img-history{
+    width: 25% !important
+  }
+  .h1-recipes {
+    font-size: 35px !important;
+  }
+  .div-recpies{
+    margin: 30% 0% 5% 0% !important;
+  }
+  .h1-recipes-title{
+    font-size: 35px !important;
+    letter-spacing: 2px !important;
+  }
+  .div-recipespage{
+    margin: 25% 0% 5% 0% !important;
+  }
+  .recipes-img{
+    width: 200px !important;
+  }
+  .services-prepartion-cooking{
+    display: block !important;
+    font-size: 18px !important;
+   text-align: center;
+   letter-spacing: 1px !important;
+  }
+  .services-prepartion-cooking p span{
+    font-size: 20px !important;
+  }
+  .benefits-p{
+    font-size: 24px !important;
+  }
+  .card-receipes-grid{
+    height: 280px !important;
+    border-radius: 15px 15px 25px 25px !important;
+  }
+  .recipes-title-grid{
+    font-size: 22px !important;
+  }
+  .img-recipes-grid{
+    width: 100% !important;
+  }
+  .div-diy-top{
+    margin: 35% 20% 0% 20% !important;
+  }
+  .div-blend-top{
+    margin: 35% 20% 0% 20% !important;
+  }
+  .input-shippingaddress{
+    margin: 10px 0 !important;
+  }
+  .subtotal-checkout{
+    display: block;
+    width: 60% !important;
+  }
+  .checkout-subtotal-details{
+    font-size: 24px !important;
+  }
+  .p-paynow{
+    font-size: 16px !important;
+  }
+  .order-products-title{
+    font-size: 20px !important;
+  }
+  .order-products-price{
+   width: 100% !important;
+  }
+  .productsprice{
+    font-size: 20px !important;
+  }
+  .view-product{
+    font-size: 10px !important;
+    top: 100% !important;
+    white-space: nowrap;
+  }
+  .animatedimage{
+    margin-left: 1%;
+    width: 94% !important;
+  }
+  .cut-price {
+    font-size: 10px !important;
+    opacity: 0.5 !important;
+  }
+  .originalprice{
+    font-size: 16px !important;
+  }
+  .price-container{
+    gap: 5px !important;
+    bottom: -13% !important;
+  }
+  .termsservice{
+    font-size: 45px !important;
+  }
+  .div-terms{
+    margin: 30% 5% 0% 5% !important;
+  }
+  .div-terms p{
+    font-size: 16px !important;
+  }
+  .div-p-ul {
+    letter-spacing: 1px;
+    font-size: 14px;
+  }
+  .div-p-ul ul li {
+    line-height: 1.5;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-family: KapraNeueMedium, sans-serif;
+    margin-bottom: 4px;
+  }
+  .strip-background-top{
+    top: 25px !important;
+    padding-bottom: 15px !important;
+  }
+  .browser-products{
+    padding: 0px !important;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .div-subscribe {
+    padding: 10px 15px !important;
+  }
+
+  .label-tag-title {
+    font-size: 20px !important;
+    margin-left: 0 !important;
+    text-align: center;
+  }
+}
+
+
+.footer-container {
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  text-align: left;
+  font-family: kapraneue, sans-serif;
+}
+
+.footer-title {
+  display: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.footer-title h5 {
+  margin: 0;
+  font-size: 20px;
+  font-family: kapraneue, sans-serif;
+  color: white;
+  letter-spacing: 1.5px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  font-size: kapraneue, sans-serif ;
+}
+
+.footer-links.show {
+  max-height: 250px;
+  padding: 10px 15px;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links li a {
+  text-decoration: none;
+  color: white;
+  font-family: kapraneue, sans-serif !important;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.footer-desktop {
+  display: block;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-desktop h5 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer-desktop li {
+  margin-bottom: 15px;
+}
+
+.footer-desktop li a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+/* Mobile Styles */
+@media (max-width: 425px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    font-family: kapraneue, sans-serif !important;
+  }
+  .footer-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+  }
+  .footer-desktop {
+    display: none;
+  }
+  .div-footer-display{
+    display: block !important;
+  }
+  .div-subscribe{
+    width: 80% !important;
+    display: block;
+    justify-self: center;
+    margin-top: 10% !important;
+  }
+  .logo-footer{
+  width: 30% !important;
+  display: block; 
+  justify-self: center;
+  margin: auto;
+  }
+}
+
+.recipes-grid-container {
+  padding: 40px 20px;
+  font-family: kapraneue, sans-serif 
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.recipe-card {
+  height: 350px !important;
+  border-radius: 25px 25px 50px 50px !important;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  background-color: #faf7f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 40px ;
+}
+
+/* .recipe-card:hover {
+  transform: scale(1.05);
+} */
+
+.recipes-title-grid {
+  padding: 15px;
+  font-weight: bold;
+  font-family: kapraneue, sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.recipe-image-container {
+  width: 90%;
+  object-fit: contain;
+  margin: 0 auto;
+  padding-bottom: 15px;
+}
+
+.recipe-card-body {
+  padding: 0 !important;
+  width: 100%;
+}
+
+.recipe-selection-container {
+  position: relative;
+  width: 100%;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.selection-card-img {
+  position: absolute;
+  /* top: 35%; */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 84px;
+  display: block;
+  z-index: 1; 
+}
+
+.recipe-hasta {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  margin-top: -8%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
+  font-family: kapraneue, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 2;
+  color: black; 
+}
+
+.recipe-text {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  z-index: 2; 
+  color: black; 
+}
+
+
+/* Mobile Styles (≤ 425px) */
+@media (max-width: 425px) {
+    .recipes-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  
+    .recipe-card {
+      height: 200px !important;
+      border-radius: 15px 15px 30px 30px !important;
+      margin-bottom: 30px !important;
+    }
+  
+    .recipes-title-grid {
+      font-size: 14px !important;
+      padding: 10px 0 0 0 !important;
+      letter-spacing: 0.5px !important;
+    }
+  
+    .recipe-hasta {
+      font-size: 14px;
+      top: 90%;
+    }
+  
+    .recipe-text {
+      font-size: 12px;
+      top: 110%;
+    }
+   .selection-card-img {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1; 
+  }
+  /* .recipe-hasta {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+    font-family: kapraneue, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+    color: black; 
+  } */
+}
+
+.shimmer {
+  animation: shimmer 1.5s infinite linear;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1000px 100%;
+  background-repeat: no-repeat;
 }

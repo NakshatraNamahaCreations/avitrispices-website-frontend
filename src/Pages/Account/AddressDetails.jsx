@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { Container, Card, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import AddressForm from "./AddressForm.jsx";
+import { useState, useEffect } from "react";
+import { Container, Card, Form } from "react-bootstrap";
+
+import { useNavigate } from "react-router-dom";
 import Vector from "/media/Vector.png";
+import axios from "axios";
 
 export default function AddressDetails() {
   const [addresses, setAddresses] = useState([]);
@@ -11,7 +12,7 @@ export default function AddressDetails() {
     const [selectedAddressId, setSelectedAddressId] = useState(null);
   const navigate = useNavigate();
 
-  // Get the logged-in user from localStorage
+  
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
@@ -37,16 +38,19 @@ export default function AddressDetails() {
   const handleAddressSubmit = async (e) => {
     e.preventDefault(); 
 
+    if (!validateForm()) {
+        console.error("Form validation failed:", errors);
+        return;
+    }
+
     try {
         const storedUser = JSON.parse(localStorage.getItem("user"));
-
         if (!storedUser || !storedUser.id) {
-            setError("⚠️ User ID is missing. Cannot save address.");
+            setError("User ID is missing. Cannot save address.");
             return;
         }
 
         setLoading(true);
-        setError("");
         setSuccess("");
 
         const payload = {
@@ -62,40 +66,39 @@ export default function AddressDetails() {
             email: storedUser.email,
         };
 
-        console.log("📤 Sending Address Data:", payload);
+        console.log("Sending Address Data:", payload);
 
-        const response = await axios.post("https://api.nncwebsitedevelopment.com/api/shipping-address", payload, {
-            headers: { "Content-Type": "application/json" }
-        });
+        const response = await axios.post(
+            "https://api.nncwebsitedevelopment.com/api/shipping-address", 
+            payload, 
+            { headers: { "Content-Type": "application/json" } }
+        );
 
-        console.log("✅ Address successfully added:", response.data);
-
+        console.log("Address successfully added:", response.data);
         setSuccess("Address added successfully!");
         setLoading(false);
 
-        // ✅ Update state manually instead of refetching
         const newAddress = response.data.shippingAddress;
+        
+        
         setAddresses((prev) => [...prev, newAddress]);
-
-        // ✅ Select the newly added address
-        setSelectedAddressId(newAddress._id);
-        setSelectedIndex(addresses.length);
+        setSelectedIndex((prev) => prev + 1);  
 
     } catch (error) {
-        console.error("🚨 Error adding address:", error.response?.data || error.message);
-        setError(`Failed to add address: ${error.response?.data?.message || "Please try again."}`);
+        console.error("Error adding address:", error.response?.data || error.message);
+        setErrors({ server: `Failed to add address: ${error.response?.data?.message || "Please try again."}` });
         setLoading(false);
     }
 };
 
 
 
-  // Handle dropdown selection change
+
+
   const handleSelectChange = (event) => {
     setSelectedIndex(Number(event.target.value));
   };
 
-  // Handle logout
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
@@ -105,7 +108,7 @@ export default function AddressDetails() {
 
   const fetchAddresses = async () => {
     if (!user || !user.id) {
-        console.error("🚨 Error: User not logged in!");
+        console.error("Error: User not logged in!");
         return;
     }
 
@@ -113,21 +116,21 @@ export default function AddressDetails() {
         const response = await axios.get(`https://api.nncwebsitedevelopment.com/api/shipping-address/user/${user.id}`);
 
         if (response.status === 200 && response.data.length > 0) {
-            // ✅ Prevent unnecessary state updates
+            
             if (addresses.length === 0) {
                 setAddresses(response.data);
                 
-                // ✅ Set default selected address only if not set
+              
                 if (!selectedAddressId) {
                     setSelectedAddressId(response.data[0]._id);
                     setSelectedIndex(0);
                 }
             }
         } else {
-            setAddresses([]); // No saved addresses
+            setAddresses([]); 
         }
     } catch (error) {
-        console.error("🚨 Error fetching addresses:", error.response?.data || error.message);
+        console.error(" Error fetching addresses:", error.response?.data || error.message);
     }
 };
 
@@ -138,18 +141,19 @@ useEffect(() => {
   }
 }, []); 
 
-
-
-
-
-
-  
-
   return (
     <Container>
       {/* Address Selection Dropdown */}
       {addresses.length > 0 && (
-        <Form.Group className="mt-3 p-4" style={{ fontFamily: "kapraneue, sans-serif", letterSpacing: "1px", border: '1px solid black', borderRadius: "10px" }}>
+        <Form.Group
+          className="mt-3 p-4"
+          style={{
+            fontFamily: "kapraneue, sans-serif",
+            letterSpacing: "1px",
+            border: "1px solid black",
+            borderRadius: "10px",
+          }}
+        >
           <Form.Label>
             <strong>Select Address:</strong>
           </Form.Label>
@@ -170,27 +174,40 @@ useEffect(() => {
       )}
 
       {/* Shipping Address Section */}
-     {/* Shipping Address Section */}
-     <Card className="mt-4 p-3" style={{ fontFamily: "kapraneue, sans-serif", letterSpacing: "1px", border: '1px solid black' }}>
-  <h5 style={{ fontSize: "32px", letterSpacing: "1px" }}>SHIPPING ADDRESS</h5>
-  {addresses.length > 0 && selectedIndex !== null ? (
+      <Card
+  className="mt-4 p-3 card-shippingaddress"
+  style={{
+    fontFamily: "kapraneue, sans-serif",
+    letterSpacing: "1px",
+    border: "1px solid black",
+  }}
+>
+  <h5 style={{ fontSize: "32px", letterSpacing: "1px" }} className="h5-shipping-addressdetails">
+    SHIPPING ADDRESS
+  </h5>
+  {selectedIndex !== null && addresses.length > 0 ? (
     <p>
-      {addresses[selectedIndex]?.firstName} {addresses[selectedIndex]?.lastName},<br />
-      {addresses[selectedIndex]?.address},<br />
-      {addresses[selectedIndex]?.city}, {addresses[selectedIndex]?.state} - {addresses[selectedIndex]?.pincode},<br />
-      {addresses[selectedIndex]?.country}<br />
-      Phone: {addresses[selectedIndex]?.phoneNumber}
+     {addresses[selectedIndex]?.firstName} {addresses[selectedIndex]?.lastName} <br />
+      {addresses[selectedIndex]?.phoneCode} {addresses[selectedIndex]?.phoneNumber} <br />
+     {addresses[selectedIndex]?.address} <br />
+       {addresses[selectedIndex]?.city} <br />
+    {addresses[selectedIndex]?.state} - {addresses[selectedIndex]?.pincode}
     </p>
   ) : (
-    <p>No shipping address available.</p>
+    <p className="p-shipping-addressdetails">No shipping address selected.</p>
   )}
 </Card>
 
 
-
-
       {/* Add Address Form */}
-      <AddressForm onSubmit={handleAddressSubmit} />
+
+      {/* <AddressForm onSubmit={handleAddressSubmit} /> */}
+      <AddressForm 
+  onSubmit={handleAddressSubmit} 
+  setAddresses={setAddresses} 
+  setSelectedIndex={setSelectedIndex} 
+/>
+
 
       {/* Logout Button */}
       <div

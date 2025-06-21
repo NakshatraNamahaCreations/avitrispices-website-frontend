@@ -39,6 +39,7 @@ export default function About() {
         style={{
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
+          // overflow:'hidden'
         }}
       >
         {/* Navbar Top */}
@@ -46,7 +47,10 @@ export default function About() {
 
         {/* ABOUT US */}
         <div style={{ backgroundColor: "#FEE9DA", padding: "5% 0%" }}>
-          <div style={{ margin: "0% 10%", padding: "30px", width: "80%" }}>
+          <div
+            style={{ margin: "0% 10%", padding: "30px", width: "80%" }}
+            className="div-aboutus"
+          >
             <Row>
               <Col sm={6}>
                 <h2
@@ -57,6 +61,7 @@ export default function About() {
                     letterSpacing: "2px",
                     marginBottom: "1%",
                   }}
+                  className="aboutus-h2"
                 >
                   ABOUT US
                 </h2>
@@ -66,6 +71,7 @@ export default function About() {
                     lineHeight: "1.7",
                     letterSpacing: "1px",
                   }}
+                  className="aboutus-para"
                 >
                   Welcome to Avitri Spices, where tradition meets innovation to
                   deliver the finest spices from India to the world. We’re more
@@ -78,7 +84,7 @@ export default function About() {
                 <img
                   src={about_photo}
                   alt="about-img"
-                  className="zoom-in-image"
+                  className="zoom-in-image img-aboutus"
                   style={{
                     width: "55%",
                     height: "auto",
@@ -112,7 +118,10 @@ export default function About() {
         {/* OFFER | CHOOSE | CONNECT */}
 
         <div style={{ backgroundColor: "#FEE9DA" }}>
-          <div style={{ margin: "0% 10%", padding: "50px 0", width: "80%" }}>
+          <div
+            style={{ margin: "0% 10%", padding: "50px 0", width: "80%" }}
+            className="div-offer-choose-connect"
+          >
             <Row
               style={{
                 display: "flex",
@@ -132,6 +141,7 @@ export default function About() {
                   padding: "20px",
                   textAlign: "left",
                 }}
+                className="whoweare-col"
               >
                 <h2
                   style={{
@@ -142,6 +152,7 @@ export default function About() {
                     marginBottom: "20px",
                     marginTop: "3%",
                   }}
+                  className="h2-whoweare"
                 >
                   Who We Are
                 </h2>
@@ -151,6 +162,7 @@ export default function About() {
                     lineHeight: "1.7",
                     letterSpacing: "1px",
                   }}
+                  className="p-whoweare"
                 >
                   Based in the vibrant city of Bangalore, India, Avitri Spices
                   is a modern food and spice processing unit spread across
@@ -168,6 +180,7 @@ export default function About() {
                     listStyleType: "none",
                     paddingLeft: "0",
                   }}
+                  className="ul-whoweare"
                 >
                   <li>We specialize in:</li>
                   <li>
@@ -179,6 +192,7 @@ export default function About() {
                         letterSpacing: "1px",
                         fontFamily: "KapraNeueMedium, sans-serif",
                       }}
+                      className="span-whoweare"
                     >
                       The essence of unadulterated flavour.
                     </span>
@@ -192,6 +206,7 @@ export default function About() {
                         letterSpacing: "1px",
                         fontFamily: "KapraNeueMedium, sans-serif",
                       }}
+                      className="span-whoweare"
                     >
                       Convenient and consistent.
                     </span>
@@ -205,6 +220,7 @@ export default function About() {
                         letterSpacing: "1px",
                         fontFamily: "KapraNeueMedium, sans-serif",
                       }}
+                      className="span-whoweare"
                     >
                       For the chef in everyone.
                     </span>
@@ -218,6 +234,7 @@ export default function About() {
                         letterSpacing: "1px",
                         fontFamily: "KapraNeueMedium, sans-serif",
                       }}
+                      className="span-whoweare"
                     >
                       Global and regional flavors crafted to perfection.
                     </span>
@@ -304,11 +321,15 @@ export default function About() {
               </Col>
             </Row>
 
-            <div style={{ display: "flex", gap: "35px", alignItems: "center" }}>
+            <div
+              style={{ display: "flex", gap: "35px", alignItems: "center" }}
+              className="div-whatweoffer"
+            >
               <img
                 src={mixmasala}
                 alt="mix-masala"
                 style={{ borderRadius: "20px", width: "25%", height: "auto" }}
+                className="img-whatweoffer"
               />
 
               <div>
@@ -321,6 +342,7 @@ export default function About() {
                     marginBottom: "1%",
                     marginTop: "3%",
                   }}
+                  className="h2-whatweoffer"
                 >
                   WHAT WE OFFER
                 </h2>
@@ -331,6 +353,7 @@ export default function About() {
                     letterSpacing: "1px",
                     fontFamily: "kapraneue, sans-serif",
                   }}
+                  className="p-whatweoffer"
                 >
                   Our extensive range includes:
                 </p>
@@ -340,6 +363,7 @@ export default function About() {
                     lineHeight: "1.7",
                     letterSpacing: "1px",
                   }}
+                  className="p-whatweoffer"
                 >
                   Whole spices like Black Pepper, Green Cardamom, Cloves,
                   Nutmeg, White Pepper, Mace, Cinnamon, Cassia, Amchur, Black
@@ -356,89 +380,95 @@ export default function About() {
               </div>
             </div>
 
-            <div style={{ display: "flex", gap: "35px", alignItems: "center" }}>
+            <div style={{ display: "flex", gap: "35px", alignItems: "center" }} className="div-whychoose">
               <div>
-              <h2
-                style={{
-                  fontSize: "45px",
-                  fontWeight: "bold",
-                  letterSpacing: "2px",
-                  marginBottom: "1%",
-                  marginTop: "3%",
-                }}
-              >
-                WHY CHOOSE US?
-              </h2>
+                <h2
+                  style={{
+                    fontSize: "45px",
+                    fontWeight: "bold",
+                    letterSpacing: "2px",
+                    marginBottom: "1%",
+                    marginTop: "3%",
+                  }}
+                  className="h2-whychooseus"
+                >
+                  WHY CHOOSE US?
+                </h2>
 
-              <p
-                style={{
-                  fontSize: "24px",
-                  lineHeight: "1.5",
-                  letterSpacing: "1px",
-                  fontFamily: "kapraneue, sans-serif",
-                }}
-              >
-                Quality Assurance:{" "}
-                <span
+                <p
                   style={{
-                    fontSize: "22px",
+                    fontSize: "24px",
+                    lineHeight: "1.5",
                     letterSpacing: "1px",
-                    fontFamily: "KapraNeueMedium, sans-serif",
+                    fontFamily: "kapraneue, sans-serif",
                   }}
+                  className="p-whychooseus"
                 >
-                  From sourcing to packing, our meticulous process ensures
-                  purity and consistency.
-                </span>
-              </p>
-              <p
-                style={{
-                  fontSize: "24px",
-                  lineHeight: "1.5",
-                  letterSpacing: "1px",
-                  fontFamily: "kapraneue, sans-serif",
-                }}
-              >
-                Global Reach:{" "}
-                <span
+                  Quality Assurance:{" "}
+                  <span
+                    style={{
+                      fontSize: "22px",
+                      letterSpacing: "1px",
+                      fontFamily: "KapraNeueMedium, sans-serif",
+                    }}
+                    className="span-whychooseus"
+                  >
+                    From sourcing to packing, our meticulous process ensures
+                    purity and consistency.
+                  </span>
+                </p>
+                <p
                   style={{
-                    fontSize: "22px",
+                    fontSize: "24px",
+                    lineHeight: "1.5",
                     letterSpacing: "1px",
-                    fontFamily: "KapraNeueMedium, sans-serif",
+                    fontFamily: "kapraneue, sans-serif",
                   }}
+                  className="p-whychooseus"
                 >
-                  Whether it’s a home kitchen or an international restaurant,
-                  our products cater to diverse needs.
-                </span>
-              </p>
-              <p
-                style={{
-                  fontSize: "24px",
-                  lineHeight: "1.5",
-                  letterSpacing: "1px",
-                  fontFamily: "kapraneue, sans-serif",
-                }}
-              >
-                Innovation:{" "}
-                <span
+                  Global Reach:{" "}
+                  <span
+                    style={{
+                      fontSize: "22px",
+                      letterSpacing: "1px",
+                      fontFamily: "KapraNeueMedium, sans-serif",
+                    }}
+                    className="span-whychooseus"
+                  >
+                    Whether it’s a home kitchen or an international restaurant,
+                    our products cater to diverse needs.
+                  </span>
+                </p>
+                <p
                   style={{
-                    fontSize: "22px",
+                    fontSize: "24px",
+                    lineHeight: "1.5",
                     letterSpacing: "1px",
-                    fontFamily: "KapraNeueMedium, sans-serif",
+                    fontFamily: "kapraneue, sans-serif",
                   }}
+                  className="p-whychooseus"
                 >
-                  Our DIY Spice Kits make complex recipes simple, empowering
-                  even novice cooks.
-                </span>
-              </p>
+                  Innovation:{" "}
+                  <span
+                    style={{
+                      fontSize: "22px",
+                      letterSpacing: "1px",
+                      fontFamily: "KapraNeueMedium, sans-serif",
+                    }}
+                    className="span-whychooseus"
+                  >
+                    Our DIY Spice Kits make complex recipes simple, empowering
+                    even novice cooks.
+                  </span>
+                </p>
               </div>
 
-           
-                <img
-                  src={exhibitmasala}
-                  alt="mix-masala"
-                  style={{ borderRadius: "20px", width: "25%", height: "auto" }}
-                />
-         
+              <img
+                src={exhibitmasala}
+                alt="mix-masala"
+                style={{ borderRadius: "20px", width: "25%", height: "auto" }}
+                className="img-whychooseus"
+              />
             </div>
 
             <h2
@@ -450,6 +480,7 @@ export default function About() {
                 marginBottom: "1%",
                 marginTop: "3%",
               }}
+              className="h2-letsconnect"
             >
               LET’S CONNECT
             </h2>
@@ -459,6 +490,7 @@ export default function About() {
                 lineHeight: "1.7",
                 letterSpacing: "1px",
               }}
+              className="p-letsconnect"
             >
               Experience the magic of spices with Avitri Spices. Ready to spice
               up your world?{" "}
@@ -470,6 +502,7 @@ export default function About() {
                   fontSize: "26px",
                   fontFamily: "kapraneue, sans-serif",
                 }}
+                className="shopnow-about"
               >
                 <span>SHOP NOW</span>
               </Link>{" "}
@@ -494,6 +527,7 @@ export default function About() {
               position: "absolute",
               top: "10%",
             }}
+            className="background-legacyellence"
           >
             <h1
               style={{
@@ -504,6 +538,7 @@ export default function About() {
                 lineHeight: "1.5",
                 textAlign: "center",
               }}
+              className="h1-legacyexcellence"
             >
               A Legacy of Excellence From a humble trading business in Kumta to
               a global spice brand, Avitri Spices stands as a testament to

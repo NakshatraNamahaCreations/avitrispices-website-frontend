@@ -14,46 +14,49 @@ import { useEffect, useState } from "react";
 import Reviews from "../../Home/Reviews";
 import LearnMoreGround from "./LearnMoreGround";
 
-const groundspices = [
-  {
-    id: 42,
-    title: "BLACK PEPPER POWDER",
-    image: blackpepper,
-    originalPrice: 135,
-    discountedPrice: 125,
-  },
-  // {
-  //   id: 2,
-  //   title: "CURRY POWDER",
-  //   image: currypowder,
-  //   originalPrice: 125,
-  //   discountedPrice: 115,
-  // },
-  {
-    id: 43,
-    title: "GINGER POWDER",
-    image: gingerpowder,
-    originalPrice: 140,
-    discountedPrice: 120,
-  },
-  // {
-  //   id: 4,
-  //   title: "PAV BAJI MASLA",
-  //   image: pav_bhaji,
-  //   originalPrice: 145,
-  //   discountedPrice: 135,
-  // },
-  {
-    id: 44,
-    title: "TURMERIC POWDER",
-    image: turmericpowder,
-    originalPrice: 145,
-    discountedPrice: 135,
-  },
-];
+function ShimmerCard() {
+  return (
+    <Col xs={6} sm={6} md={4} lg={3} className="card-item-products">
+      <div
+        style={{
+          width: "100%",
+          height: "400px",
+          borderRadius: "25px 25px 60px 60px",
+          boxShadow: "1px 1px 5px lightgrey",
+          marginBottom: "50px",
+          padding: "15px",
+        }}
+      >
+        <div className="shimmer" style={{ height: "40px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "250px", marginBottom: "20px" }} />
+        <div className="shimmer" style={{ height: "70px" }} />
+      </div>
+    </Col>
+  );
+}
 
 export default function GroundSpices() {
   const [isVisible, setIsVisible] = useState(false);
+const[groundSpices, setGroundSpices] = useState([])
+
+useEffect(() => {
+  const fetchDiySpices = async () => {
+    try {
+      const response = await fetch("https://api.nncwebsitedevelopment.com/api/products/category/GROUND%20SPICES");
+
+      const data = await response.json();
+      if (data.success) {
+        setGroundSpices(data.data);
+      } else {
+        console.error("Failed to fetch DIY spices:", data.message);
+      }
+    } catch (err) {
+      console.error("Error fetching DIY spices:", err);
+    }
+  };
+
+  fetchDiySpices();
+}, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -105,7 +108,7 @@ export default function GroundSpices() {
             backgroundColor: "#AF261D",
             position: "relative",
             width: "100vw",
-            height: "35vh",
+            height: "30vh",
           }}
         >
           <div
@@ -121,7 +124,7 @@ export default function GroundSpices() {
             }}
           >
             <Container>
-              <div style={{ margin: "10% 20% 15%" }}>
+              <div style={{ margin: "10% 20% 15%" }} className="div-ground-top">
                 <h1
                   style={{
                     lineHeight: "1.5",
@@ -133,6 +136,7 @@ export default function GroundSpices() {
                     textAlign: "center",
                     color: "white",
                   }}
+                  className="h1-groundspices"
                 >
                   SHOP BY GROUND SPICES
                 </h1>
@@ -141,33 +145,45 @@ export default function GroundSpices() {
           </div>
         </div>
 
-        <Container style={{ marginBottom: "10%", marginTop: "10%" }}>
+        <Container style={{ marginBottom: "10%", marginTop: "15%" }}>
           <Row className="text-center" style={{ justifyContent: "left" }}>
-            {groundspices.map((kit) => {
-              return (
-                <Col sm={3} key={kit.id} className="card-item">
+            {/* {groundSpices.map((kit) => { */}
+            {groundSpices.length === 0
+              ? Array.from({ length: 8 }).map((_, index) => <ShimmerCard key={index} />)
+              : groundSpices.map((kit) => (
+              // return (
+                <Col
+                  xs={6}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  key={kit._id}
+                  className="card-item-products"
+                >
                   <Card
                     style={{
-                      width: "15rem",
+                      width: "100%",
                       borderRadius: "25px 25px 60px 60px",
                       border: "none",
+                      cursor:'pointer',
                       boxShadow: "1px 1px 5px lightgrey",
                       height: "auto",
-                      marginBottom: "40px",
+                      marginBottom: "50px",
                     }}
-                    onClick={() => handleCardClick(kit.id)}
-                    className="zoom-in-image"
+                    onClick={() => handleCardClick(kit._id)}
+                    // className="zoom-in-image"
                   >
                     <Card.Title
                       style={{
                         padding: "20px",
                         fontWeight: "bold",
-                        fontSize: "22px",
+                        fontSize: "20px",
                         textAlign: "center",
                         fontFamily: "kapraneue, sans-serif",
                       }}
+                      className="allproducts-title"
                     >
-                      {kit.title}
+                      {kit.name}
                     </Card.Title>
                     {/* <p
                     style={{
@@ -191,7 +207,30 @@ export default function GroundSpices() {
                     SALE
                   </p> */}
 
+<div
+                    className="d-none d-lg-block"
+                      style={{
+                        width: "50%",
+                        height: "auto",
+                        marginBottom: "15px",
+                        alignSelf: "",
+                      }}
+                    >
+                      {" "}
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "305px", height: "300px" }}
+/>
+                    </div>
                     <div
+                    className="d-block d-lg-none"
                       style={{
                         width: "50%",
                         height: "auto",
@@ -200,17 +239,27 @@ export default function GroundSpices() {
                       }}
                     >
                       {" "}
-                      <Card.Img variant="top" src={kit.image} />
+                      <Card.Img
+  variant="top"
+  className="responsive-image-card"
+  src={
+    kit.images?.[0]
+      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      : "/media/fallback.jpg"
+  }
+  alt={kit.name}
+  style={{ objectFit: "cover", width: "100%", height: "100px" }}
+/>
                     </div>
                     <div>
                       <Card.Body style={{ padding: "0px" }}>
-                        <div style={{ position: "relative", width: "100%" }}>
+                        <div style={{ position: "relative", width: "100%",  }}>
                           <img
                             src={SelectionCard}
                             alt="SelectionCard-img"
                             style={{
                               width: "100%",
-                              height: "auto",
+                              height: "70px",
                               display: "block",
                             }}
                           />
@@ -225,6 +274,7 @@ export default function GroundSpices() {
                               fontFamily: "kapraneue, sans-serif",
                               letterSpacing: "1px",
                             }}
+                             className="view-allproducts"
                           >
                             VIEW PRODUCT
                           </h4>
@@ -235,6 +285,7 @@ export default function GroundSpices() {
                               left: "50%",
                               transform: "translateX(-50%)",
                             }}
+                           className="allproducts-price"
                           >
                             <div
                               style={{
@@ -242,6 +293,7 @@ export default function GroundSpices() {
                                 gap: "10px",
                                 alignItems: "center",
                               }}
+                              className="allproducts-price-display"
                             >
                               <p
                                 style={{
@@ -249,8 +301,9 @@ export default function GroundSpices() {
                                   margin: 0,
                                   opacity: "0.7",
                                 }}
+                                 className="discount-price"
                               >
-                                Rs {kit.originalPrice}
+                               {/* Rs {150} */}
                               </p>
                               <p
                                 style={{
@@ -258,8 +311,9 @@ export default function GroundSpices() {
                                   margin: 0,
                                   fontSize: "25px",
                                 }}
+                                className="original-price"
                               >
-                                Rs {kit.discountedPrice}
+                               {/* Rs {kit.price} */}
                               </p>
                             </div>
                           </div>
@@ -268,8 +322,8 @@ export default function GroundSpices() {
                     </div>
                   </Card>
                 </Col>
-              );
-            })}
+              // );
+            ))}
           </Row>
         </Container>
         <Reviews />
