@@ -274,10 +274,10 @@ export default function WholeSpicePage() {
           color: "white",
           fontWeight: "bold",
           fontSize: "18px",
-          border: "1px solid white",
+
           textAlign: "center",
           padding: "8px 12px",
-          borderRadius: "6px",
+
           cursor: "pointer",
           appearance: "none",
           width: "150px",
@@ -287,7 +287,7 @@ export default function WholeSpicePage() {
         onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
       >
         {product.variants.map((variant, index) => (
-          <option key={variant._id} value={index} style={{ color: "black" }}>
+          <option key={variant._id} value={index} style={{ color: "" }}>
             {variant.quantity} - ₹{variant.price}
           </option>
         ))}
@@ -401,7 +401,9 @@ export default function WholeSpicePage() {
         </Container>
       </div>
 
+<div>
       <AdvertisingProducts />
+      </div>
 
       {/* HEALTH BENEFITS */}
       <div style={{ marginTop: "10%", textAlign: "center" }} className="div-healthbenefits">

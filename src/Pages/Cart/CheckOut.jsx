@@ -4,29 +4,25 @@ import LearnMore from "../Home/LearnMore";
 import { Row, Col, Form, Button, Container, Table, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated } from "@react-spring/web";
 import Vector from "/media/Vector.png";
 import { removeFromCart, updateQuantity } from "../../redux/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify"; // Added for toast notifications
-import "react-toastify/dist/ReactToastify.css"; // Added for toast styles
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function CheckOut({ onSubmit }) {
   const [isVisible, setIsVisible] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
   const [savedAddresses, setSavedAddresses] = useState([]);
-  const [savedAddressId, setSavedAddressId] = useState(null);
   const [selectedAddressId, setSelectedAddressId] = useState(null);
   const [isUsingManualAddress, setIsUsingManualAddress] = useState(false);
   const [phoneError, setPhoneError] = useState("");
   const user = useSelector((state) => state.auth?.user || null);
-  const [isLoading, setIsLoading] = useState(false); // Added for loading state
-  const [showConfirmModal, setShowConfirmModal] = useState(false); // Added for confirmation modal
-
-  const RAPIDSHYP_TOKEN = "f5e498941467ae1f3a4d9e9db8d7dd74e1293d75e8dc81abd902abef41b30f8a";
-  
+  const [isLoading, setIsLoading] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -57,8 +53,7 @@ export default function CheckOut({ onSubmit }) {
     city: "",
     state: "",
     pincode: "",
-    region: "",
-    country: "", // Added country to initial state
+    country: "",
   });
 
   const validatePhoneNumber = (phone) => {
@@ -80,10 +75,6 @@ export default function CheckOut({ onSubmit }) {
       const error = validatePhoneNumber(value);
       setPhoneError(error);
     }
-
-    // if (name === "pincode" && value.length === 6) {
-    //   checkServiceability(value);
-    // }
   };
 
   const fetchSavedAddresses = async () => {
@@ -184,52 +175,8 @@ export default function CheckOut({ onSubmit }) {
     }
   };
 
-  const checkServiceability = async (deliveryPincode) => {
-    try {
-      const response = await axios.post(
-        "https://api.nncwebsitedevelopment.com/api/rapidshyp/serviceability-check",
-        {
-          Pickup_pincode: "562123", // Updated to match handlePlaceOrder
-          Delivery_pincode: deliveryPincode,
-          cod: false, // PREPAID for Cashfree
-          total_order_value: total,
-          weight: 2,
-        },
-        {
-          headers: {
-            "rapidshyp-token": RAPIDSHYP_TOKEN,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      console.log("Serviceability response:", response.data);
-
-      if (response.data.status === true) {
-        toast.success("✅ This pincode is serviceable");
-        const couriers = response.data.serviceable_courier_list;
-        console.log("Available Couriers:", couriers);
-
-        const origin = couriers[0];
-        if (origin.origin_state || origin.origin_city) {
-          setAddress((prev) => ({
-            ...prev,
-            state: origin.origin_state || prev.state,
-            city: origin.origin_city || prev.city,
-          }));
-        }
-      } else {
-        toast.error("❌ This pincode is not serviceable.");
-      }
-    } catch (error) {
-      console.error("Serviceability error:", error.response?.data || error.message);
-      toast.error("Error checking pincode. Try again.");
-    }
-  };
-
-
 const handlePlaceOrder = async () => {
-  setIsLoading(true); // Set loading state
+  setIsLoading(true);
   try {
     // Step 0: Validation
     if (!selectedAddressId && !isUsingManualAddress) {
@@ -237,7 +184,7 @@ const handlePlaceOrder = async () => {
       return;
     }
 
-    if (!user || !user.id) {
+    if (!user || !user.id || !user.email) {
       toast.error("Please log in to proceed to checkout.");
       navigate("/login");
       return;
@@ -255,6 +202,7 @@ const handlePlaceOrder = async () => {
           state: address.state,
           pinCode: address.pincode,
           email: user.email,
+          country: address.country,
         }
       : savedAddresses.find((addr) => addr._id === selectedAddressId);
 
@@ -283,119 +231,68 @@ const handlePlaceOrder = async () => {
       return;
     }
 
-    // Step 3: Create Order Payload
-    const generateAlphaString = (length) => {
-      const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      return Array.from({ length }, () => letters[Math.floor(Math.random() * letters.length)]).join("");
-    };
+    // Step 3: Validate Email
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(selectedAddress.email)) {
+      toast.error("Invalid email address.");
+      return;
+    }
 
-    const uniquePickupName = `Yantaganahalli${generateAlphaString(5)}`;
-
-    const pickupLocation = {
-      contactName: "Harshita Jethender Bhat",
-      pickupName: uniquePickupName,
-      pickupEmail: "mahesh.mehra@rapidshyp.com",
-      pickupPhone: "9513186600",
-      pickupAddress1: "24/2, Behind BP petrol bunk, Yantaganahalli",
-      pickupAddress2: "Nelamangala, Bengaluru, Karnataka",
-      pinCode: "562123",
-    };
-
-    const payload = {
-      pickupLocation,
+    // Step 4: Create Order Payload for Backend
+    const orderId = `ORD-${Date.now()}`;
+    const orderPayload = {
+      userId: user.id,
+      orderId,
+      products: cartItems.map((item) => ({
+        name: item.title,
+        price: parseFloat(item.price),
+        oldPrice: parseFloat(item.discountPrice) || undefined,
+        quantity: parseInt(item.quantity) || 1,
+        image: item.image,
+      })),
       shippingAddress: {
         firstName: selectedAddress.firstName,
         lastName: selectedAddress.lastName,
         addressLine1: selectedAddress.addressLine1 || selectedAddress.address,
         addressLine2: selectedAddress.addressLine2 || "",
+        city: selectedAddress.city,
+        state: selectedAddress.state,
         pinCode: selectedAddress.pinCode || selectedAddress.pincode,
+        country: selectedAddress.country,
         email: selectedAddress.email,
         phone: phoneNumber,
       },
-      orderItems: cartItems.map((item) => ({
-        itemName: item.title,
-        sku: item.id,
-        description: `${item.title} description`,
-        units: item.quantity,
-        unitPrice: parseFloat(item.price),
-        tax: 0,
-        hsn: "6109",
-        productLength: 20.0,
-        productBreadth: 15.0,
-        productHeight: 3.0,
-        productWeight: 0.3,
-        brand: "BrandX",
-        imageURL: item.image,
-        isFragile: false,
-        isPersonalisable: false,
-      })),
-      totalOrderValue: Number((subtotal + shipping).toFixed(2)),
+      subtotal: Number(subtotal.toFixed(2)),
+      shipping: Number(shipping.toFixed(2)),
+      tax: Number(tax.toFixed(2)),
+      total: Number(total.toFixed(2)),
       paymentMethod: "Prepaid",
+      status: "Pending",
     };
 
-    const orderId = `ORD-${Date.now()}`;
-
-    // Step 4: Create Order on RapidShyp
-    let rapidShypOrderResponse;
+    // Step 5: Save Order to Backend
     try {
-      const response = await axios.post(
-        "https://api.nncwebsitedevelopment.com/api/rapidshyp/create-order",
+      const orderResponse = await axios.post(
+        "https://api.nncwebsitedevelopment.com/api/orders",
+        orderPayload,
         {
-          ...payload,
-          orderId,
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
-      rapidShypOrderResponse = response.data;
-      console.log("RapidShyp Create Order Response:", rapidShypOrderResponse);
-
-      if (rapidShypOrderResponse.status !== "SUCCESS" || !rapidShypOrderResponse.orderCreated) {
-        toast.error(`⚠️ Failed to create order: ${rapidShypOrderResponse.remarks || rapidShypOrderResponse.message || "Unknown error"}`);
+      if (orderResponse.status !== 201) {
+        toast.error("Failed to save order to backend.");
         return;
       }
-
-      const awb = rapidShypOrderResponse?.records?.[0]?.shipment_details?.[0]?.awb || null;
-
-      // ** IMPORTANT CHECK **
-      if (!orderId && !awb) {
-        toast.error("Order creation failed: both Order ID and AWB are missing.");
-        return;  // Stop here to prevent invalid order saving
-      }
-
-      // Step 5: Save Order to localStorage
-      const orderDetails = {
-        orderId,
-        seller_order_id: orderId, // Store seller_order_id for tracking
-        awb, // Store AWB for tracking
-        items: cartItems,
-        subtotal: subtotal.toFixed(2),
-        shipping: shipping.toFixed(2),
-        tax: tax.toFixed(2),
-        total: total.toFixed(2),
-        shippingAddress: selectedAddress,
-        createdAt: new Date().toISOString(),
-        status: "Pending",
-      };
-
-      // Retrieve existing orders for the user from localStorage
-      const existingOrders = JSON.parse(localStorage.getItem(`userOrders_${user.id}`)) || [];
-      
-      // Append the new order
-      existingOrders.push(orderDetails);
-      
-      // Save back to localStorage
-      localStorage.setItem(`userOrders_${user.id}`, JSON.stringify(existingOrders));
-      
-      console.log("Order saved to localStorage:", orderDetails);
-
-      console.log("Order created successfully, proceeding to payment...");
+      console.log("Order saved to backend:", orderResponse.data);
     } catch (error) {
-      console.error("RapidShyp Order Creation Error:", error.response?.data || error.message);
-      toast.error(`❌ Failed to create order: ${error.response?.data?.message || error.message || "Unable to create order. Please try again."}`);
+      console.error("Error saving order to backend:", error.response?.data || error.message);
+      toast.error(`Error saving order: ${error.response?.data?.message || "Unknown error"}`);
       return;
     }
 
-    // Step 6: Create Payment on Cashfree with Retry Logic
+    // Step 6: Create Payment on Cashfree
     const customerDetails = {
       customer_id: user.id,
       customer_name: `${selectedAddress.firstName} ${selectedAddress.lastName}`,
@@ -403,12 +300,41 @@ const handlePlaceOrder = async () => {
       customer_phone: phoneNumber,
     };
 
+    // Use ngrok URL for local testing, or production URL for deployed app
+    const isLocalDevelopment = process.env.NODE_ENV === 'development';
+    const baseUrl = isLocalDevelopment
+      ? 'https://avitrispices.in' // Replace with your ngrok HTTPS URL
+      : 'https://avitrispices.in';
+
     const orderMeta = {
-      return_url: 'https://avitrispices.in/thank-you',
-      notify_url: 'https://your-ngrok-id.ngrok.io/api/payments/webhook',
+      return_url: `https://avitrispices.in/thank-you?order_id=${orderId}`,
+      notify_url: `https://avitrispices.in/api/payments/webhook`,
     };
 
-    console.log("Sending payment request to backend:", { customerDetails, orderMeta });
+    const paymentPayload = {
+      order_id: orderId,
+      order_amount: Number(total.toFixed(2)),
+      order_currency: "INR",
+      customer_details: customerDetails,
+      order_meta: orderMeta,
+      order_payload: orderPayload,
+    };
+
+    // Validate payment payload
+    if (!customerDetails.customer_id || !customerDetails.customer_name || !customerDetails.customer_email || !customerDetails.customer_phone) {
+      toast.error("Missing customer details. Please ensure all address fields are filled.");
+      return;
+    }
+    if (paymentPayload.order_amount <= 0) {
+      toast.error("Order amount must be greater than zero.");
+      return;
+    }
+    if (!/^[a-zA-Z0-9_-]+$/.test(orderId)) {
+      toast.error("Invalid order ID format.");
+      return;
+    }
+
+    console.log("Payment Payload:", JSON.stringify(paymentPayload, null, 2));
 
     const maxRetries = 2;
     let retryCount = 0;
@@ -416,19 +342,12 @@ const handlePlaceOrder = async () => {
 
     while (retryCount <= maxRetries) {
       try {
-        const token = localStorage.getItem('token');
         paymentResponse = await axios.post(
           "https://api.nncwebsitedevelopment.com/api/payments/create",
-          {
-            order_amount: Number((subtotal + shipping + tax).toFixed(2)),
-            order_currency: "INR",
-            customer_details: customerDetails,
-            order_meta: orderMeta,
-          },
+          paymentPayload,
           {
             headers: {
-              Authorization: token ? `Bearer ${token}` : undefined,
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
           }
         );
@@ -436,44 +355,63 @@ const handlePlaceOrder = async () => {
         console.log("Cashfree Payment Response:", paymentResponse.data);
 
         if (paymentResponse.status === 201 && paymentResponse.data.payment?.payment_link) {
-          // Optionally update order status in localStorage to "Payment Initiated"
+          // Save pending order to localStorage
+          const pendingOrder = {
+            orderId,
+            payment_id: paymentResponse.data.payment.payment_id,
+            status: "Awaiting Payment",
+            createdAt: new Date().toISOString(),
+            items: cartItems,
+            subtotal: subtotal.toFixed(2),
+            shipping: shipping.toFixed(2),
+            tax: tax.toFixed(2),
+            total: total.toFixed(2),
+            shippingAddress: selectedAddress,
+          };
           const existingOrders = JSON.parse(localStorage.getItem(`userOrders_${user.id}`)) || [];
-          const updatedOrders = existingOrders.map((order) =>
-            order.orderId === orderId ? { ...order, status: "Payment Initiated" } : order
-          );
-          localStorage.setItem(`userOrders_${user.id}`, JSON.stringify(updatedOrders));
+          existingOrders.push(pendingOrder);
+          localStorage.setItem(`userOrders_${user.id}`, JSON.stringify(existingOrders));
 
-          window.location.href = paymentResponse.data.payment.payment_link;
+          // Redirect to payment page
+          try {
+            window.location.href = paymentResponse.data.payment.payment_link;
+          } catch (error) {
+            console.error("Redirection error:", error);
+            toast.error("Failed to redirect to payment page. Please try again.");
+            return;
+          }
           return;
         } else {
-          throw new Error(paymentResponse.data.error || "Failed to create payment link");
+          throw new Error(paymentResponse.data.error || "Invalid payment response from server");
         }
       } catch (error) {
         console.error(`Payment Attempt ${retryCount + 1} Failed:`, error.response?.data || error.message);
-        toast.error(`❌ Payment Error: ${error.response?.data?.message || error.message || "Unable to process payment. Please try again."}`);
+        const errorMessage = error.response?.data?.error || error.message || "Unable to process payment.";
+        toast.error(`Payment error: ${errorMessage}`);
         if (retryCount === maxRetries) {
+          toast.error("Maximum retry attempts reached. Please check your details and try again.");
           return;
         }
         retryCount++;
         await new Promise((resolve) => setTimeout(resolve, Math.pow(2, retryCount) * 1000));
       }
     }
-    
+  } catch (error) {
+    console.error("Error in handlePlaceOrder:", error);
+    toast.error("An unexpected error occurred. Please try again.");
   } finally {
-    setIsLoading(false); // Reset loading state
+    setIsLoading(false);
   }
 };
 
-
-
-const subtotal = cartItems.reduce(
+  const subtotal = cartItems.reduce(
     (acc, item) =>
       acc + (parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1),
     0
   );
   const shipping = 50;
   const tax = subtotal * 0.18;
-  const total = subtotal + shipping ;
+  const total = subtotal + shipping;
 
   const [hovered, setHovered] = useState(false);
 
@@ -494,7 +432,7 @@ const subtotal = cartItems.reduce(
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} /> {/* Added ToastContainer */}
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
       <div
         className="page-content"
         style={{
@@ -503,7 +441,6 @@ const subtotal = cartItems.reduce(
         }}
       >
         <Navbar_Menu />
-
         <div style={{ margin: "15% 0% 10% 0%" }} className="div-shippingaddress">
           <h1
             style={{
@@ -523,7 +460,6 @@ const subtotal = cartItems.reduce(
               <h3 style={{ textAlign: "center", marginBottom: "20px" }}>
                 SELECT SHIPPING ADDRESS
               </h3>
-
               {savedAddresses.map((address) => (
                 <div
                   key={address._id}
@@ -588,7 +524,6 @@ const subtotal = cartItems.reduce(
                           />
                         </Form.Group>
                       </Col>
-
                       <Col md={6}>
                         <Form.Group controlId="lastName">
                           <Form.Label>Last Name</Form.Label>
@@ -609,7 +544,6 @@ const subtotal = cartItems.reduce(
                         </Form.Group>
                       </Col>
                     </Row>
-
                     <Row className="mt-3">
                       <Col md={4}>
                         <Form.Group controlId="phoneCode">
@@ -635,7 +569,6 @@ const subtotal = cartItems.reduce(
                           </Form.Control>
                         </Form.Group>
                       </Col>
-
                       <Col md={8}>
                         <Form.Group controlId="phoneNumber">
                           <Form.Label>Phone Number</Form.Label>
@@ -660,7 +593,6 @@ const subtotal = cartItems.reduce(
                         </Form.Group>
                       </Col>
                     </Row>
-
                     <Form.Group controlId="address1" className="mt-3">
                       <Form.Label>Address 1</Form.Label>
                       <Form.Control
@@ -678,7 +610,6 @@ const subtotal = cartItems.reduce(
                         required
                       />
                     </Form.Group>
-
                     <Form.Group controlId="address2" className="mt-3">
                       <Form.Label>Address 2</Form.Label>
                       <Form.Control
@@ -695,7 +626,6 @@ const subtotal = cartItems.reduce(
                         onChange={handleChange}
                       />
                     </Form.Group>
-
                     <Row className="mt-3">
                       <Col md={4}>
                         <Form.Group controlId="city">
@@ -711,7 +641,6 @@ const subtotal = cartItems.reduce(
                           />
                         </Form.Group>
                       </Col>
-
                       <Col md={4}>
                         <Form.Group controlId="state">
                           <Form.Label>State</Form.Label>
@@ -726,7 +655,6 @@ const subtotal = cartItems.reduce(
                           />
                         </Form.Group>
                       </Col>
-
                       <Col md={4}>
                         <Form.Group controlId="pincode">
                           <Form.Label>Pincode</Form.Label>
@@ -742,7 +670,6 @@ const subtotal = cartItems.reduce(
                         </Form.Group>
                       </Col>
                     </Row>
-
                     <Form.Group controlId="country" className="mt-3">
                       <Form.Label>Country</Form.Label>
                       <Form.Control
@@ -766,7 +693,6 @@ const subtotal = cartItems.reduce(
                         <option value="Italy">Italy</option>
                       </Form.Control>
                     </Form.Group>
-
                     <div className="d-flex justify-content-between mt-3">
                       <Button
                         type="submit"
@@ -781,7 +707,6 @@ const subtotal = cartItems.reduce(
               </Container>
             </div>
           )}
-
           <Container>
             <div style={{ marginTop: "5%" }}>
               <h1
@@ -795,164 +720,158 @@ const subtotal = cartItems.reduce(
                 ORDER SUMMARY
               </h1>
             </div>
-
             <div style={{ fontFamily: "kapraneue, sans-serif" }}>
-              <div>
-                <Table className="custom-table" hover responsive style={{ margin: "auto" }}>
-                  <thead>
-                    <tr>
-                      <th style={{ textAlign: "center", padding: "10px" }}>Image</th>
-                      <th style={{ textAlign: "center", padding: "10px" }}>Product Name</th>
-                      <th style={{ textAlign: "center", padding: "10px" }}>Quantity</th>
-                      <th style={{ textAlign: "center", padding: "10px" }}>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartItems.map((item) => {
-                      const itemPrice = parseFloat(item.price) || 0;
-                      const itemQuantity = parseInt(item.quantity) || 1;
-                      const totalItemPrice = itemPrice * itemQuantity;
+              <Table className="custom-table" hover responsive style={{ margin: "auto" }}>
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: "center", padding: "10px" }}>Image</th>
+                    <th style={{ textAlign: "center", padding: "10px" }}>Product Name</th>
+                    <th style={{ textAlign: "center", padding: "10px" }}>Quantity</th>
+                    <th style={{ textAlign: "center", padding: "10px" }}>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartItems.map((item) => {
+                    const itemPrice = parseFloat(item.price) || 0;
+                    const itemQuantity = parseInt(item.quantity) || 1;
+                    const totalItemPrice = itemPrice * itemQuantity;
 
-                      return (
-                        <tr key={item.id} style={{ textAlign: "center" }}>
-                          <td style={{ padding: "10px" }}>
-                            <img
-                              src={item.image}
-                              alt={item.title}
-                              style={{
-                                width: "100px",
-                                height: "auto",
-                                objectFit: "contain",
-                              }}
-                              className="cart-img-item"
-                            />
-                          </td>
-                          <td style={{ padding: "10px" }}>
-                            <h3
-                              style={{
-                                fontSize: "30px",
-                                marginBottom: "10px",
-                                fontFamily: "kapraneue, sans-serif",
-                                letterSpacing: "1px",
-                              }}
-                              className="order-products-title"
-                            >
-                              {item.title}
-                            </h3>
+                    return (
+                      <tr key={item.id} style={{ textAlign: "center" }}>
+                        <td style={{ padding: "10px" }}>
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            style={{
+                              width: "100px",
+                              height: "auto",
+                              objectFit: "contain",
+                            }}
+                            className="cart-img-item"
+                          />
+                        </td>
+                        <td style={{ padding: "10px" }}>
+                          <h3
+                            style={{
+                              fontSize: "30px",
+                              marginBottom: "10px",
+                              fontFamily: "kapraneue, sans-serif",
+                              letterSpacing: "1px",
+                            }}
+                            className="order-products-title"
+                          >
+                            {item.title}
+                          </h3>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              gap: "10px",
+                            }}
+                            className="cart-product-price"
+                          >
                             <div
                               style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                gap: "10px",
+                                textDecoration: "line-through",
+                                fontSize: "18px",
+                                opacity: "0.5",
                               }}
-                              className="cart-product-price"
+                              className="discount-price-cart"
                             >
-                              <div
-                                style={{
-                                  textDecoration: "line-through",
-                                  fontSize: "18px",
-                                  opacity: "0.5",
-                                }}
-                                className="discount-price-cart"
-                              >
-                                Rs {item.discountPrice}
-                              </div>
-                              <div
-                                style={{
-                                  fontFamily: "kapraneue, sans-serif",
-                                  fontSize: "24px",
-                                }}
-                                className="price-cart"
-                              >
-                                Rs {itemPrice.toFixed(2)}
-                              </div>
+                              Rs {item.discountPrice}
                             </div>
-
-                            <Button
-                              variant="outline-dark"
+                            <div
                               style={{
-                                fontSize: "16px",
-                                padding: "4px 10px",
-                                marginTop: "10px",
+                                fontFamily: "kapraneue, sans-serif",
+                                fontSize: "24px",
                               }}
-                              onClick={() => dispatch(removeFromCart(item.id))}
+                              className="price-cart"
                             >
-                              Remove
-                            </Button>
-                          </td>
-                          <td
+                              Rs {itemPrice.toFixed(2)}
+                            </div>
+                          </div>
+                          <Button
+                            variant="outline-dark"
                             style={{
-                              padding: "10px",
-                              whiteSpace: "nowrap",
-                              alignItems: "center",
-                              justifyContent: "center",
+                              fontSize: "16px",
+                              padding: "4px 10px",
+                              marginTop: "10px",
                             }}
+                            onClick={() => dispatch(removeFromCart(item.id))}
                           >
-                            <button
-                              onClick={() =>
-                                dispatch(
-                                  updateQuantity({
-                                    id: item.id,
-                                    quantity: Math.max(1, itemQuantity - 1),
-                                  })
-                                )
-                              }
-                              style={{
-                                padding: "5px 10px",
-                                borderRadius: "5px",
-                                border: "1px solid #ccc",
-                                backgroundColor: "#f8f9fa",
-                                cursor: "pointer",
-                                marginRight: "15px",
-                              }}
-                              className="minus-btn"
-                            >
-                              −
-                            </button>
-                            <span
-                              style={{
-                                width: "40px",
-                                textAlign: "center",
-                                fontWeight: "bold",
-                              }}
-                              className="count-size"
-                            >
-                              {itemQuantity}
-                            </span>
-                            <button
-                              onClick={() =>
-                                dispatch(
-                                  updateQuantity({
-                                    id: item.id,
-                                    quantity: itemQuantity + 1,
-                                  })
-                                )
-                              }
-                              style={{
-                                padding: "5px 10px",
-                                borderRadius: "5px",
-                                border: "1px solid #ccc",
-                                backgroundColor: "#f8f9fa",
-                                cursor: "pointer",
-                                marginLeft: "15px",
-                              }}
-                              className="minus-btn"
-                            >
-                              +
-                            </button>
-                          </td>
-
-                          <td style={{ padding: "10px" }}>
-                            Rs {totalItemPrice.toFixed(2)}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </Table>
-              </div>
-
+                            Remove
+                          </Button>
+                        </td>
+                        <td
+                          style={{
+                            padding: "10px",
+                            whiteSpace: "nowrap",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <button
+                            onClick={() =>
+                              dispatch(
+                                updateQuantity({
+                                  id: item.id,
+                                  quantity: Math.max(1, itemQuantity - 1),
+                                })
+                              )
+                            }
+                            style={{
+                              padding: "5px 10px",
+                              borderRadius: "5px",
+                              border: "1px solid #ccc",
+                              backgroundColor: "#f8f9fa",
+                              cursor: "pointer",
+                              marginRight: "15px",
+                            }}
+                            className="minus-btn"
+                          >
+                            −
+                          </button>
+                          <span
+                            style={{
+                              width: "40px",
+                              textAlign: "center",
+                              fontWeight: "bold",
+                            }}
+                            className="count-size"
+                          >
+                            {itemQuantity}
+                          </span>
+                          <button
+                            onClick={() =>
+                              dispatch(
+                                updateQuantity({
+                                  id: item.id,
+                                  quantity: itemQuantity + 1,
+                                })
+                              )
+                            }
+                            style={{
+                              padding: "5px 10px",
+                              borderRadius: "5px",
+                              border: "1px solid #ccc",
+                              backgroundColor: "#f8f9fa",
+                              cursor: "pointer",
+                              marginLeft: "15px",
+                            }}
+                            className="minus-btn"
+                          >
+                            +
+                          </button>
+                        </td>
+                        <td style={{ padding: "10px" }}>
+                          Rs {totalItemPrice.toFixed(2)}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
               <div
                 style={{
                   display: "block",
@@ -971,12 +890,12 @@ const subtotal = cartItems.reduce(
                 >
                   SHIPPING: <span style={{ float: "right" }}>Rs {shipping.toFixed(2)}</span>
                 </h1>
-                {/* <h1
+                <h1
                   style={{ letterSpacing: "1px", fontSize: "28px" }}
                   className="checkout-subtotal-details"
                 >
                   TAX (18%): <span style={{ float: "right" }}>Rs {tax.toFixed(2)}</span>
-                </h1> */}
+                </h1>
                 <hr />
                 <h1 style={{ letterSpacing: "1px" }}>
                   TOTAL: <span style={{ float: "right" }}>Rs {total.toFixed(2)}</span>
@@ -989,7 +908,6 @@ const subtotal = cartItems.reduce(
                   Payment Gateway (UPI, Cards & Net Banking) to complete your
                   purchase securely.
                 </p>
-
                 <div
                   style={{
                     position: "relative",
@@ -1002,6 +920,8 @@ const subtotal = cartItems.reduce(
                     overflow: "hidden",
                     cursor: "pointer",
                   }}
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
                 >
                   <animated.img
                     src={Vector}
@@ -1014,7 +934,7 @@ const subtotal = cartItems.reduce(
                     }}
                   />
                   <h3
-                    onClick={handleConfirmOrder} // Changed to show confirmation modal
+                    onClick={handleConfirmOrder}
                     style={{
                       position: "absolute",
                       top: "50%",
@@ -1028,14 +948,12 @@ const subtotal = cartItems.reduce(
                       width: "100%",
                     }}
                   >
-                    {isLoading ? "PROCESSING..." : "PAY NOW"} {/* Show loading text */}
+                    {isLoading ? "PROCESSING..." : "PAY NOW"}
                   </h3>
                 </div>
               </div>
             </div>
           </Container>
-
-          {/* Confirmation Modal */}
           <Modal show={showConfirmModal} onHide={() => setShowConfirmModal(false)}>
             <Modal.Header closeButton>
               <Modal.Title>Confirm Your Order</Modal.Title>
@@ -1044,7 +962,7 @@ const subtotal = cartItems.reduce(
               <p>Please review your order details before proceeding to payment:</p>
               <p><strong>Subtotal:</strong> Rs {subtotal.toFixed(2)}</p>
               <p><strong>Shipping:</strong> Rs {shipping.toFixed(2)}</p>
-              {/* <p><strong>Tax (18%):</strong> Rs {tax.toFixed(2)}</p> */}
+              <p><strong>Tax (18%):</strong> Rs {tax.toFixed(2)}</p>
               <p><strong>Total:</strong> Rs {total.toFixed(2)}</p>
               <p><strong>Items:</strong></p>
               <ul>
@@ -1064,10 +982,8 @@ const subtotal = cartItems.reduce(
               </Button>
             </Modal.Footer>
           </Modal>
-
           <LearnMore />
           <Footer />
-
           <style>{`
             .form-container {
               background-color: #ffffff;

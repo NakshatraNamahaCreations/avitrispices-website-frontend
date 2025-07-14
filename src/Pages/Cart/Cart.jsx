@@ -225,7 +225,7 @@ export default function Cart() {
                                   className="discount-price-cart"
                                 >
                                   {" "}
-                                  Rs {item.discountPrice}
+                                  {/* Rs {item.discountPrice} */}
                                 </div>
                                 <div
                                   style={{
