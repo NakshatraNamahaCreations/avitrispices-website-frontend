@@ -333,7 +333,7 @@ export default function WholeSpicePage() {
                     }}
                     className="cutprice"
                   >
-                    Rs {150}
+                    {/* Rs {150} */}
                   </p>
                   <p
                     style={{

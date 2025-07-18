@@ -661,7 +661,7 @@ body {
     top: -15% !important;
   }
   .custom-advertising-container {
-    bottom: -58%;
+    bottom: -58% !important;
     
   }
 
@@ -1468,7 +1468,7 @@ body {
     padding: 25px !important;
   }
   .custom-advertising-container {
-    bottom: -96%;
+    bottom: -96% !important;
   }
   .advertising-container-product {
     bottom: -382px !important;

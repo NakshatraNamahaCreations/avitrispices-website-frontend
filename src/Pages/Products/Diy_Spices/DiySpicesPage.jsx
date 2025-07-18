@@ -251,10 +251,10 @@ export default function DiySpicesPage() {
         color: "white",
         fontWeight: "bold",
         fontSize: "18px",
-        border: "1px solid white",
+        // border: "1px solid white",
         textAlign: "center",
         padding: "8px 12px",
-        borderRadius: "6px",
+        // borderRadius: "6px",
         cursor: "pointer",
         appearance: "none",
         width: "150px",
@@ -308,7 +308,7 @@ export default function DiySpicesPage() {
                     }}
                     className="cutprice"
                   >
-                    Rs {150}
+                    {/* Rs {150} */}
                   </p>
                   <p
                     style={{

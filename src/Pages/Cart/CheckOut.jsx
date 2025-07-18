@@ -314,6 +314,7 @@ const handlePlaceOrder = async () => {
     const paymentPayload = {
       order_id: orderId,
       order_amount: Number(total.toFixed(2)),
+      //  order_amount: 1,
       order_currency: "INR",
       customer_details: customerDetails,
       order_meta: orderMeta,
@@ -779,7 +780,7 @@ const handlePlaceOrder = async () => {
                               }}
                               className="discount-price-cart"
                             >
-                              Rs {item.discountPrice}
+                              {/* Rs {item.discountPrice} */}
                             </div>
                             <div
                               style={{
