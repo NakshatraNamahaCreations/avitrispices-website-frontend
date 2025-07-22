@@ -214,7 +214,7 @@ export default function Footer() {
                   name: "FACEBOOK",
                   path: "https://www.facebook.com/AvitriSpices/",
                 },
-               { name: "EMAIL", path: "mailto:admin@avitrispices.in" },
+                   { name: "EMAIL", path: "mailto:admin@avitrispices.in" },
               ],
             },
             {

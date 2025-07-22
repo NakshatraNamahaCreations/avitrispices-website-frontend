@@ -257,7 +257,7 @@ export default function DiySpicesPage() {
         // borderRadius: "6px",
         cursor: "pointer",
         appearance: "none",
-        width: "150px",
+        width: "165px",
         backdropFilter: "blur(5px)", 
       }}
         value={selectedVariantIndex}
