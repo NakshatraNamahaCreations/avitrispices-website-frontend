@@ -42,7 +42,7 @@ export default function RetailSpices() {
   useEffect(() => {
     const fetchDiySpices = async () => {
       try {
-        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products/category/SPICES%20BLENDS");
+        const response = await fetch("https://api.avitrispices.in/api/products/category/SPICES%20BLENDS");
   
         const data = await response.json();
         if (data.success) {
@@ -226,7 +226,7 @@ export default function RetailSpices() {
   className="responsive-image-card"
   src={
     kit.images?.[0]
-      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      ? `https://api.avitrispices.in/uploads/${kit.images[0].split("/").pop()}`
       : "/media/fallback.jpg"
   }
   alt={kit.name}
@@ -248,7 +248,7 @@ export default function RetailSpices() {
   className="responsive-image-card"
   src={
     kit.images?.[0]
-      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      ? `https://api.avitrispices.in/uploads/${kit.images[0].split("/").pop()}`
       : "/media/fallback.jpg"
   }
   alt={kit.name}

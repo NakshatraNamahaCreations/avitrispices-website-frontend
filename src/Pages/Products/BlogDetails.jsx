@@ -16,7 +16,7 @@ const BlogDetails = () => {
 
   const fetchBlog = async () => {
     try {
-      const res = await axios.get(`https://api.nncwebsitedevelopment.com/api/blogs/${encodeURIComponent(title)}`);
+      const res = await axios.get(`https://api.avitrispices.in/api/blogs/${encodeURIComponent(title)}`);
       setBlog(res.data);
     } catch (err) {
       console.error("Blog not found", err);
@@ -31,7 +31,7 @@ const BlogDetails = () => {
           <>
             <h2 className="text-center mb-4 fw-bold">{blog.title}</h2>
             <img
-              src={`https://api.nncwebsitedevelopment.com/uploads/blogs/${blog.image}`}
+              src={`https://api.avitrispices.in/uploads/blogs/${blog.image}`}
               alt={blog.title}
               className="img-fluid rounded mb-4"
               style={{ maxHeight: "400px", objectFit: "cover", width: "100%" }}

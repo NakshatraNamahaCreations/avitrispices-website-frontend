@@ -45,7 +45,7 @@ const OrderTracking = () => {
 
         try {
           const response = await axios.post(
-            "https://api.nncwebsitedevelopment.com/api/rapidshyp/track-order",
+            "https://api.avitrispices.in/api/rapidshyp/track-order",
             {
               seller_order_id: order.seller_order_id,
               contact: order.shippingAddress.phone,

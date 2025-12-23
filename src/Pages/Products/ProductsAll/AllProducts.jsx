@@ -66,7 +66,7 @@ const[allProducts, setAllProducts] = useState([])
   useEffect(() => {
     const fetchDiySpices = async () => {
       try {
-        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products");
+        const response = await fetch("https://api.avitrispices.in/api/products");
   
         const data = await response.json();
         if (data.success) {
@@ -230,7 +230,7 @@ const[allProducts, setAllProducts] = useState([])
   className="responsive-image-card"
   src={
     kit.images?.[0]
-      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      ? `https://api.avitrispices.in/uploads/${kit.images[0].split("/").pop()}`
       : "/media/fallback.jpg"
   }
   alt={kit.name}
@@ -252,7 +252,7 @@ const[allProducts, setAllProducts] = useState([])
   className="responsive-image-card"
   src={
     kit.images?.[0]
-      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      ? `https://api.avitrispices.in/uploads/${kit.images[0].split("/").pop()}`
       : "/media/fallback.jpg"
   }
   alt={kit.name}

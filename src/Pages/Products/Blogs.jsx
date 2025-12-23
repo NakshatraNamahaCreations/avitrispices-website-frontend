@@ -24,7 +24,7 @@ export default function Blogs() {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("https://api.nncwebsitedevelopment.com/api/blogs");
+      const res = await axios.get("https://api.avitrispices.in/api/blogs");
       setBlogs(res.data);
     } catch (err) {
       console.error("Error fetching blogs:", err);
@@ -48,7 +48,7 @@ export default function Blogs() {
               <Card className="h-100 shadow-sm rounded">
                 <Card.Img
                   variant="top"
-                  src={`https://api.nncwebsitedevelopment.com/uploads/blogs/${blog.image}`}
+                  src={`https://api.avitrispices.in/uploads/blogs/${blog.image}`}
                   style={{ height: "200px", objectFit: "cover" }}
                 />
                 <Card.Body>

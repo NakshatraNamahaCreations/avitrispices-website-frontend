@@ -26,7 +26,7 @@ const ResetPassword = () => {
     }
 
     try {
-      const res = await axios.post(`https://api.nncwebsitedevelopment.com/api/customers/reset-password/${token}`, {
+      const res = await axios.post(`https://api.avitrispices.in/api/customers/reset-password/${token}`, {
         newPassword,
         confirmPassword,
       });

@@ -47,7 +47,7 @@ export default function WholeSpices() {
   useEffect(() => {
     const fetchDiySpices = async () => {
       try {
-        const response = await fetch("https://api.nncwebsitedevelopment.com/api/products/category/WHOLE%20SPICES");
+        const response = await fetch("https://api.avitrispices.in/api/products/category/WHOLE%20SPICES");
   
         const data = await response.json();
         if (data.success) {
@@ -207,7 +207,7 @@ export default function WholeSpices() {
   className="responsive-image-card"
   src={
     kit.images?.[0]
-      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      ? `https://api.avitrispices.in/uploads/${kit.images[0].split("/").pop()}`
       : "/media/fallback.jpg"
   }
   alt={kit.name}
@@ -229,7 +229,7 @@ export default function WholeSpices() {
   className="responsive-image-card"
   src={
     kit.images?.[0]
-      ? `https://api.nncwebsitedevelopment.com/uploads/${kit.images[0].split("/").pop()}`
+      ? `https://api.avitrispices.in/uploads/${kit.images[0].split("/").pop()}`
       : "/media/fallback.jpg"
   }
   alt={kit.name}

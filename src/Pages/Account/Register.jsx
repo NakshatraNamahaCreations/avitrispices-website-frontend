@@ -63,7 +63,7 @@ export default function Register() {
     }
   
     try {
-      const response = await axios.post("https://api.nncwebsitedevelopment.com/api/customers/register", {
+      const response = await axios.post("https://api.avitrispices.in/api/customers/register", {
         firstname: formData.firstName,
         lastname: formData.lastName,
         email: formData.email,

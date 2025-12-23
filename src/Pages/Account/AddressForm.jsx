@@ -89,7 +89,7 @@ const AddressForm = ({ onSubmit }) => {
         console.log("Sending Address Data:", payload);
 
         const response = await axios.post(
-            "https://api.nncwebsitedevelopment.com/api/shipping-address", 
+            "https://api.avitrispices.in/api/shipping-address", 
             payload, 
             { headers: { "Content-Type": "application/json" } }
         );

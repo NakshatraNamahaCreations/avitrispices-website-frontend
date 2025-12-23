@@ -69,7 +69,7 @@ export default function AddressDetails() {
         console.log("Sending Address Data:", payload);
 
         const response = await axios.post(
-            "https://api.nncwebsitedevelopment.com/api/shipping-address", 
+            "https://api.avitrispices.in/api/shipping-address", 
             payload, 
             { headers: { "Content-Type": "application/json" } }
         );
@@ -113,7 +113,7 @@ export default function AddressDetails() {
     }
 
     try {
-        const response = await axios.get(`https://api.nncwebsitedevelopment.com/api/shipping-address/user/${user.id}`);
+        const response = await axios.get(`https://api.avitrispices.in/api/shipping-address/user/${user.id}`);
 
         if (response.status === 200 && response.data.length > 0) {
             

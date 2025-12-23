@@ -36,7 +36,7 @@ const Payment = () => {
     console.log('Sending to backend:', formData);
   
     try {
-      const response = await axios.post('https://api.nncwebsitedevelopment.com/api/phonepe/initiate', formData);
+      const response = await axios.post('https://api.avitrispices.in/api/phonepe/initiate', formData);
       console.log('Backend response:', response.data);
       const { data } = response.data;
       if (data.success && data.data.instrumentResponse.redirectInfo.url) {
@@ -61,7 +61,7 @@ const Payment = () => {
     const fetchPaymentStatus = async () => {
       try {
         const response = await axios.get(
-          `https://api.nncwebsitedevelopment.com/api/phonepe/status/${merchantTransactionId}`
+          `https://api.avitrispices.in/api/phonepe/status/${merchantTransactionId}`
         );
         setStatus(response.data);
         setStatusLoading(false);

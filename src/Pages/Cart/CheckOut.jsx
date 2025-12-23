@@ -86,7 +86,7 @@ export default function CheckOut({ onSubmit }) {
     try {
       console.log("📤 Fetching addresses for user:", user.id);
       const response = await axios.get(
-        `https://api.nncwebsitedevelopment.com/api/shipping-address/user/${user.id}`
+        `https://api.avitrispices.in/api/shipping-address/user/${user.id}`
       );
 
       if (response.status === 200 && response.data.length > 0) {
@@ -157,7 +157,7 @@ export default function CheckOut({ onSubmit }) {
 
     try {
       const response = await axios.post(
-        "https://api.nncwebsitedevelopment.com/api/shipping-address",
+        "https://api.avitrispices.in/api/shipping-address",
         shippingData
       );
 
@@ -272,7 +272,7 @@ const handlePlaceOrder = async () => {
     // Step 5: Save Order to Backend
     try {
       const orderResponse = await axios.post(
-        "https://api.nncwebsitedevelopment.com/api/orders",
+        "https://api.avitrispices.in/api/orders",
         orderPayload,
         {
           headers: {
@@ -344,7 +344,7 @@ const handlePlaceOrder = async () => {
     while (retryCount <= maxRetries) {
       try {
         paymentResponse = await axios.post(
-          "https://api.nncwebsitedevelopment.com/api/payments/create",
+          "https://api.avitrispices.in/api/payments/create",
           paymentPayload,
           {
             headers: {

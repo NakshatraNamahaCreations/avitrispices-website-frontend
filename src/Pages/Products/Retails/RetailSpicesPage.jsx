@@ -45,7 +45,7 @@ export default function RetailSpicesPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://api.nncwebsitedevelopment.com/api/products/${id}`);
+        const response = await fetch(`https://api.avitrispices.in/api/products/${id}`);
         if (response.ok) {
           const data = await response.json();
           if (data.success) {
@@ -73,7 +73,7 @@ export default function RetailSpicesPage() {
          title: product.name,
          price: product.variants?.[selectedVariantIndex]?.price || "0",
          image: product.images?.[0]
-         ? `https://api.nncwebsitedevelopment.com${product.images[0]}`
+         ? `https://api.avitrispices.in${product.images[0]}`
          : "/media/fallback.jpg",
        })
      );
@@ -145,7 +145,7 @@ export default function RetailSpicesPage() {
               <img
                 src={
                   selectedImage
-                    ? `https://api.nncwebsitedevelopment.com${selectedImage}`
+                    ? `https://api.avitrispices.in${selectedImage}`
                     : "/media/fallback.jpg"
                 }
                 alt={product.name}
@@ -162,7 +162,7 @@ export default function RetailSpicesPage() {
                 {product.images.map((image, index) => (
                   <img
                     key={index}
-                    src={`https://api.nncwebsitedevelopment.com${image}`}
+                    src={`https://api.avitrispices.in${image}`}
                     alt={`Thumbnail ${index}`}
                     onClick={() => setSelectedImage(image)} // Update selected image on click
                     style={{

@@ -42,7 +42,7 @@ const ContactUs = () => {
     e.preventDefault();
   
     try {
-      const res = await axios.post("https://api.nncwebsitedevelopment.com/api/contact-form", formData); // Update URL if deployed
+      const res = await axios.post("https://api.avitrispices.in/api/contact-form", formData); // Update URL if deployed
       alert("Message sent successfully!");
       // setFormData({
       //   firstName: "",

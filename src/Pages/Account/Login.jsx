@@ -37,7 +37,7 @@ export default function Login() {
 
 const handleForgot = async () => {
   try {
-    const res = await axios.post("https://api.nncwebsitedevelopment.com/api/customers/forgot-password", { email });
+    const res = await axios.post("https://api.avitrispices.in/api/customers/forgot-password", { email });
     setMessage(res.data.message);
   } catch (err) {
     setMessage(err.response?.data?.message || "Something went wrong.");
@@ -53,7 +53,7 @@ const handleForgot = async () => {
     }
 
     try {
-      const response = await axios.post("https://api.nncwebsitedevelopment.com/api/customers/login", {
+      const response = await axios.post("https://api.avitrispices.in/api/customers/login", {
         email: formData.email,
         password: formData.password,
       });

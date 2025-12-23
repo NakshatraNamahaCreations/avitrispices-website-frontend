@@ -33,7 +33,7 @@ export default function Footer() {
 
     try {
       setIsLoading(true);
-      const response = await axios.post("https://api.nncwebsitedevelopment.com/api/subscribe", { email });
+      const response = await axios.post("https://api.avitrispices.in/api/subscribe", { email });
       alert("Subscription successful! Thank you.");
       setEmail(""); 
       setIsLoading(false);
